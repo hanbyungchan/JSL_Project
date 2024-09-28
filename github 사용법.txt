@@ -1,0 +1,5 @@
+파일 업로드
+만든 거 압축해서 add file -> upload files -> 압축한 파일 드래그
+
+파일 다운로드
+파일 오른쪽 ・・・누른 후 download(ctrl+shift+s)
