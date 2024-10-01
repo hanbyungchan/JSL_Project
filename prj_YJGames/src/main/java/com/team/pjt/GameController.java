@@ -29,6 +29,10 @@ public class GameController {
 				CommonExecute game = new IndexList();
 				game.execute(req);
 				viewPage = "index";
+			}else if(gubun.equals("list")) {
+				CommonExecute game = new IndexList();
+				game.execute(req);
+				viewPage = "index";
 			}
 			return viewPage;
 		
