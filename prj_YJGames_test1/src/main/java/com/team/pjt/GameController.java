@@ -14,6 +14,10 @@ import common.CommonTemplate;
 @Controller
 public class GameController {
 
+	
+	//나는 문어(남승현)
+	//나는 문어(남승현)2
+	
 	@Autowired
 	JdbcTemplate template;
 	@Autowired
@@ -30,6 +34,11 @@ public class GameController {
 				game.execute(req);
 				viewPage = "index";
 			}
+			else if(gubun.equals("")) {
+			
+			}
+			
+			
 			return viewPage;
 		
 	
