@@ -75,7 +75,7 @@
                 <img src="img/game2.jpg" alt="게임 2">
                 <div class="slide-content">
                     <h2>Empire of the Ants</h2>
-                    <p>Pre-order now</p>
+                    <p>Pre-order now111</p>
                     <span class="price">$29.99</span>
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
