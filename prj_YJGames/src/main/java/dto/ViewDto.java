@@ -1,8 +1,8 @@
 package dto;
 
 public class ViewDto {
-	public String s_list_no,g_code, g_name,g_genre, g_developer,s_info_txt,s_date,s_sale,s_spec_1,s_spec_2,s_spec_3,s_spec_4,s_attach1,s_attach2,s_attach3,s_attach4,s_icon;
-	public int price;
+	public String s_list_no,g_code, g_name,g_genre, g_developer,s_info_txt,s_date,s_spec_1,s_spec_2,s_spec_3,s_spec_4,s_attach1,s_attach2,s_attach3,s_attach4,s_icon;
+	public int price,s_sale;
 	public ViewDto() {
 		super();
 	}
@@ -78,10 +78,10 @@ public class ViewDto {
 	public void setS_date(String s_date) {
 		this.s_date = s_date;
 	}
-	public String getS_sale() {
+	public int getS_sale() {
 		return s_sale;
 	}
-	public void setS_sale(String s_sale) {
+	public void setS_sale(int s_sale) {
 		this.s_sale = s_sale;
 	}
 	public String getS_spec_1() {

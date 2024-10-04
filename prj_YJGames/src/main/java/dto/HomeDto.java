@@ -1,14 +1,20 @@
 package dto;
 
 public class HomeDto {
-	String s_list_no,g_name,s_sale,s_attach1,s_attach2,s_attach3,s_attach4;
-	int g_price;
-	public HomeDto() {}
-	public String getS_list_no() {
-		return s_list_no;
+	String s_page_no,g_name,s_sale,s_attach1,s_attach2,s_attach3,s_attach4;
+	int g_price, g_price2;
+	public int getG_price2() {
+		return g_price2;
 	}
-	public void setS_list_no(String s_list_no) {
-		this.s_list_no = s_list_no;
+	public void setG_price2(int g_price2) {
+		this.g_price2 = g_price2;
+	}
+	public HomeDto() {}
+	public String getS_page_no() {
+		return s_page_no;
+	}
+	public void setS_page_no(String s_page_no) {
+		this.s_page_no = s_page_no;
 	}
 	public String getG_name() {
 		return g_name;

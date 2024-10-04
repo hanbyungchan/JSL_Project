@@ -71,49 +71,49 @@ const games = [
         description: "탐험, 퍼즐, 선택적 중요성, 풍부한 스토리",
         price: "₩8,800",
         discount: "-20%",
-        image: "img/game1-detail1.jpg"
+        image: "img/game1.jpg"
     },
     {
         name: "Rogue Waters",
         description: "전략 RPG, 탐험",
         price: "₩25,600",
         discount: "-20%",
-        image: "img/game2-detail1.jpg"
+        image: "img/game1.jpg"
     },
 	{
         name: "Rogue 111111",
         description: "전략 RPG, 탐험",
         price: "₩25,600",
         discount: "-20%",
-        image: "img/game2-detail1.jpg"
+        image: "img/game1.jpg"
     },
 	{
         name: "Rogue 222222",
         description: "전략 RPG, 탐험",
         price: "₩25,600",
         discount: "-20%",
-        image: "img/game2-detail1.jpg"
+        image: "img/game1.jpg"
     },
 	{
         name: "Rogue 333333",
         description: "전략 RPG, 탐험",
         price: "₩25,600",
         discount: "-20%",
-        image: "img/game2-detail1.jpg"
+        image: "img/game2.jpg"
     },
 	{
         name: "Rogue 444444",
         description: "전략 RPG, 탐험",
         price: "₩25,600",
         discount: "-20%",
-        image: "img/game2-detail1.jpg"
+        image: "img/game1.jpg"
     },
 	{
         name: "Rogue 55555",
         description: "전략 RPG, 탐험",
         price: "₩25,600",
         discount: "-20%",
-        image: "img/game2-detail1.jpg"
+        image: "img/game1.jpg"
     },
     // 필요한 추가 게임 데이터들
 ];

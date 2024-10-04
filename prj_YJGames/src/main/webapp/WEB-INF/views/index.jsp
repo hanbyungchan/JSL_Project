@@ -19,6 +19,7 @@
 <body>
 	<form name="game">
 	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_pageNo">
 	</form>
 	<header class="header" id="header">
     <div class="header-content">
@@ -60,71 +61,23 @@
         <div class="slide-nav prev-slide" id="prev-slide">
             <i class="fas fa-chevron-left"></i>
         </div>
-
         <div class="slider-wrapper" id="slider-wrapper">
+        <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="slide active">
                 <img src="img/game1.jpg" alt="게임 1">
                 <div class="slide-content">
-                    <h2>MULLET MADJACK</h2>
+                    <h2>${dto1.getG_name()}</h2>
                     <p>Now available</p>
-                    <span class="price">$19.99</span>
+                    <c:if test="${dto1.getG_price() ne '0'}">
+                    <c:if test="${dto1.getS_sale() ne '0'}"><span class="price">-${dto1.getS_sale()}% l  $${dto1.getG_price()} -> $	${dto1.getG_price2()}</span></c:if>
+                    <c:if test="${dto1.getS_sale() eq '0'}"><span class="price">$${dto1.getG_price()}</span></c:if>
+                    </c:if>
+                    <c:if test="${dto1.getG_price() eq '0'}"><span class="price">Free!</span></c:if>
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
-            <div class="slide">
-                <img src="img/game2.jpg" alt="게임 2">
-                <div class="slide-content">
-                    <h2>Empire of the Ants</h2>
-                    <p>Pre-order now111</p>
-                    <span class="price">$29.99</span>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-			<div class="slide">
-                <img src="img/game3.jpg" alt="게임 3">
-                <div class="slide-content">
-                    <h2>Empire of the Ants</h2>
-                    <p>Pre-order now</p>
-                    <span class="price">$29.99</span>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-			<div class="slide">
-                <img src="img/game4.jpg" alt="게임 4">
-                <div class="slide-content">
-                    <h2>Empire of the Ants</h2>
-                    <p>Pre-order now</p>
-                    <span class="price">$29.99</span>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-			<div class="slide">
-                <img src="img/game5.jpg" alt="게임 5">
-                <div class="slide-content">
-                    <h2>Empire of the Ants</h2>
-                    <p>Pre-order now</p>
-                    <span class="price">$29.99</span>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-			<div class="slide">
-                <img src="img/game6.jpg" alt="게임 6">
-                <div class="slide-content">
-                    <h2>Empire of the Ants</h2>
-                    <p>Pre-order now</p>
-                    <span class="price">$29.99</span>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-			<div class="slide">
-                <img src="img/game7.jpg" alt="게임 7">
-                <div class="slide-content">
-                    <h2>Empire of the Ants</h2>
-                    <p>Pre-order now</p>
-                    <span class="price">$29.99</span>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+         </c:forEach>
+            
         </div>
 
         <div class="slide-nav next-slide" id="next-slide">
@@ -153,68 +106,33 @@
    <div class="news-box">
         <!-- 큰 뉴스 3개 -->
         <div class="big-news-row">
-            <div class="news-big">
-            
-                <a href="#">
-                    <span class="img">
-                        <img src="img/game9.jpg" alt="큰 뉴스 이미지">
-                    </span>
-                    <p>큰 뉴스 1</p>
-                </a>
-            </div>
-            
-            <div class="news-big">
-                <a href="#">
-                    <span class="img">
-                        <img src="img/game8.jpg" alt="큰 뉴스 이미지">
-                    </span>
-                    <p>큰 뉴스 2</p>
-                </a>
-            </div>
+        <c:forEach items="${t_dtos2}" var = "dto2">
             <div class="news-big">
                 <a href="#">
                     <span class="img">
                         <img src="img/game9.jpg" alt="큰 뉴스 이미지">
                     </span>
-                    <p>큰 뉴스 3</p>
+                    <p>${dto2.getG_name()}</p>
                 </a>
             </div>
+          </c:forEach>  
+            
+            
         </div>
 
         <!-- 작은 뉴스 4개 -->
         <div class="small-news-row">
+        <c:forEach items="${t_dtos3}" var = "dto3">
             <div class="news-small">
                 <a href="#">
                     <span class="img">
                         <img src="img/game9.jpg" alt="작은 뉴스 이미지">
                     </span>
-                    <p>작은 뉴스 1</p>
+                    <p>${dto3.getG_name()}</p>
                 </a>
             </div>
-            <div class="news-small">
-                <a href="#">
-                    <span class="img">
-                        <img src="img/game8.jpg" alt="작은 뉴스 이미지">
-                    </span>
-                    <p>작은 뉴스 2</p>
-                </a>
-            </div>
-            <div class="news-small">
-                <a href="#">
-                    <span class="img">
-                        <img src="img/game9.jpg" alt="작은 뉴스 이미지">
-                    </span>
-                    <p>작은 뉴스 3</p>
-                </a>
-            </div>
-            <div class="news-small">
-                <a href="#">
-                    <span class="img">
-                        <img src="img/game10.jpg" alt="작은 뉴스 이미지">
-                    </span>
-                    <p>작은 뉴스 4</p>
-                </a>
-            </div>
+        </c:forEach>
+            
         </div>
     </div>
 	
@@ -271,71 +189,23 @@
     <div class="latest-games">
         <!-- 왼쪽 게임 목록 -->
         <div class="game-list">
-        
+        <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="game-item" data-game="1">
                 <div class="game-info">
-                    <h4>OneShot: World Machine Edition</h4>
-                    <p>탐험, 퍼즐, 선택적 중요성</p>
-                    <span class="price">₩8,800</span>
-                    <span class="discount">-20%</span>
+                    <h4>${dto1.getG_name()}</h4>
+                    <p>a, b, c</p>
+                    <span class="price"><c:if test="${dto1.getG_price() eq '0'}">Free</c:if><c:if test="${dto1.getG_price() ne '0'}">₩${dto1.getG_price2()}</c:if></span>
+                    <span class="discount">-${dto1.getS_sale()}%</span>
                 </div>
             </div>
+        </c:forEach>
             
-            <!-- 다른 게임 목록들 (총 7개) -->
-            <div class="game-item" data-game="2">
-                <div class="game-info">
-                    <h4>Rogue Waters</h4>
-                    <p>전략 RPG, 탐험</p>
-                    <span class="price">₩25,600</span>
-                    <span class="discount">-20%</span>
-                </div>
-            </div>
-			<div class="game-item" data-game="3">
-                <div class="game-info">
-                    <h4>Rogue 111111</h4>
-                    <p>전략 RPG, 탐험</p>
-                    <span class="price">₩25,600</span>
-                    <span class="discount">-20%</span>
-                </div>
-            </div>
-			<div class="game-item" data-game="4">
-                <div class="game-info">
-                    <h4>Rogue 222222</h4>
-                    <p>전략 RPG, 탐험</p>
-                    <span class="price">₩25,600</span>
-                    <span class="discount">-20%</span>
-                </div>
-            </div>
-			<div class="game-item" data-game="5">
-                <div class="game-info">
-                    <h4>Rogue 333333</h4>
-                    <p>전략 RPG, 탐험</p>
-                    <span class="price">₩25,600</span>
-                    <span class="discount">-20%</span>
-                </div>
-            </div>
-			<div class="game-item" data-game="6">
-                <div class="game-info">
-                    <h4>Rogue 444444</h4>
-                    <p>전략 RPG, 탐험</p>
-                    <span class="price">₩25,600</span>
-                    <span class="discount">-20%</span>
-                </div>
-            </div>
-			<div class="game-item" data-game="7">
-                <div class="game-info">
-                    <h4>Rogue 555555</h4>
-                    <p>전략 RPG, 탐험</p>
-                    <span class="price">₩25,600</span>
-                    <span class="discount">-20%</span>
-                </div>
-            </div>
             <!-- ... 동일한 형식으로 5개의 추가 게임 목록 -->
         </div>
 
         <!-- 오른쪽 이미지 및 설명 -->
         <div class="game-preview">
-            <img id="preview-image" src="img/game1-detail1.jpg" alt="게임 이미지">
+            <img id="preview-image" src="img/game1.jpg" alt="게임 이미지">
             <div class="game-description">
                 <h4 id="preview-title">OneShot: World Machine Edition</h4>
                 <p id="preview-text">탐험, 퍼즐, 선택적 중요성, 풍부한 스토리</p>
