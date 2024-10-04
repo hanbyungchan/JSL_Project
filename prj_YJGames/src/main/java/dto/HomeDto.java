@@ -1,7 +1,7 @@
 package dto;
 
 public class HomeDto {
-	String s_list_no,g_name,s_sale,s_attach;
+	String s_list_no,g_name,s_sale,s_attach1,s_attach2,s_attach3,s_attach4;
 	int g_price;
 	public HomeDto() {}
 	public String getS_list_no() {
@@ -22,11 +22,29 @@ public class HomeDto {
 	public void setS_sale(String s_sale) {
 		this.s_sale = s_sale;
 	}
-	public String getS_attach() {
-		return s_attach;
+	public String getS_attach1() {
+		return s_attach1;
 	}
-	public void setS_attach(String s_attach) {
-		this.s_attach = s_attach;
+	public void setS_attach1(String s_attach1) {
+		this.s_attach1 = s_attach1;
+	}
+	public String getS_attach2() {
+		return s_attach2;
+	}
+	public void setS_attach2(String s_attach2) {
+		this.s_attach2 = s_attach2;
+	}
+	public String getS_attach3() {
+		return s_attach3;
+	}
+	public void setS_attach3(String s_attach3) {
+		this.s_attach3 = s_attach3;
+	}
+	public String getS_attach4() {
+		return s_attach4;
+	}
+	public void setS_attach4(String s_attach4) {
+		this.s_attach4 = s_attach4;
 	}
 	public int getG_price() {
 		return g_price;

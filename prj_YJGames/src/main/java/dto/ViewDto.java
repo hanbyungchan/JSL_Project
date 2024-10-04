@@ -1,10 +1,40 @@
 package dto;
 
 public class ViewDto {
-	public String s_list_no,g_code, g_name,g_genre, g_developer,s_info_txt,s_date,s_sale,s_spec_1,s_spec_2,s_spec_3,s_spec_4,s_attach;
+	public String s_list_no,g_code, g_name,g_genre, g_developer,s_info_txt,s_date,s_sale,s_spec_1,s_spec_2,s_spec_3,s_spec_4,s_attach1,s_attach2,s_attach3,s_attach4,s_icon;
 	public int price;
 	public ViewDto() {
 		super();
+	}
+	public String getS_attach1() {
+		return s_attach1;
+	}
+	public void setS_attach1(String s_attach1) {
+		this.s_attach1 = s_attach1;
+	}
+	public String getS_attach2() {
+		return s_attach2;
+	}
+	public void setS_attach2(String s_attach2) {
+		this.s_attach2 = s_attach2;
+	}
+	public String getS_attach3() {
+		return s_attach3;
+	}
+	public void setS_attach3(String s_attach3) {
+		this.s_attach3 = s_attach3;
+	}
+	public String getS_attach4() {
+		return s_attach4;
+	}
+	public void setS_attach4(String s_attach4) {
+		this.s_attach4 = s_attach4;
+	}
+	public String getS_icon() {
+		return s_icon;
+	}
+	public void setS_icon(String s_icon) {
+		this.s_icon = s_icon;
 	}
 	public String getS_list_no() {
 		return s_list_no;
@@ -78,12 +108,7 @@ public class ViewDto {
 	public void setS_spec_4(String s_spec_4) {
 		this.s_spec_4 = s_spec_4;
 	}
-	public String getS_attach() {
-		return s_attach;
-	}
-	public void setS_attach(String s_attach) {
-		this.s_attach = s_attach;
-	}
+	
 	public int getPrice() {
 		return price;
 	}

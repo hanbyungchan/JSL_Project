@@ -6,27 +6,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic Gaming Platform</title>
+    <title>JSL Games</title>
 
-    <!-- CSS ø¨µø -->
+	<link rel="icon" type="image/png" href="img/logo.png">
+	
+    <!-- CSS Ïó∞Îèô -->
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Font Awesome æ∆¿Ãƒ‹ -->
+    <!-- Font Awesome ÏïÑÏù¥ÏΩò -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-	<header class="header">
+	<form name="game">
+	<input type="hidden" name="t_gubun">
+	</form>
+	<header class="header" id="header">
     <div class="header-content">
         <div class="logo">
-            <img src="img/logo.png" alt="ªÁ¿Ã∆Æ ∑Œ∞Ì">
+            <img src="img/logo.png" alt="ÏÇ¨Ïù¥Ìä∏ Î°úÍ≥†">
         </div>
         <nav class="menu" id="menu">
             <ul>
                 <li><a href="#">STORE</a></li>
                 <li><a href="#">COMMUNITY</a></li>
-                <li><a href="#">SUPPORT</a></li>
-                <li><a href="#">Ex</a></li>
-                <li><a href="#">SIGN IN</a></li>
+                <li><a href="Game?t_gubun=support">SUPPORT</a></li>
+                <li><a href="Game?t_gubun=join">Ex</a></li>
+                <li><a href="Game?t_gubun=login">SIGN IN</a></li>
             </ul>
         </nav>
         <div class="icons">
@@ -40,12 +45,12 @@
 	</header>
 
     <div class="main-image">
-        <img src="img/main-image.jpg" alt="∏ﬁ¿Œ ¿ÃπÃ¡ˆ">
+        <img src="img/main-image.jpg" alt="Î©îÏù∏ Ïù¥ÎØ∏ÏßÄ">
     </div>
 
 <!-- ================================================================== -->	
 	<div class="slider-container">
-    <!-- ΩΩ∂Û¿Ã¥ı ¡¶∏Ò∞˙ πÿ¡Ÿ -->
+    <!-- Ïä¨ÎùºÏù¥Îçî Ï†úÎ™©Í≥º Î∞ëÏ§Ñ -->
     <div class="slider-header">
         <h3>Highlights</h3>
         <div class="underline"></div>
@@ -58,7 +63,7 @@
 
         <div class="slider-wrapper" id="slider-wrapper">
             <div class="slide active">
-                <img src="img/game1.jpg" alt="∞‘¿” 1">
+                <img src="img/game1.jpg" alt="Í≤åÏûÑ 1">
                 <div class="slide-content">
                     <h2>MULLET MADJACK</h2>
                     <p>Now available</p>
@@ -67,7 +72,7 @@
                 </div>
             </div>
             <div class="slide">
-                <img src="img/game2.jpg" alt="∞‘¿” 2">
+                <img src="img/game2.jpg" alt="Í≤åÏûÑ 2">
                 <div class="slide-content">
                     <h2>Empire of the Ants</h2>
                     <p>Pre-order now</p>
@@ -76,7 +81,7 @@
                 </div>
             </div>
 			<div class="slide">
-                <img src="img/game3.jpg" alt="∞‘¿” 3">
+                <img src="img/game3.jpg" alt="Í≤åÏûÑ 3">
                 <div class="slide-content">
                     <h2>Empire of the Ants</h2>
                     <p>Pre-order now</p>
@@ -85,7 +90,7 @@
                 </div>
             </div>
 			<div class="slide">
-                <img src="img/game4.jpg" alt="∞‘¿” 4">
+                <img src="img/game4.jpg" alt="Í≤åÏûÑ 4">
                 <div class="slide-content">
                     <h2>Empire of the Ants</h2>
                     <p>Pre-order now</p>
@@ -94,7 +99,7 @@
                 </div>
             </div>
 			<div class="slide">
-                <img src="img/game5.jpg" alt="∞‘¿” 5">
+                <img src="img/game5.jpg" alt="Í≤åÏûÑ 5">
                 <div class="slide-content">
                     <h2>Empire of the Ants</h2>
                     <p>Pre-order now</p>
@@ -103,7 +108,7 @@
                 </div>
             </div>
 			<div class="slide">
-                <img src="img/game6.jpg" alt="∞‘¿” 6">
+                <img src="img/game6.jpg" alt="Í≤åÏûÑ 6">
                 <div class="slide-content">
                     <h2>Empire of the Ants</h2>
                     <p>Pre-order now</p>
@@ -112,7 +117,7 @@
                 </div>
             </div>
 			<div class="slide">
-                <img src="img/game7.jpg" alt="∞‘¿” 7">
+                <img src="img/game7.jpg" alt="Í≤åÏûÑ 7">
                 <div class="slide-content">
                     <h2>Empire of the Ants</h2>
                     <p>Pre-order now</p>
@@ -140,73 +145,208 @@
 	</div>
 
 
-
+<!-- Îâ¥Ïä§ ÏÑπÏÖò Ï†úÎ™©Í≥º Î∞ëÏ§Ñ -->
+<div class="news-header">
+    <h3>Latest News</h3>
+    <div class="underline"></div>
+</div>
    <div class="news-box">
-        <!-- ≈´ ¥∫Ω∫ 3∞≥ -->
+        <!-- ÌÅ∞ Îâ¥Ïä§ 3Í∞ú -->
         <div class="big-news-row">
             <div class="news-big">
+            
                 <a href="#">
                     <span class="img">
-                        <img src="img/game9.jpg" alt="≈´ ¥∫Ω∫ ¿ÃπÃ¡ˆ">
+                        <img src="img/game9.jpg" alt="ÌÅ∞ Îâ¥Ïä§ Ïù¥ÎØ∏ÏßÄ">
                     </span>
-                    <p>≈´ ¥∫Ω∫ 1</p>
+                    <p>ÌÅ∞ Îâ¥Ïä§ 1</p>
+                </a>
+            </div>
+            
+            <div class="news-big">
+                <a href="#">
+                    <span class="img">
+                        <img src="img/game8.jpg" alt="ÌÅ∞ Îâ¥Ïä§ Ïù¥ÎØ∏ÏßÄ">
+                    </span>
+                    <p>ÌÅ∞ Îâ¥Ïä§ 2</p>
                 </a>
             </div>
             <div class="news-big">
                 <a href="#">
                     <span class="img">
-                        <img src="img/game8.jpg" alt="≈´ ¥∫Ω∫ ¿ÃπÃ¡ˆ">
+                        <img src="img/game9.jpg" alt="ÌÅ∞ Îâ¥Ïä§ Ïù¥ÎØ∏ÏßÄ">
                     </span>
-                    <p>≈´ ¥∫Ω∫ 2</p>
-                </a>
-            </div>
-            <div class="news-big">
-                <a href="#">
-                    <span class="img">
-                        <img src="img/game9.jpg" alt="≈´ ¥∫Ω∫ ¿ÃπÃ¡ˆ">
-                    </span>
-                    <p>≈´ ¥∫Ω∫ 3</p>
+                    <p>ÌÅ∞ Îâ¥Ïä§ 3</p>
                 </a>
             </div>
         </div>
 
-        <!-- ¿€¿∫ ¥∫Ω∫ 4∞≥ -->
+        <!-- ÏûëÏùÄ Îâ¥Ïä§ 4Í∞ú -->
         <div class="small-news-row">
             <div class="news-small">
                 <a href="#">
                     <span class="img">
-                        <img src="img/game9.jpg" alt="¿€¿∫ ¥∫Ω∫ ¿ÃπÃ¡ˆ">
+                        <img src="img/game9.jpg" alt="ÏûëÏùÄ Îâ¥Ïä§ Ïù¥ÎØ∏ÏßÄ">
                     </span>
-                    <p>¿€¿∫ ¥∫Ω∫ 1</p>
+                    <p>ÏûëÏùÄ Îâ¥Ïä§ 1</p>
                 </a>
             </div>
             <div class="news-small">
                 <a href="#">
                     <span class="img">
-                        <img src="img/game8.jpg" alt="¿€¿∫ ¥∫Ω∫ ¿ÃπÃ¡ˆ">
+                        <img src="img/game8.jpg" alt="ÏûëÏùÄ Îâ¥Ïä§ Ïù¥ÎØ∏ÏßÄ">
                     </span>
-                    <p>¿€¿∫ ¥∫Ω∫ 2</p>
+                    <p>ÏûëÏùÄ Îâ¥Ïä§ 2</p>
                 </a>
             </div>
             <div class="news-small">
                 <a href="#">
                     <span class="img">
-                        <img src="img/game9.jpg" alt="¿€¿∫ ¥∫Ω∫ ¿ÃπÃ¡ˆ">
+                        <img src="img/game9.jpg" alt="ÏûëÏùÄ Îâ¥Ïä§ Ïù¥ÎØ∏ÏßÄ">
                     </span>
-                    <p>¿€¿∫ ¥∫Ω∫ 3</p>
+                    <p>ÏûëÏùÄ Îâ¥Ïä§ 3</p>
                 </a>
             </div>
             <div class="news-small">
                 <a href="#">
                     <span class="img">
-                        <img src="img/game10.jpg" alt="¿€¿∫ ¥∫Ω∫ ¿ÃπÃ¡ˆ">
+                        <img src="img/game10.jpg" alt="ÏûëÏùÄ Îâ¥Ïä§ Ïù¥ÎØ∏ÏßÄ">
                     </span>
-                    <p>¿€¿∫ ¥∫Ω∫ 4</p>
+                    <p>ÏûëÏùÄ Îâ¥Ïä§ 4</p>
                 </a>
             </div>
         </div>
     </div>
 	
+	<!-- Ïπ¥ÌÖåÍ≥†Î¶¨ ÏÑπÏÖò Ï†úÎ™©Í≥º Î∞ëÏ§Ñ -->
+<div class="category-header">
+    <h3>Popularity Categories</h3>
+    <div class="underline"></div>
+</div>
+
+<!-- Ïπ¥ÌÖåÍ≥†Î¶¨ ÏÑπÏÖò -->
+<div class="category-box">
+    <div class="category-item">
+        <a href="#">
+            <span class="img">
+                <img src="img/category1.jpg" alt="Ïπ¥ÌÖåÍ≥†Î¶¨ Ïù¥ÎØ∏ÏßÄ 1">
+            </span>
+            <p>FPS</p>
+        </a>
+    </div>
+    <div class="category-item">
+        <a href="#">
+            <span class="img">
+                <img src="img/category2.jpg" alt="Ïπ¥ÌÖåÍ≥†Î¶¨ Ïù¥ÎØ∏ÏßÄ 2">
+            </span>
+            <p>RPG</p>
+        </a>
+    </div>
+    <div class="category-item">
+        <a href="#">
+            <span class="img">
+                <img src="img/category3.jpg" alt="Ïπ¥ÌÖåÍ≥†Î¶¨ Ïù¥ÎØ∏ÏßÄ 3">
+            </span>
+            <p>Fight</p>
+        </a>
+    </div>
+    <div class="category-item">
+        <a href="#">
+            <span class="img">
+                <img src="img/category4.jpg" alt="Ïπ¥ÌÖåÍ≥†Î¶¨ Ïù¥ÎØ∏ÏßÄ 4">
+            </span>
+            <p>Sports</p>
+        </a>
+    </div>
+</div>
+
+<!-- ÏµúÏã† Í≤åÏûÑ ÏÑπÏÖò Ï†úÎ™©Í≥º Î∞ëÏ§Ñ -->
+<div class="latest-games-header">
+    <h3>Latest Games</h3>
+    <div class="underline"></div>
+</div>
+
+<!-- ÏµúÏã† Í≤åÏûÑ ÏÑπÏÖò -->
+<div class="latest-games-container">
+    <div class="latest-games">
+        <!-- ÏôºÏ™Ω Í≤åÏûÑ Î™©Î°ù -->
+        <div class="game-list">
+        
+            <div class="game-item" data-game="1">
+                <div class="game-info">
+                    <h4>OneShot: World Machine Edition</h4>
+                    <p>ÌÉêÌóò, ÌçºÏ¶ê, ÏÑ†ÌÉùÏ†Å Ï§ëÏöîÏÑ±</p>
+                    <span class="price">‚Ç©8,800</span>
+                    <span class="discount">-20%</span>
+                </div>
+            </div>
+            
+            <!-- Îã§Î•∏ Í≤åÏûÑ Î™©Î°ùÎì§ (Ï¥ù 7Í∞ú) -->
+            <div class="game-item" data-game="2">
+                <div class="game-info">
+                    <h4>Rogue Waters</h4>
+                    <p>Ï†ÑÎûµ RPG, ÌÉêÌóò</p>
+                    <span class="price">‚Ç©25,600</span>
+                    <span class="discount">-20%</span>
+                </div>
+            </div>
+			<div class="game-item" data-game="3">
+                <div class="game-info">
+                    <h4>Rogue 111111</h4>
+                    <p>Ï†ÑÎûµ RPG, ÌÉêÌóò</p>
+                    <span class="price">‚Ç©25,600</span>
+                    <span class="discount">-20%</span>
+                </div>
+            </div>
+			<div class="game-item" data-game="4">
+                <div class="game-info">
+                    <h4>Rogue 222222</h4>
+                    <p>Ï†ÑÎûµ RPG, ÌÉêÌóò</p>
+                    <span class="price">‚Ç©25,600</span>
+                    <span class="discount">-20%</span>
+                </div>
+            </div>
+			<div class="game-item" data-game="5">
+                <div class="game-info">
+                    <h4>Rogue 333333</h4>
+                    <p>Ï†ÑÎûµ RPG, ÌÉêÌóò</p>
+                    <span class="price">‚Ç©25,600</span>
+                    <span class="discount">-20%</span>
+                </div>
+            </div>
+			<div class="game-item" data-game="6">
+                <div class="game-info">
+                    <h4>Rogue 444444</h4>
+                    <p>Ï†ÑÎûµ RPG, ÌÉêÌóò</p>
+                    <span class="price">‚Ç©25,600</span>
+                    <span class="discount">-20%</span>
+                </div>
+            </div>
+			<div class="game-item" data-game="7">
+                <div class="game-info">
+                    <h4>Rogue 555555</h4>
+                    <p>Ï†ÑÎûµ RPG, ÌÉêÌóò</p>
+                    <span class="price">‚Ç©25,600</span>
+                    <span class="discount">-20%</span>
+                </div>
+            </div>
+            <!-- ... ÎèôÏùºÌïú ÌòïÏãùÏúºÎ°ú 5Í∞úÏùò Ï∂îÍ∞Ä Í≤åÏûÑ Î™©Î°ù -->
+        </div>
+
+        <!-- Ïò§Î•∏Ï™Ω Ïù¥ÎØ∏ÏßÄ Î∞è ÏÑ§Î™Ö -->
+        <div class="game-preview">
+            <img id="preview-image" src="img/game1-detail1.jpg" alt="Í≤åÏûÑ Ïù¥ÎØ∏ÏßÄ">
+            <div class="game-description">
+                <h4 id="preview-title">OneShot: World Machine Edition</h4>
+                <p id="preview-text">ÌÉêÌóò, ÌçºÏ¶ê, ÏÑ†ÌÉùÏ†Å Ï§ëÏöîÏÑ±, ÌíçÎ∂ÄÌïú Ïä§ÌÜ†Î¶¨</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ============================================================================= -->	
 	<script src="js/main.js"></script>
 	
 </body>
@@ -214,7 +354,7 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo">
-            <img src="img/logo.png" alt="ªÁ¿Ã∆Æ ∑Œ∞Ì">
+            <img src="img/logo.png" alt="ÏÇ¨Ïù¥Ìä∏ Î°úÍ≥†">
         </div>
         <div class="footer-links">
             <ul>
