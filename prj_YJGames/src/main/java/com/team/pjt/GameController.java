@@ -29,6 +29,18 @@ public class GameController {
 				CommonExecute game = new IndexList();
 				game.execute(req);
 				viewPage = "index";
+			}else if(gubun.equals("join")) {
+//				CommonExecute game = new IndexList();
+//				game.execute(req);
+				viewPage = "join";
+			}else if(gubun.equals("login")) {
+//				CommonExecute game = new IndexList();
+//				game.execute(req);
+				viewPage = "login";
+			}else if(gubun.equals("support")) {
+//				CommonExecute game = new IndexList();
+//				game.execute(req);
+				viewPage = "support";
 			}
 			return viewPage;
 		
