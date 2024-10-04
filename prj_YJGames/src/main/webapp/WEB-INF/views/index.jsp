@@ -31,7 +31,7 @@
                 <li><a href="#">STORE</a></li>
                 <li><a href="#">COMMUNITY</a></li>
                 <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <li><a href="Game?t_gubun=join">Ex</a></li>
+                <li><a href="Game?t_gubun=join">Exx</a></li>
                 <li><a href="Game?t_gubun=login">SIGN IN</a></li>
             </ul>
         </nav>
