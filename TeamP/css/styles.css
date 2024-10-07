@@ -1,0 +1,15 @@
+@import "component/header.css";
+@import "component/footer.css";
+@import "index/index.css";
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c2e;
+}
+
+
+
+
