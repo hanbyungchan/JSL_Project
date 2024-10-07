@@ -21,24 +21,24 @@
                 <li><a href="#">SUPPORT</a></li>
             </ul>
             <div class="login-area">
-                <button>회원가입</button>
-              <button>  <a href="#">로그인</a></button>
+                <button>JOIN</button>
+              <button>  <a href="#">LOGIN</a></button>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="id-set" style="text-align: center;">
-            <h1>계정 설정</h1>
-            <p>계정 상세 정보를 관리합니다.</p>
+            <h1>Account Settings</h1>
+            <p>Manage account details.</p>
         </div>
         <section class="account-info">
-            <h2 style="text-align: center; padding: 20px;">계정 정보</h2>
+            <h2 style="text-align: center; padding: 20px;">Account Information</h2>
             <div class="info-group">
                 <label for="user-id">ID</label>
                 <span id="user-id"></span>
             </div>
             <div class="info-group">
-                <label for="username">성명</label>
+                <label for="username">NAME</label>
                 <input type="text" id="username" value="ex" disabled>
                 <button class="edit-button">✎</button>
             </div>
@@ -50,7 +50,7 @@
         </section>
 
         <section class="personal-info">
-            <h2 style="text-align: center; padding: 20px;">개인 세부 정보</h2>
+            <h2 style="text-align: center; padding: 20px;">Personal details</h2>
             <div class="info-group">
                 <label for="name">PASSWORD</label>
                 <input type="text" id="password" value="" >
@@ -78,20 +78,20 @@
         </section>
 
         <div class="button-container" style="text-align: center;">
-            <button class="save-button">변경사항 저장</button>
-            <button class="reset">취소</button>
+            <button class="save-button">Save Changes</button>
+            <button class="reset">Cancel</button>
         </div>
          <section class="personal-info">
-            <h2 style="text-align: center; padding: 40px;">계정 삭제</h2>
+            <h2 style="text-align: center; padding: 40px;">Delete Account</h2>
            <div class="info-group">
            <p>
-           	계정 삭제 요청을 클릭하여 모든 개인 정보, 구매 내역, 게임 진행 상황, 인게임 콘텐츠, 언리얼 프로젝트 및 에픽게임즈 지갑 계정을 포함한 에픽게임즈 계정을 영구 삭제하는 절차를 시작합니다. 에픽게임즈 계정이 삭제되고 나면 지갑 잔액도 영구 삭제됩니다.
+           	Click Request to delete your account to begin the process of permanently deleting Epic Games accounts, including all personal information, purchase details, game progress, in-game content, Unreal Project, and Epic Games wallet accounts. Once your Epic Games account is deleted, your wallet balance will also be permanently deleted.
 
-			계정 삭제를 요청하면 14일 후에 계정이 삭제됩니다. 이 기간 동안 계정에 로그인하여 재활성화할 수 있으며, 이렇게 하면 삭제 요청은 취소됩니다. 14일이 지나면 삭제된 계정을 복구할 수 없습니다.
+			If you request to delete your account, it will be deleted after 14 days. During this period, you can log in to your account and reactivate it, which will cancel your request for deletion. After 14 days, you will not be able to recover your deleted account.
 			</p>
     		
 		   </div>
-		   <button class="save-button2">계정 삭제 요청</button>
+		   <button class="save-button2">Request to delete account</button>
         </section>
     </div>
 </body>
