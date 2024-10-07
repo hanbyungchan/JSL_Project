@@ -1,11 +1,25 @@
 package dto;
 
 public class UserDto {
-	String u_id, u_name, u_password, u_birth, u_game_token, u_gender, u_email_1, u_email_2;
+	String u_id, u_name, u_password, u_birth, u_gender, u_email_1, u_email_2, u_level;
 
-	public UserDto() {
-		super();
+	public UserDto() {}
+	
+	
+	//등록
+	public UserDto(String u_id, String u_name, String u_password, String u_birth, String u_gender, String u_email_1,
+			String u_email_2, String u_level) {
+		this.u_id = u_id;
+		this.u_name = u_name;
+		this.u_password = u_password;
+		this.u_birth = u_birth;
+		this.u_gender = u_gender;
+		this.u_email_1 = u_email_1;
+		this.u_email_2 = u_email_2;
+		this.u_level = u_level;
 	}
+
+
 
 	public String getU_id() {
 		return u_id;
@@ -39,14 +53,6 @@ public class UserDto {
 		this.u_birth = u_birth;
 	}
 
-	public String getU_game_token() {
-		return u_game_token;
-	}
-
-	public void setU_game_token(String u_game_token) {
-		this.u_game_token = u_game_token;
-	}
-
 	public String getU_gender() {
 		return u_gender;
 	}
@@ -69,6 +75,14 @@ public class UserDto {
 
 	public void setU_email_2(String u_email_2) {
 		this.u_email_2 = u_email_2;
+	}
+
+	public String getU_level() {
+		return u_level;
+	}
+
+	public void setU_level(String u_level) {
+		this.u_level = u_level;
 	}
 	
 	

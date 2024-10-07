@@ -14,19 +14,59 @@
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<script type="text/javascript">
+	function goStore() {
+		menus.t_gubun.value = "goStore";
+		menus.method = "post";
+		menus.action = "Game";
+		menus.submit();
+	}
+	
+	function goCommunity() {
+		menus.t_gubun.value = "goCommunity";
+		menus.method = "post";
+		menus.action = "Game";
+		menus.submit();
+	}
+	
+	function goSupport() {
+		menus.t_gubun.value = "goCommunity";
+		menus.method = "post";
+		menus.action = "Game";
+		menus.submit();
+	}
+	
+	function goEx() {
+		menus.t_gubun.value = "goEx";
+		menus.method = "post";
+		menus.action = "Game";
+		menus.submit();
+	}
+	
+	function goSignin() {
+		menus.t_gubun.value = "goSignin";
+		menus.method = "post";
+		menus.action = "Game";
+		menus.submit();
+	}
+</script>
+		<form name = "menus">
+			<input type = "hidden" name = "t_gubun">
+		</form>
 <body>
 	<header class="header">
     <div class="header-content">
         <div class="logo">
             <img src="img/logo.png" alt="사이트 로고">
         </div>
+
         <nav class="menu" id="menu">
             <ul>
-                <li><a href="#">STORE</a></li>
-                <li><a href="#">COMMUNITY</a></li>
-                <li><a href="#">SUPPORT</a></li>
-                <li><a href="#">Ex</a></li>
-                <li><a href="#">SIGN IN</a></li>
+                <li><a href="javascript:goStore()">STORE</a></li>
+                <li><a href="javascript:goCommunity()">COMMUNITY</a></li>
+                <li><a href="javascript:goSupport()">SUPPORT</a></li>
+                <li><a href="javascript:goEx()">Ex</a></li>
+                <li><a href="javascript:goSignin()">SIGN IN</a></li>
             </ul>
         </nav>
         <div class="icons">
