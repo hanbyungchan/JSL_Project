@@ -1,94 +1,230 @@
 package dto;
 
 public class ViewDto {
-	public String s_list_no,g_code, g_name,g_genre, g_developer,s_info_txt,s_date,s_sale,s_spec_1,s_spec_2,s_spec_3,s_spec_4,s_attach;
-	public int price;
+	public String s_page_no, s_game_code, s_game_name ,s_info_txt, s_date,
+			s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5,
+			s_img_main, s_img_1, s_img_2, img_3, s_icon,
+			s_video_1, s_video_2, s_video_3;
+	public int price, price_2, s_sale;
+	
+	
 	public ViewDto() {
 		super();
 	}
-	public String getS_list_no() {
-		return s_list_no;
+
+
+	public String getS_page_no() {
+		return s_page_no;
 	}
-	public void setS_list_no(String s_list_no) {
-		this.s_list_no = s_list_no;
+
+
+	public void setS_page_no(String s_page_no) {
+		this.s_page_no = s_page_no;
 	}
-	public String getG_code() {
-		return g_code;
+
+
+	public String getS_game_code() {
+		return s_game_code;
 	}
-	public void setG_code(String g_code) {
-		this.g_code = g_code;
+
+
+	public void setS_game_code(String s_game_code) {
+		this.s_game_code = s_game_code;
 	}
-	public String getG_name() {
-		return g_name;
+
+
+	public String getS_game_name() {
+		return s_game_name;
 	}
-	public void setG_name(String g_name) {
-		this.g_name = g_name;
+
+
+	public void setS_game_name(String s_game_name) {
+		this.s_game_name = s_game_name;
 	}
-	public String getG_genre() {
-		return g_genre;
-	}
-	public void setG_genre(String g_genre) {
-		this.g_genre = g_genre;
-	}
-	public String getG_developer() {
-		return g_developer;
-	}
-	public void setG_developer(String g_developer) {
-		this.g_developer = g_developer;
-	}
+
+
 	public String getS_info_txt() {
 		return s_info_txt;
 	}
+
+
 	public void setS_info_txt(String s_info_txt) {
 		this.s_info_txt = s_info_txt;
 	}
+
+
 	public String getS_date() {
 		return s_date;
 	}
+
+
 	public void setS_date(String s_date) {
 		this.s_date = s_date;
 	}
-	public String getS_sale() {
-		return s_sale;
-	}
-	public void setS_sale(String s_sale) {
-		this.s_sale = s_sale;
-	}
+
+
 	public String getS_spec_1() {
 		return s_spec_1;
 	}
+
+
 	public void setS_spec_1(String s_spec_1) {
 		this.s_spec_1 = s_spec_1;
 	}
+
+
 	public String getS_spec_2() {
 		return s_spec_2;
 	}
+
+
 	public void setS_spec_2(String s_spec_2) {
 		this.s_spec_2 = s_spec_2;
 	}
+
+
 	public String getS_spec_3() {
 		return s_spec_3;
 	}
+
+
 	public void setS_spec_3(String s_spec_3) {
 		this.s_spec_3 = s_spec_3;
 	}
+
+
 	public String getS_spec_4() {
 		return s_spec_4;
 	}
+
+
 	public void setS_spec_4(String s_spec_4) {
 		this.s_spec_4 = s_spec_4;
 	}
-	public String getS_attach() {
-		return s_attach;
+
+
+	public String getS_spec_5() {
+		return s_spec_5;
 	}
-	public void setS_attach(String s_attach) {
-		this.s_attach = s_attach;
+
+
+	public void setS_spec_5(String s_spec_5) {
+		this.s_spec_5 = s_spec_5;
 	}
+
+
+	public String getS_img_main() {
+		return s_img_main;
+	}
+
+
+	public void setS_img_main(String s_img_main) {
+		this.s_img_main = s_img_main;
+	}
+
+
+	public String getS_img_1() {
+		return s_img_1;
+	}
+
+
+	public void setS_img_1(String s_img_1) {
+		this.s_img_1 = s_img_1;
+	}
+
+
+	public String getS_img_2() {
+		return s_img_2;
+	}
+
+
+	public void setS_img_2(String s_img_2) {
+		this.s_img_2 = s_img_2;
+	}
+
+
+	public String getImg_3() {
+		return img_3;
+	}
+
+
+	public void setImg_3(String img_3) {
+		this.img_3 = img_3;
+	}
+
+
+	public String getS_icon() {
+		return s_icon;
+	}
+
+
+	public void setS_icon(String s_icon) {
+		this.s_icon = s_icon;
+	}
+
+
+	public String getS_video_1() {
+		return s_video_1;
+	}
+
+
+	public void setS_video_1(String s_video_1) {
+		this.s_video_1 = s_video_1;
+	}
+
+
+	public String getS_video_2() {
+		return s_video_2;
+	}
+
+
+	public void setS_video_2(String s_video_2) {
+		this.s_video_2 = s_video_2;
+	}
+
+
+	public String getS_video_3() {
+		return s_video_3;
+	}
+
+
+	public void setS_video_3(String s_video_3) {
+		this.s_video_3 = s_video_3;
+	}
+
+
 	public int getPrice() {
 		return price;
 	}
+
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+
+	public int getPrice_2() {
+		return price_2;
+	}
+
+
+	public void setPrice_2(int price_2) {
+		this.price_2 = price_2;
+	}
+
+
+	public int getS_sale() {
+		return s_sale;
+	}
+
+
+	public void setS_sale(int s_sale) {
+		this.s_sale = s_sale;
+	}
+
+
+
+	
+
 	
 }

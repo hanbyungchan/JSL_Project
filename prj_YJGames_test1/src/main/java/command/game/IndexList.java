@@ -1,4 +1,4 @@
-package GameController;
+package command.game;
 
 import java.util.ArrayList;
 
@@ -13,10 +13,7 @@ public class IndexList implements CommonExecute {
 	@Override
 	public void execute(HttpServletRequest request) {
 		GameDao dao = new GameDao();
-		ArrayList<HomeDto> dtos = dao.GameList("");
-		
-		request.setAttribute("t_dtos", dtos);
-
+	
 	}
 
 }

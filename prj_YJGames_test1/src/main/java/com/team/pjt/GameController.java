@@ -7,17 +7,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import GameController.IndexList;
+import command.game.IndexList;
+import command.game.ViewPage;
 import common.CommonExecute;
 import common.CommonTemplate;
 
 @Controller
 public class GameController {
 
-	
-	//나는 문어(남승현)
-	//나는 문어(남승현)2
-	
 	@Autowired
 	JdbcTemplate template;
 	@Autowired
@@ -33,12 +30,26 @@ public class GameController {
 				CommonExecute game = new IndexList();
 				game.execute(req);
 				viewPage = "index";
+			}else if(gubun.equals("join")) {
+//				CommonExecute game = new IndexList();
+//				game.execute(req);
+				viewPage = "join";
+			}else if(gubun.equals("login")) {
+//				CommonExecute game = new IndexList();
+//				game.execute(req);
+				viewPage = "login";
+			}else if(gubun.equals("support")) {
+//				CommonExecute game = new IndexList();
+//				game.execute(req);
+				viewPage = "support";
+			}else if(gubun.equals("test112")) {
+				CommonExecute game = new ViewPage();
+				game.execute(req);
+				viewPage = "viewtest";
 			}
-			else if(gubun.equals("")) {
-			
+			else if(gubun.equals("testVideo")) {
+				viewPage = "video_test";
 			}
-			
-			
 			return viewPage;
 		
 	

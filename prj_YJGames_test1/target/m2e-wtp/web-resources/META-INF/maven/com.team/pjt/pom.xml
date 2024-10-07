@@ -108,6 +108,13 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		    <version>2.5.5</version> 동영상 관련
+		</dependency> -->
+		
 	
 		<!-- Test -->
 		<dependency>
