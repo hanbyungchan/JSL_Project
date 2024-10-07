@@ -1,0 +1,19 @@
+span {
+    color: white;
+}
+
+.search_content {
+    display: flex;
+}
+
+.search_game {
+}
+
+.search_result {
+    display: flex;
+    width: 80%;
+}
+
+.search_filter {
+    width: 20%;
+}
