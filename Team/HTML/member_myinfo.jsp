@@ -38,12 +38,12 @@
                 <span id="user-id"></span>
             </div>
             <div class="info-group">
-                <label for="username">닉네임</label>
+                <label for="username">성명</label>
                 <input type="text" id="username" value="ex" disabled>
                 <button class="edit-button">✎</button>
             </div>
             <div class="info-group">
-                <label for="email">이메일 주소</label>
+                <label for="email">E-MAIL</label>
                 <input type="email" id="email" value="ex@naver.com" disabled>
                 <button class="edit-button">✎</button>
             </div>
@@ -52,38 +52,47 @@
         <section class="personal-info">
             <h2 style="text-align: center; padding: 20px;">개인 세부 정보</h2>
             <div class="info-group">
-                <label for="name">성명</label>
-                <input type="text" id="name" value="S***G" disabled>
+                <label for="name">PASSWORD</label>
+                <input type="text" id="password" value="" >
             </div>
         </section>
 
         <section class="address-info">
             <div class="info-group">
-                <label for="postal-code">우편 번호</label>
+                <label for="postal-code">BIRTH</label>
                 <input type="text" id="postal-code">
             </div>
             <div class="info-group">
-                <label for="region">지역</label>
-                <input type="text" id="region">
+                <label for="region">GENDER</label>
+                <input type="text" id="gender">
             </div>
             <div class="info-group">
-                <label for="address1">주소</label>
-                <input type="text" id="address1">
+                <label for="address1">LEVEL</label>
+                <input type="text" id="level">
             </div>
             <div class="info-group">
-                <label for="address2">상세 주소</label>
-                <input type="text" id="address2">
+                <label for="address2">EXIT_DATE</label>
+                <input type="text" id="exit_date">
             </div>
-            <div class="info-group">
-                <label for="country">국가/지역</label>
-                <input type="text" id="country" value="Korea, Republic of" disabled>
-            </div>
+            
         </section>
 
         <div class="button-container" style="text-align: center;">
             <button class="save-button">변경사항 저장</button>
             <button class="reset">취소</button>
         </div>
+         <section class="personal-info">
+            <h2 style="text-align: center; padding: 40px;">계정 삭제</h2>
+           <div class="info-group">
+           <p>
+           	계정 삭제 요청을 클릭하여 모든 개인 정보, 구매 내역, 게임 진행 상황, 인게임 콘텐츠, 언리얼 프로젝트 및 에픽게임즈 지갑 계정을 포함한 에픽게임즈 계정을 영구 삭제하는 절차를 시작합니다. 에픽게임즈 계정이 삭제되고 나면 지갑 잔액도 영구 삭제됩니다.
+
+			계정 삭제를 요청하면 14일 후에 계정이 삭제됩니다. 이 기간 동안 계정에 로그인하여 재활성화할 수 있으며, 이렇게 하면 삭제 요청은 취소됩니다. 14일이 지나면 삭제된 계정을 복구할 수 없습니다.
+			</p>
+    		
+		   </div>
+		   <button class="save-button2">계정 삭제 요청</button>
+        </section>
     </div>
 </body>
 </html>
