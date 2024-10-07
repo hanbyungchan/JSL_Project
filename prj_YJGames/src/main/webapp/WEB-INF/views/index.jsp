@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSL Games</title>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="icon" type="image/png" href="img/logo.png">
 	
     <!-- CSS 연동 -->
@@ -64,7 +64,7 @@
         <div class="slider-wrapper" id="slider-wrapper">
         <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="slide active">
-                <img src="img/game1.jpg" alt="게임 1">
+                <img src="img/${dto1.getS_page_no()}/1.jpg" alt="게임 1">
                 <div class="slide-content">
                     <h2>${dto1.getG_name()}</h2>
                     <p>Now available</p>
@@ -110,9 +110,10 @@
             <div class="news-big">
                 <a href="#">
                     <span class="img">
-                        <img src="img/game9.jpg" alt="큰 뉴스 이미지">
+                        <img src="img/${dto2.getS_page_no()}/1.jpg" alt="큰 뉴스 이미지">
                     </span>
                     <p>${dto2.getG_name()}</p>
+                    <p>${dto2.getG_price()}</p>
                 </a>
             </div>
           </c:forEach>  
@@ -126,9 +127,10 @@
             <div class="news-small">
                 <a href="#">
                     <span class="img">
-                        <img src="img/game9.jpg" alt="작은 뉴스 이미지">
+                        <img src="img/${dto3.getS_page_no()}/1.jpg" alt="작은 뉴스 이미지">
                     </span>
                     <p>${dto3.getG_name()}</p>
+                     <p>${dto3.getG_price()}</p>
                 </a>
             </div>
         </c:forEach>
@@ -183,41 +185,38 @@
     <h3>Latest Games</h3>
     <div class="underline"></div>
 </div>
-
 <!-- 최신 게임 섹션 -->
 <div class="latest-games-container">
     <div class="latest-games">
         <!-- 왼쪽 게임 목록 -->
         <div class="game-list">
         <c:forEach items="${t_dtos1}" var = "dto1">
-            <div class="game-item" data-game="1">
+            <div class="game-item" data-game="1" id ="test">
                 <div class="game-info">
                     <h4>${dto1.getG_name()}</h4>
                     <p>a, b, c</p>
-                    <span class="price"><c:if test="${dto1.getG_price() eq '0'}">Free</c:if><c:if test="${dto1.getG_price() ne '0'}">₩${dto1.getG_price2()}</c:if></span>
-                    <span class="discount">-${dto1.getS_sale()}%</span>
+                    <span class="price"><c:if test="${dto1.getG_price() eq '0'}">Free</c:if><c:if test="${dto1.getG_price() ne '0'}">$${dto1.getG_price2()}</c:if></span>
+                    <span class="discount"><c:if test="${dto1.getS_sale() ne '0'}">-${dto1.getS_sale()}%</c:if></span>
                 </div>
             </div>
         </c:forEach>
             
             <!-- ... 동일한 형식으로 5개의 추가 게임 목록 -->
         </div>
-
         <!-- 오른쪽 이미지 및 설명 -->
         <div class="game-preview">
-            <img id="preview-image" src="img/game1.jpg" alt="게임 이미지">
+            <img id="preview-image" src="">
             <div class="game-description">
-                <h4 id="preview-title">OneShot: World Machine Edition</h4>
-                <p id="preview-text">탐험, 퍼즐, 선택적 중요성, 풍부한 스토리</p>
+                <h4 id="preview-title"></h4>
+                <p id="preview-text"></p>
             </div>
         </div>
     </div>
 </div>
 
 
-
 <!-- ============================================================================= -->	
-	<script src="js/main.js"></script>
+<script src="js/main.js"></script>
 	
 </body>
 </html>

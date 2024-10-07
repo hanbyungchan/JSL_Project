@@ -16,7 +16,7 @@ public class GameDao {
 	public ArrayList<HomeDto> GameList(String search) {
 		String query = "select * from(\r\n" + 
 				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price,s.s_sale,s.s_attach1,s.s_attach2,s.s_attach3,s.s_attach4\r\n" + 
+				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
 				"from kyj_game g, kyj_store_page s\r\n" + 
 				"where g.g_code = s.s_game_code\r\n" + 
 				"and g.g_name  like '%"+search+"%') tbl)";
@@ -28,10 +28,11 @@ public class GameDao {
 	public ArrayList<HomeDto> GenreList(String search) {
 		String query = "select * from(\r\n" + 
 				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, (g.g_price *((100-s.s_sale)/100)) as g_price2 ,s.s_sale,s.s_attach1,s.s_attach2,s.s_attach3,s.s_attach4\r\n" + 
+				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
 				"from kyj_game g, kyj_store_page s\r\n" + 
 				"where g.g_code = s.s_game_code\r\n" + 
-				"and g.g_genre  like '%"+search+"%') tbl)";
+				"and g.g_genre  like '%"+search+"%'\r\n" +
+				"order by s.s_sale DESC) tbl)";
 		RowMapper<HomeDto> gameDtos = new BeanPropertyRowMapper<>(HomeDto.class);
 		ArrayList<HomeDto> dtos = (ArrayList<HomeDto>) temp.query(query, gameDtos);
 		return dtos;
@@ -40,12 +41,11 @@ public class GameDao {
 	public ArrayList<HomeDto> NewList() {
 		String query = "select * from(\r\n" + 
 				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, (g.g_price *((100-s.s_sale)/100)) as g_price2 ,s.s_sale,s.s_attach1,s.s_attach2,s.s_attach3,s.s_attach4\r\n" + 
+				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
 				"from kyj_game g, kyj_store_page s\r\n" + 
 				"where g.g_code = s.s_game_code\r\n" +
 				"order by s.s_date DESC)tbl)\r\n" +
 				"where rnum >=1 and rnum <=7";
-		
 		RowMapper<HomeDto> gameDtos = new BeanPropertyRowMapper<>(HomeDto.class);
 		ArrayList<HomeDto> dtos = (ArrayList<HomeDto>) temp.query(query, gameDtos);
 		return dtos;
@@ -54,7 +54,7 @@ public class GameDao {
 	public ArrayList<HomeDto> SaleList1() {
 		String query = "select * from(\r\n" + 
 				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, (g.g_price *((100-s.s_sale)/100)) as g_price2 ,s.s_sale,s.s_attach1,s.s_attach2,s.s_attach3,s.s_attach4\r\n" + 
+				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" +  
 				"from kyj_game g, kyj_store_page s\r\n" + 
 				"where g.g_code = s.s_game_code\r\n" +
 				"order by s.s_sale DESC)tbl)\r\n" +
@@ -67,7 +67,7 @@ public class GameDao {
 	public ArrayList<HomeDto> SaleList2() {
 		String query = "select * from(\r\n" + 
 				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, (g.g_price *((100-s.s_sale)/100)) as g_price2 ,s.s_sale,s.s_attach1,s.s_attach2,s.s_attach3,s.s_attach4\r\n" + 
+				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
 				"from kyj_game g, kyj_store_page s\r\n" + 
 				"where g.g_code = s.s_game_code\r\n" +
 				"order by s.s_sale DESC)tbl)\r\n" +
