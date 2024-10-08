@@ -15,11 +15,27 @@
 
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript">
+    	function goSignIn() {
+    		game.t_gubun.value ="goSignin";
+    		game.method="post";
+    		game.action="Game";
+    		game.submit();
+		}
+    	function goInfo() {
+    		game.t_gubun.value ="userinfo";
+    		game.t_id.value="${sessionId}";
+    		game.method="post";
+    		game.action="Game";
+    		game.submit();
+		}
+    </script>
 </head>
 <body>
 	<form name="game">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
+	<input type="hidden" name="t_id">
 	</form>
 	<header class="header" id="header">
     <div class="header-content">
@@ -28,16 +44,16 @@
         </div>
         <nav class="menu" id="menu">
             <ul>
-                <li><a href="#">STORE</a></li>
+            	<li><a href="Game">STORE</a></li>
                 <li><a href="#">COMMUNITY</a></li>
                 <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <li><a href="Game?t_gubun=join">Exx</a></li>
-                <li><a href="Game?t_gubun=login">SIGN IN</a></li>
+                <c:if test="${sessionId eq null}"><li><a href="javascript:goSignIn()">SIGN IN</a></li></c:if>
+                <c:if test="${sessionId ne null}"><li><a href="javascript:goInfo()">MyInfo</a></li></c:if>
             </ul>
         </nav>
         <div class="icons">
             <a href="#"><i class="fas fa-search"></i></a>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
         <div class="hamburger" id="hamburger">
             <i class="fas fa-bars"></i>

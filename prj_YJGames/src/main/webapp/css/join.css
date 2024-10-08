@@ -13,7 +13,7 @@ body {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 800px;
     margin: auto;
     padding: 20px;
 }
@@ -65,7 +65,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 select {
-    width: 40%;
+    width: 30%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -126,7 +126,7 @@ select {
     align-items: center; /* 세로 정렬 */
 }
 .email {
-    width: 70%; /* 원하는 폭으로 조정 */
+    width: 50%; /* 원하는 폭으로 조정 */
     padding: 8px;
 }
 

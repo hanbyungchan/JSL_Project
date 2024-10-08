@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니</title>
+    <link rel="stylesheet" href="css/jangbaguni.css">
+</head>
+
+<body>
+<div class="header">
+        <div class="logo">
+            <img src="" alt="imgbasic">
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="#">STORE</a></li>
+                <li><a href="#">COMUNITY</a></li>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">SUPPORT</a></li>
+            </ul>
+            <div class="login-area">
+                <button>JOIN</button>
+              <button>  <a href="#">LOGIN</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header2">
+            <h1>My shopping cart</h1>
+        </div>
+
+        <div class="content">
+            <div class="cart">
+                <div class="item">
+                    <img src="" alt="Aragami 2" class="game-image" onclick="">
+                    <div class="game-info">
+                        <h2 onclick="">Aragami 2</h2>
+                        <p class="price">₩36,000</p>
+                        <p class="reward">Earn 5% on Epic Rewards</p>
+                        <div class="options">
+                            <button class="remove-btn">Remove</button>
+                            <button class="wishlist-btn">Go to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="gow.jpg" alt="God of War Ragnarok" class="game-image" onclick="">
+                    <div class="game-info">
+                        <h2 onclick="">God of War Ragnarök</h2>
+                        <p class="price">₩62,800</p>
+                        <div class="options">
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <h2 class="summary-title">Games and apps total</h2>
+                <div class="details">
+                    <div class="detail-item">
+                        <span>Price</span>
+                        <span>₩98,800</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Tax</span>
+                        <span>Settled upon payment</span>
+                    </div>
+                    <hr class="divider">
+                    <div class="detail-total">
+                        <span>Sum</span>
+                        <span>₩98,800</span>
+                    </div>
+                </div>
+                <button class="checkout-btn">Buying</button>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>
