@@ -1,5 +1,7 @@
 package command.user;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import common.CommonExecute;
@@ -14,6 +16,14 @@ public class UserJoin implements CommonExecute {
 		String u_id = request.getParameter("t_u_id");
 		String u_name = request.getParameter("t_u_name");
 		String u_password = request.getParameter("t_u_password");
+		
+		try {
+			u_password = dao.encryptSHA256(u_password);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		String u_birth = request.getParameter("t_u_birth");
 		String u_gender = request.getParameter("t_u_gender");
 		String u_email_1 = request.getParameter("t_u_email_1");

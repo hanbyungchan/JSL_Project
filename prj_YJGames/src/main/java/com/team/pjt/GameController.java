@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import command.game.IndexList;
 import command.user.UserJoin;
 import command.user.UserLogin;
+import command.user.UserLogout;
 import common.CommonExecute;
 import common.CommonTemplate;
 import dao.UserDao;
@@ -56,16 +57,24 @@ public class GameController {
 				CommonExecute game = new IndexList();
 				game.execute(req);
 				viewPage = "user/user_login";
-			} else if(gubun.equals("userjoin")) {
+			} else if(gubun.equals("userjoin_cus")) {
 				CommonExecute game = new IndexList();
 				game.execute(req);
-				viewPage = "user/user_join";
-			} else if(gubun.equals("usersave")) {
+				viewPage = "user/user_join_customer";
+			} else if(gubun.equals("userjoin_com")) {
+				CommonExecute game = new IndexList();
+				game.execute(req);
+				viewPage = "user/user_join_company";
+			}else if(gubun.equals("usersave")) {
 				CommonExecute game = new UserJoin();
 				game.execute(req);
 				viewPage = "common_alert";
 			} else if(gubun.equals("userlogin")) {
 				CommonExecute game = new UserLogin();
+				game.execute(req);
+				viewPage = "common_alert";
+			} else if(gubun.equals("userlogout")) {
+				CommonExecute game = new UserLogout();
 				game.execute(req);
 				viewPage = "common_alert";
 			}

@@ -22,8 +22,16 @@
 			loginform.submit();
         }
 
-       function goJoin() {
-    	   user.t_gubun.value = "userjoin";
+        
+       function goJoinCustomer() {
+    	   user.t_gubun.value = "userjoin_cus";
+    	   user.method = "post";
+    	   user.action = "Game";
+    	   user.submit();
+       }
+       
+       function goJoinCompany() {
+    	   user.t_gubun.value = "userjoin_com";
     	   user.method = "post";
     	   user.action = "Game";
     	   user.submit();
@@ -38,19 +46,20 @@
    <body>
     <div class ="bigdiv">
 		<div class="login-container">
-    <h2>로그인</h2>
+    <h2>Sign In</h2>
     	<form name="loginform">
     	<input type = "hidden" name = "t_gubun">
-        <label for="t_id">아이디</label>
-        <input type="text" name="t_u_id" id="t_id" placeholder="아이디 입력" required>
+        <label for="t_id">ID</label>
+        <input type="text" name="t_u_id" id="t_id" placeholder="Enter ID" required>
 
-        <label for="t_password">비밀번호</label>
-        <input type="password" name="t_u_password" id="t_password" placeholder="비밀번호 입력" required>
+        <label for="t_password">PASSWORD</label>
+        <input type="password" name="t_u_password" id="t_password" placeholder="Enter Password" required>
 
         <input type="button" value="Login" onclick="logincheck()">
 
         <div class="footer">
-            <p>don't have account? <a href="javascript:goJoin()"> Registration </a></p>
+            <p>don't have account?</p>
+           <a href="javascript:goJoinCompany()">for Company </a>&nbsp;&nbsp;<a href="javascript:goJoinCustomer()">for Customer </a><br><br>
                <a href="javascript:goHome()" class="btn-home"><i class="fas fa-home"></i> Home</a>
         </div>
    		 </form>
