@@ -128,7 +128,7 @@ button {
     padding: 10px 12px;
     border-radius: 6px;
     border: none;
-    background-color: red;
+    background-color: blue;
     color: white;
     font-size: 14px;
     cursor: pointer;
@@ -220,4 +220,5 @@ input:disabled {
 .save-button2:hover {
     background-color: darkred; 
 }
+
 }
