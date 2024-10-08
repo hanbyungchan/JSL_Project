@@ -80,7 +80,7 @@
   	} 
 
 function goLogin() {
-	user.t_gubun.value = "userjoin";
+	user.t_gubun.value = "goSignin";
 	user.method = "post";
 	user.action = "Game";
 	user.submit();

@@ -30,12 +30,12 @@ public class UserDao {
 	}
 	
 	//로그인
-	public UserDto UserLogin(String id, String pw) {
+	public UserDto UserLogin(String u_id, String u_password) {
 		UserDto dto = null;
 		String query = "select u_name\r\n" + 
 				"from kyj_user\r\n" + 
-				"where u_id = 'abc123'\r\n" + 
-				"and u_password = '1234'\r\n" + 
+				"where u_id = '"+u_id+"'\r\n" + 
+				"and u_password = '"+u_password+"'\r\n" + 
 				"and u_exit_date is null";
 		
 		RowMapper<UserDto> UserDtos = new BeanPropertyRowMapper<>(UserDto.class);

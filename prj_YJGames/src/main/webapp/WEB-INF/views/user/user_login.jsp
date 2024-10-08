@@ -14,9 +14,9 @@
   
         function logincheck(){
         	 //alert("aaa"); 
-         	 if(checkValue(loginform.t_id,"ID 입력!")) return;
-			if(checkValue(loginform.t_password,"비밀번호 입력!")) return;
-			loginform.t_gubun.value ="loginCheck";
+         	 if(checkValue(loginform.t_u_id,"ID 입력!")) return;
+			if(checkValue(loginform.t_u_password,"비밀번호 입력!")) return;
+			loginform.t_gubun.value ="userlogin";
 			loginform.method="post";
 			loginform.action="Game";
 			loginform.submit();
@@ -40,17 +40,18 @@
 		<div class="login-container">
     <h2>로그인</h2>
     	<form name="loginform">
+    	<input type = "hidden" name = "t_gubun">
         <label for="t_id">아이디</label>
-        <input type="text" name="t_id" id="t_id" placeholder="아이디 입력" required>
+        <input type="text" name="t_u_id" id="t_id" placeholder="아이디 입력" required>
 
         <label for="t_password">비밀번호</label>
-        <input type="password" name="t_password" id="t_password" placeholder="비밀번호 입력" required>
+        <input type="password" name="t_u_password" id="t_password" placeholder="비밀번호 입력" required>
 
-        <input type="button" value="로그인" onclick="logincheck()">
+        <input type="button" value="Login" onclick="logincheck()">
 
         <div class="footer">
-            <p>계정이 없으신가요? <a href="javascript:goJoin()"> 회원가입 </a></p>
-               <a href="javascript:goHome()" class="btn-home"><i class="fas fa-home"></i> 홈으로</a>
+            <p>don't have account? <a href="javascript:goJoin()"> Registration </a></p>
+               <a href="javascript:goHome()" class="btn-home"><i class="fas fa-home"></i> Home</a>
         </div>
    		 </form>
 		</div>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import command.game.IndexList;
 import command.user.UserJoin;
+import command.user.UserLogin;
 import common.CommonExecute;
 import common.CommonTemplate;
 import dao.UserDao;
@@ -61,6 +62,10 @@ public class GameController {
 				viewPage = "user/user_join";
 			} else if(gubun.equals("usersave")) {
 				CommonExecute game = new UserJoin();
+				game.execute(req);
+				viewPage = "common_alert";
+			} else if(gubun.equals("userlogin")) {
+				CommonExecute game = new UserLogin();
 				game.execute(req);
 				viewPage = "common_alert";
 			}
