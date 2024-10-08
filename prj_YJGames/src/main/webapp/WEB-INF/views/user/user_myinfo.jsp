@@ -7,11 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Settings</title>
     <link rel="stylesheet" href="css/myinfo.css">
+    <script src="js/common.js"></script>
+    <script type="text/javascript">
+    function goUpdate(){
+   	 if(checkValueLength(user.t_u_name,2,10,'Please enter your Name', '성명은 2자이상 10자 이내입니다.')) return;//4 최소 15최대
+   	 if(checkValueLength(user.t_u_password,3,20, 'Please enter your password','비밀번호은 3자이상 자 20자이내입니다.')) return;//4 최소 15최대
+   	 if(checkValue(user.t_u_password_check, 'Please enter your current password')) return;
+   	 if(checkValueLength(user.t_u_birth, 8, 'Please enter your Birth','Birth is 8')) return;//4 최소 15최대
+   	 if(checkValue(user.t_u_gender,'select Gender')) return;
+   	 if(checkValueLength(user.t_u_email_1 ,1,20, 'Please enter your Email','이메일은 1자리 이상 20자리 이내입니다.')) return;//
+   	 if(checkValue(user.t_u_email_2, 'email 선택')) return;
+   		user.t_gubun.value = "userupdate";
+   		user.method = "post";
+   		user.action = "Game";
+   		user.submit();
+     }
+    function goDelete(){
+    	if(confirm("Are you sure you want to delete it?")){
+    		 if(checkValue(user.t_u_password_check, 'Please enter your current password')) return;
+       		user.t_gubun.value = "userdelete";
+       		user.method = "post";
+       		user.action = "Game";
+       		user.submit();
+    	}
+    }
+    function goBack() {
+    	user.t_gubun.value = "list";
+		user.method = "post";
+		user.action = "Game";
+		user.submit();
+	}
+    </script>
 </head>
 <body>
   <div class="header">
         <div class="logo">
-            <img src="이미지칸이야 넣기만하면돼" alt="이미지칸이야 넣기만하면돼">
+            <img src="" alt=" ">
         </div>
         <div class="nav">
             <ul>
@@ -26,6 +57,8 @@
             </div>
         </div>
     </div>
+    <form name="user">
+    <input type="hidden" name="t_gubun">
     <div class="container">
         <div class="id-set" style="text-align: center;">
             <h1>Account Settings</h1>
@@ -66,11 +99,11 @@
                 <input type="password" name="t_u_password_check">
             </div>
         </section>
-		
+		</form>
 
         <div class="button-container" style="text-align: center;">
-            <button class="save-button">Save Changes</button>
-            <button class="reset">Cancel</button>
+            <button class="save-button" onclick="goUpdate()">Save Changes</button>
+            <button class="save-button" onclick="goBack()">Home</button>
         </div>
          <section class="personal-info">
             <h2 style="text-align: center; padding: 40px;">Delete Account</h2>
@@ -82,7 +115,7 @@
 			</p>
     		
 		   </div>
-		   <button class="save-button2" >Request to delete account</button>
+		   <button class="save-button2" onclick="goDelete()" >Request to delete account</button>
         </section>
     </div>
 </body>

@@ -4,8 +4,7 @@
 		if(obj.value == "") {
  			alert(msg1);
  			obj.focus();
- 			result = true;
- 			
+ 			result = true;	
  		}
  		if(len < minLength || len > maxLength) {
  			alert(msg2);

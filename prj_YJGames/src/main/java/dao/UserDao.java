@@ -89,14 +89,19 @@ public class UserDao {
 				"u_password  = '"+dto.getU_password()+"'\r\n" + 
 				"where u_id = '"+dto.getU_id()+"'\r\n" +
 				"and u_password = '"+cur_pw+"'";		
-		try {
-			result = temp.update(query);
-		} catch (Exception e) {
-			System.out.println("UserUpdate() 메소드 오류" + query);
-		}
-		
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("UserUpdate() 메소드 오류" + query);}
 		return result;
 	}
-	
 	//탈퇴
+	public int UserDelete(String id, String pw, String u_exit_date) {
+		int result = 0;
+		String query = "UPDATE kyj_user\r\n" + 
+				"set u_exit_date = '"+u_exit_date+"'\r\n" + 
+				"where u_id = '"+id+"'\r\n" + 
+				"and u_password = '"+pw+"'";		
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("UserDelete() 메소드 오류" + query);}
+		return result;
+	}
 }

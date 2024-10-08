@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import command.game.IndexList;
+import command.user.UserDelete;
 import command.user.UserInfo;
 import command.user.UserJoin;
 import command.user.UserLogin;
+import command.user.UserUpdate;
 import common.CommonExecute;
 import common.CommonTemplate;
 import dao.UserDao;
@@ -67,6 +69,18 @@ public class GameController {
 			//로그인
 			else if(gubun.equals("loginCheck")) {
 				CommonExecute game = new UserLogin();
+				game.execute(req);
+				viewPage = "common_alert";
+			}
+			//유저수정
+			else if(gubun.equals("userupdate")) {
+				CommonExecute game = new UserUpdate();
+				game.execute(req);
+				viewPage = "common_alert";
+			}
+			//유저삭제
+			else if(gubun.equals("userdelete")) {
+				CommonExecute game = new UserDelete();
 				game.execute(req);
 				viewPage = "common_alert";
 			}
