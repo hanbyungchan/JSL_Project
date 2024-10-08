@@ -35,63 +35,47 @@
             <h2 style="text-align: center; padding: 20px;">Account Information</h2>
             <div class="info-group">
                 <label for="user-id">ID</label>
-                <span id="user-id"></span>
+                <input type="text" name="t_u_id" value="${t_dto.getU_id()}" readonly="readonly">
             </div>
             <div class="info-group">
                 <label for="username">NAME</label>
-                <input type="text" id="username" value="ex" >
+                <input type="text" name="t_u_name" value="${t_dto.getU_name()}" >
             </div>
             <div class="info-group">
                 <label for="email">E-MAIL</label>
-                <input type="email" id="email" value="ex@naver.com" >
+                <input type="email" name="t_u_email_1" value="${t_dto.getU_email_1()}">@<input type="email" name="t_u_email_2" value="${t_dto.getU_email_2()}" >
             </div>
-        </section>
-
-        <section class="personal-info">
-            <h2 style="text-align: center; padding: 20px;">Personal details</h2>
-         
-        </section>
-
-        <section class="address-info">
             <div class="info-group">
                 <label for="postal-code">BIRTH</label>
-                <input type="text" id="postal-code">
+                <input type="text" name="t_u_birth" value="${t_dto.getU_birth()}">
             </div>
             <div class="info-group">
                 <label for="region">GENDER</label>
-                <input type="text" id="gender">
+                <input type="text" name="t_u_gender" value="${t_dto.getU_gender()}">
             </div>
             <div class="info-group">
-                <label for="address1">LEVEL</label>
-                <input type="text" id="level">
+                <label for="user-mileage">MONEY</label>
+                <input type="text" name="t_u_money" value="${t_dto.getU_money()}" readonly="readonly">
+            </div>
+			<div class="info-group">
+                <label for="region">CHANGE PASSWORD</label>
+                <input type="password" name="t_u_password">
             </div>
             <div class="info-group">
-                <label for="user-mileage">MILEAGE</label>
-                <span id="user-mileage"></span>
+                <label for="region">CURRENT PASSWORD</label>
+                <input type="password" name="t_u_password_check">
             </div>
-            
         </section>
-
+		
         <div class="button-container" style="text-align: center;">
             <button class="save-button">Save Changes</button>
             <button class="reset">Cancel</button>
         </div>
-          <section class="personal-info">
-            <h2 style="text-align: center; padding: 40px;">Password</h2>
-           <div class="info-group">
-           <p>
-           	When you change your password, you should take note of some important things for your security and privacy. If you don't set up a secure password, your account could be hacked or exposed to malicious access, so please refer to the precautions below.
-			</p>
-    		
-		   </div>
-		   <button class="save-button2" >Change password</button>
-        </section>
          <section class="personal-info">
             <h2 style="text-align: center; padding: 40px;">Delete Account</h2>
            <div class="info-group">
            <p>
            	Click Request to delete your account to begin the process of permanently deleting Epic Games accounts, including all personal information, purchase details, game progress, in-game content, Unreal Project, and Epic Games wallet accounts. Once your Epic Games account is deleted, your wallet balance will also be permanently deleted.
-
 			If you request to delete your account, it will be deleted after 14 days. During this period, you can log in to your account and reactivate it, which will cancel your request for deletion. After 14 days, you will not be able to recover your deleted account.
 			</p>
     		
