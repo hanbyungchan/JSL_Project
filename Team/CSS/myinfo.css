@@ -4,7 +4,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #F5F5F5;
@@ -16,26 +15,21 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
 .logo img {
     height: 40px;
 }
-
 .nav ul {
     list-style: none;
     display: flex;
     gap: 15px;
 }
-
 .nav ul li {
     display: inline;
 }
-
 .nav ul li a {
     color: #c7d5e0;
     text-decoration: none;
 }
-
 .login-area {
    display: flex;
     gap: 15px;
@@ -43,7 +37,6 @@ body {
     justify-content: flex-end;
     width: 100%;
 }
-
 .login-area button {
     background-color: #5c7e10;
     color: #c7d5e0;
@@ -51,12 +44,10 @@ body {
     padding: 10px 15px;
     cursor: pointer;
 }
-
 .login-area a {
     color: #c7d5e0;
     text-decoration: none;
 }
-
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -66,24 +57,20 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
 }
-
 .container:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
-
 h1 {
     font-size: 32px;
     color: #333;
     margin-bottom: 10px;
     text-align: center;
 }
-
 p {
     color: #666;
     text-align: center;
     margin-bottom: 30px;
 }
-
 h2 {
     font-size: 24px;
     color: #444;
@@ -91,22 +78,20 @@ h2 {
     border-bottom: 2px solid #eee;
     padding-bottom: 10px;
 }
-
 .info-group {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+    justify-content: center;
     align-items: center;
+    gap: 10px;
     margin-bottom: 20px;
 }
-
 label {
     font-weight: bold;
     color: #555;
     width: 30%;
 }
-
 input[type="text"],
-input[type="email"],
+input[type="password"],
 select {
     width: 65%;
     padding: 10px 12px;
@@ -115,7 +100,15 @@ select {
     background-color: #f4f4f4;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-
+input[type="email"],
+select {
+    width: 30%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 input[type="text"]:focus,
 input[type="email"]:focus,
 select:focus {
@@ -123,33 +116,28 @@ select:focus {
     box-shadow: 0 0 8px rgba(0, 0, 255, 0.2);
     outline: none;
 }
-
 button {
     padding: 10px 12px;
     border-radius: 6px;
     border: none;
-    background-color: blue;
+    background-color: red;
     color: white;
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
-
 .edit-button {
     background-color: #28a745;
     margin-left: 10px;
     
 }
-
 .edit-button:hover {
     background-color: #218838;
 }
-
 .save-button, .reset {
     background-color: #218838; 
     color: white;
@@ -161,7 +149,6 @@ button:hover {
     width: 17%; 
     font-size: 14px; 
 }
-
 .save-button:hover, .reset:hover {
    background-color: #218838;
    
@@ -173,33 +160,27 @@ button:hover {
 .save-button:hover {
     background-color: #218838;
 }
-
 input:disabled {
     background-color: #e9ecef;
     color: #6c757d;
 }
-
 @media (max-width: 768px) {
     .container {
         padding: 20px;
     }
-
     .info-group {
         flex-direction: column;
         align-items: flex-start;
     }
-
     label {
         width: 100%;
         margin-bottom: 8px;
     }
-
     input[type="text"],
     input[type="email"],
     select {
         width: 100%;
     }
-
     .edit-button {
         width: 100%;
         margin-left: 0;
@@ -216,9 +197,7 @@ input:disabled {
     cursor: pointer;      
     transition: background-color 0.3s; 
 }
-
 .save-button2:hover {
     background-color: darkred; 
 }
-
 }
