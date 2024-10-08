@@ -46,52 +46,115 @@
 
         <div class="search_content">
             <div class="search_result slider-header">
-                <h3>검색 결과</h3>
-                <span>표시:</span>
-                <select>
-                    <option>전체</option>
-                    <option>가격: 오름차순</option>
-                    <option>가격: 내림차순</option>
-                </select>
+                <h3>Result</h3>
+
                 <div class="underline"></div>
-                <div class="category-box">
-                    <div class="category-item search_game">
+                <div class="game-box">
+                    <div class="game-result">
                         <a href="#">
                             <span class="img">
                                 <img src="img/category1.jpg" alt="카테고리 이미지 1" />
                             </span>
-                            <p>FPS</p>
+                            <p>gun game</p>
                         </a>
                     </div>
-                    <div class="category-item">
+                    <div class="game-result">
                         <a href="#">
                             <span class="img">
                                 <img src="img/category2.jpg" alt="카테고리 이미지 2" />
                             </span>
-                            <p>RPG</p>
+                            <p>RPG game</p>
                         </a>
                     </div>
-                    <div class="category-item">
+                    <div class="game-result">
                         <a href="#">
                             <span class="img">
                                 <img src="img/category3.jpg" alt="카테고리 이미지 3" />
                             </span>
-                            <p>Fight</p>
+                            <p>Fight game</p>
                         </a>
                     </div>
-                    <div class="category-item">
+                    <div class="game-result">
                         <a href="#">
                             <span class="img">
                                 <img src="img/category4.jpg" alt="카테고리 이미지 4" />
                             </span>
-                            <p>Sports</p>
+                            <p>Sports game</p>
+                        </a>
+                    </div>
+                    <div class="game-result">
+                        <a href="#">
+                            <span class="img">
+                                <img src="img/category1.jpg" alt="카테고리 이미지 1" />
+                            </span>
+                            <p>gun game</p>
                         </a>
                     </div>
                 </div>
             </div>
 
             <div class="search_filter">
-                <span>aaa</span>
+                <div class="filter-menu">
+                    <!-- 검색창을 필터 메뉴 상단에 배치 -->
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search games, categories..." />
+                    </div>
+
+                    <h3>Filter By</h3>
+
+                    <!-- 가격 필터 -->
+                    <div class="filter-group">
+                        <label>Price Range:</label>
+                        <select>
+                            <option value="all">All Prices</option>
+                            <option value="free">Free</option>
+                            <option value="under-10">$10 or less</option>
+                            <option value="under-20">$20 or less</option>
+                            <option value="under-50">$50 or less</option>
+                        </select>
+                    </div>
+
+                    <!-- 장르 필터 -->
+                    <div class="filter-group">
+                        <label id="genreLabel">Genre:</label>
+                        <span class="toggle-arrow" id="genreArrow">▶</span>
+                        <div class="genre-options" id="genreOptions">
+                            <input type="checkbox" id="action" name="genre" value="action" />
+                            <label for="action">Action</label><br />
+                            <input type="checkbox" id="rpg" name="genre" value="rpg" />
+                            <label for="rpg">RPG</label><br />
+                            <input type="checkbox" id="adventure" name="genre" value="adventure" />
+                            <label for="adventure">Adventure</label><br />
+                            <input type="checkbox" id="simulation" name="genre" value="simulation" />
+                            <label for="simulation">Simulation</label>
+                        </div>
+                    </div>
+
+                    <!-- 적용 버튼 -->
+                    <button class="apply-button">Apply Filters</button>
+                </div>
+
+                <script>
+                    const genreArrow = document.getElementById('genreArrow');
+                    const genreOptions = document.getElementById('genreOptions');
+                    const genreLabel = document.getElementById('genreLabel');
+
+                    function toggleGenreOptions() {
+                        // 장르 옵션을 토글
+                        genreOptions.style.display = genreOptions.style.display === 'block' ? 'none' : 'block';
+
+                        // 화살표 회전 애니메이션
+                        genreArrow.classList.toggle('rotate');
+
+                        genreLabel.classList.toggle('rotate');
+                    }
+
+                    // 화살표 클릭 시
+                    genreArrow.addEventListener('click', toggleGenreOptions);
+
+                    // 장르 label 클릭 시
+                    genreLabel.addEventListener('click', toggleGenreOptions);
+                </script>
             </div>
         </div>
     </body>
