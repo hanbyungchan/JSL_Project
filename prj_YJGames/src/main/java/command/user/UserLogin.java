@@ -1,5 +1,7 @@
 package command.user;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +14,13 @@ public class UserLogin implements CommonExecute {
 	@Override
 	public void execute(HttpServletRequest request) {
 		UserDao dao = new UserDao();
-		String u_id = request.getParameter("t_id");
-		String u_password = request.getParameter("t_password");
+		String u_id = request.getParameter("t_u_id");
+		String u_password = request.getParameter("t_u_password");
+		try {
+			u_password = dao.encryptSHA256(u_password);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 		String t_gubun = null;
 		String msg = "Id or Password is Wrong";
 		String url = "Game";

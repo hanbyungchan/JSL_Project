@@ -29,6 +29,12 @@
     		game.action="Game";
     		game.submit();
 		}
+    	function goLogout() {
+    		game.t_gubun.value ="userlogout";
+    		game.method="post";
+    		game.action="Game";
+    		game.submit();
+		}
     </script>
 </head>
 <body>
@@ -49,6 +55,7 @@
                 <li><a href="Game?t_gubun=support">SUPPORT</a></li>
                 <c:if test="${sessionId eq null}"><li><a href="javascript:goSignIn()">SIGN IN</a></li></c:if>
                 <c:if test="${sessionId ne null}"><li><a href="javascript:goInfo()">MyInfo</a></li></c:if>
+                <c:if test="${sessionId ne null}"><li><a href="javascript:goLogout()">Logout</a></li></c:if>
             </ul>
         </nav>
         <div class="icons">

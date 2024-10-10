@@ -17,8 +17,9 @@ public class UserDelete implements CommonExecute {
 		int result = dao.UserDelete(u_id, u_password, u_exit_date);
 		if(result == 1) request.setAttribute("t_msg", "Registration successful");
 		else {request.setAttribute("t_msg", "Registration failed... Please try again");}
-		
 		request.setAttribute("t_url", "Game");
+		
+		//세션 아웃해야함 ^^
 	}
 
 }

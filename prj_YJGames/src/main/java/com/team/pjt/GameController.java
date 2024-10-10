@@ -16,6 +16,7 @@ import command.user.UserDelete;
 import command.user.UserInfo;
 import command.user.UserJoin;
 import command.user.UserLogin;
+import command.user.UserLogout;
 import command.user.UserUpdate;
 import common.CommonExecute;
 import common.CommonTemplate;
@@ -51,8 +52,10 @@ public class GameController {
 			else if(gubun.equals("support")){viewPage = "support/support";}
 			//로그인창
 			else if(gubun.equals("goSignin")){viewPage = "user/user_login";} 
-			//회원가입창
-			else if(gubun.equals("userjoin")) {viewPage = "user/user_join";}
+			//회원가입창(개인)
+			else if(gubun.equals("userjoin_cus")) {viewPage = "user/user_join_customer";}
+			//회원가입창(기업)
+			else if(gubun.equals("userjoin_com")) {viewPage = "user/user_join_company";}
 			//내정보
 			else if(gubun.equals("userinfo")) {
 				CommonExecute game = new UserInfo();
@@ -67,8 +70,14 @@ public class GameController {
 				viewPage = "common_alert";
 			}
 			//로그인
-			else if(gubun.equals("loginCheck")) {
+			else if(gubun.equals("userlogin")) {
 				CommonExecute game = new UserLogin();
+				game.execute(req);
+				viewPage = "common_alert";
+			}
+			//로그아웃
+			else if(gubun.equals("userlogout")) {
+				CommonExecute game = new UserLogout();
 				game.execute(req);
 				viewPage = "common_alert";
 			}
