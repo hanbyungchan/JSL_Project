@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import command.cart.CartList;
 import command.game.IndexList;
 import command.user.UserDelete;
 import command.user.UserInfo;
@@ -20,6 +21,7 @@ import command.user.UserLogout;
 import command.user.UserUpdate;
 import common.CommonExecute;
 import common.CommonTemplate;
+import dao.GameDao;
 import dao.UserDao;
 
 @Controller
@@ -48,8 +50,10 @@ public class GameController {
 				game.execute(req);
 				viewPage = "index";
 			}
-			//qna,faq
+			//support
 			else if(gubun.equals("support")){viewPage = "support/support";}
+			//library
+			else if(gubun.equals("library")){viewPage = "library";}
 			//로그인창
 			else if(gubun.equals("goSignin")){viewPage = "user/user_login";} 
 			//회원가입창(개인)
@@ -62,7 +66,10 @@ public class GameController {
 				game.execute(req);
 				viewPage = "user/user_myinfo";}
 			//장바구니
-			else if(gubun.equals("cart")) {viewPage = "cart";}
+			else if(gubun.equals("cart")) {
+				CommonExecute game = new CartList();
+				game.execute(req);
+				viewPage = "cart";}
 			//회원가입
 			else if(gubun.equals("usersave")) {
 				CommonExecute game = new UserJoin();
@@ -112,6 +119,17 @@ public class GameController {
 		if(count == 1) out.print("Unuseable ID");
 		else out.print("Useable ID");
 	}
-	
-	
+	//장바구니 삭제
+	@RequestMapping("RemoveCart")
+	public void RemoveCart(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_u_id");
+		String g_code = request.getParameter("t_g_code");
+		GameDao dao = new GameDao();
+		int count = dao.RemoveCart(u_id, g_code);
+		if(count == 1) out.print(count);
+		else out.print("");
+	}
 }

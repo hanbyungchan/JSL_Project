@@ -68,7 +68,7 @@ public class UserDao {
 	//내 정보
 	public UserDto UserInfo(String id){
 		UserDto dto = null;
-		String query = "select u_id,u_name,u_password,u_birth,u_gender,u_email_1,u_email_2,u_money,u_level\r\n" + 
+		String query = "select u_id,u_name,u_password,TO_CHAR(u_birth, 'YYYYMMDD') AS u_birth,u_gender,u_email_1,u_email_2,u_money,u_level\r\n" + 
 				"from kyj_user\r\n" + 
 				"where u_id = '"+id+"'";
 		RowMapper<UserDto> uDto = new BeanPropertyRowMapper<UserDto>(UserDto.class);
@@ -85,10 +85,11 @@ public class UserDao {
 	public int UserUpdate(UserDto dto, String cur_pw) {
 		int result = 0;
 		String query = "UPDATE kyj_user\r\n" + 
-				"set u_name = 'PARk',\r\n" + 
-				"u_email_1 = 'abcd',\r\n" + 
-				"u_email_2 = 'naver.com',\r\n" + 
-				"u_gender = 'M',\r\n" + 
+				"set u_name = '"+dto.getU_name()+"',\r\n" + 
+				"u_email_1 = '"+dto.getU_email_1()+"',\r\n" + 
+				"u_email_2 = '"+dto.getU_email_2()+"',\r\n" + 
+				"u_gender = '"+dto.getU_gender()+"',\r\n" + 
+				"u_level = '"+dto.getU_level()+"',\r\n" + 
 				"u_password  = '"+dto.getU_password()+"'\r\n" + 
 				"where u_id = '"+dto.getU_id()+"'\r\n" +
 				"and u_password = '"+cur_pw+"'";		

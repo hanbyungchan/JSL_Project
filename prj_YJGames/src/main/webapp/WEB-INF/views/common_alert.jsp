@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>뭔가 하는중~</title>
+<title></title>
 </head>
 <body>
 	<form name="alertForm">
 		<input type = "hidden" name = "t_gubun">
-		<input type = "hidden" name = "t_no">
+		<input type = "hidden" name = "t_id">
 	</form>
 	<c:if test="${empty t_gubun}">
 	<script type="text/javascript">
@@ -27,11 +27,11 @@
 		alertForm.submit();
 	</script>
 </c:if>
-<c:if test="${t_gubun eq 'view'}">
+<c:if test="${t_gubun eq 'userinfo'}">
 	<script type="text/javascript">
 		alert("${t_msg}");
 		alertForm.t_gubun.value="${t_gubun}";
-		alertForm.t_no.value="${t_no}";
+		alertForm.t_id.value="${t_id}";
 		alertForm.method="post";
 		alertForm.action="${t_url}";
 		alertForm.submit();

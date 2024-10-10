@@ -47,8 +47,7 @@
 		user.t_u_email_2.value = user.t_u_email_select.value;
 	}
 
-   function checkId() {
-      
+  function checkId() {
 	   if(checkValueLength(user.t_u_id,3,15, 'ID는 4자 이상 15자 이내 입니다')) return;//4 최소 15최대
 	  $.ajax({
 		 type:"post",//넘기는 방식
@@ -70,7 +69,7 @@
 			 }
 		 } 
 	  });
-  	} 
+ 	} 
 
 function goLogin() {
 	user.t_gubun.value = "userjoin";

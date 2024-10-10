@@ -35,6 +35,12 @@
     		game.action="Game";
     		game.submit();
 		}
+    	function goLibrary() {
+    		game.t_gubun.value ="library";
+    		game.method="post";
+    		game.action="Game";
+    		game.submit();
+		}
     </script>
 </head>
 <body>
@@ -56,6 +62,7 @@
                 <c:if test="${sessionId eq null}"><li><a href="javascript:goSignIn()">SIGN IN</a></li></c:if>
                 <c:if test="${sessionId ne null}"><li><a href="javascript:goInfo()">MyInfo</a></li></c:if>
                 <c:if test="${sessionId ne null}"><li><a href="javascript:goLogout()">Logout</a></li></c:if>
+                <c:if test="${sessionId ne null}"><li><a href="javascript:goLibrary()">Library</a></li></c:if>
             </ul>
         </nav>
         <div class="icons">

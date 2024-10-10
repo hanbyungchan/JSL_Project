@@ -10,13 +10,13 @@
     <script src="js/common.js"></script>
     <script type="text/javascript">
     function goUpdate(){
-   	 if(checkValueLength(user.t_u_name,2,10,'Please enter your Name', '성명은 2자이상 10자 이내입니다.')) return;//4 최소 15최대
-   	 if(checkValueLength(user.t_u_password,3,20, 'Please enter your password','비밀번호은 3자이상 자 20자이내입니다.')) return;//4 최소 15최대
-   	 if(checkValue(user.t_u_password_check, 'Please enter your current password')) return;
+     if(checkValueLength(user.t_u_name,2,20, "Please enter Name",'Name is more than 2 less than 20')) return;
+     if(checkValueLength(user.t_u_password,3,20, "Please enter password", 'Password is more than 3 less than 20')) return;
+   	 if(checkValue(user.t_u_password_check, 'Please enter password confirm')) return;
    	 if(checkValueLength(user.t_u_birth, 8, 'Please enter your Birth','Birth is 8')) return;//4 최소 15최대
    	 if(checkValue(user.t_u_gender,'select Gender')) return;
-   	 if(checkValueLength(user.t_u_email_1 ,1,20, 'Please enter your Email','이메일은 1자리 이상 20자리 이내입니다.')) return;//
-   	 if(checkValue(user.t_u_email_2, 'email 선택')) return;
+   	 if(checkValueLength(user.t_u_email_1 ,1,20, "Please enter Email", 'Email is more than 1 less than 20'))
+   	 if(checkValue(user.t_u_email_2,  'Please select Email')) return;
    		user.t_gubun.value = "userupdate";
    		user.method = "post";
    		user.action = "Game";
@@ -59,6 +59,7 @@
     </div>
     <form name="user">
     <input type="hidden" name="t_gubun">
+    <input type="text" name="t_u_level" value="${t_dto.getU_level()}">
     <div class="container">
         <div class="id-set" style="text-align: center;">
             <h1>Account Settings</h1>
@@ -95,7 +96,7 @@
                 <input type="password" name="t_u_password">
             </div>
             <div class="info-group">
-                <label for="region">CURRENT PASSWORD</label>
+                <label for="region">PASSWORD CONFIRM</label>
                 <input type="password" name="t_u_password_check">
             </div>
         </section>
