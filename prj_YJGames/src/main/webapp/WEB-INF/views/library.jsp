@@ -74,7 +74,7 @@ function performSearch() {
         <div class="main-content">
             <!-- 많이 한 플레이 섹션 -->
             <hr class="divider">
-            <h2>Played a lot</h2>
+  			<h2>Played a lot</h2>
             <div class="game-thumbnails-slider">
                 <div class="game">
                     <img src="https://cdn.akamai.steamstatic.com/store/home/store_home_share.jpg" alt="Mass Effect">
@@ -173,5 +173,6 @@ function performSearch() {
             </div>
         </div>
     </div>
+    
 </body>
 </html>

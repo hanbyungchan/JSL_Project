@@ -17,28 +17,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript">
     	function goSignIn() {
-    		game.t_gubun.value ="goSignin";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=goSignin";
     		game.submit();
 		}
     	function goInfo() {
-    		game.t_gubun.value ="userinfo";
     		game.t_id.value="${sessionId}";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=userinfo";
     		game.submit();
 		}
     	function goLogout() {
-    		game.t_gubun.value ="userlogout";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=userlogout";
     		game.submit();
 		}
     	function goLibrary() {
-    		game.t_gubun.value ="library";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=library";
     		game.submit();
 		}
     </script>
