@@ -1,0 +1,327 @@
+/* 컨테이너 레이아웃 */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 100px auto;
+    gap: 20px;
+    align-items: stretch; /* 높이를 자동으로 맞추기 위해 stretch 사용 */
+}
+
+/* 왼쪽 섹션 */
+.left-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* 미디어 타이틀 스타일 */
+.media-title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.media-title {
+    font-size: 1.8rem;
+    color: white;
+}
+
+/* 메인 미디어 섹션 */
+.main-media {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-media video,
+.main-media img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%); /* 처음에 아래에 위치 */
+    transition: transform 0.5s ease-in-out;
+}
+
+.main-media.active video,
+.main-media.active img {
+    transform: translateY(0); /* 위로 올라와 보이도록 */
+}
+
+/* 썸네일 갤러리 */
+.media-gallery-wrapper {
+    position: relative;
+    overflow: visible; /* 부모 요소가 넘칠 때도 잘리지 않도록 설정 */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-gallery {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.media-gallery img,
+.media-gallery video {
+    width: 150px;
+    height: 100px;
+    margin-right: 15px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0.5; /* 기본 상태에서 반투명 */
+    object-fit: cover; /* 이미지가 테두리에 맞도록 크기 조정, 비율 유지 */
+    border-radius: 5px; /* 이미지의 테두리를 둥글게 하고 싶을 때 */
+}
+
+/* 현재 재생 중인 썸네일에 줌인 효과와 테두리 적용 */
+.media-gallery .active-thumbnail {
+    transform: scale(1.2); /* 1.2배로 확대 */
+    border: 2px solid #00e6e6; /* 테두리 색상 */
+    opacity: 1; /* 활성화된 썸네일은 불투명 */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 2;
+    transform-origin: center; /* 확대/축소 시 중앙을 기준으로 변형 */
+    box-sizing: border-box; /* 테두리를 포함한 크기 조정 */
+}
+
+/* 이미지가 잘리지 않도록 상하 마진을 추가 */
+.media-gallery img,
+.media-gallery video {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* 마지막 썸네일은 오른쪽에 간격이 필요 없음 */
+.media-gallery img:last-child,
+.media-gallery video:last-child {
+    margin-right: 0;
+}
+
+/* 갤러리 내비게이션 버튼 */
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.gallery-nav.prev {
+    left: 0;
+}
+
+.gallery-nav.next {
+    right: 0;
+}
+
+
+/*===================================================================================================*/
+
+/* 오른쪽 정보 섹션 */
+.info-section h3, 
+.info-section .price-section, 
+.info-section .system-requirements, 
+.info-section .release-date {
+    margin-bottom: 20px; /* 각 요소 사이에 20px 간격 추가 */
+}
+
+/* 오른쪽 섹션을 감싸는 컨테이너 백그라운드 확장 */
+.right-section-container {
+    background-color: #2c2c3e;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    flex: 1; /* 왼쪽 섹션과 균형 있게 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: auto; /* 높이를 자동으로 조정 */
+}
+
+/* 기존의 info-section과 겹치는 스타일 제거 */
+.info-section {
+    background: none; /* 개별적인 배경 제거 */
+    padding: 0;
+    border-radius: 0;
+}
+
+
+/* 게임 로고 */
+.game-logo img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* 전체 이용가 섹션 */
+.rating-section {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 이미지와 텍스트 사이에 간격 추가 */
+    margin-bottom: 30px; /* 전체 이용가와 아래 요소 간의 간격 */
+}
+
+.rating-section img {
+    width: 68px;
+    height: 68px;
+}
+
+/* 가격 정보 섹션 */
+.price-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* 가격 텍스트 */
+.original-price {
+    font-size: 1.2rem;
+    text-decoration: line-through;
+    color: gray;
+}
+
+.discount-rate {
+    font-size: 1.2rem;
+    color: red;
+}
+
+.discounted-price {
+    font-size: 1.5rem;
+    color: #00e676;
+}
+
+/* 버튼 스타일 수정 */
+.btn {
+    width: 100%; /* 부모 요소의 너비에 맞추기 */
+    padding: 15px 0; /* 버튼의 상하 패딩 설정 */
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    box-sizing: border-box; /* 패딩이 버튼의 크기에 포함되도록 설정 */
+    margin-top: 20px;
+}
+
+/* 구매 버튼 스타일 */
+.buy-btn {
+    background-color: #00bfff;
+    color: white;
+}
+
+.buy-btn:hover {
+    background-color: #009fd4;
+}
+
+/* 장바구니 버튼 스타일 */
+.cart-btn {
+    background-color: gray;
+    color: white;
+}
+
+.cart-btn:hover {
+    background-color: #707070;
+}
+
+
+/* 시스템 요구 사양 스타일 */
+.system-requirements {
+    margin-top: 20px;
+}
+
+.system-requirements h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.system-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* 시스템 요구 사항 리스트 항목에 밑줄 추가 */
+.system-requirements li {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #444; /* 밑줄 추가 */
+}
+
+/* 게임 출시일 스타일 */
+.release-date {
+    margin-top: 20px;
+}
+
+.release-date h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.release-date p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+
+
+/*===================================================================================================*/
+
+/* 상세 정보 섹션 */
+.details-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #2c2c3e;
+    border-radius: 10px;
+    color: white;
+}
+
+.details-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* 펼치기 버튼 */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #00e6e6;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px 0;
+    text-decoration: underline;
+}
+
+.toggle-btn:hover {
+    color: #00c8ff;
+}
+
+/* 추가 콘텐츠가 숨겨져 있을 때 기본적으로 높이를 0으로 설정 */
+.extra-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out; /* 높이 애니메이션 */
+}
+
+/* 펼쳐졌을 때의 스타일 */
+.extra-content.open {
+    max-height: 500px; /* 충분히 큰 값으로 설정하여 내용이 다 보일 수 있도록 */
+}
+
+
+
