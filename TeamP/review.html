@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>게임 리뷰 페이지</title>
+
+        <!-- CSS 연동 -->
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/gamereview/gamereview.css" />
+
+        <!-- Font Awesome 아이콘 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    </head>
+    <body>
+        <header class="header" id="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="img/logo.png" alt="사이트 로고" />
+                </div>
+                <nav class="menu" id="menu">
+                    <ul>
+                        <li><a href="#">STORE</a></li>
+                        <li><a href="#">COMMUNITY</a></li>
+                        <li><a href="#">SUPPORT</a></li>
+                        <li><a href="#">Ex</a></li>
+                        <li><a href="#">SIGN IN</a></li>
+                    </ul>
+                </nav>
+                <div class="icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-image">
+            <img src="img/main-image.jpg" alt="메인 이미지" />
+        </div>
+
+        <script src="js/main.js"></script>
+
+        <!-- ================================================================== -->
+        <div class="slider-container">
+            <!-- 슬라이더 제목과 밑줄 -->
+        </div>
+
+        <div class="review-container">
+            <h1>게임 제목</h1>
+
+            <div class="review-section">
+                <label for="review">리뷰 평가를 선택하세요:</label>
+                <select id="review" name="review">
+                    <option value="all">전체</option>
+                    <option value="positive">긍정적 평가</option>
+                    <option value="negative">부정적 평가</option>
+                </select>
+            </div>
+            <button class="submit-btn" onclick="">리뷰 작성</button>
+
+              <!-- 예시 리뷰 -->
+        <div class="review-list">
+            
+            <div class="review-item">
+                <div class="icon positive">👍</div> <!-- 긍정적 평가 아이콘 -->
+                <p>이 게임은 정말 대단해요! 게임 내의 세계가 매우 방대하고 디테일에 신경을 많이 쓴 게 느껴져요. 다양한 캐릭터와 퀘스트가 있어서 지루할 틈이 없어요. 특히 그래픽과 사운드가 놀라울 정도로 잘 만들어져서 몰입감이 최고입니다. 제게는 최고의 게임 중 하나입니다.</p>
+                <div class="divider"></div> <!-- 구분선 -->
+                <div class="user-name"><a href="#">-GamerK</a></div> <!-- 유저 이름 -->
+            </div>
+
+            <div class="review-item">
+                <div class="icon negative">👎</div> <!-- 부정적 평가 아이콘 -->
+                <p>게임 자체는 좋지만, 최적화가 조금 아쉬웠어요. 프레임 드랍이 심하고, 가끔씩 버그로 인해 게임 진행이 막히는 부분도 있었습니다. 패치를 통해 개선되길 바랍니다.</p>
+                <div class="divider"></div> <!-- 구분선 -->
+                <div class="user-name"><a href="#">-FixerX</a></div> <!-- 유저 이름 -->
+            </div>
+
+            <div class="review-item">
+                <div class="icon negative">👎</div> <!-- 부정적 평가 아이콘 -->
+                <p>이 게임, 생각보다 별로네요.</p>
+                <div class="divider"></div> <!-- 구분선 -->
+                <div class="user-name"><a href="#">-SadGamer123</a></div> <!-- 유저 이름 -->
+            </div>
+
+            <div class="review-item">
+                <div class="icon positive">👍</div> <!-- 긍정적 평가 아이콘 -->
+                <p>정말 재미있고 몰입할 수 있었어요. 추천합니다!</p>
+                <div class="divider"></div> <!-- 구분선 -->
+                <div class="user-name"><a href="#">-FunPlayer99</a></div> <!-- 유저 이름 -->
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="img/logo.png" alt="사이트 로고" />
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

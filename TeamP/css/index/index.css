@@ -172,7 +172,6 @@
     background-color: #00c864;
 }
 
-
 /*=========================================================================*/
 
 /* 뉴스 섹션 제목과 밑줄 스타일 */
@@ -193,7 +192,7 @@
 }
 
 .news-header .underline {
-    width: 100%; 
+    width: 100%;
     height: 2px;
     background-color: rgba(255, 255, 255, 0.5);
     margin-top: 5px;
@@ -264,16 +263,13 @@
 }
 /*=========================================================================*/
 
-
-
-
 /* 카테고리 섹션 제목과 밑줄 */
 .category-header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 10px;
-    width: 1200px; 
+    width: 1200px;
     margin: 0 auto 10px;
 }
 
@@ -365,8 +361,6 @@
     margin-top: 5px;
     margin-bottom: 20px; /* 밑줄 아래 여백 추가 */
 }
-
-
 
 /* 최신 게임 섹션 */
 .latest-games-container {
@@ -463,8 +457,6 @@
     font-size: 1rem;
 }
 
-
-
 /* 반응형 설정 */
 @media (max-width: 768px) {
     .slider {
@@ -472,13 +464,12 @@
         aspect-ratio: 16 / 9; /* 비율 유지 */
     }
 
-    .big-news-row, .small-news-row {
+    .big-news-row,
+    .small-news-row {
         flex-direction: column;
     }
-	
-	
-	
-	.footer-container {
+
+    .footer-container {
         flex-direction: column;
     }
 

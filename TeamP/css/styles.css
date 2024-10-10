@@ -2,10 +2,6 @@
 @import 'component/header.css';
 @import 'component/footer.css';
 
-/*screen*/
-@import 'index/index.css';
-@import 'gamesearch/gamesearch.css';
-
 body {
     margin: 0;
     padding: 0;
