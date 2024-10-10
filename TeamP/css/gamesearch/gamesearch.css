@@ -6,9 +6,30 @@ span {
     display: flex;
 }
 
+.slider-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 제목을 왼쪽 정렬 */
+    margin-bottom: 10px;
+    width: 1200px; /* 슬라이더와 같은 너비로 설정 */
+    margin: 0 auto 10px; /* 슬라이더와 동일한 위치로 설정 */
+}
 .search_result {
     display: flex;
     width: 80%;
+}
+
+.search_result h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.underline {
+    width: 100%; /* 밑줄 길이 설정 */
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
 }
 
 .search_filter {
