@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JSL Games</title>
+
+        <link rel="icon" type="image/png" href="img/logo.png" />
+
+        <!-- CSS 연동 -->
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/myreview.css" />
+
+        <!-- Font Awesome 아이콘 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    </head>
+    <body>
+        <header class="header" id="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="img/logo.png" alt="사이트 로고" />
+                </div>
+                <nav class="menu" id="menu">
+                    <ul>
+                        <li><a href="#">STORE</a></li>
+                        <li><a href="#">COMMUNITY</a></li>
+                        <li><a href="#">SUPPORT</a></li>
+                        <li><a href="#">Ex</a></li>
+                        <li><a href="#">SIGN IN</a></li>
+                    </ul>
+                </nav>
+                <div class="icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-image">
+            <img src="img/main-image.jpg" alt="메인 이미지" />
+        </div>
+
+        <script src="js/main.js"></script>
+
+        <div class="review_content">
+            <div class="review_result slider-header">
+                <h3>My review</h3>
+
+                <div class="underline"></div>
+
+                <div class="review-container-top">
+                    <div class="review-img">
+                        <span class="img">
+                            <img src="img/game_test.jpg" alt="게임 이미지" />
+                        </span>
+                    </div>
+                    <div class="review-container">
+                        <div class="game-title">어쌔신 크리드 발할라 제품에 대한 평가</div>
+                        <textarea disabled placeholder="리뷰를 작성하세요..."></textarea>
+                        <div class="submit-container">
+                            <div class="rating-container">
+                                <!-- 밑에 테스트 스크립트 있음-->
+                                <!-- 긍정평가 이미지 (value: good) -->
+                                <img src="img/good.png" alt="Positive Review" id="positive" />
+                                <!-- 부정평가 이미지 (value: bad) -->
+                                <img src="img/bad.png" alt="Negative Review" id="negative" />
+                            </div>
+                            <div>
+                                <button class="button-delete" type="button" onclick="">리뷰 삭제</button>
+                                <button class="button-update" type="button" onclick="">리뷰 수정</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-container-top">
+                    <div class="review-img">
+                        <span class="img">
+                            <img src="img/game_test.jpg" alt="게임 이미지" />
+                        </span>
+                    </div>
+                    <div class="review-container">
+                        <div class="game-title">어쌔신 크리드 발할라 제품에 대한 평가</div>
+                        <textarea disabled placeholder="리뷰를 작성하세요..."></textarea>
+                        <div class="submit-container">
+                            <div class="rating-container">
+                                <!-- 긍정평가 이미지 (value: good) -->
+                                <img src="img/good.png" alt="Positive Review" id="positive" />
+                                <!-- 부정평가 이미지 (value: bad) -->
+                                <img src="img/bad.png" alt="Negative Review" id="negative" />
+                            </div>
+                            <div>
+                                <button class="button-delete" type="button" onclick="">리뷰 삭제</button>
+                                <button class="button-update" type="button" onclick="">리뷰 수정</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!-- 푸터 -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="img/logo.png" alt="사이트 로고" />
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
