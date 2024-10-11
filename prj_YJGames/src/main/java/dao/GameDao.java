@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import common.CommonTemplate;
 import dto.CartDto;
 import dto.HomeDto;
+import dto.ReviewDto;
 
 public class GameDao {
 	
@@ -97,5 +98,16 @@ public class GameDao {
 		try {result = temp.update(query);} 
 		catch (Exception e) {System.out.println("RemoveCart() 메소드 오류" + query);}
 		return result;
+	}
+	//리뷰 리스트
+	public ArrayList<ReviewDto> ReviewList(String step, String code) {
+		String query = "select r.u_id, u.u_name, r.g_code, r.r_txt,r.r_score, TO_CHAR(r.r_date, 'MM/DD/YYYY') AS r_date\r\n" + 
+				"from kyj_review r, kyj_user u\r\n" + 
+				"where r.u_id = u.u_id\r\n" +
+				"and r.g_code ='"+code+"'" + 
+				""+step+"";
+			RowMapper<ReviewDto> reviewDtos = new BeanPropertyRowMapper<>(ReviewDto.class);
+			ArrayList<ReviewDto> dtos = (ArrayList<ReviewDto>) temp.query(query, reviewDtos);
+			return dtos;
 	}
 }

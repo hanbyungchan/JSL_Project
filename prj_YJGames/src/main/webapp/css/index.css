@@ -1,0 +1,510 @@
+/*=========================================================================*/
+
+/* 슬라이더 제목 및 밑줄 스타일 */
+.slider-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 제목을 왼쪽 정렬 */
+    margin-bottom: 10px;
+    width: 1200px; /* 슬라이더와 같은 너비로 설정 */
+    margin: 0 auto 10px; /* 슬라이더와 동일한 위치로 설정 */
+}
+
+.slider-header h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: center; /* 텍스트도 중앙 정렬 */
+}
+
+.underline {
+    width: 100%; /* 밑줄 길이 설정 */
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+}
+
+/* 슬라이더 컨테이너 */
+.slider-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 기존 슬라이더 스타일 */
+.slider {
+    position: relative;
+    width: 1200px; /* 슬라이더 너비 */
+    aspect-ratio: 16 / 9;
+    margin: 50px auto;
+    overflow: hidden;
+    background-color: #3b1f12;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.slide-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.slide-content h2 {
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+}
+
+.slide-content p {
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+}
+
+.price {
+    font-size: 1.2rem;
+    color: #00e676;
+}
+
+.add-to-cart {
+    background-color: #00e676;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-to-cart:hover {
+    background-color: #00c864;
+}
+
+.slide-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    color: #fff;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.prev-slide {
+    left: 10px;
+}
+
+.next-slide {
+    right: 10px;
+}
+
+.slide-nav:hover {
+    opacity: 1;
+}
+
+/* 슬라이더 인디케이터 스타일 */
+.slide-indicator {
+    position: relative;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dot {
+    width: 40px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #b56eff;
+}
+
+.dot:hover {
+    background-color: #00e6e6;
+}
+
+a{
+	text-decoration-line: none;
+}
+
+
+/*=========================================================================*/
+
+.news .img {
+    width: 100%; /* 이미지가 뉴스 항목의 너비에 맞게 설정 */
+    height: 200px; /* 모든 이미지의 높이를 고정 */
+    background-color: #3b3b4f;
+    overflow: hidden;
+}
+
+.news .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 프레임에 맞춰지지만 비율을 유지하며 잘리도록 설정 */
+}
+
+/* 뉴스 섹션 제목과 밑줄 스타일 */
+.news-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    width: 1200px; /* 슬라이더와 같은 너비 */
+    margin: 0 auto 10px;
+}
+
+.news-header h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.news-header .underline {
+    width: 100%; 
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+}
+/* 뉴스 섹션 */
+.news-box {
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 큰 뉴스 박스 */
+.big-news-row {
+    display: flex;
+    gap: 20px;
+}
+
+.news-big {
+    flex: 1;
+    background-color: #2c2c3e;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 내용이 위에서부터 쌓이게 설정 */
+    align-items: stretch; /* 뉴스 항목의 너비에 맞춤 */
+    height: auto; /* 높이는 컨텐츠에 맞춰 조정 */
+}
+
+.news-big span {
+	height: 80%;
+}
+
+.img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-big p {
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 20px;
+}
+
+/* 작은 뉴스 박스 */
+.small-news-row {
+    display: flex;
+    gap: 20px;
+}
+
+.news-small {
+    flex: 1;
+    background-color: #2c2c3e;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 내용이 위에서부터 쌓이게 설정 */
+    align-items: stretch; /* 뉴스 항목의 너비에 맞춤 */
+    height: auto; /* 높이는 컨텐츠에 맞춰 조정 */
+}
+
+.news-small span {
+    height: 80%; /* 이미지가 차지하는 영역 */
+}
+
+.news-small .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지를 프레임에 맞춰 자르기 */
+}
+
+.news-small p {
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 한 줄로 제한 */
+    padding-left: 20px;
+}
+
+
+/*=========================================================================*/
+
+
+
+
+/* 카테고리 섹션 제목과 밑줄 */
+.category-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    width: 1200px; 
+    margin: 0 auto 10px;
+}
+
+.category-header h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.category-header .underline {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+}
+
+/* 카테고리 박스 */
+.category-box {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* 카테고리 아이템 */
+.category-item {
+    flex: 1;
+    background-color: #2c2c3e;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: auto;
+}
+
+.category-item .img {
+    width: 100%;
+    height: auto;
+    background-color: #3b3b4f;
+}
+
+.category-item .img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.category-item p {
+    padding: 10px;
+    color: white;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 반응형 설정 */
+@media (max-width: 768px) {
+    .category-box {
+        flex-direction: column;
+    }
+}
+
+/* 최신 게임 섹션 제목과 밑줄 */
+.latest-games-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 제목과 밑줄을 왼쪽 정렬 */
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 1200px; /* 너비를 섹션에 맞게 조절 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding-left: 20px; /* 왼쪽 패딩을 추가하여 여유 공간 확보 */
+}
+
+.latest-games-header h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: left; /* 제목을 왼쪽 정렬 */
+}
+
+.latest-games-header .underline {
+    width: 100%; /* 너비 유지 */
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+    margin-bottom: 20px; /* 밑줄 아래 여백 추가 */
+}
+
+
+
+/* 최신 게임 섹션 */
+.latest-games-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 20px auto; /* 기존 위아래 여백 */
+    padding: 20px;
+    margin-bottom: 200px; /* 푸터와의 여백을 50px 추가 */
+}
+
+.latest-games {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+/* 게임 목록 왼쪽 */
+.game-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.game-item {
+    padding: 10px;
+    background-color: #2c2c3e;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-item:hover {
+    background-color: #3b3b4f;
+}
+
+.game-info {
+    color: white;
+}
+
+.game-info h4 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.game-info p {
+    margin: 5px 0;
+    color: #888;
+}
+
+.price {
+    color: #00e676;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.discount {
+    color: #ff6666;
+    font-size: 1rem;
+}
+
+/* 게임 미리보기 오른쪽 */
+.game-preview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c1c2e;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.game-preview img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.game-description {
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+.game-description h4 {
+    font-size: 1.5rem;
+}
+
+.game-description p {
+    color: #888;
+    font-size: 1rem;
+}
+
+
+
+/* 반응형 설정 */
+@media (max-width: 768px) {
+    .slider {
+        width: 100%;
+        aspect-ratio: 16 / 9; /* 비율 유지 */
+    }
+
+    .big-news-row, .small-news-row {
+        flex-direction: column;
+    }
+	
+	
+	
+	.footer-container {
+        flex-direction: column;
+    }
+
+    .footer-links ul {
+        flex-direction: column;
+    }
+}
+
+

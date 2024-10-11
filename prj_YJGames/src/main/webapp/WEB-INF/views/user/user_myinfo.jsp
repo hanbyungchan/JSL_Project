@@ -17,24 +17,21 @@
    	 if(checkValue(user.t_u_gender,'select Gender')) return;
    	 if(checkValueLength(user.t_u_email_1 ,1,20, "Please enter Email", 'Email is more than 1 less than 20'))
    	 if(checkValue(user.t_u_email_2,  'Please select Email')) return;
-   		user.t_gubun.value = "userupdate";
    		user.method = "post";
-   		user.action = "Game";
+   		user.action = "Game?t_gubun=userupdate";
    		user.submit();
      }
     function goDelete(){
     	if(confirm("Are you sure you want to delete it?")){
     		 if(checkValue(user.t_u_password_check, 'Please enter your current password')) return;
-       		user.t_gubun.value = "userdelete";
        		user.method = "post";
-       		user.action = "Game";
+       		user.action = "Game?t_gubun=userdelete";
        		user.submit();
     	}
     }
     function goBack() {
-    	user.t_gubun.value = "list";
 		user.method = "post";
-		user.action = "Game";
+		user.action = "Game?t_gubun=list";
 		user.submit();
 	}
     </script>

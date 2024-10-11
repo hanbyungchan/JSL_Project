@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,31 +10,34 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="icon" type="image/png" href="img/logo.png">
 	
-    <!-- CSS 연동 -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
 
-    <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript">
     	function goSignIn() {
+    		game.t_gubun.value ="goSignin";
     		game.method="post";
-    		game.action="Game?t_gubun=goSignin";
+    		game.action="Game";
     		game.submit();
 		}
     	function goInfo() {
+    		game.t_gubun.value ="userinfo";
     		game.t_id.value="${sessionId}";
     		game.method="post";
-    		game.action="Game?t_gubun=userinfo";
+    		game.action="Game";
     		game.submit();
 		}
     	function goLogout() {
+    		game.t_gubun.value ="userlogout";
     		game.method="post";
-    		game.action="Game?t_gubun=userlogout";
+    		game.action="Game";
     		game.submit();
 		}
     	function goLibrary() {
+    		game.t_gubun.value ="library";
     		game.method="post";
-    		game.action="Game?t_gubun=library";
+    		game.action="Game";
     		game.submit();
 		}
     </script>
@@ -48,36 +51,60 @@
 	<header class="header" id="header">
     <div class="header-content">
         <div class="logo">
-            <img src="img/logo.png" alt="사이트 로고">
+            <img src="img/logo.png" alt="" href="">
         </div>
-        <nav class="menu" id="menu">
-            <ul>
-            	<li><a href="Game">STORE</a></li>
-                <li><a href="#">COMMUNITY</a></li>
-                <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <c:if test="${sessionId eq null}"><li><a href="javascript:goSignIn()">SIGN IN</a></li></c:if>
-                <c:if test="${sessionId ne null}"><li><a href="javascript:goInfo()">MyInfo</a></li></c:if>
-                <c:if test="${sessionId ne null}"><li><a href="javascript:goLogout()">Logout</a></li></c:if>
-                <c:if test="${sessionId ne null}"><li><a href="javascript:goLibrary()">Library</a></li></c:if>
+        
+<nav class="menu" id="menu">
+    <ul>
+        <li class="store-menu">
+            <a href="Game">STORE</a>
+            <ul class="category-dropdown">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">RPG</a></li>
+                <li><a href="#">Sports</a></li>
+                <li><a href="#">Adventure</a></li>
             </ul>
-        </nav>
+        </li>
+        <li><a href="#">COMMUNITY</a></li>
+        <li><a href="Game?t_gubun=support">SUPPORT</a></li>
+        <c:if test="${sessionId eq null}">
+            <li><a href="javascript:goSignIn()">SIGN IN</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goInfo()">MyInfo</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goLogout()">Logout</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goLibrary()">Library</a></li>
+        </c:if>
+    </ul>
+</nav>
+
+
+
+        
+        <nav>
         <div class="icons">
-            <a href="#"><i class="fas fa-search"></i></a>
+            <div class="search-box" id="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+            <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
             <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
-        <div class="hamburger" id="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
+    </nav>
+        
+        
     </div>
 	</header>
 
     <div class="main-image">
-        <img src="img/main-image.jpg" alt="메인 이미지">
+        <img src="img/main-image.jpg" alt="">
     </div>
 
 <!-- ================================================================== -->	
 	<div class="slider-container">
-    <!-- 슬라이더 제목과 밑줄 -->
     <div class="slider-header">
         <h3>Highlights</h3>
         <div class="underline"></div>
@@ -90,7 +117,7 @@
         <div class="slider-wrapper" id="slider-wrapper">
         <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="slide active">
-                <img src="img/${dto1.getS_page_no()}/1.jpg" alt="게임 1">
+                <img src="img/${dto1.getS_page_no()}/1.jpg" alt="寃��� 1">
                 <div class="slide-content">
                     <h2>${dto1.getG_name()}</h2>
                     <p>Now available</p>
@@ -124,58 +151,52 @@
 	</div>
 
 
-<!-- 뉴스 섹션 제목과 밑줄 -->
 <div class="news-header">
     <h3>Latest News</h3>
     <div class="underline"></div>
 </div>
    <div class="news-box">
-        <!-- 큰 뉴스 3개 -->
         <div class="big-news-row">
         <c:forEach items="${t_dtos2}" var = "dto2">
             <div class="news-big">
-                <a href="#">
-                    <span class="img">
-                        <img src="img/${dto2.getS_page_no()}/1.jpg" alt="큰 뉴스 이미지">
-                    </span>
+            	<span class="img">
+                        <img src="img/${dto2.getS_page_no()}/1.jpg" alt="">
+                </span>                   
                     <p>${dto2.getG_name()}</p>
                     <p>${dto2.getG_price()}</p>
-                </a>
             </div>
           </c:forEach>  
             
             
         </div>
+        
+       
 
-        <!-- 작은 뉴스 4개 -->
-        <div class="small-news-row">
-        <c:forEach items="${t_dtos3}" var = "dto3">
-            <div class="news-small">
-                <a href="#">
-                    <span class="img">
-                        <img src="img/${dto3.getS_page_no()}/1.jpg" alt="작은 뉴스 이미지">
-                    </span>
-                    <p>${dto3.getG_name()}</p>
-                     <p>${dto3.getG_price()}</p>
-                </a>
-            </div>
-        </c:forEach>
-            
+<div class="small-news-row">
+    <c:forEach items="${t_dtos3}" var="dto3">
+        <div class="news-small">
+            <span class="img">
+                <img src="img/${dto3.getS_page_no()}/1.jpg" alt="">
+            </span>
+            <p>${dto3.getG_name()}</p>
+            <p>${dto3.getG_price()}</p>
         </div>
+    </c:forEach>
+</div>
+        
+        
     </div>
 	
-	<!-- 카테고리 섹션 제목과 밑줄 -->
 <div class="category-header">
     <h3>Popularity Categories</h3>
     <div class="underline"></div>
 </div>
 
-<!-- 카테고리 섹션 -->
 <div class="category-box">
     <div class="category-item">
         <a href="#">
             <span class="img">
-                <img src="img/category1.jpg" alt="카테고리 이미지 1">
+                <img src="img/category1.jpg" alt="">
             </span>
             <p>FPS</p>
         </a>
@@ -183,7 +204,7 @@
     <div class="category-item">
         <a href="#">
             <span class="img">
-                <img src="img/category2.jpg" alt="카테고리 이미지 2">
+                <img src="img/category2.jpg" alt="">
             </span>
             <p>RPG</p>
         </a>
@@ -191,7 +212,7 @@
     <div class="category-item">
         <a href="#">
             <span class="img">
-                <img src="img/category3.jpg" alt="카테고리 이미지 3">
+                <img src="img/category3.jpg" alt="">
             </span>
             <p>Fight</p>
         </a>
@@ -199,22 +220,19 @@
     <div class="category-item">
         <a href="#">
             <span class="img">
-                <img src="img/category4.jpg" alt="카테고리 이미지 4">
+                <img src="img/category4.jpg" alt="">
             </span>
             <p>Sports</p>
         </a>
     </div>
 </div>
 
-<!-- 최신 게임 섹션 제목과 밑줄 -->
 <div class="latest-games-header">
     <h3>Latest Games</h3>
     <div class="underline"></div>
 </div>
-<!-- 최신 게임 섹션 -->
 <div class="latest-games-container">
     <div class="latest-games">
-        <!-- 왼쪽 게임 목록 -->
         <div class="game-list">
         <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="game-item" data-game="1" id ="test">
@@ -227,9 +245,7 @@
             </div>
         </c:forEach>
             
-            <!-- ... 동일한 형식으로 5개의 추가 게임 목록 -->
         </div>
-        <!-- 오른쪽 이미지 및 설명 -->
         <div class="game-preview">
             <img id="preview-image" src="">
             <div class="game-description">
@@ -249,7 +265,7 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo">
-            <img src="img/logo.png" alt="사이트 로고">
+            <img src="img/logo.png" alt="">
         </div>
         <div class="footer-links">
             <ul>

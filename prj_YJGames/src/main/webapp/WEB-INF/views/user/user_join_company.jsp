@@ -25,8 +25,7 @@
 		 user.t_u_id.focus();
 			return;
 	 }
-	
-	
+	 
 	  if(checkValueLength(user.t_u_name,2,20, "Please enter Company Name",'Name is more than 2 less than 20')) return;//4 최소 15최대
 	  
 	  if(checkValueLength(user.t_u_password,3,20, "Please enter password", 'Password is more than 3 less than 20')) return;//4 최소 15최대
@@ -41,13 +40,15 @@
 	if(checkValueLength(user.t_u_email_1 ,1,20, "Please enter Email", 'Email is more than 1 less than 20')) return;//
 	if(checkValue(user.t_u_email_2,  'Please select Email')) return;
 	
-		user.t_gubun.value = "usersave";
 		user.method = "post";
-		user.action = "Game";
+		user.action = "Game?t_gubun=usersave";
 		user.submit();
 		
   }
-  
+  function goCheck() {
+		if(event.keyCode ==13){checkId();}
+	}
+
   function emailChange() {
 		user.t_u_email_2.value = user.t_u_email_select.value;
 	}
@@ -78,9 +79,8 @@
   	} 
 
 function goLogin() {
-	user.t_gubun.value = "goSignin";
 	user.method = "post";
-	user.action = "Game";
+	user.action = "Game?t_gubun=goSignin";
 	user.submit();
 }
   
@@ -95,7 +95,7 @@ function goLogin() {
 		
     <div class="divcontainer">
         <div class="join_write col_989">
-            <h2>회원가입</h2>
+            <h2>Sign up</h2>
             <div class="list_con">
                 <ul class="icon_type1">
                     <li>  Membership information is secured and not disclosed without consent.</li>
@@ -116,7 +116,7 @@ function goLogin() {
 		                        <input type="text" name="t_u_id" id="mbrId" 
 		                        		style="width:110px; 
 										 padding: 8px; 
-										 font-size: 14px;">
+										 font-size: 14px;" onkeypress="goCheck()">
 		                        <input type="button" class="btn_writecheck" onclick="checkId()" value = "CheckId">
 		                        <input type ="text" name ="t_u_id_result" readonly  
 		                        style=
@@ -137,7 +137,7 @@ function goLogin() {
                         </tr>
                         <tr>
                             <th><label for="pw_confirm">Password Confirm<span class="must">*</span></label></th>
-                            <td><input type="text" name="t_u_password_confirm" id="scrtNoConfirm"></td>
+                            <td><input type="password" name="t_u_password_confirm" id="scrtNoConfirm"></td>
                         </tr>
                         <tr>
 						    <th class="example-th">Email<span class="must">*</span></th>
