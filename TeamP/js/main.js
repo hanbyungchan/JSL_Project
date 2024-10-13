@@ -1,17 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const introSection = document.getElementById('intro-section');
     const enterButton = document.getElementById('enter-btn');
 
     // "접속" 버튼 클릭 시 인트로 화면 숨기기
-    enterButton.addEventListener('click', function() {
-        introSection.style.display = 'none';  // 인트로 화면 숨기기
-        document.body.classList.remove('hide-content');  // 메인 페이지 표시
+    enterButton.addEventListener('click', function () {
+        introSection.style.display = 'none'; // 인트로 화면 숨기기
+        document.body.classList.remove('hide-content'); // 메인 페이지 표시
     });
 });
 
 //=============================================================================
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const header = document.getElementById('header');
     if (window.scrollY > 50) {
         header.classList.add('scrolled');
@@ -37,19 +37,19 @@ function showSlide(index) {
         currentIndex = index;
     }
 
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+    slides.forEach((slide) => slide.classList.remove('active'));
+    dots.forEach((dot) => dot.classList.remove('active'));
     slides[currentIndex].classList.add('active');
     dots[currentIndex].classList.add('active');
 
     document.getElementById('slider-wrapper').style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
-document.getElementById('prev-slide').addEventListener('click', function() {
+document.getElementById('prev-slide').addEventListener('click', function () {
     showSlide(currentIndex - 1);
 });
 
-document.getElementById('next-slide').addEventListener('click', function() {
+document.getElementById('next-slide').addEventListener('click', function () {
     showSlide(currentIndex + 1);
 });
 
@@ -67,53 +67,53 @@ setInterval(() => {
 
 const games = [
     {
-        name: "OneShot: World Machine Edition",
-        description: "탐험, 퍼즐, 선택적 중요성, 풍부한 스토리",
-        price: "₩8,800",
-        discount: "-20%",
-        image: "img/game1-detail1.jpg"
+        name: 'OneShot: World Machine Edition',
+        description: '탐험, 퍼즐, 선택적 중요성, 풍부한 스토리',
+        price: '₩8,800',
+        discount: '-20%',
+        image: 'img/game1-detail1.jpg',
     },
     {
-        name: "Rogue Waters",
-        description: "전략 RPG, 탐험",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/game2-detail1.jpg"
+        name: 'Rogue Waters',
+        description: '전략 RPG, 탐험',
+        price: '₩25,600',
+        discount: '-20%',
+        image: 'img/game2-detail1.jpg',
     },
-	{
-        name: "Rogue 111111",
-        description: "전략 RPG, 탐험",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/game2-detail1.jpg"
+    {
+        name: 'Rogue 111111',
+        description: '전략 RPG, 탐험',
+        price: '₩25,600',
+        discount: '-20%',
+        image: 'img/game2-detail1.jpg',
     },
-	{
-        name: "Rogue 222222",
-        description: "전략 RPG, 탐험",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/game2-detail1.jpg"
+    {
+        name: 'Rogue 222222',
+        description: '전략 RPG, 탐험',
+        price: '₩25,600',
+        discount: '-20%',
+        image: 'img/game2-detail1.jpg',
     },
-	{
-        name: "Rogue 333333",
-        description: "전략 RPG, 탐험",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/game2-detail1.jpg"
+    {
+        name: 'Rogue 333333',
+        description: '전략 RPG, 탐험',
+        price: '₩25,600',
+        discount: '-20%',
+        image: 'img/game2-detail1.jpg',
     },
-	{
-        name: "Rogue 444444",
-        description: "전략 RPG, 탐험",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/game2-detail1.jpg"
+    {
+        name: 'Rogue 444444',
+        description: '전략 RPG, 탐험',
+        price: '₩25,600',
+        discount: '-20%',
+        image: 'img/game2-detail1.jpg',
     },
-	{
-        name: "Rogue 55555",
-        description: "전략 RPG, 탐험",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/game2-detail1.jpg"
+    {
+        name: 'Rogue 55555',
+        description: '전략 RPG, 탐험',
+        price: '₩25,600',
+        discount: '-20%',
+        image: 'img/game2-detail1.jpg',
     },
     // 필요한 추가 게임 데이터들
 ];
@@ -132,3 +132,15 @@ gameItems.forEach((item, index) => {
         previewText.textContent = game.description;
     });
 });
+
+//글자수 체크
+function checkLength(obj, min, max, msg) {
+    var result = false;
+    var len = obj.value.length;
+    if (len < min || len > max) {
+        alert(msg);
+        obj.focus();
+        result = true;
+    }
+    return result;
+}
