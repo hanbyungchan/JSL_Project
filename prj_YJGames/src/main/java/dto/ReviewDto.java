@@ -1,10 +1,15 @@
 package dto;
 
 public class ReviewDto {
-	String u_id, g_code, u_name, r_txt,r_date;
-	double r_score;
+	String u_id, g_code, u_name, r_txt,r_date,r_recommand;
 	public String getU_id() {
 		return u_id;
+	}
+	public String getR_recommand() {
+		return r_recommand;
+	}
+	public void setR_recommand(String r_recommand) {
+		this.r_recommand = r_recommand;
 	}
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
@@ -33,22 +38,19 @@ public class ReviewDto {
 	public void setR_date(String r_date) {
 		this.r_date = r_date;
 	}
-	public double getR_score() {
-		return r_score;
-	}
-	public void setR_score(double r_score) {
-		this.r_score = r_score;
-	}
+
 	public ReviewDto() {
 		super();
 	}
-	public ReviewDto(String u_id, String g_code, String r_txt, String r_date, double r_score) {
+	public ReviewDto(String u_id, String g_code, String u_name, String r_txt, String r_date, String r_recommand) {
 		super();
 		this.u_id = u_id;
 		this.g_code = g_code;
+		this.u_name = u_name;
 		this.r_txt = r_txt;
 		this.r_date = r_date;
-		this.r_score = r_score;
+		this.r_recommand = r_recommand;
 	}
+
 	
 }

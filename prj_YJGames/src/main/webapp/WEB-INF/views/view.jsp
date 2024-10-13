@@ -51,11 +51,11 @@
 	</form>
     <header class="header" id="header">
         <div class="header-content">
-            <div class="logo">
-                <img src="img/logo.png" alt="사이트 로고">
-            </div>
-            <nav class="menu" id="menu">
-                    <ul>
+        <div class="logo">
+            <img src="img/logo.png">
+        </div>
+	<nav class="menu" id="menu">
+    <ul>
         <li><a href="Game">STORE</a></li>
         <li><a href="#">COMMUNITY</a></li>
         <li><a href="Game?t_gubun=support">SUPPORT</a></li>
@@ -71,17 +71,19 @@
         <c:if test="${sessionId ne null}">
             <li><a href="javascript:goLibrary()">Library</a></li>
         </c:if>
-                </ul>
-            </nav>
-            <div class="icons">
-                <a href="#"><i class="fas fa-search"></i></a>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+    </ul>
+	</nav>
+    <nav>
+        <div class="icons">
+            <div class="search-box" id="search-box">
+                <input type="text" placeholder="Search...">
             </div>
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
+            <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
-    </header>
+    </nav>
+        </div>
+</header>
 
     <!-- 메인 컨테이너 -->
 <div class="main-container">
@@ -91,7 +93,7 @@
 
         <!-- 메인 미디어 영역 -->
         <div class="main-media" id="main-media">
-            <video id="main-video" src="/video/intro.mp4" width="100%" height="100%" controls autoplay></video>
+            <video id="main-video" src="video/intro.mp4" width="100%" height="100%" controls autoplay muted></video>
         </div>
 		
         <!-- 썸네일 갤러리 -->
@@ -125,9 +127,11 @@
             </div>
             <!-- 전체 이용가 표시 -->
             <div class="rating-section">
-            <c:if test="${dto.getG_grade() eq 'Everyone'}"><img src="img/GRAC_all_68.png"width="68" height="68"></c:if>
-            <c:if test="${dto.getG_grade() eq 'Teen'}"><img src="img/GRAC_12_68.png"width="68" height="68"></c:if>
-            <c:if test="${dto.getG_grade() eq 'Adult Only'}"><img src="img/GRAC_19_68.png"width="68" height="68"></c:if>
+            <c:if test="${dto.getG_grade() eq 'EVERYONE'}"><img src="img/ESRB_E_68.png"width="68" height="68"></c:if>
+            <c:if test="${dto.getG_grade() eq 'EVERYONE 10+'}"><img src="img/ESRB_E10_68.png"width="68" height="68"></c:if>
+            <c:if test="${dto.getG_grade() eq 'TEEN'}"><img src="img/ESRB_T_68.png"width="68" height="68"></c:if>
+            <c:if test="${dto.getG_grade() eq 'MATURE 17+'}"><img src="img/ESRB_M_68.png"width="68" height="68"></c:if>
+            <c:if test="${dto.getG_grade() eq 'ADULTS ONLY 18+'}"><img src="img/ESRB_AO_68.png"width="68" height="68"></c:if>
                 <h3>${dto.getG_grade()}</h3>
             </div>
             <div class="price-section">

@@ -90,15 +90,16 @@
 			<form name="game">
 			<input type="hidden" name="t_gubun">
 			<input type="hidden" name="t_id">
+			<input type="hidden" name="t_g_code" value ="${t_dto.getS_page_no()}">
         <div class="review-container">
-            <h1>${t_g_name}</h1>
+            <h1>${t_dto.getS_game_name()}</h1>
             <div class="review-section">
                 <label for="review">리뷰 평가를 선택하세요:</label>
                 <select id="review" name="t_review_option">
-                    <option value="rating_desc" <c:if test="${t_review_option eq 'rating_desc'}">selected</c:if>>평점 높은순</option>
-                    <option value="rating_asc" <c:if test="${t_review_option eq 'rating_asc'}">selected</c:if>>평점 낮은순</option>
-                    <option value="recent" <c:if test="${t_review_option eq 'recent'}">selected</c:if>>최신순</option>
-                    <option value="old" <c:if test="${t_review_option eq 'old'}">selected</c:if>>오래된순</option>
+                	<option value="recent" <c:if test="${t_review_option eq 'recent'}">selected</c:if>>recent</option>
+                    <option value="old" <c:if test="${t_review_option eq 'old'}">selected</c:if>>old</option>
+                    <option value="good" <c:if test="${t_review_option eq 'good'}">selected</c:if>>good</option>
+                    <option value="bad" <c:if test="${t_review_option eq 'bad'}">selected</c:if>>bad</option>
                 </select>
             </div>
             <button class="submit-btn" onclick="goSearch()">리뷰 검색</button>
@@ -107,10 +108,8 @@
             <!-- 예시 리뷰 -->
             <div class="review-list">
             <c:forEach items="${t_dtos}" var = "dto">
-            <input type="hidden" name="t_g_code" value ="${dto.getG_code()}">
-            <input type="hidden" name="t_g_name" value ="${dto.getG_name()}">
                 <div class="review-item">
-                    <div class="icon positive">${dto.getR_score()}</div>
+                    <div class="icon positive">${dto.getR_recommand()}</div>
                     <!-- 긍정적 평가 아이콘 -->
                     <p>
                         ${dto.getR_txt()}

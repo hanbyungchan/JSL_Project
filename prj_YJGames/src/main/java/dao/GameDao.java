@@ -102,15 +102,32 @@ public class GameDao {
 	}
 	//리뷰 리스트
 	public ArrayList<ReviewDto> ReviewList(String step, String code) {
-		String query = "select r.u_id, u.u_name, r.g_code, r.r_txt,r.r_score, TO_CHAR(r.r_date, 'MM/DD/YYYY') AS r_date\r\n" + 
+		String query = "select r.u_id, u.u_name, r.g_code, r.r_txt,r.r_recommand, TO_CHAR(r.r_date, 'MM/DD/YYYY') AS r_date\r\n" + 
 				"from kyj_review r, kyj_user u\r\n" + 
 				"where r.u_id = u.u_id\r\n" +
-				"and r.g_code ='"+code+"'" + 
+				"and r.g_code ='"+code+"'\r\n" + 
 				""+step+"";
 			RowMapper<ReviewDto> reviewDtos = new BeanPropertyRowMapper<>(ReviewDto.class);
 			ArrayList<ReviewDto> dtos = (ArrayList<ReviewDto>) temp.query(query, reviewDtos);
 			return dtos;
 	}
+	//게임 상점 개별 페이지
+			public ViewDto GameName(String code){
+				String query = "select s_page_no, s_game_name\r\n" + 
+						"from kyj_store_page\r\n" + 
+						"where s_game_code = '"+code+"'";
+				ViewDto dto = null;
+				RowMapper<ViewDto> s_ViewDto =new BeanPropertyRowMapper<>(ViewDto.class);
+				
+				try {
+					dto = (ViewDto)temp.queryForObject(query, s_ViewDto);
+				}
+				catch(Exception e){
+					System.out.println("GameName() 오류: "+query);
+				}
+				
+				return dto;
+			}
 	//게임 상점 개별 페이지
 		public ViewDto StorePageView(int s_page_no){
 			String query = "select s.s_page_no, s.s_game_code, s.s_game_name, s.s_info_txt, g.g_grade, \r\n" + 

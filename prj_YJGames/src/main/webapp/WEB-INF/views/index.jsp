@@ -45,6 +45,11 @@
     		game.action="Game?t_gubun=view&t_pageNo="+s_no;
     		game.submit();
 		}
+    	function goReview() {
+    		game.method="post";
+    		game.action="Game?t_gubun=review&t_g_code=1";
+    		game.submit();
+		}
     </script>
 </head>
 <body>
@@ -52,17 +57,17 @@
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
+	<input type="hidden" name="t_g_code">
 	</form>
 	<header class="header" id="header">
-    <div class="header-content">
+    	<div class="header-content">
         <div class="logo">
-            <img src="img/logo.png" alt="" href="">
+            <img src="img/logo.png">
         </div>
-        
 <nav class="menu" id="menu">
     <ul>
         <li><a href="Game">STORE</a></li>
-        <li><a href="#">COMMUNITY</a></li>
+        <li><a href="javascript:goReview()">COMMUNITY</a></li>
         <li><a href="Game?t_gubun=support">SUPPORT</a></li>
         <c:if test="${sessionId eq null}">
             <li><a href="javascript:goSignIn()">SIGN IN</a></li>
