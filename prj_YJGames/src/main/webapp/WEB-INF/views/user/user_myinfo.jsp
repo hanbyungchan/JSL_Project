@@ -56,7 +56,7 @@
     </div>
     <form name="user">
     <input type="hidden" name="t_gubun">
-    <input type="text" name="t_u_level" value="${t_dto.getU_level()}">
+    <input type="hidden" name="t_u_level" value="${t_dto.getU_level()}">
     <div class="container">
         <div class="id-set" style="text-align: center;">
             <h1>Account Settings</h1>

@@ -40,6 +40,11 @@
     		game.action="Game";
     		game.submit();
 		}
+    	function goView(s_no) {
+    		game.method="post";
+    		game.action="Game?t_gubun=view&t_pageNo="+s_no;
+    		game.submit();
+		}
     </script>
 </head>
 <body>
@@ -56,15 +61,7 @@
         
 <nav class="menu" id="menu">
     <ul>
-        <li class="store-menu">
-            <a href="Game">STORE</a>
-            <ul class="category-dropdown">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">RPG</a></li>
-                <li><a href="#">Sports</a></li>
-                <li><a href="#">Adventure</a></li>
-            </ul>
-        </li>
+        <li><a href="Game">STORE</a></li>
         <li><a href="#">COMMUNITY</a></li>
         <li><a href="Game?t_gubun=support">SUPPORT</a></li>
         <c:if test="${sessionId eq null}">
@@ -117,7 +114,7 @@
         <div class="slider-wrapper" id="slider-wrapper">
         <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="slide active">
-                <img src="img/${dto1.getS_page_no()}/1.jpg" alt="寃��� 1">
+                <img src="img/${dto1.getS_page_no()}/1.jpg" alt="">
                 <div class="slide-content">
                     <h2>${dto1.getG_name()}</h2>
                     <p>Now available</p>
@@ -159,9 +156,11 @@
         <div class="big-news-row">
         <c:forEach items="${t_dtos2}" var = "dto2">
             <div class="news-big">
+            	<a href="javascript:goView('${dto2.getS_page_no()}')">
             	<span class="img">
                         <img src="img/${dto2.getS_page_no()}/1.jpg" alt="">
-                </span>                   
+                </span>  
+                </a>                 
                     <p>${dto2.getG_name()}</p>
                     <p>${dto2.getG_price()}</p>
             </div>
@@ -175,9 +174,11 @@
 <div class="small-news-row">
     <c:forEach items="${t_dtos3}" var="dto3">
         <div class="news-small">
+        <a href="javascript:goView('${dto3.getS_page_no()}')">
             <span class="img">
                 <img src="img/${dto3.getS_page_no()}/1.jpg" alt="">
             </span>
+            </a>
             <p>${dto3.getG_name()}</p>
             <p>${dto3.getG_price()}</p>
         </div>
@@ -236,12 +237,14 @@
         <div class="game-list">
         <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="game-item" data-game="1" id ="test">
+         <a href="javascript:goView('${dto1.getS_page_no()}')"><!-- 표시 -->
                 <div class="game-info">
                     <h4>${dto1.getG_name()}</h4>
                     <p>a, b, c</p>
                     <span class="price"><c:if test="${dto1.getG_price() eq '0'}">Free</c:if><c:if test="${dto1.getG_price() ne '0'}">$${dto1.getG_price2()}</c:if></span>
                     <span class="discount"><c:if test="${dto1.getS_sale() ne '0'}">-${dto1.getS_sale()}%</c:if></span>
                 </div>
+        </a>
             </div>
         </c:forEach>
             

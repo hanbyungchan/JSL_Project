@@ -1,16 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const introSection = document.getElementById('intro-section');
-    const enterButton = document.getElementById('enter-btn');
-
-    // "접속" 버튼 클릭 시 인트로 화면 숨기기
-    enterButton.addEventListener('click', function() {
-        introSection.style.display = 'none';  // 인트로 화면 숨기기
-        document.body.classList.remove('hide-content');  // 메인 페이지 표시
-    });
-});
-
-//=============================================================================
-
 document.getElementById('search-icon').addEventListener('click', function(event) {
     event.preventDefault(); // 기본 동작 방지
     const searchBox = document.getElementById('search-box');

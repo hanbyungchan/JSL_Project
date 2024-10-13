@@ -10,6 +10,7 @@ import common.CommonTemplate;
 import dto.CartDto;
 import dto.HomeDto;
 import dto.ReviewDto;
+import dto.ViewDto;
 
 public class GameDao {
 	
@@ -110,4 +111,26 @@ public class GameDao {
 			ArrayList<ReviewDto> dtos = (ArrayList<ReviewDto>) temp.query(query, reviewDtos);
 			return dtos;
 	}
+	//게임 상점 개별 페이지
+		public ViewDto StorePageView(int s_page_no){
+			String query = "select s.s_page_no, s.s_game_code, s.s_game_name, s.s_info_txt, g.g_grade, \r\n" + 
+					"to_char(s.s_date, 'yyyy-MM-dd') as s_date, s.s_sale,\r\n" + 
+					"s.s_spec_1, s.s_spec_2, s.s_spec_3, s.s_spec_4, s.s_spec_5,\r\n" + 
+					"s.s_img_main, s.s_img_1, s.s_img_2, s.s_img_3, s.s_icon,\r\n" + 
+					"s.s_video_1, s.s_video_2, s.s_video_3,\r\n" + 
+					"g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_sale_price\r\n" + 
+					"from KYJ_STORE_PAGE s, KYJ_GAME g\r\n" + 
+					"where s.s_game_code = g.g_code and s.s_page_no = '"+s_page_no+"'";
+			ViewDto dto = null;
+			RowMapper<ViewDto> s_ViewDto =new BeanPropertyRowMapper<>(ViewDto.class);
+			
+			try {
+				dto = (ViewDto)temp.queryForObject(query, s_ViewDto);
+			}
+			catch(Exception e){
+				System.out.println("StorePageView() 오류: "+query);
+			}
+			
+			return dto;
+		}
 }
