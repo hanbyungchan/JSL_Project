@@ -111,7 +111,16 @@ public class GameDao {
 			ArrayList<ReviewDto> dtos = (ArrayList<ReviewDto>) temp.query(query, reviewDtos);
 			return dtos;
 	}
-	//게임 상점 개별 페이지
+	//리뷰 작성
+	public int ReviewSave(ReviewDto dto) {
+		int result = 0;
+		String query = "INSERT INTO KYJ_REVIEW (U_ID, G_CODE, R_TXT, R_RECOMMAND, R_DATE)\r\n" + 
+				"VALUES ('"+dto.getU_id()+"', '"+dto.getG_code()+"', '"+dto.getR_txt()+"', '"+dto.getR_recommand()+"', '"+dto.getR_date()+"')";
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("ReviewSave() 메소드 오류" + query);}
+		return result;
+	}
+	//게임 이름 찾기
 			public ViewDto GameName(String code){
 				String query = "select s_page_no, s_game_name\r\n" + 
 						"from kyj_store_page\r\n" + 

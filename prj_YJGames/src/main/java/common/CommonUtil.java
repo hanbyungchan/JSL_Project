@@ -17,7 +17,7 @@ public class CommonUtil {
 	}
 	public static String getToday() {
 		Date time = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String today = sdf.format(time);
 		return today;
 	}

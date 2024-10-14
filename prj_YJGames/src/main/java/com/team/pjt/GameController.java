@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import command.cart.CartList;
 import command.game.IndexList;
 import command.review.ReviewList;
+import command.review.ReviewSave;
 import command.user.UserDelete;
 import command.user.UserInfo;
 import command.user.UserJoin;
@@ -52,6 +54,21 @@ public class GameController {
 			else if(gubun.equals("library")){viewPage = "library/library";}
 			//리뷰
 			else if(gubun.equals("review")){CommonExecute game = new ReviewList();game.execute(req);viewPage = "review/review";}
+			//리뷰적기
+			else if(gubun.equals("review_write")){
+				HttpSession session = req.getSession();
+				if(session.getAttribute("sessionName") == null) {
+					req.setAttribute("t_gubun", "goSignin");
+					req.setAttribute("t_msg", "로그인해주세요!");
+					req.setAttribute("t_url", "Game");
+					viewPage = "common_alert";
+				}
+				else {
+				CommonExecute game = new ReviewList();
+				game.execute(req);
+				viewPage = "review/review_write";}}
+			//리뷰저장
+			else if(gubun.equals("review_save")) {CommonExecute game = new ReviewSave();game.execute(req);viewPage = "common_alert";}
 			//로그인창
 			else if(gubun.equals("goSignin")){viewPage = "user/user_login";} 
 			//회원가입창(개인)

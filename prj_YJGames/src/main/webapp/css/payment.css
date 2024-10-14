@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.hidden {
+    display: none;
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.button {
+    margin: 10px 0;
+}

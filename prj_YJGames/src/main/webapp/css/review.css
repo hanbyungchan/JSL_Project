@@ -120,3 +120,11 @@ select:hover {
     text-decoration-line: none;
     color: #bbb;
 }
+
+.rating-container {
+    display: flex;
+    gap: 20px;
+}
+.rating-container img {
+    width: 40px;
+}

@@ -27,7 +27,7 @@
 		alertForm.submit();
 	</script>
 </c:if>
-<c:if test="${t_gubun eq 'userinfo'}">
+<c:if test="${t_gubun eq 'userinfo' || t_gubun eq 'goSignin'}">
 	<script type="text/javascript">
 		alert("${t_msg}");
 		alertForm.t_gubun.value="${t_gubun}";

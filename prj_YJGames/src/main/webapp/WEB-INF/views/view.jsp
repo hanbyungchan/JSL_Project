@@ -47,7 +47,6 @@
 	<form name="game">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
-	<input type="hidden" name="t_id">
 	</form>
     <header class="header" id="header">
         <div class="header-content">

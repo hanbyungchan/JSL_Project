@@ -42,11 +42,10 @@ public class ReviewDto {
 	public ReviewDto() {
 		super();
 	}
-	public ReviewDto(String u_id, String g_code, String u_name, String r_txt, String r_date, String r_recommand) {
+	public ReviewDto(String u_id, String g_code,String r_txt, String r_date, String r_recommand) {
 		super();
 		this.u_id = u_id;
 		this.g_code = g_code;
-		this.u_name = u_name;
 		this.r_txt = r_txt;
 		this.r_date = r_date;
 		this.r_recommand = r_recommand;

@@ -90,7 +90,7 @@
 			<form name="game">
 			<input type="hidden" name="t_gubun">
 			<input type="hidden" name="t_id">
-			<input type="hidden" name="t_pageNo" value ="${t_dto.getS_page_no()}">
+			<input type="hidden" name="t_g_code" value ="${t_dto.getS_page_no()}">
         <div class="review-container">
             <h1>${t_dto.getS_game_name()}</h1>
             <div class="review-section">

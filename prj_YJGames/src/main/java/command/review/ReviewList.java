@@ -14,7 +14,7 @@ public class ReviewList implements CommonExecute {
 	@Override
 	public void execute(HttpServletRequest request) {
 		GameDao dao = new GameDao();
-		String code = request.getParameter("t_g_code");
+		String code = request.getParameter("t_pageNo");
 		ViewDto dto = dao.GameName(code);
 		String option = request.getParameter("t_review_option");
 		if(option == null) option = "recent";
