@@ -1,0 +1,349 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c2e;
+}
+
+/*=========================================================================*/
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.3); /* 기본 투명도 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+}
+
+/* 스크롤 시 불투명하게 변경 */
+.header.scrolled {
+    background-color: rgba(0, 0, 0, 1);
+    border-bottom: 2px solid #ff66cc; /* 스크롤 시 분홍색 테두리 */
+}
+
+/* 마우스를 올렸을 때 투명도를 없애고 테두리도 분홍색으로 변경 */
+.header:hover {
+    background-color: rgba(0, 0, 0, 1); /* 마우스를 올렸을 때 불투명 */
+    border-bottom: 2px solid #ff66cc; /* 마우스를 올렸을 때 분홍색 테두리 */
+}
+
+
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* 로고 스타일 */
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo img {
+    width: 70px;
+    height: auto;
+}
+
+/* 메뉴 스타일 */
+.menu {
+    flex: 3;
+    text-align: center;
+    margin-left: 170px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    float: left; /* li를 가로로 나열 */
+    margin-right: 20px; /* 각 li 간 간격 */
+}
+
+.menu ul li a {
+    color: #00e6e6;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.menu ul li a:hover {
+    color: #ff66cc;
+}
+
+/* clearfix를 사용해 float으로 인해 깨질 수 있는 레이아웃 방지 */
+.menu::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+/*=========================================================================*/
+
+/* COMMUNITY 메뉴 위치 설정 */
+.community-menu {
+    position: relative;
+    z-index: 1000;
+}
+
+/* 커뮤니티 메뉴 반짝이는 효과 */
+.community-menu > a {
+    color: #00e6e6;
+    text-decoration: none;
+    font-size: 1.2rem;
+    animation: glow 1s infinite alternate; /* 반짝이는 효과 */
+}
+
+/* 반짝이는 효과 애니메이션 */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff66cc, 0 0 15px #ff66cc;
+    }
+    to {
+        text-shadow: 0 0 20px #ff66cc, 0 0 30px #ff66cc, 0 0 40px #ff66cc;
+    }
+}
+
+.category-dropdown {
+    position: absolute;
+    top: 210%;
+    left: 7%;
+    transform: translateX(0%);
+    background-color: rgba(0, 0, 0, 1.0);
+    list-style: none;
+    min-width: 100px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    border-radius: 10px; /* 모서리 4곳 모두 둥글게 */
+    border: 2px solid #ff66cc; /* 분홍색 테두리 추가 */
+}
+
+
+/* 드롭다운 항목 */
+.category-dropdown li {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-right: 0 !important;
+}
+
+.category-dropdown li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    background-color: transparent; /* 기본 배경 투명 */
+    padding: 5px 10px;
+}
+
+.category-dropdown li a:hover {
+    background-color: transparent; /* 마우스 올렸을 때도 완전 투명 */
+    color: #ff66cc; /* 텍스트 색상은 분홍색으로 변경 */
+}
+
+/* 마우스를 올렸을 때 COMMUNITY 카테고리 메뉴 표시 */
+.community-menu:hover .category-dropdown,
+.category-dropdown:hover {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    z-index: 1000;
+}
+
+/* 마우스 호버 시 반짝임 멈춤 및 색상 고정 */
+.community-menu:hover > a {
+    animation: none;
+    color: #ff66cc; /* 마우스를 올렸을 때 색상 고정 */
+}
+
+/*=========================================================================*/
+
+/* 검색창 */
+.search-box {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    overflow: hidden;
+    transition: width 0.4s ease;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 2px solid #ff66cc;
+    border-radius: 8px;
+    display: none;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 14px;
+}
+
+.search-box.active {
+    width: 200px;
+}
+
+.search-box.active input[type="text"] {
+    display: block;
+}
+
+/* 검색 아이콘 스타일 */
+#search-icon {
+    margin-left: 10px;
+    position: relative;
+    z-index: 1001;
+}
+
+/* 아이콘 스타일 */
+.icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.icons a {
+    color: #00e6e6;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.icons a:hover {
+    color: #ff66cc;
+}
+
+
+/*=========================================================================*/
+
+/* 푸터 */
+.footer {
+    position: relative;
+    padding: 40px 0;
+    background-color: #1c1c2e;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-border {
+    background: linear-gradient(to top, #2a2a3e, rgba(0, 0, 0, 0)); /* 위쪽으로 그라데이션 */
+    height: 10px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* 부드러운 전환 */
+}
+
+.footer-border.active {
+    opacity: 1; /* 활성화 시 보임 */
+}
+
+footer {
+    background-color: #1c1c2e; /* 기본 배경색 */
+    transition: background-color 1s ease-in-out;
+}
+
+footer.background-gray {
+    background-color: #2a2a3e; /* 더 진한 배경색 */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-logo img {
+    width: 100px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links ul li a {
+    color: #00e6e6;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer-links ul li a:hover {
+    color: #ff66cc;
+}
+
+.footer-social a {
+    color: #00e6e6;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: #ff66cc;
+}
+
+.footer-copyright {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/*=========================================================================*/
+
+.main-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative; /* 그라데이션 효과를 위한 relative 설정 */
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 이미지 아래로 그라데이션 효과 */
+.main-image::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* 그라데이션 영역의 높이 설정 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #1c1c2e 100%);
+    /* 위쪽은 투명, 아래쪽은 배경색과 동일하게 설정 */
+}
+
