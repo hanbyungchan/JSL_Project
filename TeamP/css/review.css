@@ -12,10 +12,11 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-.review-container div a {
+.back a {
     display: flex;
     justify-content: flex-end;
     font-size: 20px;
+    font-weight: 900;
     text-decoration-line: none;
     color: white;
 }

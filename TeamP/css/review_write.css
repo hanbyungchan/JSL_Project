@@ -26,10 +26,11 @@
     border-radius: 8px;
     width: 800px;
 }
-.review-container div a {
+.back a {
     display: flex;
     justify-content: flex-end;
     font-size: 20px;
+    font-weight: 900;
     text-decoration-line: none;
     color: white;
 }
