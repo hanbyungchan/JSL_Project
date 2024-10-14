@@ -4,70 +4,45 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>결제 페이지</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #1e1e1e;
-                color: #f0f0f0;
-                margin: 0;
-                padding: 0;
-            }
-            .container {
-                max-width: 600px;
-                margin: 50px auto;
-                padding: 20px;
-                background-color: #2a2a2a;
-                border-radius: 10px;
-            }
-            h1,
-            h2,
-            label {
-                color: #ffffff;
-            }
-            input,
-            select,
-            button {
-                width: 100%;
-                padding: 10px;
-                margin: 10px 0;
-                background-color: #3a3a3a;
-                border: 1px solid #555;
-                color: #f0f0f0;
-                border-radius: 5px;
-                transition: background-color 0.3s ease, color 0.3s ease;
-            }
-            input:focus,
-            select:focus {
-                background-color: #555;
-                outline: none;
-                color: #ffffff;
-            }
-            select:hover,
-            input:hover {
-                background-color: #444;
-            }
-            button {
-                background-color: #555;
-                cursor: pointer;
-            }
-            button:hover {
-                background-color: #777;
-            }
-            .hidden {
-                display: none;
-            }
-            .button {
-                margin: 10px 0;
-                background-color: #555;
-            }
-            .button:hover {
-                background-color: #777;
-            }
-        </style>
+        <link rel="icon" type="image/png" href="img/logo.png" />
+
+        <!-- CSS 연동 -->
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/payment.css" />
+
         <script src="js/main.js"></script>
+        <!-- Font Awesome 아이콘 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     </head>
     <body>
+        <header class="header" id="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="img/logo.png" alt="사이트 로고" />
+                </div>
+                <nav class="menu" id="menu">
+                    <ul>
+                        <li><a href="#">STORE</a></li>
+                        <li><a href="#">COMMUNITY</a></li>
+                        <li><a href="#">SUPPORT</a></li>
+                        <li><a href="#">Ex</a></li>
+                        <li><a href="#">SIGN IN</a></li>
+                    </ul>
+                </nav>
+                <div class="icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </header>
+        <div class="main-image">
+            <img src="img/main-image.jpg" alt="메인 이미지" />
+        </div>
+
         <div class="container">
+            <div class="back">
+                <a href="#">←</a>
+            </div>
             <h1>결제 페이지</h1>
             <label for="paymentMethod">결제수단 선택:</label>
             <select id="paymentMethod" onchange="changePaymentMethod()">
@@ -82,20 +57,22 @@
                 <h2>사이트 지갑 결제</h2>
                 <p>현재 지갑 잔액: <span id="walletBalance">5000</span>원</p>
                 <label for="paymentAmount">결제 금액:</label>
-                <input type="number" id="paymentAmount" placeholder="결제 금액을 입력하세요" />
+                <input type="number" id="paymentAmount" placeholder="결제 금액" />
                 <button class="button" onclick="processWalletPayment()">계속</button>
             </div>
 
             <!-- 카드 결제 섹션 -->
             <div id="cardSection" class="hidden">
                 <h2>카드 결제</h2>
+                <label for="paymentAmount">결제 금액:</label>
+                <input type="number" id="paymentAmount" placeholder="결제 금액" />
                 <label for="cardNumber">카드 번호:</label>
                 <input
                     type="number"
                     maxlength="16"
                     oninput="maxLengthChk(this)"
                     id="cardNumber"
-                    placeholder="카드 번호를 입력하세요"
+                    placeholder="카드 번호 16자리를 입력하세요"
                 />
                 <label for="cardExpiry">유효기간:</label>
                 <input type="number" maxlength="4" oninput="maxLengthChk(this)" id="cardExpiry" placeholder="MMYY" />
@@ -116,7 +93,7 @@
                     id="rechargeCardNumber"
                     maxlength="16"
                     oninput="maxLengthChk(this)"
-                    placeholder="카드 번호를 입력하세요"
+                    placeholder="카드 번호 16자리를 입력하세요"
                 />
                 <label for="rechargeCardExpiry">유효기간:</label>
                 <input
@@ -239,6 +216,10 @@
                 document.getElementById('rechargeSection').classList.add('hidden');
                 document.getElementById('paymentResult').classList.remove('hidden');
 
+                // 결제 수단 선택 label과 select 숨기기
+                document.querySelector('label[for="paymentMethod"]').classList.add('hidden');
+                document.getElementById('paymentMethod').classList.add('hidden');
+
                 if (success) {
                     document.getElementById('resultMessage').innerText = isRecharge ? '충전 성공!' : '결제 성공!';
                     document.getElementById('resultButton').innerText = isRecharge
@@ -258,3 +239,27 @@
         </script>
     </body>
 </html>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="img/logo.png" alt="사이트 로고" />
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
