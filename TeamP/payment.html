@@ -129,6 +129,7 @@
             }
 
             function changePaymentMethod() {
+                //체크박스 메서드
                 const paymentMethod = document.getElementById('paymentMethod').value;
                 document.getElementById('walletSection').classList.add('hidden');
                 document.getElementById('cardSection').classList.add('hidden');
@@ -148,6 +149,7 @@
             }
 
             function processWalletPayment() {
+                //지갑결제
                 totalPaymentAmount = parseInt(document.getElementById('paymentAmount').value);
                 if (totalPaymentAmount > walletBalance) {
                     remainingAmount = totalPaymentAmount - walletBalance;
@@ -186,7 +188,7 @@
                 }
                 return true;
             }
-
+            // 체워진 값 체크
             function processCardPayment() {
                 if (!validateCardFields('cardNumber', 'cardExpiry', 'cardCVC')) {
                     return;
@@ -195,7 +197,7 @@
                 // 카드 결제 처리
                 completePayment(true, false);
             }
-
+            // 카드로 지갑 충전
             function processRecharge() {
                 const rechargeAmount = parseInt(document.getElementById('rechargeAmount').value);
                 if (!rechargeAmount) {
@@ -209,7 +211,7 @@
                 alert(`지갑이 ${rechargeAmount}원 충전되었습니다. 현재 잔액: ${walletBalance}원`);
                 completePayment(true, true); // 충전 후 장바구니로 이동
             }
-
+            // 결제완료 페이지
             function completePayment(success, isRecharge) {
                 document.getElementById('walletSection').classList.add('hidden');
                 document.getElementById('cardSection').classList.add('hidden');
