@@ -12,6 +12,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
+.review-title {
+    display: flex;
+    justify-content: space-between;
+}
+.review-title a {
+    margin-top: 20px;
+}
 
 h1 {
     text-align: left;
@@ -48,6 +55,18 @@ select:hover {
     margin-top: 20px;
     padding: 10px;
     font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-search-btn {
+    width: 10%;
+    height: 30px;
+    font-size: 15px;
     background-color: #007bff;
     color: white;
     border: none;
