@@ -22,10 +22,31 @@
 
 .review-container {
     background-color: #2c2c3e;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
     border-radius: 8px;
     width: 800px;
 }
+.review-container div a {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    text-decoration-line: none;
+    color: white;
+}
+.review-title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+}
+
+.review-title h1 {
+    margin-top: 1px;
+    margin-bottom: 5px;
+    color: white;
+}
+
 .game-title {
     font-size: 24px;
     font-weight: bold;

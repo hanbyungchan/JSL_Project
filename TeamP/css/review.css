@@ -12,12 +12,24 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-.review-title {
+.review-container div a {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    font-size: 20px;
+    text-decoration-line: none;
+    color: white;
 }
-.review-title a {
-    margin-top: 20px;
+.review-title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+}
+
+.review-title h1 {
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -26,7 +38,7 @@ h1 {
 }
 
 .review-section {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 label {
