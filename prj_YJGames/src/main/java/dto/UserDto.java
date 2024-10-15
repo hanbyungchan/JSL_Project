@@ -1,7 +1,7 @@
 package dto;
 
 public class UserDto {
-	String u_id, u_name, u_password, u_birth, u_gender, u_email_1, u_email_2, u_level;
+	String u_id, u_name, u_password, u_birth, u_gender, u_email_1, u_email_2, u_level,u_money;
 
 	public UserDto() {}
 	
@@ -18,7 +18,14 @@ public class UserDto {
 		this.u_email_2 = u_email_2;
 		this.u_level = u_level;
 	}
+	public String getU_money() {
+		return u_money;
+	}
 
+
+	public void setU_money(String u_money) {
+		this.u_money = u_money;
+	}
 
 
 	public String getU_id() {

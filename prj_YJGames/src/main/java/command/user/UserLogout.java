@@ -12,8 +12,8 @@ public class UserLogout implements CommonExecute {
 		HttpSession session = request.getSession();
 		String name = (String)session.getAttribute("sessionName");
 		
-		String msg = name+ "님 로그아웃 되었습니다.";
-		if(name == null) msg = "로그아웃 되었습니다.";
+		String msg = name+ " has been logged out.";
+		if(name == null) msg = "You has been logged out.";
 		
 		session.invalidate();
 		

@@ -9,13 +9,12 @@
   	 <script src="js/common.js"></script>
   	
 	
-    <title>로그인 페이지</title>
+    <title>LoginPage</title>
      <script>
   
-        function logincheck(){
-        	 //alert("aaa"); 
-         	 if(checkValue(loginform.t_u_id,"ID 입력!")) return;
-			if(checkValue(loginform.t_u_password,"비밀번호 입력!")) return;
+        function goLogin(){ 
+         	 if(checkValue(loginform.t_u_id,"Please enter ID!")) return;
+			if(checkValue(loginform.t_u_password,"Please enter password")) return;
 			loginform.t_gubun.value ="userlogin";
 			loginform.method="post";
 			loginform.action="Game";
@@ -36,7 +35,9 @@
     	   user.action = "Game";
     	   user.submit();
        }
-
+       function goEnter() {
+			if(event.keyCode ==13){goLogin();}
+		}
    
       
     </script>
@@ -53,9 +54,9 @@
         <input type="text" name="t_u_id" id="t_id" placeholder="Enter ID" required>
 
         <label for="t_password">PASSWORD</label>
-        <input type="password" name="t_u_password" id="t_password" placeholder="Enter Password" required>
+        <input type="password" name="t_u_password" id="t_password" onkeypress="goEnter()" placeholder="Enter Password" required>
 
-        <input type="button" value="Login" onclick="logincheck()">
+        <input type="button" value="Login" onclick="goLogin()">
 
         <div class="footer">
             <p>don't have account?</p>
@@ -83,17 +84,5 @@
 			});
 		});
 	</script>
-	
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-    

@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class CommonUtil {
 	//자료실 폴더 경로
-	public static String getPdsDir() {
-		String dir ="E:/Track16기_김여준/java_project/homepage_one/WebContent/attach/pds";
+	public static String GameFileDir() {
+		String dir ="C:/Users/admin/Desktop/track 16기_한병찬/TeamP";
 		return dir;
 	}
 	//공지사항 폴더 경로
