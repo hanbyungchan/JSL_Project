@@ -107,6 +107,12 @@ span {
     display: flex;
     width: 80%;
 }
+.nothing {
+	display: flex;
+	font-size: 50px;
+	justify-content: center;
+	align-items: center;
+}
 
 .review_result h3 {
     color: #fff;

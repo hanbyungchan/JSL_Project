@@ -97,7 +97,30 @@ select:hover {
 .negative {
     color: #f44336; /* 부정적 평가: 빨강 */
 }
-
+.button-update {
+    background-color: #007bff;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-update:hover {
+    background-color: #0056b3;
+}
+.button-delete {
+    background-color: red;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-delete:hover {
+    background-color: rgb(162, 0, 0);
+}
 .review-item p {
     margin: 0;
     padding-top: 10px;

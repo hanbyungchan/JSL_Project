@@ -6,30 +6,45 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>리뷰 작성</title>
+        <title>JSL Games</title>
 
+        <link rel="icon" type="image/png" href="img/logo.png" />
+
+        <!-- CSS 연동 -->
         <link rel="stylesheet" href="css/styles.css" />
-        <link rel="stylesheet" href="css/review_write.css" />
-        <script type="text/javascript">
+        <link rel="stylesheet" href="css/myreview.css" />
+
+        <!-- Font Awesome 아이콘 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    	<script type="text/javascript">
     	function goSignIn() {
+    		game.t_gubun.value ="goSignin";
     		game.method="post";
-    		game.action="Game?t_gubun=goSignin";
+    		game.action="Game";
     		game.submit();
 		}
     	function goInfo() {
+    		game.t_gubun.value ="userinfo";
     		game.t_id.value="${sessionId}";
     		game.method="post";
-    		game.action="Game?t_gubun=userinfo";
+    		game.action="Game";
     		game.submit();
 		}
     	function goLogout() {
+    		game.t_gubun.value ="userlogout";
     		game.method="post";
-    		game.action="Game?t_gubun=userlogout";
+    		game.action="Game";
     		game.submit();
 		}
     	function goLibrary() {
+    		game.t_gubun.value ="library";
     		game.method="post";
-    		game.action="Game?t_gubun=library";
+    		game.action="Game";
+    		game.submit();
+		}
+    	function goView(s_no) {
+    		game.method="post";
+    		game.action="Game?t_gubun=view&t_pageNo="+s_no;
     		game.submit();
 		}
     	function goReview() {
@@ -37,28 +52,35 @@
     		game.action="Game?t_gubun=myreview";
     		game.submit();
 		}
-    	function goSave() {
-    		if(game.t_r_recommand.value== ""){alert("Please select"); return;}
+    	function goUpdate(a) {
+    		game.t_pageNo.value = a;
     		game.method="post";
-    		game.action="Game?t_gubun=review_save";
+    		game.action="Game?t_gubun=review_updateform";
     		game.submit();
+		}
+    	function goDelete(a) {
+    		if(confirm("Are you sure you want to delete it?")){
+    			game.t_pageNo.value = a;
+    			game.method="post";
+    			game.action="Game?t_gubun=review_delete";
+    			game.submit();
+    		}
 		}
     </script>
     </head>
     <body>
-    	<form name="game">
+    <form name="game">
 	<input type="hidden" name="t_gubun">
-	<input type="hidden" name="t_pageNo" value="${t_dto.getS_page_no()}">
-	<input type="hidden" name="t_u_id" value="${sessionId}">
-	<input type="hidden" name="t_r_recommand" >
+	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
+	</form>
         <header class="header" id="header">
             <div class="header-content">
                 <div class="logo">
                     <img src="img/logo.png" alt="사이트 로고" />
                 </div>
                 <nav class="menu" id="menu">
-    <ul>
+                    <ul>
         <li><a href="Game">STORE</a></li>
 		<li class="community-menu">
             <a href="#">COMMUNITY</a>
@@ -81,8 +103,8 @@
             <li><a href="javascript:goLibrary()">Library</a></li>
         </c:if>
     </ul>
-	</nav>
-	<nav>
+                </nav>
+     <nav>
         <div class="icons">
             <div class="search-box" id="search-box">
                 <input type="text" placeholder="Search...">
@@ -91,70 +113,57 @@
             <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </nav>
-    </div>
-	</header>
+            </div>
+        </header>
 
         <div class="main-image">
             <img src="img/main-image.jpg" alt="메인 이미지" />
         </div>
-        <div class="review-container-top">
-            <div class="review-img">
-                <span class="img">
-                    <img src="img/${t_dto.getS_page_no()}/1.jpg" alt="게임 이미지" />
-                </span>
-            </div>
-            <div class="review-container">
-                <div class="game-title">${t_dto.getS_game_name()} Write a review of the Game</div>
-                <div class="author-name">Reviewer: ${sessionName}</div>
-                <textarea name="t_r_txt" placeholder="리뷰를 작성하세요..." ></textarea>
-                <div class="submit-container">
-                    <div class="rating-container">
-                        <!-- 밑에 테스트 스크립트 있음-->
-                        <!-- 긍정평가 이미지 (value: good) -->
-                        <img src="img/good.png" alt="Positive Review" id="positive" data-value="g" />
-                        <!-- 부정평가 이미지 (value: bad) -->
-                        <img src="img/bad.png" alt="Negative Review" id="negative" data-value="b" />
+
+        <script src="js/main.js"></script>
+
+        <div class="review_content">
+            <div class="review_result slider-header">
+                <h3>My review</h3>
+
+                <div class="underline"></div>
+			<c:forEach items="${t_dtos}" var = "dto">
+                <div class="review-container-top">
+                    <div class="review-img">
+                        <span class="img">
+                            <img src="img/${dto.getG_code()}/1.jpg" alt="게임 이미지" />
+                        </span>
                     </div>
-                    <button type="button" onclick="goSave()">리뷰 제출</button>
-                    <button type="button" onclick="goReview()">go Back</button>
+                    <div class="review-container">
+                        <div class="game-title">${dto.getG_name()} 제품에 대한 평가</div>
+                        <textarea disabled placeholder="리뷰를 작성하세요...">${dto.getR_txt()}</textarea>
+                        <div class="submit-container">
+                            <div class="rating-container">
+                                <c:if test = "${dto.getR_recommand() eq 'g'}">
+                                <img src="img/good.png" alt="Positive Review" id="positive" />
+                                </c:if>
+                                <c:if test = "${dto.getR_recommand() eq 'b'}">
+                                <img src="img/bad.png" alt="Negative Review" id="negative" />
+                                </c:if>
+                            </div>
+                            <div>
+                                <button class="button-delete" type="button" onclick="goDelete('${dto.getG_code()}')">리뷰 삭제</button>
+                                <button class="button-update" type="button" onclick="goUpdate('${dto.getG_code()}')">리뷰 수정</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                </c:forEach>
+                
+                <c:if test="${empty t_dtos}">
+                <div class="nothing"><span>nothing</span></div>
+                </c:if>
             </div>
         </div>
-			</form>
-        <script>
-            // 이미지 클릭 시 선택 처리 및 선택된 값 저장
-            const positiveImg = document.getElementById('positive');
-            const negativeImg = document.getElementById('negative');
-            let selectedValue = '';
-
-            positiveImg.addEventListener('click', function () {
-                positiveImg.classList.add('selected');
-                negativeImg.classList.remove('selected');
-                selectedValue = positiveImg.getAttribute('data-value'); // "good" 값 저장
-                game.t_r_recommand.value = selectedValue;
-            });
-
-            negativeImg.addEventListener('click', function () {
-                negativeImg.classList.add('selected');
-                positiveImg.classList.remove('selected');
-                selectedValue = negativeImg.getAttribute('data-value'); // "bad" 값 저장
-                game.t_r_recommand.value = selectedValue;
-            });
-
-            // 리뷰 제출 시 선택된 평가 값 확인 테스트
-            /*
-            function submitReview() {
-                if (selectedValue) {
-                    alert('선택된 평가는: ' + selectedValue);
-                } else {
-                    alert('평가를 선택해주세요.');
-                }
-            }
-            */
-        </script>
-        <script src="js/main.js"></script>
     </body>
 </html>
+
+<!-- 푸터 -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo">
@@ -179,4 +188,3 @@
         </div>
     </div>
 </footer>
-

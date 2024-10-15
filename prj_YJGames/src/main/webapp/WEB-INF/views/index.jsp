@@ -49,7 +49,7 @@
 		}
     	function goReview() {
     		game.method="post";
-    		game.action="Game?t_gubun=review&t_pageNo=1";
+    		game.action="Game?t_gubun=myreview";
     		game.submit();
 		}
     </script>
@@ -69,17 +69,13 @@
 <nav class="menu" id="menu">
     <ul>
         <li><a href="Game">STORE</a></li>
-        
-        
-        <li class="community-menu">
+		<li class="community-menu">
             <a href="#">COMMUNITY</a>
             <ul class="category-dropdown">
-                <li><a href="#">Review</a></li>
+                <li><a href="javascript:goReview()">Review</a></li>
                 <li><a href="#">News</a></li>
             </ul>
         </li>
-        
-        
         <li><a href="Game?t_gubun=support">SUPPORT</a></li>
         <c:if test="${sessionId eq null}">
             <li><a href="javascript:goSignIn()">SIGN IN</a></li>
@@ -94,10 +90,8 @@
             <li><a href="javascript:goLibrary()">Library</a></li>
         </c:if>
     </ul>
-</nav>
-
-        
-        <nav>
+	</nav>
+	<nav>
         <div class="icons">
             <div class="search-box" id="search-box">
                 <input type="text" placeholder="Search...">
@@ -106,8 +100,6 @@
             <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </nav>
-        
-        
     </div>
 	</header>
 

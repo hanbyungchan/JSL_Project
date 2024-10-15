@@ -16,37 +16,43 @@
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<script type="text/javascript">
-    	function goSignIn() {
-    		game.t_gubun.value ="goSignin";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goInfo() {
-    		game.t_gubun.value ="userinfo";
-    		game.t_id.value="${sessionId}";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goLogout() {
-    		game.t_gubun.value ="userlogout";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goLibrary() {
-    		game.t_gubun.value ="library";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
+	function goSignIn() {
+		game.t_gubun.value ="goSignin";
+		game.method="post";
+		game.action="Game";
+		game.submit();
+	}
+	function goInfo() {
+		game.t_gubun.value ="userinfo";
+		game.t_id.value="${sessionId}";
+		game.method="post";
+		game.action="Game";
+		game.submit();
+	}
+	function goLogout() {
+		game.t_gubun.value ="userlogout";
+		game.method="post";
+		game.action="Game";
+		game.submit();
+	}
+	function goLibrary() {
+		game.t_gubun.value ="library";
+		game.method="post";
+		game.action="Game";
+		game.submit();
+	}
+	function goReview() {
+		game.method="post";
+		game.action="Game?t_gubun=myreview";
+		game.submit();
+	}
     </script>
 </head>
 <body>
 	<form name="game">
 	<input type="hidden" name="t_gubun">
-	<input type="hidden" name="t_pageNo">
+	<input type="hidden" name="t_pageNo" value="${dto.getS_page_no()}">
+	<input type="hidden" name="t_id">
 	</form>
     <header class="header" id="header">
         <div class="header-content">
@@ -56,7 +62,13 @@
 	<nav class="menu" id="menu">
     <ul>
         <li><a href="Game">STORE</a></li>
-        <li><a href="#">COMMUNITY</a></li>
+		<li class="community-menu">
+            <a href="#">COMMUNITY</a>
+            <ul class="category-dropdown">
+                <li><a href="javascript:goReview()">Review</a></li>
+                <li><a href="#">News</a></li>
+            </ul>
+        </li>
         <li><a href="Game?t_gubun=support">SUPPORT</a></li>
         <c:if test="${sessionId eq null}">
             <li><a href="javascript:goSignIn()">SIGN IN</a></li>
@@ -81,7 +93,7 @@
             <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </nav>
-        </div>
+</div>
 </header>
 
     <!-- 메인 컨테이너 -->

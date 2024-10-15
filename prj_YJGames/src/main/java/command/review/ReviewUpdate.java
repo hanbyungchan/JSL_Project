@@ -7,7 +7,7 @@ import common.CommonUtil;
 import dao.GameDao;
 import dto.ReviewDto;
 
-public class ReviewSave implements CommonExecute {
+public class ReviewUpdate implements CommonExecute {
 
 	@Override
 	public void execute(HttpServletRequest request) {
@@ -18,10 +18,10 @@ public class ReviewSave implements CommonExecute {
 		String r_recommand = request.getParameter("t_r_recommand");
 		String r_date = CommonUtil.getToday();
 		ReviewDto dto = new ReviewDto(u_id, g_code, r_txt, r_date, r_recommand);
-		String msg = "Registered";
-		int result = dao.ReviewSave(dto);
+		String msg = "It has been edited";
+		int result = dao.ReviewUpdate(dto);
 		if(result == 0) {
-			msg = "Registration failed..";
+			msg = "Edit failed..";
 		}
 		request.setAttribute("t_gubun", "review");
 		request.setAttribute("t_page_no", g_code);

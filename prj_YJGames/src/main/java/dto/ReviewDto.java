@@ -1,7 +1,13 @@
 package dto;
 
 public class ReviewDto {
-	String u_id, g_code, u_name, r_txt,r_date,r_recommand;
+	String u_id, g_code, u_name, r_txt,r_date,r_recommand,g_name;
+	public String getG_name() {
+		return g_name;
+	}
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
+	}
 	public String getU_id() {
 		return u_id;
 	}

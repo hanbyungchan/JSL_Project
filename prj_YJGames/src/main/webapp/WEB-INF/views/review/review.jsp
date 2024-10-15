@@ -38,7 +38,7 @@
 		}
     	function goReview() {
     		game.method="post";
-    		game.action="Game?t_gubun=review";
+    		game.action="Game?t_gubun=myreview";
     		game.submit();
 		}
     	function goSearch() {
@@ -51,6 +51,19 @@
     		game.action="Game?t_gubun=review_write";
     		game.submit();
 		}
+    	function goUpdate() {
+    		game.method="post";
+    		game.action="Game?t_gubun=review_updateform";
+    		game.submit();
+		}
+    	function goDelete() {
+    		if(confirm("Are you sure you want to delete it?")){
+    			game.t_gubun.value="review_delete";
+    			game.method="post";
+        		game.action="Game";
+        		game.submit();
+    		}
+		}
     </script>
     </head>
     <body>
@@ -60,22 +73,41 @@
                     <img src="img/logo.png" alt="사이트 로고" />
                 </div>
                 <nav class="menu" id="menu">
-                    <ul>
-            	<li><a href="Game">STORE</a></li>
-                <li><a href="javascript:goReview()">COMMUNITY</a></li>
-                <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <c:if test="${sessionId eq null}"><li><a href="javascript:goSignIn()">SIGN IN</a></li></c:if>
-                <c:if test="${sessionId ne null}"><li><a href="javascript:goInfo()">MyInfo</a></li></c:if>
-                <c:if test="${sessionId ne null}"><li><a href="javascript:goLogout()">Logout</a></li></c:if>
-                <c:if test="${sessionId ne null}"><li><a href="javascript:goLibrary()">Library</a></li></c:if>
+    <ul>
+        <li><a href="Game">STORE</a></li>
+		<li class="community-menu">
+            <a href="#">COMMUNITY</a>
+            <ul class="category-dropdown">
+                <li><a href="javascript:goReview()">Review</a></li>
+                <li><a href="#">News</a></li>
             </ul>
-                </nav>
-                <div class="icons">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
+        </li>
+        <li><a href="Game?t_gubun=support">SUPPORT</a></li>
+        <c:if test="${sessionId eq null}">
+            <li><a href="javascript:goSignIn()">SIGN IN</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goInfo()">MyInfo</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goLogout()">Logout</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goLibrary()">Library</a></li>
+        </c:if>
+    </ul>
+	</nav>
+	<nav>
+        <div class="icons">
+            <div class="search-box" id="search-box">
+                <input type="text" placeholder="Search...">
             </div>
-        </header>
+            <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </nav>
+    </div>
+	</header>
 
         <div class="main-image">
             <img src="img/main-image.jpg" alt="메인 이미지" />
@@ -103,10 +135,30 @@
                 </select>
             </div>
             <button class="submit-btn" onclick="goSearch()">리뷰 검색</button>
+             <c:if test="${t_dto2 eq null}">
             <button class="submit-btn" onclick="goWrite()">리뷰 작성</button>
-
+			</c:if>
             <!-- 예시 리뷰 -->
             <div class="review-list">
+            <c:if test="${t_dto2 ne null}">
+            <div class="review-item">
+                <div class="rating-container">
+                <c:if test="${t_dto2.getR_recommand() eq 'g'}"><img src="img/good.png" alt="Positive Review" id="positive" /></c:if>
+                <c:if test="${t_dto2.getR_recommand() eq 'b'}"><img src="img/bad.png" alt="Negative Review" id="negative" /></c:if>  
+                 </div>   
+                    <p>
+                        ${t_dto2.getR_txt()}
+                    </p>
+                    <div class="divider"></div>
+                    <!-- 구분선 -->
+                    <div class="user-name"><a href="#">-Me</a></div>
+                    <div>
+                    	<button class="button-delete" type="button" onclick="goDelete()">리뷰 삭제</button>
+                    	<button class="button-update" type="button" onclick="goUpdate()">리뷰 수정</button>
+                    </div>
+                    <!-- 유저 이름 -->
+                </div>
+                </c:if>
             <c:forEach items="${t_dtos}" var = "dto">
                 <div class="review-item">
                 <div class="rating-container">

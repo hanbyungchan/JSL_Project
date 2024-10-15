@@ -152,21 +152,23 @@ const games = [
 ];
 
 // 각 게임 항목에 마우스 이벤트 추가
-const gameItems = document.querySelectorAll('.game-item');
-const previewImage1 = document.getElementById('preview-image1');
-const previewImage2 = document.getElementById('preview-image2');
-const previewImage3 = document.getElementById('preview-image3');
-const previewImage4 = document.getElementById('preview-image4');
-gameItems.forEach((item, index) => {
-    item.addEventListener('mouseenter', () => {
-        const game = games[index];
-        previewImage1.src = game.image1;
-        previewImage2.src = game.image2;
-        previewImage3.src = game.image3;
-        previewImage4.src = game.image4;
+document.addEventListener('DOMContentLoaded', () => {
+    const gameItems = document.querySelectorAll('.game-item');
+    const previewImage1 = document.querySelector('.preview-image1');
+    const previewImage2 = document.querySelector('.preview-image2');
+    const previewImage3 = document.querySelector('.preview-image3');
+    const previewImage4 = document.querySelector('.preview-image4');
+    
+    gameItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+            const game = games[index];
+            previewImage1.src = game.image1;
+            previewImage2.src = game.image2;
+            previewImage3.src = game.image3;
+            previewImage4.src = game.image4;
+        });
     });
 });
-
 
 //=============================================================================
 

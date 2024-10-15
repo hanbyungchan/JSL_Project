@@ -37,10 +37,10 @@
     		game.action="Game?t_gubun=myreview";
     		game.submit();
 		}
-    	function goSave() {
+    	function goUpdate() {
     		if(game.t_r_recommand.value== ""){alert("Please select"); return;}
     		game.method="post";
-    		game.action="Game?t_gubun=review_save";
+    		game.action="Game?t_gubun=review_update";
     		game.submit();
 		}
     </script>
@@ -106,7 +106,7 @@
             <div class="review-container">
                 <div class="game-title">${t_dto.getS_game_name()} Write a review of the Game</div>
                 <div class="author-name">Reviewer: ${sessionName}</div>
-                <textarea name="t_r_txt" placeholder="리뷰를 작성하세요..." ></textarea>
+                <textarea name="t_r_txt" placeholder="리뷰를 작성하세요..." >${t_dto2.getR_txt()}</textarea>
                 <div class="submit-container">
                     <div class="rating-container">
                         <!-- 밑에 테스트 스크립트 있음-->
@@ -115,7 +115,7 @@
                         <!-- 부정평가 이미지 (value: bad) -->
                         <img src="img/bad.png" alt="Negative Review" id="negative" data-value="b" />
                     </div>
-                    <button type="button" onclick="goSave()">리뷰 제출</button>
+                    <button type="button" onclick="goUpdate()">리뷰 수정</button>
                     <button type="button" onclick="goReview()">go Back</button>
                 </div>
             </div>

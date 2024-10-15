@@ -120,6 +120,58 @@ public class GameDao {
 		catch (Exception e) {System.out.println("ReviewSave() 메소드 오류" + query);}
 		return result;
 	}
+	//리뷰 수정
+	public int ReviewUpdate(ReviewDto dto) {
+		int result = 0;
+		String query = "update kyj_review\r\n" + 
+				"set r_txt = '"+dto.getR_txt()+"',\r\n" + 
+				"r_recommand = '"+dto.getR_recommand()+"',\r\n" + 
+				"r_date = '"+dto.getR_date()+"'\r\n" + 
+				"where g_code ='"+dto.getG_code()+"'\r\n" + 
+				"and u_id='"+dto.getU_id()+"'";
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("ReviewUpdate() 메소드 오류" + query);}
+		return result;
+	}
+	//리뷰 삭제
+	public int ReviewDelete(String id, String code) {
+		int result = 0;
+		String query = "DELETE from kyj_review\r\n" + 
+				"where u_id ='"+id+"'\r\n" + 
+				"and g_code = '"+code+"'";
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("ReviewDelete() 메소드 오류" + query);}
+		return result;
+	}	
+	//내 리뷰
+	public ReviewDto MyReview(String id, String code) {
+		ReviewDto dto = null;
+		String query = "select r.u_id, u.u_name, r.g_code, r.r_txt,r.r_recommand, TO_CHAR(r.r_date, 'MM/DD/YYYY') AS r_date\r\n" + 
+				"from kyj_review r, kyj_user u\r\n" + 
+				"where r.u_id = u.u_id\r\n" + 
+				"and r.g_code = '"+code+"'\r\n" + 
+				"and r.u_id = '"+id+"'";
+		RowMapper<ReviewDto> rDto = new BeanPropertyRowMapper<ReviewDto>(ReviewDto.class);
+		try {
+			dto = (ReviewDto)temp.queryForObject(query, rDto);
+		}catch(Exception e) {
+			System.out.println("MyReview()메소드 오류"+query);
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	//내 리뷰 리스트
+		public ArrayList<ReviewDto> MyReviewList(String id) {
+			String query = "select r.u_id, u.u_name, r.g_code,g.g_name, r.r_txt,r.r_recommand, TO_CHAR(r.r_date, 'MM/DD/YYYY') AS r_date\r\n" + 
+					"from kyj_review r, kyj_user u, kyj_game g\r\n" + 
+					"where r.u_id = u.u_id\r\n" + 
+					"and r.g_code = g.g_code\r\n" + 
+					"and r.u_id = '"+id+"'\r\n" + 
+					"order by r_date DESC";
+				RowMapper<ReviewDto> reviewDtos = new BeanPropertyRowMapper<>(ReviewDto.class);
+				ArrayList<ReviewDto> dtos = (ArrayList<ReviewDto>) temp.query(query, reviewDtos);
+				return dtos;
+		}
 	//게임 이름 찾기
 			public ViewDto GameName(String code){
 				String query = "select s_page_no, s_game_name\r\n" + 

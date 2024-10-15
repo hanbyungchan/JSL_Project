@@ -54,6 +54,12 @@
     				 } 
     			  });
     	  	} 
+    	function goPay(a) {
+    		game.method="post";
+    		game.t_money.value = a;
+    		game.action="Game?t_gubun=payment";
+    		game.submit();
+		}
     </script>
 </head>
 <body>
@@ -61,6 +67,7 @@
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
+	<input type="hidden" name="t_money">
 	</form>
     <form name="cart">
     <input type="hidden" name="t_u_id">
@@ -94,7 +101,6 @@
         <div class="content">
             <div class="cart">
             <c:forEach items="${t_dtos}" var = "dto">
-
                 <div class="item">
                     <img src="img/${dto.getG_code()}/icon.png" class="game-image" onclick="">
                     <div class="game-info">
@@ -111,6 +117,9 @@
                     </div>
                 </div>
 			</c:forEach>
+			<c:if test="${empty t_dtos}">
+			<span>nothing</span>
+            </c:if>
             </div>
             <div class="summary">
                 <h2 class="summary-title">Games and apps total</h2>
@@ -129,7 +138,7 @@
                         <span>$${total}</span>
                     </div>
                 </div>
-                <button class="checkout-btn">Buying</button>
+                <button class="checkout-btn" onclick="goPay('${total}')">Buying</button>
             </div>
         </div>
     </div>
