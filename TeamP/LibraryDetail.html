@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>게임 라이브러리</title>
-        <link rel="stylesheet" href="css/Library.css" />
-        <link rel="stylesheet" href="css/styles.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게임 라이브러리</title>
+    <link rel="stylesheet" href="../css/Library.css">
+    
+      <link rel="stylesheet" href="../css/styles.css" />
         <link rel="stylesheet" href="css/gamesearch.css" />
-    </head>
-    <script src="js/main.js"></script>
-    <script type="text/javascript">
-        function performSearch() {
-            //걍 만들어봄 헷갈리면 지워 검색버튼 누르면 진행되는건데  빈칸이면 alert뜨게함
-            const query = document.getElementById('search-input').value;
-            if (query) {
-                // 여기에 실제 검색 기능을 구현하면 됩니다.
-                console.log('검색어:', query);
-                // 예: location.href = "/search?query=" + query; (검색 페이지로 이동)
-            } else {
-                alert('검색어를 입력하세요.');
-            }
-        }
-    </script>
-    <body>
-        <header class="header" id="header">
+</head>
+<script type="text/javascript">
+function performSearch() {
+	//걍 만들어봄 헷갈리면 지워 검색버튼 누르면 진행되는건데  빈칸이면 alert뜨게함
+    const query = document.getElementById('search-input').value;
+    if (query) {
+        // 여기에 실제 검색 기능을 구현하면 됩니다.
+        console.log("검색어:", query);
+        // 예: location.href = "/search?query=" + query; (검색 페이지로 이동)
+    } else {
+        alert("검색어를 입력하세요.");
+    }
+}
+                
+</script>
+<body>
+  <header class="header" id="header">
             <div class="header-content">
                 <div class="logo">
                     <img src="img/logo.png" alt="사이트 로고" />
@@ -43,205 +44,155 @@
                 </div>
             </div>
         </header>
-        <div class="container">
-            <!-- 사이드바 (게임 리스트) -->
-            <div class="sidebar">
-                <div class="search">
-                    <input type="text" placeholder="검색..." id="search-input" />
-                    <button class="search-icon" onclick="performSearch()">🔍</button>
+    <div class="container">
+        <!-- 사이드바 (게임 리스트) -->
+        <div class="sidebar">
+           <div class="search">
+			    <input type="text" placeholder="검색..." id="search-input">
+			    <button class="search-icon" onclick="performSearch()">🔍</button> 
+			</div>
+            <div class="recent">
+                <h2>All Game</h2>
+                <ul>
+                    <li>GUNBIRD</li>
+                    <li>The Last Spell</li>
+                    <li>Surviving Mars</li>
+                    <li>GUNBIRD</li>
+                    <li>The Last Spell</li>
+                    <li>Surviving Mars</li>
+                    <li>GUNBIRD</li>
+                    <li>The Last Spell</li>
+                    <li>Surviving Mars</li>
+                </ul>
                 </div>
-                <div class="recent">
-                    <h2>All Game</h2>
-                    <ul>
-                        <li>GUNBIRD</li>
-                        <li>The Last Spell</li>
-                        <li>Surviving Mars</li>
-                        <li>GUNBIRD</li>
-                        <li>The Last Spell</li>
-                        <li>Surviving Mars</li>
-                        <li>GUNBIRD</li>
-                        <li>The Last Spell</li>
-                        <li>Surviving Mars</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="main-content">
-                <!-- Game Header Section -->
-                <div class="game-header">
-                    <div class="game-header-left">
-                        <img src=https://cdn.akamai.steamstatic.com/apps/dota2/images/dota2_social.jpg alt="Dota 2"
-                        class="game-logo">
-                        <button class="stream-button">DOWNLOAD</button>
-                        <div class="play-time-info">
-                            <p class="last-played">Last Played: June 13</p>
-                            <p class="play-time">Play Time: 4 hours</p>
-                        </div>
-                        <div class="game-info">
-                            <div class="navigation-menu">
-                                <a href="#" class="nav-button">Store Page</a>
-                                <a href="#" class="nav-button">Community</a>
-                                <a href="#" class="nav-button">NEWS</a>
-                                <a href="#" class="nav-button">EX</a>
-                                <a href="#" class="nav-button">Support</a>
-                                <a href="#" class="nav-button">BULABULA</a>
-                            </div>
-                            <div class="battle-pass">
-                                <h2>The International 2019 Battle Pass</h2>
-                                <p>
-                                    The International 2019 Battle Pass has arrived. Prepare to cut a path into the final
-                                    months of the DPC season...
-                                </p>
-                            </div>
-                            <div class="activity">
-                                <p>Say something about this game to your friends...</p>
-                            </div>
-                            <div class="friends">
-                                <h3>Friends who play:</h3>
-                                <ul>
-                                    <li><strong>Genrich</strong> (63 hrs played recently)</li>
-                                    <li><strong>The Lego Dark Knight</strong> (36 hrs played recently)</li>
-                                    <li><strong>Alax</strong> (20 hrs played recently)</li>
-                                    <li><strong>Janobi</strong> (33 hrs played recently)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-banner">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbPkgP0J6lK9wmJJlRe9fGIPR_HeCkQlNM4Q&s"
-                        alt="The International 2019 Battle Pass"
-                        class="banner-img"
-                    />
-                    <img
-                        src="https://www.newstap.co.kr/news/photo/201312/6086_10943_1542.jpg"
-                        alt="The International 2019 Battle Pass"
-                        class="banner-img"
-                    />
-                    <img
-                        src="https://cdn.gamemeca.com/gmdata/0000/385/430/glass_20131025-11_id.jpg"
-                        alt="The International 2019 Battle Pass"
-                        class="banner-img"
-                    />
-                    <img
-                        src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/social/abyssal_underlord.jpg"
-                        alt="The International 2019 Battle Pass"
-                        class="banner-img"
-                    />
-                    <img
-                        src="https://cdn.gamemeca.com/gmdata/0000/279/830/130503_ksjj_026.jpg"
-                        alt="The International 2019 Battle Pass"
-                        class="banner-img"
-                    />
-                </div>
-                <div class="info-container">
-                    <div class="achievements trendy-box">
-                        <h2>Achievements</h2>
-                        <ul>
-                            <li>Achievement 1: First Victory</li>
-                            <li>Achievement 2: Reach 1000 Points</li>
-                            <li>Achievement 3: 10 Consecutive Wins</li>
-                            <li>Achievement 4: Get 50 Kills with a Specific Character</li>
-                            <li>Achievement 5: Achieve Rank 10</li>
-                        </ul>
-                        <button class="more-button" onclick="toggleAchievements()">See More</button>
-                        <div class="more-achievements" style="display: none">
-                            <ul>
-                                <li>Achievement 6: Discover a Secret Achievement</li>
-                                <li>Achievement 7: Play for 100 Hours</li>
-                                <li>Achievement 8: Unlock All Characters</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="reviews trendy-box">
-                        <h2>Reviews</h2>
-                        <div class="review">
-                            <p>
-                                <strong>User 1:</strong> This game is really fun! <span class="rating">⭐⭐⭐⭐⭐</span>
-                            </p>
-                        </div>
-                        <div class="review">
-                            <p>
-                                <strong>User 2:</strong> The graphics are fantastic!
-                                <span class="rating">⭐⭐⭐⭐</span>
-                            </p>
-                        </div>
-                        <div class="review">
-                            <p>
-                                <strong>User 3:</strong> The combat system is engaging!
-                                <span class="rating">⭐⭐⭐⭐⭐</span>
-                            </p>
-                        </div>
-                        <button class="more-button" onclick="toggleReviews()">See More</button>
-                        <div class="more-reviews" style="display: none">
-                            <div class="review">
-                                <p>
-                                    <strong>User 4:</strong> The story of this game is really great!
-                                    <span class="rating">⭐⭐⭐⭐⭐</span>
-                                </p>
-                            </div>
-                            <div class="review">
-                                <p>
-                                    <strong>User 5:</strong> The variety of characters is appealing!
-                                    <span class="rating">⭐⭐⭐⭐</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-description">
-                    <p>
-                        The International 2019 Battle Pass has arrived. Prepare to cut a path into the final months of
-                        the DPC season...
-                    </p>
-                </div>
-
-                <!-- Activity Section -->
-                <div class="activity">
-                    <h3>Activity</h3>
-                    <p>Say something about this game to your friends...</p>
-                </div>
-
-                <!-- Friends who play Section -->
-                <div class="friends">
-                    <h3>Friends who play:</h3>
-                    <ul class="friends-list">
-                        <li>
-                            <img
-                                src="https://cdn.pixabay.com/photo/2023/05/17/04/50/pudge-7999039_1280.png"
-                                alt="Friend 1"
-                            />
-                            Genrich (63 hrs played recently)
-                        </li>
-                        <li>
-                            <img
-                                src="https://cdn.pixabay.com/photo/2023/05/17/04/50/pudge-7999039_1280.png"
-                                alt="Friend 2"
-                            />
-                            The Lego Dark Knight (36 hrs played recently)
-                        </li>
-                        <li>
-                            <img
-                                src="https://cdn.pixabay.com/photo/2023/05/17/04/50/pudge-7999039_1280.png"
-                                alt="Friend 3"
-                            />
-                            Alax (20 hrs played recently)
-                        </li>
-                        <li>
-                            <img
-                                src="https://cdn.pixabay.com/photo/2023/05/17/04/50/pudge-7999039_1280.png"
-                                alt="Friend 4"
-                            />
-                            Janobi (33 hrs played recently)
-                        </li>
-                        <!-- Add more friends as per need -->
-                    </ul>
-                </div>
-            </div>
         </div>
-    </body>
+			 <div class="main-content">
+            <!-- Game Header Section -->
+            <div class="game-header">
+                <div class="game-header-left">
+                    <img src=https://cdn.akamai.steamstatic.com/apps/dota2/images/dota2_social.jpg
+                     alt="Dota 2" class="game-logo">
+                     <button class="stream-button">DOWNLOAD</button>
+                   
+     <div class="game-info">
+  
+    <div class="more-friends" style="display: none;">
+        <ul>
+            <li><strong>Serena</strong> (45 hrs played recently)</li>
+            <li><strong>Maverick</strong> (25 hrs played recently)</li>
+            <li><strong>Neo</strong> (40 hrs played recently)</li>
+            <li><strong>Trinity</strong> (10 hrs played recently)</li>
+        </ul>
+    </div>
+    <div class="battle-pass">
+        <h2>The International 2019 Battle Pass</h2>
+        <p>The International 2019 Battle Pass has arrived. Prepare to cut a path into the final months of the DPC season...</p>
+    </div>
+    <div class="activity">
+        <p>Say something about this game to your friends...</p>
+    </div>
+    <div class="friends">
+        <h3>Friends who play:</h3>
+        <ul>
+            <li><strong>Genrich</strong> (63 hrs played recently)</li>
+            <li><strong>The Lego Dark Knight</strong> (36 hrs played recently)</li>
+            <li><strong>Alax</strong> (20 hrs played recently)</li>
+            <li><strong>Janobi</strong> (33 hrs played recently)</li>
+        </ul>
+     
+
+    <div class="more-friends" style="display: none;">
+        <ul>
+            <li><strong>Serena</strong> (45 hrs played recently)</li>
+            <li><strong>Maverick</strong> (25 hrs played recently)</li>
+            <li><strong>Neo</strong> (40 hrs played recently)</li>
+            <li><strong>Trinity</strong> (10 hrs played recently)</li>
+        </ul>
+    </div>
+    </div>
+    
+</div>
+
+      
+</div>          
+</div>
+
+         
+			
+         <div class="game-banner">
+		    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbPkgP0J6lK9wmJJlRe9fGIPR_HeCkQlNM4Q&s"
+		         alt="The International 2019 Battle Pass" class="banner-img">
+		    <img src="https://www.newstap.co.kr/news/photo/201312/6086_10943_1542.jpg"
+		         alt="The International 2019 Battle Pass" class="banner-img">
+		    <img src="https://cdn.gamemeca.com/gmdata/0000/385/430/glass_20131025-11_id.jpg"
+		         alt="The International 2019 Battle Pass" class="banner-img">
+		    <img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/social/abyssal_underlord.jpg"
+		         alt="The International 2019 Battle Pass" class="banner-img">
+		    <img src="https://cdn.gamemeca.com/gmdata/0000/279/830/130503_ksjj_026.jpg"
+		         alt="The International 2019 Battle Pass" class="banner-img">
+		</div>
+           <div class="info-container">
+    <div class="achievements trendy-box">
+     <h2>Achievements</h2>
+<ul>
+    <li>Achievement 1: First Victory</li>
+    <li>Achievement 2: Reach 1000 Points</li>
+    <li>Achievement 3: 10 Consecutive Wins</li>
+    <li>Achievement 4: Get 50 Kills with a Specific Character</li>
+    <li>Achievement 5: Achieve Rank 10</li>
+</ul>
+<button class="more-button" onclick="toggleAchievements()">See More</button>
+<div class="more-achievements" style="display: none;">
+    <ul>
+        <li>Achievement 6: Discover a Secret Achievement</li>
+        <li>Achievement 7: Play for 100 Hours</li>
+        <li>Achievement 8: Unlock All Characters</li>
+    </ul>
+</div>
+</div>
+
+<div class="reviews trendy-box">
+    <h2>Reviews</h2>
+    <div class="review">
+        <p><strong>User 1:</strong> This game is really fun! <span class="rating">⭐⭐⭐⭐⭐</span></p>
+    </div>
+    <div class="review">
+        <p><strong>User 2:</strong> The graphics are fantastic! <span class="rating">⭐⭐⭐⭐</span></p>
+    </div>
+    <div class="review">
+        <p><strong>User 3:</strong> The combat system is engaging! <span class="rating">⭐⭐⭐⭐⭐</span></p>
+    </div>
+    <button class="more-button" onclick="toggleReviews()">See More</button>
+    <div class="more-reviews" style="display: none;">
+        <div class="review">
+            <p><strong>User 4:</strong> The story of this game is really great! <span class="rating">⭐⭐⭐⭐⭐</span></p>
+        </div>
+        <div class="review">
+            <p><strong>User 5:</strong> The variety of characters is appealing! <span class="rating">⭐⭐⭐⭐</span></p>
+        </div>
+    </div>
+</div>
+
+</div>
+            <div class="game-description">
+                <p>The International 2019 Battle Pass has arrived. Prepare to cut a path into the final months of the DPC season...</p>
+            </div>
+
+            <!-- Activity Section -->
+            <div class="activity">
+                <h3>Activity</h3>
+                <p>Say something about this game to your friends...</p>
+            </div>
+
+          
+        </div>
+        
+
+        
+         
+        </div>
+</body>
+
 </html>
 <footer class="footer">
     <div class="footer-container">
@@ -267,3 +218,5 @@
         </div>
     </div>
 </footer>
+
+
