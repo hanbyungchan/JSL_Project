@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,30 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EX 지원</title>
     <link rel="stylesheet" href="css/support.css">
+     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-	<form name="game">
-	<input type="hidden" name="t_gubun">
-	<input type="hidden" name="t_pageNo">
-	</form>
-    <div class="header">
-        <div class="logo">
-            <img src="이미지칸이야 넣기만하면돼" alt="이미지칸이야 넣기만하면돼">
-        </div>
-        <div class="nav">
-            <ul>
-                <li><a href="#">STORE</a></li>
-                <li><a href="#">COMMUNITY</a></li>
-                <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <li><a href="Game?t_gubun=userjoin">Exx</a></li>
-                <li><a href="Game?t_gubun=goSignin">SIGN IN</a></li>
-            </ul>
-            <div class="login-area">
-                <button>회원가입</button>
-              <button>  <a href="#">로그인</a></button>
+ <header class="header" id="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="img/logo.png" alt="사이트 로고" />
+                </div>
+                <nav class="menu" id="menu">
+                    <ul>
+                        <li><a href="#">STORE</a></li>
+                        <li><a href="#">COMMUNITY</a></li>
+                        <li><a href="#">SUPPORT</a></li>
+                        <li><a href="#">Ex</a></li>
+                        <li><a href="#">SIGN IN</a></li>
+                    </ul>
+                </nav>
+                <div class="icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>	
+                </div>
             </div>
-        </div>
-    </div>
+       
+     </header>
 
     <div class="main-content">
         <h1>EX 지원</h1>
@@ -76,3 +77,27 @@
     </div>
 </body>
 </html>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="img/logo.png" alt="사이트 로고" />
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

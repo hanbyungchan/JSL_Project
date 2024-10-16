@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import command.cart.CartList;
 import command.cart.Payment;
+import command.game.GameRegist;
 import command.game.IndexList;
 import command.review.MyReviewList;
 import command.review.ReviewDelete;
@@ -57,6 +58,8 @@ public class GameController {
 			else if(gubun.equals("support")){viewPage = "support/support";}
 			//library
 			else if(gubun.equals("library")){viewPage = "library/library";}
+			//library 상세
+			else if(gubun.equals("library_detail")){viewPage = "library/libraryDetail";}
 			//리뷰
 			else if(gubun.equals("review")){CommonExecute game = new ReviewList();game.execute(req);viewPage = "review/review";}
 			//내리뷰
@@ -121,6 +124,11 @@ public class GameController {
 			else if(gubun.equals("userdelete")) {CommonExecute game = new UserDelete();game.execute(req);viewPage = "common_alert";}
 			//구매
 			else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
+			//게임 등록폼
+			else if(gubun.equals("gameRegistForm")) {GameDao dao = new GameDao();String g_code = dao.AutoNo();req.setAttribute("g_code", g_code);viewPage = "registration/game_regist";}
+			//게임 등록
+			 else if(gubun.equals("gameRegist")) {CommonExecute game = new GameRegist();game.execute(req);viewPage = "common_alert";}
+			
 			return viewPage;
 	}
 	//id중복체크
@@ -150,6 +158,45 @@ public class GameController {
 		String g_code = request.getParameter("t_g_code");
 		GameDao dao = new GameDao();
 		int count = dao.RemoveCart(u_id, g_code);
+		if(count == 1) out.print(count);
+		else out.print("");
+	}
+	//장바구니 추가
+	@RequestMapping("Contain")
+	public void ContainGame(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_u_id");
+		String g_code = request.getParameter("t_g_code");
+		GameDao dao = new GameDao();
+		int count = dao.AddCart(u_id, g_code);
+		if(count == 1) out.print(count);
+		else out.print("");
+	}
+	//결제
+	@RequestMapping("Card_recharge")
+	public void Card_recharge(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_u_id");
+		String u_money = request.getParameter("t_u_money");
+		GameDao dao = new GameDao();
+		int count = dao.AddCart(u_id, u_money);
+		if(count == 1) out.print(count);
+		else out.print("");
+	}
+	//충전
+	@RequestMapping("Payment")
+	public void Payment(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_u_id");
+		String u_money = request.getParameter("t_u_money");
+		UserDao dao = new UserDao();
+		int count = dao.Payment(u_id, u_money);
 		if(count == 1) out.print(count);
 		else out.print("");
 	}

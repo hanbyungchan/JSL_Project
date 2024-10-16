@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import common.CommonTemplate;
 import dto.CartDto;
+import dto.GameRegiDto;
 import dto.HomeDto;
 import dto.ReviewDto;
 import dto.ViewDto;
@@ -89,6 +90,16 @@ public class GameDao {
 		RowMapper<CartDto> cartDtos = new BeanPropertyRowMapper<>(CartDto.class);
 		ArrayList<CartDto> dtos = (ArrayList<CartDto>) temp.query(query, cartDtos);
 		return dtos;
+	}
+	//장바구니 추가
+	public int AddCart(String u_id, String g_code) {
+		int result = 0;
+		String query = "INSERT INTO kyj_cart (U_ID, G_CODE)\r\n" +
+				"VALUES ('"+u_id+"', '"+g_code+"')\r\n" + 
+				"";		
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("RemoveCart() 메소드 오류" + query);}
+		return result;
 	}
 	//장바구니 삭제
 	public int RemoveCart(String u_id, String g_code) {
@@ -210,5 +221,46 @@ public class GameDao {
 			}
 			
 			return dto;
+		}
+		//번호 자동 생성
+		public String AutoNo() {
+			String no = "";
+			String query = "select nvl(max(to_number(g_code)),'0') + 1 as no \r\n" + 
+					"from kyj_game";
+					
+			try {
+				no = temp.queryForObject(query, String.class);
+			} catch (Exception e) {System.out.println("getNo() 메소드 오류" + query);}
+					
+			return no;
+		}
+		//게임 등록(게임 테이블 + 장르 테이블)
+		public int RegistGame(GameRegiDto dto) {
+			int result = 0;
+			String query1 = "insert into kyj_game\r\n" + 
+					"(g_code, g_name, g_price, g_file, g_developer, g_grade)\r\n" + 
+					"values\r\n" + 
+					"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"')";
+				
+			String query2 = "insert into kyj_genre_join\r\n" + 
+					"(genre_code, game_code)\r\n" + 
+					"values\r\n" + 
+					"('"+dto.getGenre_code()+"','"+dto.getG_code()+"')";
+				
+			try {
+				result = temp.update(query1);
+				result += temp.update(query2); 
+			} catch (Exception e) {System.out.println("RegistGame() 메소드 오류" + query1);}
+				return result;
+		}
+		//게임 구매
+		public int PurchaseGame(String g_code, String u_id) {
+			int result = 0;
+			String query = "INSERT INTO KYJ_PURCHASE_HISTORY(P_CODE, U_ID) \r\n" + 
+					"VALUES ('"+g_code+"', '"+u_id+"')";
+			try {
+				result = temp.update(query);
+			} catch (Exception e) {System.out.println("PurchaseGame() 메소드 오류" + query);}
+				return result;
 		}
 }

@@ -18,28 +18,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript">
     	function goSignIn() {
-    		game.t_gubun.value ="goSignin";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=goSignin";
     		game.submit();
 		}
     	function goInfo() {
-    		game.t_gubun.value ="userinfo";
     		game.t_id.value="${sessionId}";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=userinfo";
     		game.submit();
 		}
     	function goLogout() {
-    		game.t_gubun.value ="userlogout";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=userlogout";
     		game.submit();
 		}
     	function goLibrary() {
     		game.t_gubun.value ="library";
     		game.method="post";
-    		game.action="Game";
+    		game.action="Game?t_gubun=library";
     		game.submit();
 		}
     	function goView(s_no) {
@@ -52,6 +49,32 @@
     		game.action="Game?t_gubun=myreview";
     		game.submit();
 		}
+    	function goGameRegi() {
+    		game.method = "post";
+    		game.action = "Game?t_gubun=gameRegistForm";
+    		game.submit();
+    	}
+    	function Contain_game(a) {
+			game.t_pageNo.value = a;
+			$.ajax({
+				 type:"post",
+			  	 url:"Contain",
+			  	 data: {
+			            t_u_id: ${sessionId},
+			            t_g_code: game.t_pageNo.value
+			        },
+			  	 dataType:"text",
+			  	 error:function(){
+			  		alert("a");
+			  	 },
+				 success:function(data){ 
+				 	var result = $.trim(data); 
+				 	game.result.value = result;
+					 if(result =="1"){alert("You have added the game to your cart.")}
+					 else{alert("The game is already in your cart or has failed.");}
+				 } 
+			  });
+	  	} 
     </script>
 </head>
 <body>
@@ -59,6 +82,7 @@
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
+	<input type="hidden" name="result">
 	</form>
 	<header class="header" id="header">
     <div class="header-content">
@@ -89,6 +113,7 @@
         <c:if test="${sessionId ne null}">
             <li><a href="javascript:goLibrary()">Library</a></li>
         </c:if>
+        <c:if test="${sessionId ne null}"><li><a href="javascript:goGameRegi()">Game Regist</a></li></c:if>
     </ul>
 	</nav>
 	<nav>
@@ -131,7 +156,7 @@
                     <c:if test="${dto1.getS_sale() eq '0'}"><span class="price">$${dto1.getG_price()}</span></c:if>
                     </c:if>
                     <c:if test="${dto1.getG_price() eq '0'}"><span class="price">Free!</span></c:if>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart" onclick="Contain_game('${dto1.getS_page_no()}')">Add to Cart</button>
                 </div>
             </div>
          </c:forEach>
@@ -250,6 +275,7 @@
         <!-- 왼쪽 게임 목록 -->
         <div class="game-list">
         <c:forEach items="${t_dtos1}" var = "dto1">
+        <a href="javascript:goView('${dto1.getS_page_no()}')">
             <div class="game-item" data-game="1" id ="test">
                 <div class="game-info">
                     <h4>${dto1.getG_name()}</h4>
@@ -258,6 +284,7 @@
                     <span class="discount"><c:if test="${dto1.getS_sale() ne '0'}">-${dto1.getS_sale()}%</c:if></span>
                 </div>
             </div>
+        </a>
         </c:forEach>
             
             <!-- ... 동일한 형식으로 5개의 추가 게임 목록 -->
