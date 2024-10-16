@@ -1,0 +1,167 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+   background-color: #1c1c2e;
+    color: #c7d5e0;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #171a21;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav ul li {
+    display: inline;
+}
+
+.nav ul li a {
+    color: #c7d5e0;
+    text-decoration: none;
+}
+
+.login-area {
+   display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.login-area button {
+    background-color: #5c7e10;
+    color: #c7d5e0;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.login-area a {
+    color: #c7d5e0;
+    text-decoration: none;
+}
+
+.main-content {
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+	padding: 10px;
+    color: white;
+}
+
+h2 {
+    color: #c7d5e0;
+    margin-top: 10px;
+}
+
+.login-box {
+    margin: 20px auto;
+}
+
+.login-button, .help-button {
+    background-color: #66c0f4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.popular-products {
+    margin: 30px 0;
+}
+
+.popular-products h3 {
+    margin-bottom: 10px;
+}
+
+.popular-products ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popular-products ul li {
+    background-color: #2a475e;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.menu {
+    display: grid;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.menu button {
+    background-color: #2a475e;
+    color: #c7d5e0;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.menu button:hover {
+    background-color: #66c0f4; 
+}
+
+.menu button:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(102, 192, 244, 0.6); 
+}
+.button-img {
+    width: 25px; /* 이미지 크기 설정 */
+    height: 22px;
+    margin-right: 10px; 
+    padding-left: 5px; 
+    object-fit: cover; 
+}
+
+
+.product-buttons {
+    display: grid;
+    gap: 10px;
+    max-width: 600px; /* 버튼 컨테이너의 최대 너비 설정 */
+    margin: 0 auto; /* 버튼 중앙 정렬 */
+}
+
+.product-buttons button {
+    background-color: #2a475e;
+    color: #c7d5e0;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.product-buttons button:hover {
+    background-color: #66c0f4; 
+}
+
+.product-buttons button:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(102, 192, 244, 0.6); 
+}
