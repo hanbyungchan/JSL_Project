@@ -47,6 +47,12 @@
     		game.action = "Game";
     		game.submit();
     	}
+    	function goStoreRegi() {
+    		game.t_gubun.value = "storeRegistForm";
+    		game.method = "post";
+    		game.action = "Game";
+    		game.submit();
+    	}
     </script>
 </head>
 <body>
@@ -70,6 +76,7 @@
                 <c:if test="${sessionId ne null}"><li><a href="javascript:goLogout()">Logout</a></li></c:if>
                 <c:if test="${sessionId ne null}"><li><a href="javascript:goLibrary()">Library</a></li></c:if>
                 <c:if test="${sessionId ne null}"><li><a href="javascript:goGameRegi()">Game Regist</a></li></c:if>
+                <c:if test="${sessionId ne null}"><li><a href="javascript:goStoreRegi()">Store Regist</a></li></c:if>
             </ul>
         </nav>
         <div class="icons">

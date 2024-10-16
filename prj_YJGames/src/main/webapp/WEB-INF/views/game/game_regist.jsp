@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	function goRegi() {
 		if(checkValueLength(regi.t_g_name,3,80,"Please enter Title", "Title is more than 3 and less than 80")) return;
-		if(checkValue(regi.t_g_price,"If your game is Free, Please enter 0")) return;
+		if(checkValue(regi.t_g_price,"Enter 0 if it's free")) return;
 		if(checkValue(regi.t_g_developer,"Please enter Developer")) return;
 		
 		var fileName = regi.t_g_file.value;

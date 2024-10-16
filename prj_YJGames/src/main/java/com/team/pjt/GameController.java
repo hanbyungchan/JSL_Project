@@ -2,6 +2,7 @@ package com.team.pjt;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import command.cart.CartList;
 import command.game.GameRegist;
 import command.game.IndexList;
+import command.game.StoreRegist;
 import command.user.UserDelete;
 import command.user.UserInfo;
 import command.user.UserJoin;
@@ -24,6 +26,7 @@ import common.CommonExecute;
 import common.CommonTemplate;
 import dao.GameDao;
 import dao.UserDao;
+import dto.GameRegiDto;
 
 @Controller
 public class GameController {
@@ -103,7 +106,7 @@ public class GameController {
 				viewPage = "common_alert";
 			//게임 등록폼
 			} else if(gubun.equals("gameRegistForm")) {
-				String g_code = dao.AutoNo();
+				String g_code = dao.AutoCode();
 				req.setAttribute("g_code", g_code);
 				CommonExecute game = new IndexList();
 				game.execute(req);
@@ -111,6 +114,21 @@ public class GameController {
 			//게임 등록
 			} else if(gubun.equals("gameRegist")) {
 				CommonExecute game = new GameRegist();
+				game.execute(req);
+				viewPage = "common_alert";
+			//상점 페이지 등록폼
+			} else if(gubun.equals("storeRegistForm")) {
+				String name = req.getParameter("u_name");
+				String s_page_no = dao.AutoNo();
+				ArrayList<GameRegiDto> dtos = dao.GameSelectList(name);
+				req.setAttribute("s_page_no", s_page_no);
+				req.setAttribute("dtos", dtos);
+				CommonExecute game = new IndexList();
+				game.execute(req);
+				viewPage = "game/store_regist";
+			//상점 페이지 등록
+			} else if(gubun.equals("storeRegist")) {
+				CommonExecute game = new StoreRegist();
 				game.execute(req);
 				viewPage = "common_alert";
 			}

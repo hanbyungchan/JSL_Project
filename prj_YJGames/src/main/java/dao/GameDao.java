@@ -10,6 +10,7 @@ import common.CommonTemplate;
 import dto.CartDto;
 import dto.GameRegiDto;
 import dto.HomeDto;
+import dto.StoreRegiDto;
 
 public class GameDao {
 	
@@ -99,17 +100,17 @@ public class GameDao {
 		catch (Exception e) {System.out.println("RemoveCart() 메소드 오류" + query);}
 		return result;
 	}
-	//번호 자동 생성
-		public String AutoNo() {
-			String no = "";
+	//게임 코드 자동 생성
+		public String AutoCode() {
+			String code = "";
 			String query = "select nvl(max(to_number(g_code)),'0') + 1 as no \r\n" + 
 					"from kyj_game";
 			
 			try {
-				no = temp.queryForObject(query, String.class);
+				code = temp.queryForObject(query, String.class);
 			} catch (Exception e) {System.out.println("getNo() 메소드 오류" + query);}
 			
-			return no;
+			return code;
 		}
 	//게임 등록(게임 테이블 + 장르 테이블)
 	public int RegistGame(GameRegiDto dto) {
@@ -128,6 +129,49 @@ public class GameDao {
 			result = temp.update(query1);
 			result += temp.update(query2); 
 		} catch (Exception e) {System.out.println("RegistGame() 메소드 오류" + query1);}
+		
+		return result;
+	}
+	//상점 페이지 번호 자동 생성
+	public String AutoNo() {
+		String no = "";
+		String query = "select nvl(max(to_number(s_page_no)),'0') + 1 as no \r\n" + 
+				"from kyj_store_page";
+		
+		try {
+			no = temp.queryForObject(query, String.class);
+		} catch (Exception e) {System.out.println("getNo() 메소드 오류" + query);}
+		
+		return no;
+	}
+	//게임 목록 불러오기
+	public ArrayList<GameRegiDto> GameSelectList(String name) {
+		String query = "select g_code, g_name\r\n" + 
+				"from kyj_game\r\n" + 
+				"where g_developer = '"+name+"' " +
+				"and g_code not in (select s_game_code from kyj_store_page)";
+		RowMapper<GameRegiDto> GameDtos = new BeanPropertyRowMapper<>(GameRegiDto.class);
+		ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, GameDtos);
+		
+		return dtos;
+	}
+	//상점 페이지 등록
+	public int RegistStore(StoreRegiDto dto) {
+		int result = 0;
+		String query = "insert into kyj_store_page\r\n" + 
+				"(s_page_no, s_game_code, s_game_name, s_info_txt, s_date,\r\n" + 
+				"s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5,\r\n" + 
+				"s_img_main, s_img_1, s_img_2, s_img_3, s_icon,\r\n" + 
+				"s_video_1, s_video_2, s_video_3, s_sale)\r\n" + 
+				"values\r\n" + 
+				"('"+dto.getS_page_no()+"', '"+dto.getS_game_code()+"', '"+dto.getS_game_name()+"', '"+dto.getS_info_txt()+"', '"+dto.getS_date()+"',\r\n" + 
+				"'"+dto.getS_spec_1()+"', '"+dto.getS_spec_2()+"', '"+dto.getS_spec_3()+"', '"+dto.getS_spec_4()+"', '"+dto.getS_spec_5()+"',\r\n" + 
+				"'"+dto.getS_img_main()+"','"+dto.getS_img_1()+"','"+dto.getS_img_2()+"','"+dto.getS_img_3()+"','"+dto.getS_icon()+"',\r\n" + 
+				"'"+dto.getS_video_1()+"','"+dto.getS_video_2()+"','"+dto.getS_video_3()+"','"+dto.getS_sale()+"')";
+		
+		try {
+			result = temp.update(query);
+		} catch (Exception e) {System.out.println("RegistStore() 메소드 오류" + query);}
 		
 		return result;
 	}
