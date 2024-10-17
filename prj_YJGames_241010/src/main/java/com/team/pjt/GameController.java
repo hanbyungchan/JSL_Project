@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import command.cart.CartList;
 import command.game.IndexList;
+import command.search.Search;
 import command.user.UserDelete;
 import command.user.UserInfo;
 import command.user.UserJoin;
@@ -143,4 +144,14 @@ public class GameController {
 		if(count == 1) out.print(count);
 		else out.print("");
 	}
+	
+	@RequestMapping("Search")
+	public String Search(HttpServletRequest req) {
+		CommonExecute game = new Search();
+		game.execute(req);
+		return"search/search";
+	}
+	
+	
+	
 }

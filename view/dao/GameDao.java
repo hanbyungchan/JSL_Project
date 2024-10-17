@@ -15,12 +15,6 @@ public class GameDao {
 	
 	JdbcTemplate temp = CommonTemplate.getTemplate();
 	
-	
-	
-	
-	
-	
-	
 	//게임 상점 개별 페이지
 	public ViewDto StorePageView(int s_page_no){
 		String query = "select s.s_page_no, s.s_game_code, s.s_game_name, s.s_info_txt, g.g_grade, \r\n" + 

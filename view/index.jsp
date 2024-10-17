@@ -68,7 +68,7 @@
             </ul>
         </nav>
         <div class="icons">
-            <a href="Search"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-search"></i></a>
             <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
         <div class="hamburger" id="hamburger">
