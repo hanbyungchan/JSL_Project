@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <script type="text/javascript">
 	function goRegi() {
@@ -173,9 +174,13 @@
                 <br>
                 <tr>
                     <th>Game Genre</th>
-                    <td>
-                        RPG<input type = "checkbox" name = "t_genre_code" value = "1">
-                    </td>
+                    	<td>
+                    <c:forEach items="${dtos}" var = "dto">
+                    	<label>
+                    		${dto.genre_name}<input type = "checkbox" name = "t_genre_code" value = "${dto.genre_code}">
+                    	</label>
+                    </c:forEach>
+                    	</td>
                 </tr>
                 <br>
                 <input type = "button" onclick="goRegi()" value = "Registration">

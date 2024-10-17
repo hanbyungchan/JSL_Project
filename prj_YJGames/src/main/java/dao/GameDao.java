@@ -132,6 +132,16 @@ public class GameDao {
 		
 		return result;
 	}
+	//장르 리스트 불러오기
+	public ArrayList<GameRegiDto> genreCheckList() {
+		String query = "SELECT genre_code, genre_name\r\n" + 
+				"FROM kyj_genre\r\n" + 
+				"ORDER BY genre_code + 0 ASC";
+		
+		RowMapper<GameRegiDto> genreDtos = new BeanPropertyRowMapper<>(GameRegiDto.class);
+		ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, genreDtos);
+	return dtos;
+	}
 	//상점 페이지 번호 자동 생성
 	public String AutoNo() {
 		String no = "";

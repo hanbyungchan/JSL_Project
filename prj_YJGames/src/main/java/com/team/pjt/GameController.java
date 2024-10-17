@@ -107,7 +107,9 @@ public class GameController {
 			//게임 등록폼
 			} else if(gubun.equals("gameRegistForm")) {
 				String g_code = dao.AutoCode();
+				ArrayList<GameRegiDto> dtos = dao.genreCheckList();
 				req.setAttribute("g_code", g_code);
+				req.setAttribute("dtos", dtos);
 				CommonExecute game = new IndexList();
 				game.execute(req);
 				viewPage = "game/game_regist";
