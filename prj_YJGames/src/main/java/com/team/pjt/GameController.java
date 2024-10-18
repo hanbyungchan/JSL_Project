@@ -162,6 +162,7 @@ public class GameController {
 		if(count == 1) out.print(count);
 		else out.print("");
 	}
+	
 	//장바구니 추가
 	@RequestMapping("Contain")
 	public void ContainGame(HttpServletRequest request, HttpServletResponse response) {
