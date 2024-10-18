@@ -4,6 +4,7 @@ span {
 
 .search_content {
     display: flex;
+    margin-left: 20px;
 }
 
 .slider-header {
@@ -182,6 +183,7 @@ span {
 .game-result {
     width: 22%;
     margin: 10px;
+    padding-bottom: 10px;
     background-color: #2c2c3e;
     border-radius: 10px;
     overflow: hidden;
@@ -206,9 +208,25 @@ span {
 }
 
 .game-result p {
-    padding: 10px;
+    padding-left: 10px;
     color: white;
     font-size: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.game-result span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price {
+    padding: 10px;
+    color: #00e676;
+    font-size: 1.2rem;
+}
+
+.discount {
+    color: #ff6666;
+    font-size: 1rem;
 }
