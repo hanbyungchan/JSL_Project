@@ -11,34 +11,31 @@
 	
     <title>LoginPage</title>
      <script>
-  
         function goLogin(){ 
          	 if(checkValue(loginform.t_u_id,"Please enter ID!")) return;
 			if(checkValue(loginform.t_u_password,"Please enter password")) return;
-			loginform.t_gubun.value ="userlogin";
 			loginform.method="post";
-			loginform.action="Game";
+			loginform.action="Game?t_gubun=userlogin";
 			loginform.submit();
         }
-
-        
        function goJoinCustomer() {
-    	   user.t_gubun.value = "userjoin_cus";
     	   user.method = "post";
-    	   user.action = "Game";
+    	   user.action = "Game?t_gubun=userjoin_cus";
     	   user.submit();
        }
-       
        function goJoinCompany() {
-    	   user.t_gubun.value = "userjoin_com";
     	   user.method = "post";
-    	   user.action = "Game";
+    	   user.action = "Game?t_gubun=userjoin_com";
     	   user.submit();
        }
        function goEnter() {
 			if(event.keyCode ==13){goLogin();}
 		}
-   
+       function goHome() {
+    	   user.method = "post";
+    	   user.action = "Game?t_gubun=list";
+    	   user.submit();
+       }
       
     </script>
     <form name="user">

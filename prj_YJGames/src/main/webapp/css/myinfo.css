@@ -51,8 +51,9 @@ body {
 .container {
     max-width: 800px;
     margin: 0 auto;
+    margin-top: 52px;
+    padding: 50px;
     background-color: white;
-    padding: 30px;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;

@@ -21,7 +21,6 @@ public class GameRegist implements CommonExecute {
 		MultipartRequest mpr = null;
 		String msg = "Game registration failed!";
 		try {
-			mpr = new MultipartRequest(request, CommonUtil.GameFileDir(), maxSize, "utf-8", new DefaultFileRenamePolicy());
 			String g_code = mpr.getParameter("t_g_code");
 			String g_name = mpr.getParameter("t_g_name");
 			g_name = g_name.replace("'", "&#39;");
@@ -33,6 +32,7 @@ public class GameRegist implements CommonExecute {
 				g_file = "";
 			}
 			String genre_code = mpr.getParameter("t_genre_code");
+			mpr = new MultipartRequest(request, CommonUtil.GameFileDir(g_name), maxSize, "utf-8", new DefaultFileRenamePolicy());
 			
 			GameRegiDto dto = new GameRegiDto(g_code, g_name, g_file, g_developer, g_grade, genre_code, Double.parseDouble(g_price));
 			

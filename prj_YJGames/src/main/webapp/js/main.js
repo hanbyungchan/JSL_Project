@@ -1,15 +1,19 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const introSection = document.getElementById('intro-section');
-    const enterButton = document.getElementById('enter-btn');
+//=============================================================================
 
-    // "접속" 버튼 클릭 시 인트로 화면 숨기기
-    enterButton.addEventListener('click', function() {
-        introSection.style.display = 'none';  // 인트로 화면 숨기기
-        document.body.classList.remove('hide-content');  // 메인 페이지 표시
-    });
+document.getElementById('search-icon').addEventListener('click', function(event) {
+    event.preventDefault(); // 기본 동작 방지
+    const searchBox = document.getElementById('search-box');
+    
+    // 검색창의 active 상태를 토글
+    if (searchBox.classList.contains('active')) {
+        searchBox.classList.remove('active');
+    } else {
+        searchBox.classList.add('active');
+    }
 });
 
 //=============================================================================
+
 
 window.addEventListener('scroll', function() {
     const header = document.getElementById('header');
@@ -17,6 +21,42 @@ window.addEventListener('scroll', function() {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
+    }
+});
+
+//=============================================================================
+
+document.addEventListener('DOMContentLoaded', function () {
+    const communityMenu = document.querySelector('.community-menu');
+    const dropdown = document.querySelector('.category-dropdown');
+    let timeoutId;
+
+    // 마우스를 커뮤니티 메뉴에 올렸을 때
+    communityMenu.addEventListener('mouseenter', function () {
+        clearTimeout(timeoutId); // 사라지는 타이머가 있다면 취소
+        dropdown.style.maxHeight = '500px';
+        dropdown.style.opacity = '1';
+        dropdown.style.visibility = 'visible';
+    });
+
+    // 마우스를 드롭다운 메뉴에 올렸을 때 (유예 시간 제공)
+    dropdown.addEventListener('mouseenter', function () {
+        clearTimeout(timeoutId); // 사라지는 타이머가 있다면 취소
+        dropdown.style.maxHeight = '500px';
+        dropdown.style.opacity = '1';
+        dropdown.style.visibility = 'visible';
+    });
+
+    // 마우스를 커뮤니티 메뉴 또는 드롭다운 메뉴에서 뗐을 때
+    communityMenu.addEventListener('mouseleave', hideDropdownWithDelay);
+    dropdown.addEventListener('mouseleave', hideDropdownWithDelay);
+
+    function hideDropdownWithDelay() {
+        timeoutId = setTimeout(function () {
+            dropdown.style.maxHeight = '0';
+            dropdown.style.opacity = '0';
+            dropdown.style.visibility = 'hidden';
+        }, 500); // 0.5초 후에 사라짐
     }
 });
 
@@ -67,68 +107,81 @@ setInterval(() => {
 
 const games = [
     {
-        name: "Banana",
-        description: "action,RPG,FPS",
-        price: "Free",
-        discount: "",
-        image: "img/4/4.jpg"
+        image1: "img/4/1.jpg",
+        image2: "img/4/2.jpg",
+        image3: "img/4/3.jpg",
+        image4: "img/4/4.jpg"
     },
     {
-        name: "Monster Hunter: World",
-        description: "action,RPG,FPS",
-        price: "$25.75",
-        discount: "-60%",
-        image: "img/1/1.jpg"
+        image1: "img/10/1.jpg",
+        image2: "img/10/2.jpg",
+        image3: "img/10/3.jpg",
+        image4: "img/10/4.jpg"
     },
 	{
-        name: "EA SPORTS FC™ 25",
-        description: "action,RPG,FPS",
-        price: "₩25,600",
-        discount: "-60%",
-        image: "img/8/1.jpg"
+		image1: "img/12/1.jpg",
+        image2: "img/12/2.jpg",
+        image3: "img/12/3.jpg",
+        image4: "img/12/4.jpg"
     },
 	{
-        name: "trickcal Revive",
-        description: "action,RPG,FPS",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/6/1.jpg"
+		image1: "img/11/1.jpg",
+        image2: "img/11/2.jpg",
+        image3: "img/11/3.jpg",
+        image4: "img/11/4.jpg"
     },
 	{
-        name: "Stardew Valley",
-        description: "action,RPG,FPS",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/5/1.jpg"
+		image1: "img/9/1.jpg",
+        image2: "img/9/2.jpg",
+        image3: "img/9/3.jpg",
+        image4: "img/9/4.jpg"
     },
 	{
-        name: "Terraria",
-        description: "action,RPG,FPS",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/7/1.jpg"
+		image1: "img/16/1.jpg",
+        image2: "img/16/2.jpg",
+        image3: "img/16/3.jpg",
+        image4: "img/16/4.jpg"
     },
 	{
-        name: "Grand Theft Auto V",
-        description: "action,RPG,FPS",
-        price: "₩25,600",
-        discount: "-20%",
-        image: "img/3/1.jpg"
+		image1: "img/15/1.jpg",
+        image2: "img/15/2.jpg",
+        image3: "img/15/3.jpg",
+        image4: "img/15/4.jpg"
     },
     // 필요한 추가 게임 데이터들
 ];
 
-const gameItems = document.querySelectorAll('.game-item');
-const previewImage = document.getElementById('preview-image');
-const previewTitle = document.getElementById('preview-title');
-const previewText = document.getElementById('preview-text');
-
 // 각 게임 항목에 마우스 이벤트 추가
-gameItems.forEach((item, index) => {
-    item.addEventListener('mouseenter', () => {
-        const game = games[index];
-        previewImage.src = game.image;
-        previewTitle.textContent = game.name;
-        previewText.textContent = game.description;
+document.addEventListener('DOMContentLoaded', () => {
+    const gameItems = document.querySelectorAll('.game-item');
+    const previewImage1 = document.querySelector('.preview-image1');
+    const previewImage2 = document.querySelector('.preview-image2');
+    const previewImage3 = document.querySelector('.preview-image3');
+    const previewImage4 = document.querySelector('.preview-image4');
+    
+    gameItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+            const game = games[index];
+            previewImage1.src = game.image1;
+            previewImage2.src = game.image2;
+            previewImage3.src = game.image3;
+            previewImage4.src = game.image4;
+        });
     });
 });
+
+//=============================================================================
+
+window.addEventListener('scroll', function() {
+    const footerBorder = document.querySelector('.footer-border');
+    const footer = document.querySelector('footer');
+
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 1) {
+        footerBorder.classList.add('active');
+        footer.classList.add('background-gray');
+    } else {
+        footerBorder.classList.remove('active');
+        footer.classList.remove('background-gray');
+    }
+});
+

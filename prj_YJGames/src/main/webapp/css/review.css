@@ -1,0 +1,153 @@
+body {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.review-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    text-align: left;
+    color: #f4f4f4;
+}
+
+.review-section {
+    margin-top: 20px;
+}
+
+label {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #f4f4f4;
+}
+
+select {
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+select:hover {
+    background-color: #444;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.review-list {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.review-item {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 5px;
+    word-wrap: break-word;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: height 0.3s ease;
+}
+
+.review-item {
+    width: 100%; /* 긴 리뷰는 한 줄에 하나만 표시 */
+    min-height: 150px;
+}
+
+/* 평가 아이콘 왼쪽 상단 */
+.icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.positive {
+    color: #4caf50; /* 긍정적 평가: 녹색 */
+}
+
+.negative {
+    color: #f44336; /* 부정적 평가: 빨강 */
+}
+.button-update {
+    background-color: #007bff;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-update:hover {
+    background-color: #0056b3;
+}
+.button-delete {
+    background-color: red;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-delete:hover {
+    background-color: rgb(162, 0, 0);
+}
+.review-item p {
+    margin: 0;
+    padding-top: 10px;
+}
+
+/* 내용과 사용자 이름을 구분하는 선 */
+.divider {
+    border-top: 1px solid #555;
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* 유저 이름 스타일 */
+.user-name {
+    font-style: italic;
+    margin-top: 10px;
+    align-content: flex-end; /* 사용자 이름을 아래로 고정 */
+}
+.user-name a {
+    text-decoration-line: none;
+    color: #bbb;
+}
+
+.rating-container {
+    display: flex;
+    gap: 20px;
+}
+.rating-container img {
+    width: 40px;
+}
