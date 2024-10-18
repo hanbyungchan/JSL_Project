@@ -94,13 +94,21 @@ public class GameDao {
 	//장바구니 추가
 	public int AddCart(String u_id, String g_code) {
 		int result = 0;
-		String query = "INSERT INTO kyj_cart (U_ID, G_CODE)\r\n" +
-				"VALUES ('"+u_id+"', '"+g_code+"')\r\n" + 
-				"";		
+		String query = "INSERT INTO kyj_cart(u_id,g_code)\r\n" +
+				"VALUES ('"+u_id+"', '"+g_code+"')";
 		try {result = temp.update(query);} 
-		catch (Exception e) {System.out.println("RemoveCart() 메소드 오류" + query);}
+		catch (Exception e) {System.out.println("AddCart() 메소드 오류" + query);}
 		return result;
 	}
+	//게임구매 추가
+		public int AddPurchase(String u_id, String g_code) {
+			int result = 0;
+			String query = "INSERT INTO kyj_purchase_history(u_id,p_code)\r\n" +
+					"VALUES ('"+u_id+"', '"+g_code+"')";
+			try {result = temp.update(query);} 
+			catch (Exception e) {System.out.println("AddPurchase() 메소드 오류" + query);}
+			return result;
+		}
 	//장바구니 삭제
 	public int RemoveCart(String u_id, String g_code) {
 		int result = 0;
@@ -109,6 +117,15 @@ public class GameDao {
 				"and g_code= '"+g_code+"'";		
 		try {result = temp.update(query);} 
 		catch (Exception e) {System.out.println("RemoveCart() 메소드 오류" + query);}
+		return result;
+	}
+	//장바구니 전체 삭제
+	public int RemoveCartAll(String u_id) {
+		int result = 0;
+		String query = "DELETE from kyj_cart\r\n" + 
+				"where u_id = '"+u_id+"'";	
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("RemoveCartAll() 메소드 오류" + query);}
 		return result;
 	}
 	//리뷰 리스트
@@ -262,5 +279,23 @@ public class GameDao {
 				result = temp.update(query);
 			} catch (Exception e) {System.out.println("PurchaseGame() 메소드 오류" + query);}
 				return result;
+		}
+		//게임코드 리스트 불러오기
+		public ArrayList<String> GameCodeList(String u_id) {
+			String query = "select g_code\r\n" +
+			"from kyj_cart\r\n" +
+			"where u_id = '"+u_id+"'";
+			 RowMapper<String> gameCodeMapper = (rs, rowNum) -> rs.getString("g_code");
+	    ArrayList<String> gameCodes = (ArrayList<String>) temp.query(query, gameCodeMapper);
+	    return gameCodes;
+		}
+		//구매여부
+		public String Whether_to_purchase(String u_id, String g_code) {
+			String query = "select COUNT(*) as count\r\n" + 
+					"from kyj_purchase_history\r\n" + 
+					"where u_id = '101'\r\n" + 
+					"and p_code ='1'";
+			String result = temp.queryForObject(query, new Object[]{u_id, g_code}, String.class);
+		    return result;
 		}
 }

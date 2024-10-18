@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -14,6 +15,7 @@
         <script src="js/main.js"></script>
         <!-- Font Awesome 아이콘 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     	<script type="text/javascript">
     	function goSignIn() {
     		game.t_gubun.value ="goSignin";
@@ -40,11 +42,6 @@
     		game.action="Game";
     		game.submit();
 		}
-    	function goView(s_no) {
-    		game.method="post";
-    		game.action="Game?t_gubun=view&t_pageNo="+s_no;
-    		game.submit();
-		}
     	function goReview() {
     		game.method="post";
     		game.action="Game?t_gubun=myreview";
@@ -60,18 +57,78 @@
     		game.action="Game?t_gubun=library";
     		game.submit();
 		}
+    	function goRecharge(a) {
+    		game.t_recharge.value = a;
+    		$.ajax({
+  				 type:"post",
+  			  	 url:"Payment",
+  			  	 data: {
+  			  			t_id: ${sessionId},
+  			  			t_u_money: game.t_recharge.value
+  			        },
+  			  	 dataType:"text",
+  			  	 error:function(){
+  			  		alert("a");
+  			  	 },
+  				 success:function(data){ 
+  				 	var result = $.trim(data); 
+  				 	game.result.value = result;
+  					 if(result =="1"){alert("Charged.");}
+  					 else{alert("Charge failed.");}
+  				 } 
+  			  });
+		}
+    	function Game_money_purchase(a) {
+    		game.t_recharge.value = a;
+    		$.ajax({
+  				 type:"post",
+  			  	 url:"Game_money_purchase",
+  			  	 data: {
+  			  			t_id: ${sessionId},
+  			  			t_u_money: game.t_recharge.value
+  			        },
+  			  	 dataType:"text",
+  			  	 error:function(){
+  			  		alert("a");
+  			  	 },
+  				 success:function(data){ 
+  				 	var result = $.trim(data); 
+  				 	game.result.value = result;
+  					 if(result =="1"){alert("Payment has been made");}
+  					 else{alert("Payment failed.");}
+  				 } 
+  			  });
+		}
+    	function game_pay() {
+    		$.ajax({
+  				 type:"post",
+  			  	 url:"Card_recharge",
+  			  	data: {t_id: ${sessionId}},
+  			  	 dataType:"text",
+  			  	 error:function(){
+  			  		alert("a");
+  			  	 },
+  				 success:function(data){ 
+  				 	var result = $.trim(data); 
+  				 	game.result.value = result;
+  					 if(result =="0"){alert("Payment failed.");}
+  					 else{alert("Payment has been made");}
+  				 } 
+  			  });
+		}
     </script>
     </head>
     <body>
-        <form name="game">
+    <form name="game">
 	<input type="hidden" name="t_gubun">
-	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
+	<input type="hidden" name="t_recharge">
+	<input type="hidden" name="result">
 	</form>
 	<header class="header" id="header">
     <div class="header-content">
         <div class="logo">
-            <img src="img/logo.png" alt="사이트 로고" href="">
+            <img src="img/logo.png" alt="사이트 로고">
         </div>
         
 <nav class="menu" id="menu">
@@ -126,7 +183,7 @@
                 <option value="card">카드</option>
                 <option value="recharge">카드로 지갑 충전</option>
             </select>
-
+			
             <!-- 결제 정보창 (동적 변경) -->
             <div id="walletSection" class="hidden">
                 <h2>사이트 지갑 결제</h2>
@@ -161,7 +218,7 @@
             <div id="rechargeSection" class="hidden">
                 <h2>지갑 충전</h2>
                 <label for="rechargeAmount">충전할 금액:</label>
-                <input type="number" id="rechargeAmount" placeholder="충전할 금액을 입력하세요" />
+                <input type="number" id="rechargeAmount" placeholder="충전할 금액을 입력하세요"/>
                 <label for="rechargeCardNumber">카드 번호:</label>
                 <input
                     type="text"
@@ -182,7 +239,6 @@
                 <input type="text" id="rechargeCardCVC" maxlength="3" oninput="maxLengthChk(this)" placeholder="CVC" />
                 <button class="button" onclick="processRecharge()">충전하기</button>
             </div>
-
             <!-- 결제 결과 -->
             <div id="paymentResult" class="hidden">
                 <h2 id="resultMessage"></h2>
@@ -232,6 +288,7 @@
                     switchToCardPayment(remainingAmount);
                 } else {
                     walletBalance -= totalPaymentAmount;
+                    Game_money_purchase('${t_money}');
                     completePayment(true, false); // 지갑 결제 성공
                 }
             }
@@ -268,7 +325,7 @@
                 if (!validateCardFields('cardNumber', 'cardExpiry', 'cardCVC')) {
                     return;
                 }
-
+                game_pay();
                 // 카드 결제 처리
                 completePayment(true, false);
             }
@@ -282,8 +339,7 @@
                 if (!validateCardFields('rechargeCardNumber', 'rechargeCardExpiry', 'rechargeCardCVC')) {
                     return;
                 }
-                walletBalance += rechargeAmount;
-                alert(`지갑이 $${rechargeAmount} 충전되었습니다. 현재 잔액: $${walletBalance}`);
+                goRecharge(rechargeAmount);
                 completePayment(true, true); // 충전 후 장바구니로 이동
             }
             // 결제완료 페이지

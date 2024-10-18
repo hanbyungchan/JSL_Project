@@ -123,7 +123,7 @@ public class UserDao {
         return encryptData;
     }
     //카드 충전,결제
-    public int Payment(String id, String money) {
+    public int Payment(String id, Double money) {
     int result = 0;
 	String query = "UPDATE KYJ_USER \r\n" + 
 			"SET U_MONEY = '"+money+"'\r\n" + 

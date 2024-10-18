@@ -18,9 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript">
     	function goSignIn() {
+    		
     		game.method="post";
     		game.action="Game?t_gubun=goSignin";
-    		game.submit();
+    		game.submit();	
 		}
     	function goInfo() {
     		game.t_id.value="${sessionId}";
@@ -60,7 +61,7 @@
 				 type:"post",
 			  	 url:"Contain",
 			  	 data: {
-			            t_u_id: ${sessionId},
+			  			t_u_id: ${sessionId},
 			            t_g_code: game.t_pageNo.value
 			        },
 			  	 dataType:"text",
@@ -70,11 +71,11 @@
 				 success:function(data){ 
 				 	var result = $.trim(data); 
 				 	game.result.value = result;
-					 if(result =="1"){alert("You have added the game to your cart.")}
+					 if(result =="1"){alert("You have added the game to your cart.");}
 					 else{alert("The game is already in your cart or has failed.");}
 				 } 
 			  });
-	  	} 
+	  	}
     </script>
 </head>
 <body>
@@ -87,7 +88,7 @@
 	<header class="header" id="header">
     <div class="header-content">
         <div class="logo">
-            <img src="img/logo.png" alt="사이트 로고" href="">
+            <img src="img/logo.png" alt="사이트 로고" >
         </div>
         
 <nav class="menu" id="menu">
@@ -96,13 +97,13 @@
 		<li class="community-menu">
             <a href="#">COMMUNITY</a>
             <ul class="category-dropdown">
-                <li><a href="javascript:goReview()">Review</a></li>
+                <li><a href="Game?t_gubun=myreview">Review</a></li>
                 <li><a href="#">News</a></li>
             </ul>
         </li>
         <li><a href="Game?t_gubun=support">SUPPORT</a></li>
         <c:if test="${sessionId eq null}">
-            <li><a href="javascript:goSignIn()">SIGN IN</a></li>
+            <li><a href="Game?t_gubun=goSignin">SIGN IN</a></li>
         </c:if>
         <c:if test="${sessionId ne null}">
             <li><a href="javascript:goInfo()">MyInfo</a></li>
@@ -156,7 +157,9 @@
                     <c:if test="${dto1.getS_sale() eq '0'}"><span class="price">$${dto1.getG_price()}</span></c:if>
                     </c:if>
                     <c:if test="${dto1.getG_price() eq '0'}"><span class="price">Free!</span></c:if>
-                    <button class="add-to-cart" onclick="Contain_game('${dto1.getS_page_no()}')">Add to Cart</button>
+                    <c:if test="${sessionId eq null}"><button class="add-to-cart"  onclick="Game?t_gubun=goSignin">Add to Cart</button></c:if>
+                    <c:if test="${sessionId ne null}"><button class="add-to-cart"  onclick="Contain_game('${dto1.getS_page_no()}')">Add to Cart</button></c:if>
+                    
                 </div>
             </div>
          </c:forEach>

@@ -2,6 +2,7 @@ package com.team.pjt;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -174,30 +175,57 @@ public class GameController {
 		if(count == 1) out.print(count);
 		else out.print("");
 	}
-	//결제
+	//지갑으로 결제
 	@RequestMapping("Card_recharge")
 	public void Card_recharge(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = null;
-		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
-		String u_id = request.getParameter("t_u_id");
-		String u_money = request.getParameter("t_u_money");
 		GameDao dao = new GameDao();
-		int count = dao.AddCart(u_id, u_money);
-		if(count == 1) out.print(count);
+		int count = 0;
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_id");
+		ArrayList<String> lists = dao.GameCodeList(u_id);
+		for(String codes : lists) {
+			count = dao.AddPurchase(u_id, codes);
+		}
+		if(count != 0) {out.print(count);dao.RemoveCartAll(u_id);}
 		else out.print("");
 	}
+	//게임머니로 결제
+		@RequestMapping("Game_money_purchase")
+		public void Game_money_purchase(HttpServletRequest request, HttpServletResponse response) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = null;
+			GameDao dao = new GameDao();
+			UserDao dao2 = new UserDao();
+			int count = 0;
+			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+			String u_id = request.getParameter("t_id");
+			String u_money = request.getParameter("t_u_money");
+			HttpSession session = request.getSession();
+			String m_money = (String)session.getAttribute("sessionMoney");
+			Double money = Double.parseDouble(m_money) - Double.parseDouble(u_money);
+			ArrayList<String> lists = dao.GameCodeList(u_id);
+			for(String codes : lists) {
+				count = dao.AddPurchase(u_id, codes);
+			}
+			if(count != 0) {out.print(count);dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);session.setAttribute("sessionMoney", money); }
+			else out.print("");
+		}
 	//충전
 	@RequestMapping("Payment")
 	public void Payment(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = null;
 		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
-		String u_id = request.getParameter("t_u_id");
+		String u_id = request.getParameter("t_id");
 		String u_money = request.getParameter("t_u_money");
+		HttpSession session = request.getSession();
+		String m_money = (String)session.getAttribute("sessionMoney");
+		Double money = Double.parseDouble(u_money)+Double.parseDouble(m_money);
 		UserDao dao = new UserDao();
-		int count = dao.Payment(u_id, u_money);
-		if(count == 1) out.print(count);
+		int count = dao.Payment(u_id, money);
+		if(count == 1) {out.print(count); session.setAttribute("sessionMoney", money);}
 		else out.print("");
 	}
 	//파일다운로드 

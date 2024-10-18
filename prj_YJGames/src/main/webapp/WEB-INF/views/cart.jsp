@@ -79,8 +79,8 @@
     			  });
     	  	} 
     	function goPay(a) {
+    		game.t_money.value=a;
     		game.method="post";
-    		game.t_money.value = a;
     		game.action="Game?t_gubun=payment";
     		game.submit();
 		}
@@ -152,7 +152,7 @@
                 <div class="item">
                     <img src="img/${dto.getG_code()}/icon.png" class="game-image" onclick="">
                     <div class="game-info">
-                        <h2 onclick="">${dto.getG_name()}</h2>
+                        <h2 data-g-code="${dto.getG_code()}" onclick="">${dto.getG_name()}</h2>
                         <c:if test="${dto.getG_price() ne '0'}">
                         <c:if test="${dto.getS_sale() ne '0'}"><p class="price">-${dto.getS_sale()}% l  $${dto.getG_price()} -> $${dto.getG_price2()}</p></c:if>
                     	<c:if test="${dto.getS_sale() eq '0'}"><p class="price">$${dto.getG_price()}</p></c:if>

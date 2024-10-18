@@ -1,58 +1,11 @@
 @charset "UTF-8";
-body {
-    font-family: Arial, sans-serif;
-   background-color: #1c1c2e;
-    color: #c7d5e0;
-    margin: 0;
-    padding: 0;
-}
+
 
 .header {
     background-color: #171a21;
-    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.logo img {
-    height: 40px;
-}
-
-.nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-}
-
-.nav ul li {
-    display: inline;
-}
-
-.nav ul li a {
-    color: #c7d5e0;
-    text-decoration: none;
-}
-
-.login-area {
-   display: flex;
-    gap: 15px;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.login-area button {
-    background-color: #5c7e10;
-    color: #c7d5e0;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-}
-
-.login-area a {
-    color: #c7d5e0;
-    text-decoration: none;
 }
 
 .main-content {
@@ -66,6 +19,10 @@ h1 {
 }
 
 h2 {
+    color: #c7d5e0;
+    margin-top: 10px;
+}
+h3 {
     color: #c7d5e0;
     margin-top: 10px;
 }
@@ -102,14 +59,14 @@ h2 {
     margin: 5px 0;
 }
 
-.menu {
+.menu22 {
     display: grid;
     gap: 10px;
     max-width: 600px;
     margin: 0 auto;
 }
 
-.menu button {
+.menu22 button {
     background-color: #2a475e;
     color: #c7d5e0;
     border: none;
@@ -121,11 +78,11 @@ h2 {
     width: 100%;
 }
 
-.menu button:hover {
+.menu22 button:hover {
     background-color: #66c0f4; 
 }
 
-.menu button:focus {
+.menu22 button:focus {
     outline: none;
     box-shadow: 0 0 5px 2px rgba(102, 192, 244, 0.6); 
 }
