@@ -105,7 +105,14 @@
     list-style-type: none; 
     padding: 0; 
 }
+.recent a {
+    color: inherit; /* 부모 요소의 색상 상속 */
+    text-decoration: none; /* 밑줄 제거 */
+}
 
+.recent a:hover {
+    color: #007BFF; /* 마우스를 올렸을 때의 색상 */
+}
 .recent li {
     background-color: #171a21; 
     color: #c6d4df; 
@@ -144,7 +151,7 @@
     border: none;
     height: 1px;
     background: linear-gradient(to right, transparent, #ff4081, transparent);
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
 
@@ -197,12 +204,19 @@
     border-radius: 10px;
     transition: transform 0.3s ease;
 }
+.game img.small {
+    width: 200px; /* 작은 크기 이미지의 너비 */
+    height: auto; /* 비율 유지 */
+}
 
-
+.game a{
+	text-decoration: none;
+}
 .game p {
     margin-top: 10px;
     font-size: 1.1em;
     color: #ff4081;
+    
 }
 
 .game:hover {
@@ -289,7 +303,7 @@ body {
 }
 
 .game-logo {
-    width: 1722px;
+    width: 1200px;
     height: 400px;
 }
 

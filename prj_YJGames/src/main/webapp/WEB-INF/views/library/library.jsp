@@ -15,18 +15,13 @@
     </head>
     <script src="js/main.js"></script>
     <script type="text/javascript">
-        function performSearch() {
-            //걍 만들어봄 헷갈리면 지워 검색버튼 누르면 진행되는건데  빈칸이면 alert뜨게함
-            const query = document.getElementById('search-input').value;
-            if (query) {
-                // 여기에 실제 검색 기능을 구현하면 됩니다.
-                console.log('검색어:', query);
-                // 예: location.href = "/search?query=" + query; (검색 페이지로 이동)
-            } else {
-                alert('검색어를 입력하세요.');
-            }
-        }
-        function goDetail() {
+    function performSearch() {
+            game.method = "post";
+            game.action = "Game?t_gubun=library";
+            game.submit();
+    }
+        function goDetail(a) {
+        	game.t_pageNo.value=a;
     		game.method="post";
     		game.action="Game?t_gubun=library_detail";
     		game.submit();
@@ -71,14 +66,19 @@
     		game.action = "Game?t_gubun=gameRegistForm";
     		game.submit();
     	}
+    	function checkEnter(event) {
+    	    if (event.key === 'Enter') {
+    	        event.preventDefault(); // 기본 폼 제출 방지
+    	        performSearch(); // 검색 함수 호출
+    	    }
+    	}
     </script>
 </head>
 <body>
-	<form name="game">
+<form name="game">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
-	</form>
 	<header class="header" id="header">
     <div class="header-content">
         <div class="logo">
@@ -126,28 +126,23 @@
             <!-- 사이드바 (게임 리스트) -->
             <div class="sidebar">
                 <div class="search">
-                    <input type="text" placeholder="검색..." id="search-input" />
-                    <button class="search-icon" onclick="performSearch()">🔍</button>
+                    <input type="text" placeholder="검색..." id="search-input" name="t_search" value="${t_search}" onkeypress="checkEnter(event)"/>
+                    <button type="button" class="search-icon" onclick="performSearch()">🔍</button>
                 </div>
+                	</form>
                 <div class="recent">
-                    <h2>All Game</h2>
+                <c:if test="${t_search eq ''}"><h2>All Game</h2></c:if>
+                <c:if test="${t_search ne ''}"><h2>games found</h2></c:if>
                     <ul>
-                        <li>GUNBIRD</li>
-                        <li>The Last Spell</li>
-                        <li>Surviving Mars</li>
-                        <li><a href="javascript:goDetail()">GUNBIRD</a></li>
-                        <li>The Last Spell</li>
-                        <li>Surviving Mars</li>
-                        <li>GUNBIRD</li>
-                        <li>The Last Spell</li>
-                        <li>Surviving Mars</li>
+                    <c:forEach items="${t_dtos}" var="dto">
+                    <li><a href="javascript:goDetail('${dto.getG_code()}')">${dto.getG_name()}</a></li>
+                   	</c:forEach>
                     </ul>
                 </div>
             </div>
 
             <!-- 메인 콘텐츠 -->
             <div class="main-content">
-                <!-- 많이 한 플레이 섹션 -->
                 <hr class="divider" />
                 <div class="game-thumbnails-slider">
                     <div class="game">
@@ -155,100 +150,21 @@
                             src="https://cdn.akamai.steamstatic.com/store/home/store_home_share.jpg"
                             alt="Mass Effect"
                         />
-                        <p>Mass Effect</p>
                     </div>
+                    <c:forEach items="${t_dtos}" var="dto">
                     <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Skyrim"
+                    <a href="javascript:goDetail('${dto.getG_code()}')">
+                        <img class="small" src="img/${dto.getG_code()}/${dto.getS_img_main()}"
+                            alt="${dto.getG_name()}"
                         />
-                        <p>Skyrim</p>
+                        <p>${dto.getG_name()}</p>
+                        </a>
                     </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Company of Heroes"
-                        />
-                        <p>Company of Heroes</p>
-                    </div>
-
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Bioshock Infinite"
-                        />
-                        <p>Bioshock Infinite</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Bioshock Infinite"
-                        />
-                        <p>Bioshock Infinite</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Bioshock Infinite"
-                        />
-                        <p>Bioshock Infinite</p>
-                    </div>
+                    </c:forEach>
+                    
+                   
                 </div>
 
-                <!-- 모든 게임 섹션 -->
-                <hr class="divider" />
-                <h2>All games</h2>
-                <div class="game-thumbnails-slider">
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Bioshock Infinite"
-                        />
-                        <p>Bioshock Infinite</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Divinity Original Sin 2"
-                        />
-                        <p>Divinity Original Sin 2</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Skyrim"
-                        />
-                        <p>Skyrim</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Skyrim"
-                        />
-                        <p>Skyrim</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Skyrim"
-                        />
-                        <p>Skyrim</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Skyrim"
-                        />
-                        <p>Skyrim</p>
-                    </div>
-                    <div class="game">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuH3nuQ8g3bFzLJr-qiMBc1sDjylre6U0vw&s"
-                            alt="Skyrim"
-                        />
-                        <p>Skyrim</p>
-                    </div>
-                </div>
             </div>
         </div>
         <script src="js/main.js"></script>
@@ -257,7 +173,7 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo">
-            <img src="img/logo.png" alt="사이트 로고" />
+            <img src="img/logo.png" alt="사이트 로고"/>
         </div>
         <div class="footer-links">
             <ul>

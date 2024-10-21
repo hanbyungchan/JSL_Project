@@ -10,6 +10,7 @@ import common.CommonTemplate;
 import dto.CartDto;
 import dto.GameRegiDto;
 import dto.HomeDto;
+import dto.LibraryDto;
 import dto.ReviewDto;
 import dto.ViewDto;
 
@@ -78,7 +79,7 @@ public class GameDao {
 	//게임구매 추가
 		public int AddPurchase(String u_id, String g_code) {
 			int result = 0;
-			String query = "INSERT INTO kyj_purchase_history(u_id,p_code)\r\n" +
+			String query = "INSERT INTO kyj_purchase_history(u_id,g_code)\r\n" +
 					"VALUES ('"+u_id+"', '"+g_code+"')";
 			try {result = temp.update(query);} 
 			catch (Exception e) {System.out.println("AddPurchase() 메소드 오류" + query);}
@@ -287,5 +288,13 @@ public class GameDao {
 		        e.printStackTrace(); // 예외의 스택 트레이스를 출력하여 문제를 더 잘 파악할 수 있도록 합니다.
 		    }
 		    return count;
+		}
+		//라이브러리 게임목록칸
+		public ArrayList<LibraryDto> Library_game_List(String u_id, String search) {
+			String query = "select s.s_game_name as g_name,s.s_game_code as g_code, s.s_img_main from kyj_purchase_history h, kyj_store_page s\r\n" + 
+					"where h.g_code = s.s_game_code  and h.u_id = '"+u_id+"'  AND LOWER(s.s_game_name) LIKE '%"+search+"%'";
+			RowMapper<LibraryDto> gameDtos = new BeanPropertyRowMapper<>(LibraryDto.class);
+			ArrayList<LibraryDto> dtos = (ArrayList<LibraryDto>) temp.query(query, gameDtos);
+			return dtos;
 		}
 }

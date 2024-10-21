@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript">
     	function goSignIn() {
-    		
     		game.method="post";
     		game.action="Game?t_gubun=goSignin";
     		game.submit();	
@@ -131,7 +130,7 @@
             <div class="search-box" id="search-box">
                 <input type="text" placeholder="Search...">
             </div>
-            <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+            <a href="Search"><i class="fas fa-search"></i></a>
             <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </nav>

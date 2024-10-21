@@ -17,6 +17,8 @@ import command.cart.CartList;
 import command.cart.Payment;
 import command.game.GameRegist;
 import command.game.IndexList;
+import command.library.LibraryDetail;
+import command.library.LibraryList;
 import command.review.MyReviewList;
 import command.review.ReviewDelete;
 import command.review.ReviewList;
@@ -44,6 +46,12 @@ public class GameController {
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
+	@RequestMapping("Search")
+	public String Search(HttpServletRequest req) {
+		CommonExecute game = new command.search.Search();
+		game.execute(req);
+		return"search/search";
+	}
 	@RequestMapping("Game")
 	public String Game(HttpServletRequest req) {
 			String gubun = req.getParameter("t_gubun");
@@ -58,9 +66,9 @@ public class GameController {
 			//support
 			else if(gubun.equals("support")){viewPage = "support/support";}
 			//library
-			else if(gubun.equals("library")){viewPage = "library/library";}
+			else if(gubun.equals("library")){CommonExecute game = new LibraryList();game.execute(req);viewPage = "library/library";}
 			//library 상세
-			else if(gubun.equals("library_detail")){viewPage = "library/libraryDetail";}
+			else if(gubun.equals("library_detail")){CommonExecute game = new LibraryDetail();game.execute(req);viewPage = "library/libraryDetail";}
 			//리뷰
 			else if(gubun.equals("review")){CommonExecute game = new ReviewList();game.execute(req);viewPage = "review/review";}
 			//내리뷰
