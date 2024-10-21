@@ -2,11 +2,11 @@ package dto;
 
 public class SearchDto {
 	private String g_code, g_name, g_developer, g_grade, genre_code, genre_name, s_page_no, g_file;
-	private int g_price, s_sale;
+	private double g_price, s_sale, g_sale_price;
 	
 	public SearchDto() {}
 	public SearchDto(String g_code, String g_name, String g_developer, String g_grade, String genre_code,
-			String genre_name, String s_page_no, String g_file, int g_price, int s_sale) {
+			String genre_name, String s_page_no, String g_file, double g_price, double s_sale, double g_sale_price) {
 		super();
 		this.g_code = g_code;
 		this.g_name = g_name;
@@ -18,10 +18,17 @@ public class SearchDto {
 		this.g_file = g_file;
 		this.g_price = g_price;
 		this.s_sale = s_sale;
+		this.g_sale_price = g_sale_price;
 	}
 	
 	
 	
+	public double getG_sale_price() {
+		return g_sale_price;
+	}
+	public void setG_sale_price(double g_sale_price) {
+		this.g_sale_price = g_sale_price;
+	}
 	public String getG_file() {
 		return g_file;
 	}
@@ -70,16 +77,16 @@ public class SearchDto {
 	public void setS_page_no(String s_page_no) {
 		this.s_page_no = s_page_no;
 	}
-	public int getG_price() {
+	public double getG_price() {
 		return g_price;
 	}
-	public void setG_price(int g_price) {
+	public void setG_price(double g_price) {
 		this.g_price = g_price;
 	}
-	public int getS_sale() {
+	public double getS_sale() {
 		return s_sale;
 	}
-	public void setS_sale(int s_sale) {
+	public void setS_sale(double s_sale) {
 		this.s_sale = s_sale;
 	}
 	

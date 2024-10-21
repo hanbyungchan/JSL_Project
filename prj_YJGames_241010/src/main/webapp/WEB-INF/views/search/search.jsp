@@ -56,6 +56,13 @@
 		srch.action="Search";
 		srch.submit();
 	}
+	function goViewStore(no){
+		srch.t_storeNo.value=no;
+		//srch.t_gubun.value="";
+		srch.method="post";
+		srch.action="";//view 링크 달 것. t_gubun 필요하면 위의 주석 이용
+		srch.submit();
+	}
 
 </script>
 
@@ -71,60 +78,66 @@
 
                 <div class="underline"></div>
                 <div class="game-box">
+                <c:forEach items="${dtos}" var="dto">
+                <c:if test="${dto.getG_sale_price() eq '0'}">
+                <div class="game-result">
+                    <a href="javascript:goViewStore('${dto.getS_page_no()}')">
+                        <span class="img">
+                            <img src="img/${dto.getG_code()}/${dto.getG_file()}" alt="카테고리 이미지 1" />
+                        </span>
+                        <p class="result-title">${dto.getG_name()}</p>
+                        <p class="search-price-box">
+                            <span class="search-discounted-price">FREE!!</span>
+                        </p>
+                    </a>
+                </div>
+                </c:if>
+                <c:if test="${dto.getG_sale_price() ne '0'}">
+                <div class="game-result">
+                    <a href="javascript:goViewStore('${dto.getS_page_no()}')">
+                        <span class="img">
+                            <img src="img/${dto.getG_code()}/${dto.getG_file()}" alt="카테고리 이미지 1" />
+                        </span>
+                        <p class="result-title">${dto.getG_name()}</p>
+                        <p class="search-price-box">
+                            <span class="search-discount-rate">-${dto.getS_sale()}%%</span>
+                            <span class="search-discounted-price">$${dto.getG_sale_price()}</span>
+                            <span class="search-original-price">$${dto.getG_price()}</span>
+                        </p>
+                    </a>
+                </div>
+                </c:if>
+                </c:forEach>
                 
+                <!-- 
+                -----------*------------------------------------------*-----------------------
                 <c:forEach items="${dtos}" var="dto">
                     <div class="game-result">
                         <a href="javascript:goViewStore('${dto.getS_page_no()}')">
                             <span class="img">
                                 <img src="img/${dto.getG_code()}/${dto.getG_file()}" alt="카테고리 이미지 1" />
                             </span>
-                            <p>${dto.getG_name()}</p><!-- 타이틀 -->
+                            <p>${dto.getG_name()}</p>
+                            <span class="price">$${dto.getG_price()}</span>
+                            <span class="discount">-${dto.getS_sale()}%</span>
                         </a>
                     </div>
                 </c:forEach>
-                    
-                    <!-- <div class="game-result">
-                        <a href="#">
-                            <span class="img">
-                                <img src="img/category2.jpg" alt="카테고리 이미지 2" />
-                            </span>
-                            <p>RPG game</p>
-                        </a>
-                    </div>
-                    <div class="game-result">
-                        <a href="#">
-                            <span class="img">
-                                <img src="img/category3.jpg" alt="카테고리 이미지 3" />
-                            </span>
-                            <p>Fight game</p>
-                        </a>
-                    </div>
-                    <div class="game-result">
-                        <a href="#">
-                            <span class="img">
-                                <img src="img/category4.jpg" alt="카테고리 이미지 4" />
-                            </span>
-                            <p>Sports game</p>
-                        </a>
-                    </div>
-                    <div class="game-result">
-                        <a href="#">
-                            <span class="img">
-                                <img src="img/game_test.jpg" alt="카테고리 이미지 1" />
-                            </span>
-                            <p>gun game</p>
-                        </a>
-                    </div> -->
+                 -->
+                
+                
                 </div>
             </div>
-
+			
             <div class="search_filter">
                 <div class="filter-menu">
                     <!-- 검색창을 필터 메뉴 상단에 배치 -->
+                    <!-- 장르 dto 받아와서 반복문 돌리기 -->
                     <form name="srch">
                     <div class="search-bar">
-                        <input type="text" name="t_search" value="${dto.getS_txt() }" placeholder="Search games, categories..." />
-                    	<input type="hidden" name="t_checkedData">
+                   		<input type="hidden" name="t_storeNo">
+                   		<input type="hidden" name="t_gubun">
+                        <input type="text" name="t_search" value="${dto.getS_txt()}" placeholder="Search games, categories..." />
                     </div>
 
                     <h3>Filter By</h3>
@@ -133,37 +146,39 @@
                     <div class="filter-group">
                         <label>Price Range:</label>
                         <select name="t_price">
-                            <option value="9999">All Prices</option>
-                            <option value="0">Free</option>
-                            <option value="10">$10 or less</option>
-                            <option value="20">$20 or less</option>
-                            <option value="50">$50 or less</option>
+                            <option value="9999" <c:if test="${price eq '9999'}">selected</c:if>>All Prices</option>
+                            <option value="0" <c:if test="${price eq '0'}">selected</c:if>>Free</option>
+                            <option value="10" <c:if test="${price eq '10'}">selected</c:if>>$10 or less</option>
+                            <option value="20" <c:if test="${price eq '20'}">selected</c:if>>$20 or less</option>
+                            <option value="50" <c:if test="${price eq '50'}">selected</c:if>>$50 or less</option>
                         </select>
                     </div>
-
+					
                     <!-- 장르 필터 -->
-                    <!-- 장르는 최대 몇 개까지 적용 가능한지. 만약 한계를 정하지 않는다면 어떻게 코딩할지. 질문 -->
                     <div class="filter-group">
                         <label id="genreLabel">Genre:</label>
                         <span class="toggle-arrow" id="genreArrow">▶</span>
                         <div class="genre-options" id="genreOptions">
                         
-                        	<!-- 이거 별다른 처리 없이도 values 파라미터로 받으면 자동적으로 처리가 되나? 아니면 별도의 처리? -->
-                            <input type="checkbox" id="rpg" name="t_genre" value="1" />
-                            <label for="rpg">RPG</label><br />
-                            
-                            <input type="checkbox" id="action" name="t_genre" value="4" />
+                        <c:forEach items="${genreDtos}" var="dto">
+                            <input type="checkbox" name="t_genre" <c:forEach items="${genreList}" var="g"><c:if test="${g eq dto.getGenre_code()}">checked</c:if></c:forEach> value="${dto.getGenre_code()}" />
+                            <label for="${dto.getGenre_name()}">${dto.getGenre_name()}</label><br />
+                        </c:forEach>
+                        <!--     <input type="checkbox" id="action" name="t_genre" value="4" />
                             <label for="action">Action</label><br />
                             
                             <input type="checkbox" id="adventure" name="t_genre" value="5" />
                             <label for="adventure">Adventure</label><br />
                             
                             <input type="checkbox" id="simulation" name="t_genre" value="8" />
-                            <label for="simulation">Simulation</label>
+                            <label for="simulation">Simulation</label><br />
                             
                             <input type="checkbox" id="horror" name="t_genre" value="14" />
-                            <label for="simulation">Horror</label>
-                            
+                            <label for="simulation">Horror</label><br />
+                             -->
+                             <!-- 
+                             나중에 세 html파일 받아서 다듬어줘야 함.
+                              -->
                         </div>
                     </div>
                     </form>

@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import common.CommonTemplate;
-import dto.HomeDto;
+import dto.GenreDto;
 import dto.SearchDto;
 
 public class SearchDao {
@@ -29,7 +29,7 @@ public class SearchDao {
 		}
 		
 		//장르 텍스트 잘 나오나?
-		System.out.println("g_text1: "+genreTxt);
+		//System.out.println("g_text1: "+genreTxt);
 		
 		//장르검색 query
 		String query="select tbl.g_code, tbl.g_name, tbl.g_developer, tbl.g_grade, tbl.s_page_no, tbl.g_price, tbl.s_sale, tbl.g_sale_price, tbl.g_file\r\n" + 
@@ -63,6 +63,16 @@ public class SearchDao {
 		System.out.println("query: "+query);
 		RowMapper<SearchDto> searchDtos = new BeanPropertyRowMapper<>(SearchDto.class);
 		ArrayList<SearchDto> dtos = (ArrayList<SearchDto>) temp.query(query, searchDtos);
+		
+		return dtos;
+	}
+	
+	public ArrayList<GenreDto> getGenreList() {
+		String query="select genre_code, genre_name\r\n" + 
+				"from kyj_genre";
+		
+		RowMapper<GenreDto> genreDto = new BeanPropertyRowMapper<>(GenreDto.class);
+		ArrayList<GenreDto> dtos = (ArrayList<GenreDto>) temp.query(query, genreDto);
 		
 		return dtos;
 	}
