@@ -7,18 +7,17 @@ body {
 }
 
 .container {
-    max-width: 1500px;
+    max-width: 1000px;
     margin: 70px auto;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     padding: 20px;
+    background-color: #171a21;
+    border-radius: 15px;
 }
 
 h1 {
     font-size: 32px;
     font-weight: 700;
-    color: #1f1f1f;
+    color: white;
     margin-bottom: 20px;
     text-align: center;
     letter-spacing: 1.2px;
@@ -58,7 +57,7 @@ h1 {
     font-size: 17px;
     line-height: 1.8;
     margin-bottom: 20px;
-    color: #444;
+    color: white;
     text-align: justify;
     font-weight: 300;
     letter-spacing: 0.5px;
@@ -89,3 +88,33 @@ h1 {
         max-width: 100%;
     }
 }
+
+/* 스크롤 버튼 */
+
+.btns {
+    display: flex;
+    position: fixed;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    z-index: 10;
+}
+
+.btns > div {
+    padding: 0.6rem 1.5rem;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+    color: #fff;
+    margin-right: 0.4rem;
+}
+
+.moveTopBtn:hover {
+    color: #000;
+    background: #febf00;
+}
+
+/* ------ */
