@@ -1,7 +1,7 @@
 package dto;
 
 public class HomeDto {
-	String s_page_no,g_name,s_sale,s_attach1,s_attach2,s_attach3,s_attach4;
+	String s_page_no,g_name,s_sale,s_img_main,s_img_1,s_img_2,s_img_3;
 	double g_price, g_price2;
 	public double getG_price2() {
 		return g_price2;
@@ -28,29 +28,30 @@ public class HomeDto {
 	public void setS_sale(String s_sale) {
 		this.s_sale = s_sale;
 	}
-	public String getS_attach1() {
-		return s_attach1;
+	
+	public String getS_img_main() {
+		return s_img_main;
 	}
-	public void setS_attach1(String s_attach1) {
-		this.s_attach1 = s_attach1;
+	public void setS_img_main(String s_img_main) {
+		this.s_img_main = s_img_main;
 	}
-	public String getS_attach2() {
-		return s_attach2;
+	public String getS_img_1() {
+		return s_img_1;
 	}
-	public void setS_attach2(String s_attach2) {
-		this.s_attach2 = s_attach2;
+	public void setS_img_1(String s_img_1) {
+		this.s_img_1 = s_img_1;
 	}
-	public String getS_attach3() {
-		return s_attach3;
+	public String getS_img_2() {
+		return s_img_2;
 	}
-	public void setS_attach3(String s_attach3) {
-		this.s_attach3 = s_attach3;
+	public void setS_img_2(String s_img_2) {
+		this.s_img_2 = s_img_2;
 	}
-	public String getS_attach4() {
-		return s_attach4;
+	public String getS_img_3() {
+		return s_img_3;
 	}
-	public void setS_attach4(String s_attach4) {
-		this.s_attach4 = s_attach4;
+	public void setS_img_3(String s_img_3) {
+		this.s_img_3 = s_img_3;
 	}
 	public double getG_price() {
 		return g_price;

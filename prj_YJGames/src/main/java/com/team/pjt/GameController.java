@@ -140,7 +140,6 @@ public class GameController {
 		try {
 			out = response.getWriter();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String id = request.getParameter("t_u_id");
@@ -172,9 +171,16 @@ public class GameController {
 		String u_id = request.getParameter("t_u_id");
 		String g_code = request.getParameter("t_g_code");
 		GameDao dao = new GameDao();
-		int count = dao.AddCart(u_id, g_code);
-		if(count == 1) out.print(count);
-		else out.print("");
+		int count2 = dao.Whether_to_purchase(u_id, g_code);
+		int count3 = dao.Whether_to_cart(u_id, g_code);
+		if(count3 == 0) {
+			if(count2 == 0) {
+				int count = dao.AddCart(u_id, g_code);
+				if(count == 1) out.print(count);
+				else out.print("");
+			}else out.print("3");
+		}else out.print("4");
+		
 	}
 	//지갑으로 결제
 	@RequestMapping("Card_recharge")
@@ -229,72 +235,5 @@ public class GameController {
 		if(count == 1) {out.print(count); session.setAttribute("sessionMoney", money);}
 		else out.print("");
 	}
-	//파일다운로드 
-	/*
-	@RequestMapping("FileDownload")
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String savePath = request.getParameter("t_fileDir");// 첨부파일경로
-	 	String fileName = request.getParameter("t_fileName");   // 다운로드 받을 첨부파일명
-		if(savePath.equals("notice")) savePath = CommonUtil.getNoticeDir();
-		if(savePath.equals("pds")) savePath = CommonUtil.getPdsDir(); 
-	    String orgfilename = fileName ;
-	    InputStream in = null;
-	    OutputStream os = null; 
-	    File file = null;
-	    boolean skip = false;
-	    String client = "";
-	  
-	    try{
-	        try{
-	            file = new File(savePath, fileName);
-	            in = new FileInputStream(file);
-	        }catch(FileNotFoundException fe){
-	            skip = true;
-	        }
-	         
-	        client = request.getHeader("User-Agent");
-	        response.reset() ;
-	        response.setContentType("application/octet-stream");
-	        response.setHeader("Content-Description", "JSP Generated Data");
-	 
-	        if(!skip){
-	 
-	            // IE
-	            if(client.indexOf("MSIE") != -1){
-	                response.setHeader ("Content-Disposition", "attachment; filename="+orgfilename);
-	 
-	            }else{
-	                // 한글 파일명 처리
-	                orgfilename = new String(orgfilename.getBytes("utf-8"),"iso-8859-1");
-
-	                response.setHeader("Content-Disposition", "attachment; filename=\"" + orgfilename + "\"");
-	                response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
-	            } 
-	             
-	            response.setHeader ("Content-Length", ""+file.length() );
-	            os = response.getOutputStream();
-	            byte b[] = new byte[(int)file.length()];
-	            int leng = 0;
-	             
-	            while( (leng = in.read(b)) > 0 ){
-	                os.write(b,0,leng);
-	            }
-	 
-	        }else{
-	            response.setContentType("text/html;charset=UTF-8");
-	            PrintWriter out = response.getWriter();
-	            out.println("<script language='javascript'>alert('파일을 찾을 수 없습니다');history.back();</script>");
-	        }
-	        in.close();
-	        os.close();
-	 
-	    }catch(Exception e){
-	    	System.out.println(savePath+"첨부 파일 다운 오류~ 파일명:"+fileName);
-	    }
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}*/
+	
 }

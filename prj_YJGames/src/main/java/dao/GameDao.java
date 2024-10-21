@@ -16,31 +16,6 @@ import dto.ViewDto;
 public class GameDao {
 	
 	JdbcTemplate temp = CommonTemplate.getTemplate();
-	//이름 검색페이지
-	public ArrayList<HomeDto> GameList(String search) {
-		String query = "select * from(\r\n" + 
-				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
-				"from kyj_game g, kyj_store_page s\r\n" + 
-				"where g.g_code = s.s_game_code\r\n" + 
-				"and g.g_name  like '%"+search+"%') tbl)";
-		RowMapper<HomeDto> gameDtos = new BeanPropertyRowMapper<>(HomeDto.class);
-		ArrayList<HomeDto> dtos = (ArrayList<HomeDto>) temp.query(query, gameDtos);
-		return dtos;
-	}
-	//테마별 리스트
-	public ArrayList<HomeDto> GenreList(String search) {
-		String query = "select * from(\r\n" + 
-				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
-				"from kyj_game g, kyj_store_page s\r\n" + 
-				"where g.g_code = s.s_game_code\r\n" + 
-				"and g.g_genre  like '%"+search+"%'\r\n" +
-				"order by s.s_sale DESC) tbl)";
-		RowMapper<HomeDto> gameDtos = new BeanPropertyRowMapper<>(HomeDto.class);
-		ArrayList<HomeDto> dtos = (ArrayList<HomeDto>) temp.query(query, gameDtos);
-		return dtos;
-	}
 	//최신게임 리스트
 	public ArrayList<HomeDto> NewList() {
 		String query = "select * from(\r\n" + 
@@ -273,7 +248,7 @@ public class GameDao {
 		//게임 구매
 		public int PurchaseGame(String g_code, String u_id) {
 			int result = 0;
-			String query = "INSERT INTO KYJ_PURCHASE_HISTORY(P_CODE, U_ID) \r\n" + 
+			String query = "INSERT INTO KYJ_PURCHASE_HISTORY(G_CODE, U_ID) \r\n" + 
 					"VALUES ('"+g_code+"', '"+u_id+"')";
 			try {
 				result = temp.update(query);
@@ -289,13 +264,28 @@ public class GameDao {
 	    ArrayList<String> gameCodes = (ArrayList<String>) temp.query(query, gameCodeMapper);
 	    return gameCodes;
 		}
-		//구매여부
-		public String Whether_to_purchase(String u_id, String g_code) {
-			String query = "select COUNT(*) as count\r\n" + 
-					"from kyj_purchase_history\r\n" + 
-					"where u_id = '101'\r\n" + 
-					"and p_code ='1'";
-			String result = temp.queryForObject(query, new Object[]{u_id, g_code}, String.class);
-		    return result;
+		//구매여부 FROM 
+		public int Whether_to_purchase(String u_id, String g_code) {
+			String query = "SELECT COUNT(u_id) FROM kyj_purchase_history WHERE u_id = ? AND g_code = ?";
+		    int count = 0;
+		    try {
+		        count = temp.queryForObject(query, new Object[]{u_id, g_code}, Integer.class);
+		    } catch (Exception e) {
+		        System.out.println("Whether_to_cart() 오류: " + query);
+		        e.printStackTrace(); // 예외의 스택 트레이스를 출력하여 문제를 더 잘 파악할 수 있도록 합니다.
+		    }
+		    return count;
+		}
+		//장바구니여부
+		public int Whether_to_cart(String u_id, String g_code) {
+			String query = "SELECT COUNT(u_id) FROM kyj_cart WHERE u_id = ? AND g_code = ?";
+		    int count = 0;
+		    try {
+		        count = temp.queryForObject(query, new Object[]{u_id, g_code}, Integer.class);
+		    } catch (Exception e) {
+		        System.out.println("Whether_to_cart() 오류: " + query);
+		        e.printStackTrace(); // 예외의 스택 트레이스를 출력하여 문제를 더 잘 파악할 수 있도록 합니다.
+		    }
+		    return count;
 		}
 }

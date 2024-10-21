@@ -55,13 +55,14 @@
     		game.action = "Game?t_gubun=gameRegistForm";
     		game.submit();
     	}
-    	function Contain_game(a) {
+    	function Contain_game(a,b) {
+    		game.t_id.value = b;
 			game.t_pageNo.value = a;
 			$.ajax({
 				 type:"post",
 			  	 url:"Contain",
 			  	 data: {
-			  			t_u_id: ${sessionId},
+			  			t_u_id: game.t_id.value,
 			            t_g_code: game.t_pageNo.value
 			        },
 			  	 dataType:"text",
@@ -72,10 +73,18 @@
 				 	var result = $.trim(data); 
 				 	game.result.value = result;
 					 if(result =="1"){alert("You have added the game to your cart.");}
+					 else if(result =="3"){alert("This game has already been purchased.");}
+					 else if(result =="4"){alert("The game is already in your cart.");}
 					 else{alert("The game is already in your cart or has failed.");}
 				 } 
 			  });
 	  	}
+    	function goAlert() {
+			alert("로그인좀");
+			game.method="post";
+    		game.action="Game?t_gubun=goSignin";
+    		game.submit();	
+		}
     </script>
 </head>
 <body>
@@ -148,19 +157,35 @@
         <div class="slider-wrapper" id="slider-wrapper">
         <c:forEach items="${t_dtos1}" var = "dto1">
             <div class="slide active">
-                <img src="img/${dto1.getS_page_no()}/1.jpg" alt="게임 1">
-                <div class="slide-content">
-                    <h2>${dto1.getG_name()}</h2>
-                    <p>Now available</p>
-                    <c:if test="${dto1.getG_price() ne '0'}">
-                    <c:if test="${dto1.getS_sale() ne '0'}"><span class="price">-${dto1.getS_sale()}% l  $${dto1.getG_price()} -> $	${dto1.getG_price2()}</span></c:if>
-                    <c:if test="${dto1.getS_sale() eq '0'}"><span class="price">$${dto1.getG_price()}</span></c:if>
-                    </c:if>
-                    <c:if test="${dto1.getG_price() eq '0'}"><span class="price">Free!</span></c:if>
-                    <c:if test="${sessionId eq null}"><button class="add-to-cart"  onclick="Game?t_gubun=goSignin">Add to Cart</button></c:if>
-                    <c:if test="${sessionId ne null}"><button class="add-to-cart"  onclick="Contain_game('${dto1.getS_page_no()}')">Add to Cart</button></c:if>
-                    
-                </div>
+                <img src="img/${dto1.getS_page_no()}/${dto1.getS_img_main()}" alt="게임 1">
+                
+<div class="slide-content">
+    <h2>${dto1.getG_name()}</h2>
+    <p>Now available</p>
+
+    <div class="price-container">
+        <div class="price-wrapper">
+            <c:if test="${dto1.getG_price() ne '0'}">
+                <c:if test="${dto1.getS_sale() ne '0'}">
+                    <div class="original-price">$${dto1.getG_price()}</div>
+                    <div class="discounted-price">$${dto1.getG_price2()}</div>
+                </c:if>
+                <c:if test="${dto1.getS_sale() eq '0'}">
+                    <div class="discounted-price">$${dto1.getG_price()}</div>
+                </c:if>
+            </c:if>
+            <c:if test="${dto1.getG_price() eq '0'}">
+                <div class="discounted-price">Free!</div>
+            </c:if>
+        </div>
+        <c:if test="${dto1.getG_price() ne '0' and dto1.getS_sale() ne '0'}">
+            <div class="discount-rate">-${dto1.getS_sale()}%</div>
+        </c:if>
+        <c:if test="${sessionId eq null}"><button class="add-to-cart"  onclick="goAlert()">Add to Cart</button></c:if>
+        <c:if test="${sessionId ne null}"><button class="add-to-cart"  onclick="Contain_game('${dto1.getS_page_no()}','${sessionId}')">Add to Cart</button></c:if>
+    </div>
+</div>
+
             </div>
          </c:forEach>
             
@@ -191,17 +216,31 @@
 </div>
    <div class="news-box">
         <div class="big-news-row">
-        <c:forEach items="${t_dtos2}" var = "dto2">
+        
+         <c:forEach items="${t_dtos2}" var="dto2">
             <div class="news-big">
-            	<a href="javascript:goView('${dto2.getS_page_no()}')">
-            	<span class="img">
-                        <img src="img/${dto2.getS_page_no()}/1.jpg" alt="">
-                </span>  
-                </a>                 
-                    <p>${dto2.getG_name()}</p>
-                    <p>${dto2.getG_price()}</p>
+                <a href="javascript:goView('${dto2.getS_page_no()}')">
+                    <span class="img">
+                        <img src="img/${dto2.getS_page_no()}/${dto2.getS_img_main()}" alt="">
+                    </span>
+                </a>
+                <p>${dto2.getG_name()}</p>
+                
+                <!-- 할인 있을 때 -->
+                <c:if test="${dto2.getS_sale() ne '0'}">
+                    <p class="news-price-box">
+                  		<span class="news-discount-rate">-${dto2.getS_sale()}%</span>
+                        <span class="news-discounted-price">$${dto2.getG_price2()}</span>
+                        <span class="news-original-price">$${dto2.getG_price()}</span>
+                    </p>
+                </c:if>
+                
+                <!-- 할인 없을 때 -->
+                <c:if test="${dto2.getS_sale() eq '0'}">
+                    <p class="discounted-price">$${dto2.getG_price()}</p>
+                </c:if>
             </div>
-          </c:forEach>  
+        </c:forEach>
             
             
         </div>
@@ -209,17 +248,31 @@
        
 
 <div class="small-news-row">
+
     <c:forEach items="${t_dtos3}" var="dto3">
-        <div class="news-small">
-        <a href="javascript:goView('${dto3.getS_page_no()}')">
-            <span class="img">
-                <img src="img/${dto3.getS_page_no()}/1.jpg" alt="">
-            </span>
-            </a>
-            <p>${dto3.getG_name()}</p>
-            <p>${dto3.getG_price()}</p>
-        </div>
-    </c:forEach>
+            <div class="news-small">
+                <a href="javascript:goView('${dto3.getS_page_no()}')">
+                    <span class="img">
+                        <img src="img/${dto3.getS_page_no()}/${dto3.getS_img_main()}" alt="">
+                    </span>
+                </a>
+                <p>${dto3.getG_name()}</p>
+                
+                <!-- 할인 있을 때 -->
+                <c:if test="${dto3.getS_sale() ne '0'}">
+                    <p class="news-price-box">
+                	    <span class="news-discount-rate">-${dto3.getS_sale()}%</span>
+                        <span class="news-discounted-price">$${dto3.getG_price2()}</span>
+                        <span class="news-original-price">$${dto3.getG_price()}</span>
+                    </p>
+                </c:if>
+                
+                <!-- 할인 없을 때 -->
+                <c:if test="${dto3.getS_sale() eq '0'}">
+                    <p class="discounted-price">$${dto3.getG_price()}</p>
+                </c:if>
+            </div>
+        </c:forEach>
 </div>
         
         
@@ -234,35 +287,39 @@
 <!-- 카테고리 섹션 -->
 <div class="category-box">
     <div class="category-item">
-        <a href="#">
-            <span class="img">
+        <a class="category-a" href="#">
+            <div class="img-container">
                 <img src="img/category1.jpg" alt="카테고리 이미지 1">
-            </span>
-            <p>FPS</p>
+                <div class="category-gradient"></div>
+                <p class="category-text">FPS</p>
+            </div>
         </a>
     </div>
     <div class="category-item">
-        <a href="#">
-            <span class="img">
+        <a class="category-a" href="#">
+            <div class="img-container">
                 <img src="img/category2.jpg" alt="카테고리 이미지 2">
-            </span>
-            <p>RPG</p>
+                <div class="category-gradient"></div>
+                <p class="category-text">RPG</p>
+            </div>
         </a>
     </div>
     <div class="category-item">
-        <a href="#">
-            <span class="img">
+        <a class="category-a" href="#">
+            <div class="img-container">
                 <img src="img/category3.jpg" alt="카테고리 이미지 3">
-            </span>
-            <p>Fight</p>
+                <div class="category-gradient"></div>
+                <p class="category-text">Fight</p>
+            </div>
         </a>
     </div>
     <div class="category-item">
-        <a href="#">
-            <span class="img">
+        <a class="category-a" href="#">
+            <div class="img-container">
                 <img src="img/category4.jpg" alt="카테고리 이미지 4">
-            </span>
-            <p>Sports</p>
+                <div class="category-gradient"></div>
+                <p class="category-text">Sports</p>
+            </div>
         </a>
     </div>
 </div>

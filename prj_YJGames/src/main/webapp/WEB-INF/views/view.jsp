@@ -15,44 +15,92 @@
      <link rel="stylesheet" href="css/view.css">
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- 구글 Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 	<script type="text/javascript">
-	function goSignIn() {
-		game.t_gubun.value ="goSignin";
-		game.method="post";
-		game.action="Game";
-		game.submit();
-	}
-	function goInfo() {
-		game.t_gubun.value ="userinfo";
-		game.t_id.value="${sessionId}";
-		game.method="post";
-		game.action="Game";
-		game.submit();
-	}
-	function goLogout() {
-		game.t_gubun.value ="userlogout";
-		game.method="post";
-		game.action="Game";
-		game.submit();
-	}
-	function goLibrary() {
-		game.t_gubun.value ="library";
-		game.method="post";
-		game.action="Game";
-		game.submit();
-	}
-	function goReview() {
-		game.method="post";
-		game.action="Game?t_gubun=myreview";
-		game.submit();
-	}
+    	function goSignIn() {
+    		game.t_gubun.value ="goSignin";
+    		game.method="post";
+    		game.action="Game";
+    		game.submit();
+		}
+    	function goInfo() {
+    		game.t_gubun.value ="userinfo";
+    		game.t_id.value="${sessionId}";
+    		game.method="post";
+    		game.action="Game";
+    		game.submit();
+		}
+    	function goLogout() {
+    		game.t_gubun.value ="userlogout";
+    		game.method="post";
+    		game.action="Game";
+    		game.submit();
+		}
+    	function goLibrary() {
+    		game.method="post";
+    		game.action="Game?t_gubun=library";
+    		game.submit();
+		}
+    	function goReview() {
+    		game.method="post";
+    		game.action="Game?t_gubun=myreview";
+    		game.submit();
+		}
+    	function goGameRegi() {
+    		game.method = "post";
+    		game.action = "Game?t_gubun=gameRegistForm";
+    		game.submit();
+    	}
+    	function goReview_de() {
+    		game.method = "post";
+    		game.action = "Game?t_gubun=review";
+    		game.submit();
+		}
+    	function nowbuy(a) {
+    		game.t_id.value = a;
+    		if(game.t_id.value ==""){alert("Please Login!");game.method = "post";game.action = "Game?t_gubun=goSignin";game.submit(); return;}
+    		game.method = "post";
+    		game.action = "Game?t_gubun=payment";
+    		game.submit();
+		}
+    	function Contain(a) {
+    		game.t_id.value = a;
+    		if(game.t_id.value ==""){alert("Please Login!");game.method = "post";game.action = "Game?t_gubun=goSignin";game.submit(); return;}
+			$.ajax({
+				 type:"post",
+			  	 url:"Contain",
+			  	 data: {
+			  			t_u_id: game.t_id.value,
+			            t_g_code: game.t_pageNo.value
+			        },
+			  	 dataType:"text",
+			  	 error:function(){
+			  		alert("a");
+			  	 },
+				 success:function(data){ 
+				 	var result = $.trim(data); 
+				 	game.result.value = result;
+					 if(result =="1"){alert("You have added the game to your cart.");}
+					 else if(result =="3"){alert("This game has already been purchased.");}
+					 else if(result =="4"){alert("The game is already in your cart.");}
+					 else{alert("The game is already in your cart or has failed.");}
+				 } 
+			  });
+		}
     </script>
 </head>
 <body>
 	<form name="game">
 	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_money" value="${dto.getG_sale_price()}">
 	<input type="hidden" name="t_pageNo" value="${dto.getS_page_no()}">
 	<input type="hidden" name="t_id">
+	<input type="hidden" name="result">
 	</form>
     <header class="header" id="header">
         <div class="header-content">
@@ -62,10 +110,10 @@
 	<nav class="menu" id="menu">
     <ul>
         <li><a href="Game">STORE</a></li>
-		<li class="community-menu">
+        <li class="community-menu">
             <a href="#">COMMUNITY</a>
             <ul class="category-dropdown">
-                <li><a href="javascript:goReview()">Review</a></li>
+                <li><a href="Game?t_gubun=myreview">Review</a></li>
                 <li><a href="#">News</a></li>
             </ul>
         </li>
@@ -93,7 +141,7 @@
             <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </nav>
-</div>
+        </div>
 </header>
 
     <!-- 메인 컨테이너 -->
@@ -113,9 +161,9 @@
             <div class="media-gallery" id="media-gallery">
                 <img src="img/intro.gif" alt="video 1 썸네일" data-video-src="video/intro.mp4">
                 <img src="img/intro.gif" alt="video 2 썸네일" data-video-src="video/intro.mp4">
-                <img src="img/${dto.getS_page_no()}/2.jpg" alt="img 1">
-                <img src="img/${dto.getS_page_no()}/3.jpg" alt="img 2">
-                <img src="img/${dto.getS_page_no()}/4.jpg" alt="img 3">
+                <img src="img/${dto.getS_page_no()}/${dto.getS_img_1()}" alt="img 1">
+                <img src="img/${dto.getS_page_no()}/${dto.getS_img_2()}" alt="img 2">
+                <img src="img/${dto.getS_page_no()}/${dto.getS_img_3()}" alt="img 3">
             </div>
             <button class="gallery-nav next" id="next-btn">&gt;</button>
         </div>
@@ -126,15 +174,35 @@
             <div class="details-content" id="details-content">
                 <p>${dto.getS_info_txt()}</p>
             </div>
-            <button class="toggle-btn" id="toggle-btn" onclick="toggleContent()">READ MORE</button>
+            <button class="toggle-btn" id="toggle-btn" onclick="toggleContent()">Read More</button>
         </div>
+        
+        <!-- 리뷰 섹션 -->
+		<div class="review-section">
+		    <h3>Game Reviews</h3>
+		    <div class="review-container">
+		        <!-- 좋은 리뷰 -->
+		        <div class="good-review">
+		            <p>"This game is fantastic! The graphics and gameplay are top-notch."</p>
+		            <p>- User123</p>
+		        </div>
+		        <!-- 나쁜 리뷰 -->
+		        <div class="bad-review">
+		            <p>"I found the game too difficult and frustrating at times."</p>
+		            <p>- GamerXYZ</p>
+		        </div>
+		    </div>
+		    <button class="toggle-btn" id="toggle-btn" onclick="goReview_de()">Review More</button>
+		</div>
+
+        
     </div>
 
     <!-- 오른쪽 섹션 (백그라운드를 게임 상세정보와 함께 감싸기) -->
     <div class="right-section-container">
         <div class="info-section">
             <div class="game-logo">
-                <img src="img/${dto.getS_page_no()}/icon.png" alt="게임 로고" width="100%">
+                <img src="img/${dto.getS_page_no()}/${dto.getS_icon()}" alt="게임 로고" width="100%">
             </div>
             <!-- 전체 이용가 표시 -->
             <div class="rating-section">
@@ -146,20 +214,35 @@
                 <h3>${dto.getG_grade()}</h3>
             </div>
             <div class="price-section">
-            <c:if test="${dto.getG_price() eq'0'}"><div class="discounted-price" style="color: #00e676;">Free!</div></c:if>
-            
-            <c:if test="${dto.getG_price() ne '0'}">
-            	<c:if test="${dto.getS_sale() ne '0'}">
-                	<div class="original-price" style="color: gray; text-decoration: line-through;">$${dto.getG_price()}</div>
-                	<div class="discounted-price" style="color: #00e676;">$${dto.getG_sale_price()}</div>
-                	<div class="discount-rate" style="color: red;">-${dto.getS_sale()}%</div>
-            	</c:if>
-            	<c:if test="${dto.getS_sale() eq '0'}"><div class="discounted-price" style="color: #00e676;">$${dto.getG_price()}</div>
-            	</c:if>
-            </c:if>
-            </div>
-            <button class="btn buy-btn">Now Buy</button>
-            <button class="btn cart-btn">Add to Cart</button>
+			    <c:if test="${dto.getG_price() eq '0'}">
+			        <div class="discounted-price">Free!</div>
+			    </c:if>
+			    
+			    <c:if test="${dto.getG_price() ne '0'}">
+			        <c:if test="${dto.getS_sale() ne '0'}">
+			            <div class="price-wrapper">
+			                <div class="original-price">
+			                    $${dto.getG_price()}
+			                </div>
+			                <div class="discounted-price">
+			                    $${dto.getG_sale_price()}
+			                </div>
+			            </div>
+			            <div class="discount-rate">
+			                -${dto.getS_sale()}%
+			            </div>
+			        </c:if>
+			        
+			        <c:if test="${dto.getS_sale() eq '0'}">
+			            <div class="discounted-price">
+			                $${dto.getG_price()}
+			            </div>
+			        </c:if>
+			    </c:if>
+			</div>
+
+            <button class="btn buy-btn" onclick="nowbuy('${sessionId}')">Now Buy</button>
+            <button class="btn cart-btn" onclick="Contain('${sessionId}')">Add to Cart</button>
             <div class="system-requirements">
                 <h4>System Requirements</h4>
                 <ul>
