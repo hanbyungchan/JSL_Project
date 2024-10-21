@@ -117,14 +117,14 @@
 </ul>
 </nav>
 <nav>
-<div class="icons">
-    <div class="search-box" id="search-box">
-        <input type="text" placeholder="Search...">
-    </div>
-    <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
-    <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
-</div>
-</nav>
+        <div class="icons">
+            <div class="search-box" id="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+            <a href="Search"><i class="fas fa-search"></i></a>
+            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </nav>
 </div>
 </header>
 

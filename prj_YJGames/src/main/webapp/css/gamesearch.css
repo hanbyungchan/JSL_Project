@@ -218,6 +218,9 @@ span {
 }
 
 .result-title {
+	white-space: nowrap; /* 줄 바꿈을 방지 */
+    overflow: hidden;    /* 넘치는 부분 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 부분을 ...으로 표시 */
     margin: 0px 0 10px 0;
 }
 

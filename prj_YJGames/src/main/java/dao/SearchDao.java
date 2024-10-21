@@ -60,7 +60,7 @@ public class SearchDao {
 					"and round((g.g_price *((100-s.s_sale)/100)),2) <= "+price+" --n 달러 이하--\r\n" + 
 					"order by to_number('g_code') asc";
 		}
-		System.out.println("query: "+query);
+//		System.out.println("query: "+query);
 		RowMapper<SearchDto> searchDtos = new BeanPropertyRowMapper<>(SearchDto.class);
 		ArrayList<SearchDto> dtos = (ArrayList<SearchDto>) temp.query(query, searchDtos);
 		

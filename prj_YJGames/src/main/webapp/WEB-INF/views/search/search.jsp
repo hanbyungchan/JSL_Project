@@ -156,11 +156,18 @@
                             <img src="img/${dto.getG_code()}/${dto.getS_img_main()}" alt="카테고리 이미지 1" />
                         </span>
                         <p class="result-title">${dto.getG_name()}</p>
-                        <p class="search-price-box">
-                            <span class="search-discount-rate">-${dto.getS_sale()}%%</span>
-                            <span class="search-discounted-price">$${dto.getG_sale_price()}</span>
-                            <span class="search-original-price">$${dto.getG_price()}</span>
-                        </p>
+                        <c:if test="${dto.getS_sale() ne '0'}">
+                        	<p class="search-price-box">
+                            	<span class="search-discount-rate">-${dto.getS_sale()}%%</span>
+                            	<span class="search-discounted-price">$${dto.getG_sale_price()}</span>
+                            	<span class="search-original-price">$${dto.getG_price()}</span>
+                        	</p>
+                        </c:if>
+                        <c:if test="${dto.getS_sale() eq '0'}">
+                        	<p class="search-price-box">
+                            	<span class="search-discounted-price">$${dto.getG_price()}</span>
+                        	</p>
+                        </c:if>
                     </a>
                 </div>
                 </c:if>
