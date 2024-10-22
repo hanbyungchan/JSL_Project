@@ -17,18 +17,8 @@
         <!-- Font Awesome 아이콘 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script type="text/javascript">
+    
 	function goSearch(){//새로고침 하면서 보낸 정보만을 정렬하게끔
-		
-		
-		
-		/* for(var i=0; i<srch.elements['t_genre'].length; i++){
-	    	if(srch.elements['t_genre'][i].checked){
-	    		alert(srch.elements['t_genre'][i].value);
-	    		checkBoxData[i] = srch.elements['t_genre'][i].value;
-	    	}
-		} */
-		
-		
 		srch.method="post";
 		srch.action="Search";
 		srch.submit();
