@@ -214,15 +214,22 @@ span {
     font-size: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
+    
 }
 
 .result-title {
+	white-space: nowrap; /* 줄 바꿈을 방지 */
+    overflow: hidden;    /* 넘치는 부분 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 부분을 ...으로 표시 */
     margin: 0px 0 10px 0;
 }
 
 .game-result span {
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.game-result a{
+	text-decoration: none;
 }
 
 .search-price-box {

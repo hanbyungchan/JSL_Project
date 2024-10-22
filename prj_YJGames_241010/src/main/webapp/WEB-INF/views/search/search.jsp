@@ -16,30 +16,7 @@
 
         <!-- Font Awesome 아이콘 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    </head>
-    <body>
-        <header class="header" id="header">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/logo.png" alt="사이트 로고" />
-                </div>
-                <nav class="menu" id="menu">
-                    <ul>
-                        <li><a href="#">STORE</a></li>
-                        <li><a href="#">COMMUNITY</a></li>
-                        <li><a href="#">SUPPORT</a></li>
-                        <li><a href="#">Ex</a></li>
-                        <li><a href="#">SIGN IN</a></li>
-                    </ul>
-                </nav>
-                <div class="icons">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-            </div>
-        </header>
-
-<script type="text/javascript">
+    <script type="text/javascript">
 	function goSearch(){//새로고침 하면서 보낸 정보만을 정렬하게끔
 		
 		
@@ -57,15 +34,95 @@
 		srch.submit();
 	}
 	function goViewStore(no){
-		srch.t_storeNo.value=no;
-		//srch.t_gubun.value="";
-		srch.method="post";
-		srch.action="";//view 링크 달 것. t_gubun 필요하면 위의 주석 이용
-		srch.submit();
+		game.t_pageNo.value=no;
+		game.method="post";
+		game.action="Game?t_gubun=view";//view 링크 달 것. t_gubun 필요하면 위의 주석 이용
+		game.submit();
 	}
-
+	function goSignIn() {
+		game.method="post";
+		game.action="Game?t_gubun=goSignin";
+		game.submit();	
+	}
+	function goInfo() {
+		game.t_id.value="${sessionId}";
+		game.method="post";
+		game.action="Game?t_gubun=userinfo";
+		game.submit();
+	}
+	function goLogout() {
+		game.method="post";
+		game.action="Game?t_gubun=userlogout";
+		game.submit();
+	}
+	function goLibrary() {
+		game.t_gubun.value ="library";
+		game.method="post";
+		game.action="Game?t_gubun=library";
+		game.submit();
+	}
+	function goReview() {
+		game.method="post";
+		game.action="Game?t_gubun=myreview";
+		game.submit();
+	}
+	function goGameRegi() {
+		game.method = "post";
+		game.action = "Game?t_gubun=gameRegistForm";
+		game.submit();
+	}
 </script>
-
+    </head>
+    <body>
+        <form name="game">
+	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_pageNo">
+	<input type="hidden" name="t_id">
+	<input type="hidden" name="result">
+	</form>
+	<header class="header" id="header">
+    <div class="header-content">
+        <div class="logo">
+            <img src="img/logo.png" alt="사이트 로고" >
+        </div>
+        
+<nav class="menu" id="menu">
+    <ul>
+        <li><a href="Game">STORE</a></li>
+		<li class="community-menu">
+            <a href="#">COMMUNITY</a>
+            <ul class="category-dropdown">
+                <li><a href="Game?t_gubun=myreview">Review</a></li>
+                <li><a href="#">News</a></li>
+            </ul>
+        </li>
+        <li><a href="Game?t_gubun=support">SUPPORT</a></li>
+        <c:if test="${sessionId eq null}">
+            <li><a href="Game?t_gubun=goSignin">SIGN IN</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goInfo()">MyInfo</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goLogout()">Logout</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}">
+            <li><a href="javascript:goLibrary()">Library</a></li>
+        </c:if>
+        <c:if test="${sessionId ne null}"><li><a href="javascript:goGameRegi()">Game Regist</a></li></c:if>
+    </ul>
+	</nav>
+	<nav>
+        <div class="icons">
+            <div class="search-box" id="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+            <a href="Search"><i class="fas fa-search"></i></a>
+            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </nav>
+    </div>
+	</header>
         <div class="main-image">
             <img src="img/main-image.jpg" alt="메인 이미지" />
         </div>
@@ -83,7 +140,7 @@
                 <div class="game-result">
                     <a href="javascript:goViewStore('${dto.getS_page_no()}')">
                         <span class="img">
-                            <img src="img/${dto.getG_code()}/${dto.getG_file()}" alt="카테고리 이미지 1" />
+                            <img src="img/${dto.getG_code()}/${dto.getS_img_main()}" alt="카테고리 이미지 1" />
                         </span>
                         <p class="result-title">${dto.getG_name()}</p>
                         <p class="search-price-box">
@@ -96,14 +153,21 @@
                 <div class="game-result">
                     <a href="javascript:goViewStore('${dto.getS_page_no()}')">
                         <span class="img">
-                            <img src="img/${dto.getG_code()}/${dto.getG_file()}" alt="카테고리 이미지 1" />
+                            <img src="img/${dto.getG_code()}/${dto.getS_img_main()}" alt="카테고리 이미지 1" />
                         </span>
                         <p class="result-title">${dto.getG_name()}</p>
-                        <p class="search-price-box">
-                            <span class="search-discount-rate">-${dto.getS_sale()}%%</span>
-                            <span class="search-discounted-price">$${dto.getG_sale_price()}</span>
-                            <span class="search-original-price">$${dto.getG_price()}</span>
-                        </p>
+                        <c:if test="${dto.getS_sale() ne '0'}">
+                        	<p class="search-price-box">
+                            	<span class="search-discount-rate">-${dto.getS_sale()}%%</span>
+                            	<span class="search-discounted-price">$${dto.getG_sale_price()}</span>
+                            	<span class="search-original-price">$${dto.getG_price()}</span>
+                        	</p>
+                        </c:if>
+                        <c:if test="${dto.getS_sale() eq '0'}">
+                        	<p class="search-price-box">
+                            	<span class="search-discounted-price">$${dto.getG_price()}</span>
+                        	</p>
+                        </c:if>
                     </a>
                 </div>
                 </c:if>

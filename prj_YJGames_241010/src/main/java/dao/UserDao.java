@@ -122,4 +122,14 @@ public class UserDao {
         
         return encryptData;
     }
+    //카드 충전,결제
+    public int Payment(String id, Double money) {
+    int result = 0;
+	String query = "UPDATE KYJ_USER \r\n" + 
+			"SET U_MONEY = '"+money+"'\r\n" + 
+			"where u_id = '"+id+"'";		
+	try {result = temp.update(query);} 
+	catch (Exception e) {System.out.println("Card_recharge() 메소드 오류" + query);}
+	return result;
+	}
 }

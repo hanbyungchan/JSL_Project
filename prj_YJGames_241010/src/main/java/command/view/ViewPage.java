@@ -1,7 +1,5 @@
 package command.view;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 
 import common.CommonExecute;
@@ -15,7 +13,6 @@ public class ViewPage implements CommonExecute {
 		GameDao dao = new GameDao();
 		
 		String no = req.getParameter("t_pageNo");
-		//nothing2
 		
 		ViewDto dto = dao.StorePageView(Integer.parseInt(no));
 		req.setAttribute("dto", dto);

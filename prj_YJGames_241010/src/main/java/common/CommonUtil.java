@@ -6,6 +6,11 @@ import java.util.Date;
 
 public class CommonUtil {
 	//자료실 폴더 경로
+	public static String GameFileDir() {
+		String dir ="C:/Users/admin/Desktop/track 16기_한병찬/TeamP";
+		return dir;
+	}
+	//자료실 폴더 경로
 	public static String getPdsDir() {
 		String dir ="E:/Track16기_김여준/java_project/homepage_one/WebContent/attach/pds";
 		return dir;
@@ -17,7 +22,7 @@ public class CommonUtil {
 	}
 	public static String getToday() {
 		Date time = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String today = sdf.format(time);
 		return today;
 	}

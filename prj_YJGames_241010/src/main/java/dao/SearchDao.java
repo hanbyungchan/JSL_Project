@@ -32,10 +32,10 @@ public class SearchDao {
 		//System.out.println("g_text1: "+genreTxt);
 		
 		//장르검색 query
-		String query="select tbl.g_code, tbl.g_name, tbl.g_developer, tbl.g_grade, tbl.s_page_no, tbl.g_price, tbl.s_sale, tbl.g_sale_price, tbl.g_file\r\n" + 
+		String query="select tbl.g_code, tbl.g_name, tbl.g_developer, tbl.g_grade, tbl.s_page_no, tbl.g_price, tbl.s_sale, tbl.g_sale_price, tbl.g_file, tbl.s_img_main\r\n" + 
 				"from(\r\n" + 
 				"select g.g_code, g.g_name, g.g_developer, g.g_grade, s.s_page_no, g.g_price, g.g_file,\r\n" + 
-				"s.s_sale, round((g.g_price *((100-s.s_sale)/100)),2) as g_sale_price\r\n" + 
+				"s.s_sale, round((g.g_price *((100-s.s_sale)/100)),2) as g_sale_price, s.s_img_main\r\n" + 
 				"from KYJ_STORE_PAGE s, KYJ_GAME g\r\n" + 
 				"where s.s_game_code = g.g_code\r\n" + 
 				"and (g.g_name like '%"+search_txt+"%' or g.g_developer like '%"+search_txt+"%')\r\n" + 
@@ -53,7 +53,7 @@ public class SearchDao {
 				"ORDER BY to_number(g_code) asc";
 		if(genre.length==0) {////장르검색 아닌 경우의 query
 			query="select g.g_code, g.g_name, g.g_developer, g.g_grade, s.s_page_no, g.g_price, g.g_file,\r\n" + 
-					"s.s_sale, round((g.g_price *((100-s.s_sale)/100)),2) as g_sale_price\r\n" + 
+					"s.s_sale, round((g.g_price *((100-s.s_sale)/100)),2) as g_sale_price,s.s_img_main\r\n" + 
 					"from KYJ_STORE_PAGE s, KYJ_GAME g\r\n" + 
 					"where s.s_game_code = g.g_code\r\n" + 
 					"and (g.g_name like '%"+search_txt+"%' or g.g_developer like '%"+search_txt+"%')\r\n" + 

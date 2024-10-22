@@ -1,7 +1,7 @@
 package dto;
 
 public class SearchDto {
-	private String g_code, g_name, g_developer, g_grade, genre_code, genre_name, s_page_no, g_file;
+	private String g_code, g_name, g_developer, g_grade, genre_code, genre_name, s_page_no, g_file,s_img_main;
 	private double g_price, s_sale, g_sale_price;
 	
 	public SearchDto() {}
@@ -89,7 +89,12 @@ public class SearchDto {
 	public void setS_sale(double s_sale) {
 		this.s_sale = s_sale;
 	}
-	
+	public String getS_img_main() {
+		return s_img_main;
+	}
+	public void setS_img_main(String s_img_main) {
+		this.s_img_main = s_img_main;
+	}
 	
 	
 }
