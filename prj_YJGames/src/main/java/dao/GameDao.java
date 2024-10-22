@@ -265,6 +265,7 @@ public class GameDao {
 				"values\r\n" + 
 				"('"+dto.getGenre_code()+"','"+dto.getG_code()+"')";
 		
+		
 		try {
 			result = temp.update(query1);
 			result += temp.update(query2); 

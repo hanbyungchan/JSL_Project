@@ -97,7 +97,7 @@
     <body>
         <form name="game">
             <input type="hidden" name="t_gubun">
-            <input type="hidden" name="t_pageNo">
+            <input type="hidden" name="t_s_pageNo">
             <input type="hidden" name="t_id">
             </form>
             <header class="header" id="header">
@@ -158,13 +158,13 @@
         <!-- ================================================================== -->	
         
         <form name = "store_regi" enctype="multipart/form-data">
-            <div class="g_regist">
+            <section class="g_regist">
                 <h2>Store Registration</h2>
-                        <input type = "hidden" name = "t_s_page_no" value = "${s_page_no}">
-                <tr>
-                    <th>Game Name</th>
-      				<td>
-       					<select name="t_s_game_name" id="">
+                <input type = "hidden" name = "t_s_page_no" value = "${s_page_no}">
+                <div class="formgroup">
+                    <label for="game name">Game Name</label>
+      				<div class="input-wrapper">
+       					<select name="t_s_game_name">
             				<c:choose>
                 				<c:when test="${not empty dtos}">
                     				<c:forEach items="${dtos}" var="dto">
@@ -176,33 +176,29 @@
                 				</c:otherwise>
             				</c:choose>
         				</select>
-    				</td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Info</th>
-                    <td>
-                        <textarea name = "t_s_info_txt"></textarea>
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Release Date</th>
-                    <td>
-                        <input type = "text" name = "t_s_date">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Sale</th>
-                    <td>
+    				</div>
+                </div>
+                <div class="formgroup">
+                    <label for="info">Info</label>
+                    <div class="input-wrapper">
+                        <textarea name = "t_s_info_txt" class="textarea"></textarea>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="release date">Release Date</<label>
+                    <div class="input-wrapper">
+                        <input type = "text" name = "t_s_date" placeholder="20230325">
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="sale">Sale</<label>
+                    <div class="input-wrapper">
                         <input type = "text" name = "t_s_sale">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Requirment OS</th>
-                    <td>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="os">Requirment OS</label>
+                    <div class="input-wrapper">
                     	<select name = "t_s_spec_1">
                     		<option value = "Window xp/vista">Window xp/vista</option>
                     		<option value = "Window 7/vista">Window 7/vista</option>
@@ -211,96 +207,91 @@
                     		<option value = "Window 11/10">Window 11/10</option>
                     		<option value = "Window 11/10 64 bit">Window 11/10 64 bit</option>
                     	</select>
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Requirment CPU</th>
-                    <td>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="cpu">Requirment CPU</label>
+                    <div class="input-wrapper">
                         <input type = "text" name = "t_s_spec_2">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Requirment RAM</th>
-                    <td>
-                        <input type = "text" name = "t_s_spec_3">GB RAM
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Requirment GPU</th>
-                    <td>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="ram">Requirment RAM</label>
+                    <div class="input-wrapper">
+                        <input type = "text" name = "t_s_spec_3"> GB RAM
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="gpu">Requirment GPU</label>
+                    <div class="input-wrapper">
                         <input type = "text" name = "t_s_spec_4">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Requirment Storage</th>
-                    <td>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="storage">Requirment Storage</label>
+                    <div class="input-wrapper">
                         <input type = "text" name = "t_s_spec_5"> available space
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game IMG Main</th>
-                    <td>
-                        <input type = "file" name = "t_s_img_main">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game IMG 1</th>
-                    <td>
-                        <input type = "file" name = "t_s_img_1">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game IMG 2</th>
-                    <td>
-                        <input type = "file" name = "t_s_img_2">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game IMG 3</th>
-                    <td>
-                        <input type = "file" name = "t_s_img_3">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game Icon</th>
-                    <td>
-                        <input type = "file" name = "t_s_icon">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game Video 1</th>
-                    <td>
-                        <input type = "file" name = "t_s_video_1">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game Video 2</th>
-                    <td>
-                        <input type = "file" name = "t_s_video_2">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game Video 3</th>
-                    <td>
-                        <input type = "file" name = "t_s_video_3">
-                    </td>
-                </tr>
-                <br>
-                <input type = "button" onclick="goRegi()" value = "Registration">
-                <input type = "button" onclick="goBack()" value = "Cancel">
-            </div>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="game_img_main">Game IMG Main</label><br>
+                    <input type = "file" name = "t_s_img_main" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
+    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+                <div class="formgroup">
+                    <label for="game_img_1">Game IMG 1</label><br>
+                    <input type = "file" name = "t_s_img_1" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
+                    <button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+                <div class="formgroup">
+                    <label for="game_img_2">Game IMG 2</label><br>
+                    <input type = "file" name = "t_s_img_2" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
+                    <button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+                <div class="formgroup">
+                    <label for="game_img_3">Game IMG 3</label><br>
+                    <input type = "file" name = "t_s_img_3" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
+    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+                <div class="formgroup">
+                    <label for="game_icon">Game Icon</label><br>
+                    <input type = "file" name = "t_s_icon" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+					<input type="text" id="file-name" placeholder="No file chosen" readonly>
+    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+                <div class="formgroup">
+                    <label for="game_video_1">Game Video 1</label><br>
+					<input type = "file" name = "t_s_video_1" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+					<input type="text" id="file-name" placeholder="No file chosen" readonly>
+    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+                <div class="formgroup">
+                    <label for="game_video_2">Game Video 2</label><br>
+					<input type = "file" name = "t_s_video_2" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+					<input type="text" id="file-name" placeholder="No file chosen" readonly>
+    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+                <div class="formgroup">
+                    <label for="game_video_3">Game Video 3</label><br>
+                    <input type = "file" name = "t_s_video_3" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
+    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+                </div>
+<script>
+function updateFileName(input) {
+    const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
+    document.getElementById("file-name").value = fileName;
+}
+</script>                
+                <div class="button-container">
+                <input type = "button" onclick="goRegi()" value = "Registration" class="buttons">
+                <input type = "button" onclick="goBack()" value = "Cancel" class="buttons">
+                </div>
+            </section>
         </form>
 
 

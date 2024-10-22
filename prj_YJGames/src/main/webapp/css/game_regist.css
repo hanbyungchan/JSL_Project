@@ -1,10 +1,72 @@
 .g_regist {
-    width: 60%;
+    width: 70%;
     height: auto;
     margin: auto;
     border: 1px solid red;
-    text-align: center;
+    text-align: left; /* Change to left align text */
     font-size: 3em;
     color: white;
-    
+    background-color: #333; /* Ensure this matches your background color */
+    padding: 20px; /* Add some padding around the section */
+}
+
+.formgroup {
+    margin: 20px 0; /* Space above and below each form group */
+}
+
+.input-wrapper {
+    margin-top: 10px; /* Move the input down a bit */
+}
+
+.textarea {
+    width: 59%;  /* Increase width to 80% of the parent element */
+    height: 300px;  /* Set a fixed height in pixels or any other unit */
+    padding: 10px; /* Optional: Add some padding for better usability */
+    font-size: 16px; /* Optional: Adjust font size for readability */
+    resize: none;  /* Disable resizing */
+}
+.genre-options {
+	font-size:25px;
+    display: grid; /* Use grid layout for genres */
+    grid-template-columns: repeat(4, 1fr); /* Create 5 equal columns */
+    gap: 10px; /* Add some space between the genre checkboxes */
+}
+
+.genre-options label {
+    display: flex; /* Align checkbox and label text */
+    align-items: center; /* Center the checkbox and text vertically */
+    font-size: 1.2em; /* Increase font size for better visibility */
+}
+
+.genre-options input[type="checkbox"] {
+    /* Increase the size of the checkbox */
+    width: 25px; /* Set the width */
+    height: 25px; /* Set the height */
+    margin-left:10px;
+    margin-right: 10px; /* Space between checkbox and label */
+}
+
+input[type="text"],
+input[type="file"],
+select {
+    width: 60%; /* Make input slightly smaller, adjust as needed */
+    padding: 1px; /* Reduce padding for a smaller height */
+    font-size: 30px; /* Decrease font size for a more compact look */
+    border: 1px solid #ccc; /* Optional: Keep a border */
+    border-radius: 5px; /* Optional: Keep rounded corners */
+    box-sizing: border-box; /* Ensure padding doesn't affect total width */
+}
+
+.button-container {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center items horizontally */
+    margin-top: 20px; /* Add some space above */
+}
+
+
+.buttons {
+	width: 120px;
+    text-align: center; /* Center align the text (buttons) */
+    margin-top: 20px; /* Add some space above */
+    margin-left: 15px;
 }

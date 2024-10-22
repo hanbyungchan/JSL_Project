@@ -151,7 +151,7 @@ public class GameController {
 				ArrayList<GameRegiDto> dtos = dao.GameSelectList(sessionName);
 				req.setAttribute("s_page_no", s_page_no);
 				req.setAttribute("dtos", dtos);
-				CommonExecute game = new StoreRegist();
+				CommonExecute game = new IndexList();
 				game.execute(req);
 				viewPage = "registration/store_regist";
 			//상점 페이지 등록
