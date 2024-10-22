@@ -1,14 +1,42 @@
 package dto;
 
 public class StoreRegiDto {
-	static String s_page_no, s_game_code, s_game_name, s_info_txt, s_date,
+	 String s_page_no, s_game_code, s_game_name, s_info_txt, s_date,
 		   s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5,
 		   s_img_main, s_img_1, s_img_2, s_img_3, s_icon,
 		   s_video_1,s_video_2,s_video_3; 
-	static int s_sale;
+	 int s_sale;
 	
 	
 	public StoreRegiDto() {}
+
+
+	
+	public StoreRegiDto(String s_page_no, String s_game_code, String s_game_name, String s_info_txt, String s_date,
+			String s_spec_1, String s_spec_2, String s_spec_3, String s_spec_4, String s_spec_5, String s_img_main,
+			String s_img_1, String s_img_2, String s_img_3, String s_icon, String s_video_1, String s_video_2,
+			String s_video_3, int s_sale) {
+		this.s_page_no = s_page_no;
+		this.s_game_code = s_game_code;
+		this.s_game_name = s_game_name;
+		this.s_info_txt = s_info_txt;
+		this.s_date = s_date;
+		this.s_spec_1 = s_spec_1;
+		this.s_spec_2 = s_spec_2;
+		this.s_spec_3 = s_spec_3;
+		this.s_spec_4 = s_spec_4;
+		this.s_spec_5 = s_spec_5;
+		this.s_img_main = s_img_main;
+		this.s_img_1 = s_img_1;
+		this.s_img_2 = s_img_2;
+		this.s_img_3 = s_img_3;
+		this.s_icon = s_icon;
+		this.s_video_1 = s_video_1;
+		this.s_video_2 = s_video_2;
+		this.s_video_3 = s_video_3;
+		this.s_sale = s_sale;
+	}
+
 
 
 	public String getS_page_no() {

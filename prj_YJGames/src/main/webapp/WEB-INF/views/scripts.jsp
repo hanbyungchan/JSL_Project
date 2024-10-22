@@ -30,4 +30,9 @@
     		game.action = "Game?t_gubun=gameRegistForm";
     		game.submit();
     	}
+    	function goStoreRegi() {
+    		game.method = "post";
+    		game.action = "Game?t_gubun=storeRegistForm";
+    		game.submit();
+    	}
     </script>

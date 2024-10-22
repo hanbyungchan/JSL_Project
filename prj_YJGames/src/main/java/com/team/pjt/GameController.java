@@ -17,6 +17,7 @@ import command.cart.CartList;
 import command.cart.Payment;
 import command.game.GameRegist;
 import command.game.IndexList;
+import command.game.StoreRegist;
 import command.library.LibraryDetail;
 import command.library.LibraryList;
 import command.review.MyReviewList;
@@ -36,6 +37,7 @@ import common.CommonExecute;
 import common.CommonTemplate;
 import dao.GameDao;
 import dao.UserDao;
+import dto.GameRegiDto;
 
 @Controller
 public class GameController {
@@ -134,10 +136,38 @@ public class GameController {
 			//구매
 			else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
 			//게임 등록폼
-			else if(gubun.equals("gameRegistForm")) {GameDao dao = new GameDao();String g_code = dao.AutoNo();req.setAttribute("g_code", g_code);viewPage = "registration/game_regist";}
+			else if(gubun.equals("gameRegistForm")) {
+				GameDao dao = new GameDao();
+				String g_code = dao.AutoCode();
+				ArrayList<GameRegiDto> dtos = dao.genreCheckList();
+				req.setAttribute("g_code", g_code);
+				req.setAttribute("dtos", dtos);
+				CommonExecute game = new IndexList();
+				game.execute(req);
+				viewPage = "registration/game_regist";
 			//게임 등록
-			 else if(gubun.equals("gameRegist")) {CommonExecute game = new GameRegist();game.execute(req);viewPage = "common_alert";}
-			
+			} else if(gubun.equals("gameRegist")) {
+				CommonExecute game = new GameRegist();
+				game.execute(req);
+				viewPage = "common_alert";
+			//상점 페이지 등록폼
+			} else if(gubun.equals("storeRegistForm")) {
+				GameDao dao = new GameDao();
+				HttpSession session = req.getSession();
+		        String sessionName = (String) session.getAttribute("sessionName");
+				String s_page_no = dao.AutoNo();
+				ArrayList<GameRegiDto> dtos = dao.GameSelectList(sessionName);
+				req.setAttribute("s_page_no", s_page_no);
+				req.setAttribute("dtos", dtos);
+				CommonExecute game = new IndexList();
+				game.execute(req);
+				viewPage = "registration/store_regist";
+			//상점 페이지 등록
+			} else if(gubun.equals("storeRegist")) {
+				CommonExecute game = new StoreRegist();
+				game.execute(req);
+				viewPage = "common_alert";
+			}
 			return viewPage;
 	}
 	//id중복체크

@@ -31,6 +31,7 @@
             <li><a href="javascript:goLibrary()">Library</a></li>
         </c:if>
         <c:if test="${sessionId ne null}"><li><a href="javascript:goGameRegi()">Game Regist</a></li></c:if>
+        <c:if test="${sessionId ne null}"><li><a href="javascript:goStoreRegi()">Store Regist</a></li></c:if>
     </ul>
 	</nav>
 	<nav>

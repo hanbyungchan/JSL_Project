@@ -126,6 +126,22 @@ h3 {
     outline: none;
     box-shadow: 0 0 5px 2px rgba(102, 192, 244, 0.6); 
 }
+.answerText {
+    background-color: #2a475e; /* 배경색 */
+    color: #c7d5e0; /* 텍스트 색상 */
+    border: 1px solid #388E3C; /* 테두리 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    padding: 10px; /* 내부 여백 */
+    width: 100%; /* 가로 길이를 100%로 설정 */
+    min-width: 80%; /* 최소 가로 길이 */
+    font-size: 14px; /* 글자 크기 */
+    resize: none; /* 크기 조절 불가 */
+    margin-top: 5px; /* 버튼과 textarea 사이 간격 */
+}
+
+.answerText.hidden {
+    display: none; /* 기본적으로 숨김 */
+}
 #gamesButtons button,#purButtons button, #userButtons button {
     background-color: #4CAF50; /* 배경색 */
     color: white; /* 텍스트 색상 */
@@ -144,3 +160,53 @@ h3 {
 #userButtons button:hover {
     background-color: #45a049; /* 호버 시 색상 변화 */
 }
+#questionForm {
+    background-color: #2a475e; /* 배경색 */
+    color: #c7d5e0; /* 텍스트 색상 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 20px; /* 내부 여백 */
+    margin-top: 10px; /* 버튼과 폼 사이 간격 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}
+
+#questionForm h3 {
+    margin-bottom: 15px; /* 제목과 입력 필드 사이 간격 */
+    font-size: 1.5em; /* 제목 크기 */
+    color: #66c0f4; /* 제목 색상 */
+}
+
+#questionForm input,
+#questionForm select,
+#questionForm textarea {
+    width: calc(100% - 20px); /* 패딩을 고려한 너비 */
+    margin-bottom: 15px; /* 입력 필드 사이 간격 */
+    padding: 12px; /* 내부 여백 */
+    border: 1px solid #388E3C; /* 테두리 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    background-color: #ffffff; /* 흰색 배경 */
+    color: #333333; /* 어두운 텍스트 색상 */
+    font-size: 14px; /* 글자 크기 */
+    transition: border-color 0.3s ease; /* 테두리 색상 변화 애니메이션 */
+}
+
+#questionForm input:focus,
+#questionForm select:focus,
+#questionForm textarea:focus {
+    border-color: #66c0f4; /* 포커스 시 테두리 색상 변경 */
+    outline: none; /* 기본 포커스 아웃라인 제거 */
+}
+
+#submitQuestion {
+    background-color: #66c0f4; /* 제출 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    padding: 12px; /* 내부 여백 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 커서 포인터 */
+    font-size: 16px; /* 글자 크기 */
+    transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
+}
+
+#submitQuestion:hover {
+    background-color: #45a049; /* 호버 시 배경색 변경 */
+}}
