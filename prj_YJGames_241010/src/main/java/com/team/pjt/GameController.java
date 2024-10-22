@@ -46,12 +46,30 @@ public class GameController {
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
+	
+	//뉴스 상세보기
+	@RequestMapping("NewsView")
+	public String NewsView(HttpServletRequest req) {
+		CommonExecute news = new command.news.NewsView();
+		news.execute(req);
+		return"news/news_view";
+	}
+	//게임사별 뉴스 목록을 게임 라이브러리 따위에 띄운다면 그쪽에서 호출해줘야됨.
+	//뉴스 게시판
+	@RequestMapping("News")
+	public String News(HttpServletRequest req) {
+		CommonExecute news = new command.news.News();
+		news.execute(req);
+		return"news/news";
+	}
+	
 	@RequestMapping("Search")
 	public String Search(HttpServletRequest req) {
 		CommonExecute game = new command.search.Search();
 		game.execute(req);
 		return"search/search";
 	}
+	
 	@RequestMapping("Game")
 	public String Game(HttpServletRequest req) {
 			String gubun = req.getParameter("t_gubun");
