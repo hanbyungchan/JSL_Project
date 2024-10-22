@@ -1,20 +1,3 @@
-//=============================================================================
-
-document.getElementById('search-icon').addEventListener('click', function(event) {
-    event.preventDefault(); // 기본 동작 방지
-    const searchBox = document.getElementById('search-box');
-    
-    // 검색창의 active 상태를 토글
-    if (searchBox.classList.contains('active')) {
-        searchBox.classList.remove('active');
-    } else {
-        searchBox.classList.add('active');
-    }
-});
-
-//=============================================================================
-
-
 window.addEventListener('scroll', function() {
     const header = document.getElementById('header');
     if (window.scrollY > 50) {
@@ -23,7 +6,6 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
     }
 });
-
 //=============================================================================
 
 document.addEventListener('DOMContentLoaded', function () {

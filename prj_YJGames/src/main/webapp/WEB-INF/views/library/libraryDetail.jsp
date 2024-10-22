@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -77,6 +77,9 @@
     		game.action = "Game?t_gubun=review";
     		game.submit();
 		}
+    	function goToMoreNews() {
+    	 
+    	}
     </script>
 </head>
 <body>
@@ -117,14 +120,14 @@
 </ul>
 </nav>
 <nav>
-        <div class="icons">
-            <div class="search-box" id="search-box">
-                <input type="text" placeholder="Search...">
-            </div>
-            <a href="Search"><i class="fas fa-search"></i></a>
-            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </nav>
+<div class="icons">
+    <div class="search-box" id="search-box">
+        <input type="text" placeholder="Search...">
+    </div>
+    <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+    <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
+</div>
+</nav>
 </div>
 </header>
 
@@ -154,12 +157,39 @@
                      alt="${t_dto.getS_game_name()}" class="game-logo">
                      <button class="stream-button">DOWNLOAD</button>
                    
-     <div class="game-info">
-    <div class="battle-pass">
-        <h2>News</h2>
-        <p>News들어갈거임</p>
+     <div class="game-info"> 
+    <div class="battle-pass"> 
+        <h2>News</h2> 
     </div>
-</div>  
+    <div class="news-container">
+        <div class="news-item">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 1" class="news-image">
+            <div class="news-details">
+                <h3>News Title 1</h3>
+                <p>a brief explanation 1</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 2" class="news-image">
+            <div class="news-details">
+                <h3>News Title 2</h3>
+                <p>a brief explanation 2</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 3" class="news-image">
+            <div class="news-details">
+                <h3>News Title 3</h3>
+                <p>a brief explanation 3</p>
+                 <div class="more-news-link" onclick="goToMoreNews()">
+       			 <a href="#" class="read-more">Read more news</a>
+    		</div>
+            </div>
+        </div>
+         
+     
+    </div>
+</div> 
 </div>          
 </div>	
          <div class="game-banner">

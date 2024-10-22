@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!doctype html>
   <head> 
-
+	<title>JSL Games</title>
   	<link href="css/join.css" rel='stylesheet'>
   	 <script src="js/common.js"></script>
   	 <script src="js/jquery-3.3.1.min.js"></script>

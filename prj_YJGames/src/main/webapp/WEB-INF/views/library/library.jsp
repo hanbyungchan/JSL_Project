@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>게임 라이브러리</title>
+        <title>JSL Games</title>
         <link rel="stylesheet" href="css/Library.css" />
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/gamesearch.css" />
@@ -15,57 +15,17 @@
     </head>
     <script src="js/main.js"></script>
     <script type="text/javascript">
-    function performSearch() {
+    	function performSearch() {
             game.method = "post";
             game.action = "Game?t_gubun=library";
             game.submit();
-    }
+    	}
         function goDetail(a) {
         	game.t_pageNo.value=a;
     		game.method="post";
     		game.action="Game?t_gubun=library_detail";
     		game.submit();
 		}
-        function goSignIn() {
-    		game.t_gubun.value ="goSignin";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goInfo() {
-    		game.t_gubun.value ="userinfo";
-    		game.t_id.value="${sessionId}";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goLogout() {
-    		game.t_gubun.value ="userlogout";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goLibrary() {
-    		game.t_gubun.value ="library";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goView(s_no) {
-    		game.method="post";
-    		game.action="Game?t_gubun=view&t_pageNo="+s_no;
-    		game.submit();
-		}
-    	function goReview() {
-    		game.method="post";
-    		game.action="Game?t_gubun=myreview";
-    		game.submit();
-		}
-    	function goGameRegi() {
-    		game.method = "post";
-    		game.action = "Game?t_gubun=gameRegistForm";
-    		game.submit();
-    	}
     	function checkEnter(event) {
     	    if (event.key === 'Enter') {
     	        event.preventDefault(); // 기본 폼 제출 방지
@@ -73,55 +33,16 @@
     	    }
     	}
     </script>
+    <%@ include file = "../scripts.jsp"%>
 </head>
 <body>
 <form name="game">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
-	<header class="header" id="header">
-    <div class="header-content">
-        <div class="logo">
-            <img src="img/logo.png" alt="사이트 로고" href="">
-        </div>
-        
-<nav class="menu" id="menu">
-    <ul>
-        <li><a href="Game">STORE</a></li>
-		<li class="community-menu">
-            <a href="#">COMMUNITY</a>
-            <ul class="category-dropdown">
-                <li><a href="javascript:goReview()">Review</a></li>
-                <li><a href="#">News</a></li>
-            </ul>
-        </li>
-        <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-        <c:if test="${sessionId eq null}">
-            <li><a href="javascript:goSignIn()">SIGN IN</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}">
-            <li><a href="javascript:goInfo()">MyInfo</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}">
-            <li><a href="javascript:goLogout()">Logout</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}">
-            <li><a href="javascript:goLibrary()">Library</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}"><li><a href="javascript:goGameRegi()">Game Regist</a></li></c:if>
-    </ul>
-	</nav>
-	<nav>
-        <div class="icons">
-            <div class="search-box" id="search-box">
-                <input type="text" placeholder="Search...">
-            </div>
-            <a href="Search"><i class="fas fa-search"></i></a>
-            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </nav>
-    </div>
-	</header>
+	
+	<%@ include file = "../header.jsp"%>
+	
         <div class="container">
             <!-- 사이드바 (게임 리스트) -->
             <div class="sidebar">
@@ -170,27 +91,4 @@
         <script src="js/main.js"></script>
     </body>
 </html>
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="img/logo.png" alt="사이트 로고"/>
-        </div>
-        <div class="footer-links">
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-            </ul>
-        </div>
-        <div class="footer-social">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
+<%@ include file = "../footer.jsp"%>
