@@ -121,6 +121,7 @@
         <!-- ================================================================== -->	
         
         <form name = "regi" enctype="multipart/form-data">
+        <input type = "hidden" name = "t_gubun">
             <section class="g_regist">
                 <h2>Game Registration</h2>
                 <div class="formgroup">

@@ -71,7 +71,6 @@
          return true;
      }
 
-
 	function goBack() {
 		store_regi.t_gubun.value = "list";
 		store_regi.method = "post";
@@ -158,6 +157,7 @@
         <!-- ================================================================== -->	
         
         <form name = "store_regi" enctype="multipart/form-data">
+        <input type = "hidden" name = "t_gubun">
             <section class="g_regist">
                 <h2>Store Registration</h2>
                 <input type = "hidden" name = "t_s_page_no" value = "${s_page_no}">
