@@ -26,6 +26,7 @@ import command.review.ReviewList;
 import command.review.ReviewSave;
 import command.review.ReviewUpdate;
 import command.review.ReviewUpdateForm;
+import command.support.SupportSubmit;
 import command.user.UserDelete;
 import command.user.UserInfo;
 import command.user.UserJoin;
@@ -67,6 +68,8 @@ public class GameController {
 			else if(gubun.equals("view")){CommonExecute game = new ViewPage();game.execute(req);viewPage = "view";}
 			//support
 			else if(gubun.equals("support")){viewPage = "support/support";}
+			//support
+			else if(gubun.equals("sup_submit")){CommonExecute game = new SupportSubmit();game.execute(req);viewPage = "common_alert";}
 			//library
 			else if(gubun.equals("library")){CommonExecute game = new LibraryList();game.execute(req);viewPage = "library/library";}
 			//library 상세

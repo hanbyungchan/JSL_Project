@@ -8,8 +8,7 @@ import java.util.Date;
 public class CommonUtil {
 	//자료실 폴더 경로
 	public static String GameFileDir(String game_code) {
-			String baseDir = "";
-			
+			String baseDir = "C:/Users/JSLHRD/git/repository/prj_YJGames/src/main/webapp/img";
 		    // 게임 코드로 새로운 폴더 이름 설정
 		    String sanitizedGameCode = sanitizeFileName(game_code); // 유효한 폴더 이름으로 변환
 		    String newDir = baseDir + "/" + sanitizedGameCode;

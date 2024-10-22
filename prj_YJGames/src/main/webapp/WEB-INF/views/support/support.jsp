@@ -12,57 +12,82 @@
      <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
       <%@ include file = "../scripts.jsp"%>
+      <script type="text/javascript">
+      function goSubmit(a) {
+    	sup.t_id.value = a;
+    	if(sup.t_id.value ==""){goAlert();return;}
+		if(sup.t_title.value == ""){alert("Please enter the title!"); sup.t_title.focus();return;}
+		if(sup.t_type.value == ""){alert("Please select a question type!");sup.t_type.focus(); return;}
+		if(sup.t_txt.value == ""){alert("Please enter the contents!");sup.t_txt.focus(); return;}
+		sup.method="post";
+		sup.action="Game?t_gubun=sup_submit";
+		sup.submit();
+	}
+      function goAlert() {
+			alert("please Login!");
+			game.method="post";
+  		game.action="Game?t_gubun=goSignin";
+  		game.submit();	
+		}
+      </script>
 </head>
 <body>
  <form name="game">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
-	</form>
+</form>
 	<%@ include file = "../header.jsp"%>
     <div class="main-content">
     <h1>Support</h1>
     <h2>What do you need help with?</h2>
+    <c:if test="${sessionId eq null}"><h2>If you want help, please log in and do so.</h2></c:if>
+    
     <div class="menu22">
         <button id="gameButton">Games, Software, etc.</button>
         <div id="gamesButtons" class="hidden">
-            <button class="gameAnswer" data-answer="라이브러리에 추가되지 않은 게임을 확인하고 싶다면, 지원팀에 문의하세요.">게임이 라이브러리에 추가되지 않았습니다</button>
+            <button class="gameAnswer" data-answer="If you would like to check out any games that have not been added to your library, please contact our support team.">The game has not been added to the library!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
-            <button class="gameAnswer" data-answer="구매하지 않은 게임이 라이브러리에 있는 경우, 계정 설정을 확인해보세요.">제가 구매하지 않은 게임이 라이브러리에 있습니다.</button>
+            <button class="gameAnswer" data-answer="If you have a game in your library that you haven't purchased, check your account settings.">There is a game in the library that I did not purchase!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
         </div>
         <button id="purgameButton">Purchases</button>
         <div id="purButtons" class="hidden">
-            <button class="purchaseAnswer" data-answer="구매가 진행되지 않으면, 결제 정보를 확인해 주세요.">구매가 진행되지 않습니다</button>
+            <button class="purchaseAnswer" data-answer="If the purchase does not proceed, please check the payment information.">Purchase is not proceeding!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
-            <button class="purchaseAnswer" data-answer="지갑 충전 문제는 고객 지원에 문의하시기 바랍니다.">지갑이 충전되지 않습니다</button>
+            <button class="purchaseAnswer" data-answer="For wallet charging issues, please contact customer support.">My wallet won't charge!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
-            <button class="purchaseAnswer" data-answer="구매 시 문제가 발생하면, 오류 메시지를 확인해 주세요.">지갑에 돈이 충분한데 구매가 되지 않습니다.</button>
+            <button class="purchaseAnswer" data-answer="If there is a problem with the purchase, please check the error message and contact us.">I have enough money in my wallet, but I can't buy it!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
         </div>
         <button id="userButton">My Account</button>
         <div id="userButtons" class="hidden">
-            <button class="userAnswer" data-answer="계정 확인 후 다시 시도해 주세요.">구매가 진행되지 않습니다</button>
+            <button class="userAnswer" data-answer="Please check the error message and contact us.">Your account information will not be updated!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
-            <button class="userAnswer" data-answer="지갑 충전 확인 후 지원팀에 문의하세요.">지갑이 충전되지 않습니다</button>
+            <button class="userAnswer" data-answer="Please contact us with your account information.">I think your account was hacked!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
-            <button class="userAnswer" data-answer="구매 문제가 계속 발생하면 고객 지원에 문의하세요.">지갑에 돈이 충분한데 구매가 되지 않습니다.</button>
+            <button class="userAnswer" data-answer="Please enter your password confirmation and press the Leave Account button.">Please tell me the process of withdrawing from the account!</button>
             <textarea class="answerText hidden" rows="2" cols="50" readonly="readonly"></textarea>
         </div>
         <button id="questionButton">If you have any questions you would like to ask yourself, please click here</button>
         <div id="questionForm" class="hidden">
     <h3>Ask Your Question</h3>
-    <input type="text" id="questionTitle" placeholder="Title" />
-    <select id="questionType">
+    <form name="sup">
+    <input type="hidden" name="t_gubun">
+    <input type="hidden" name="t_id">
+    <input type="text" id="questionTitle" placeholder="Title"  name="t_title"/>
+    <select id="questionType" name="t_type">
         <option value="">Select Type</option>
-        <option value="general">General Inquiry</option>
-        <option value="technical">Technical Support</option>
-        <option value="billing">Billing Issue</option>
+        <option value="game">Games, Software areas</option>
+        <option value="purchase">Purchases areas</option>
+        <option value="user">Account areas</option>
     </select>
-    <textarea id="userQuestion" placeholder="Type your question here..." rows="4"></textarea>
-    <button id="submitQuestion">Submit</button>
+    <textarea id="userQuestion" placeholder="Type your question here..." rows="4" name="t_txt"></textarea>
+    </form>
+    <button id="submitQuestion" onclick="goSubmit('${sessionId}')">Submit</button>
 </div>
     </div>
 </div>
+
     <script src="js/main.js"></script>
     <script>
     document.getElementById('gameButton').addEventListener('click', function() {

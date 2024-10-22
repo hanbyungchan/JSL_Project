@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import common.CommonTemplate;
+import dto.SupportDto;
 import dto.UserDto;
 
 public class UserDao {
@@ -131,5 +132,29 @@ public class UserDao {
 	try {result = temp.update(query);} 
 	catch (Exception e) {System.out.println("Card_recharge() 메소드 오류" + query);}
 	return result;
+	}
+    //문의사항 코드자동생성
+  //상점 페이지 번호 자동 생성
+  		public String AutoCode_sup() {
+  			String no = "";
+  			String query = "select nvl(max(to_number(S_CODE)),'0') + 1 as s_code\r\n" + 
+  					"from KYJ_SUPPORT";
+  			try {
+  				no = temp.queryForObject(query, String.class);
+  			} catch (Exception e) {System.out.println("AutoCode_sup() 메소드 오류" + query);}
+  			
+  			return no;
+  		}
+    //문의사항 등록
+	public int SupportSubmit(SupportDto dto) {
+		int result = 0;
+		String query = "INSERT INTO KYJ_SUPPORT (S_CODE, S_TXT, S_TYPE, S_TITLE, U_ID, S_DATE) "
+				+ "VALUES ('"+dto.getS_code()+"', '"+dto.getS_txt()+"', '"+dto.getS_type()+"', '"+dto.getS_title()+"', '"+dto.getU_id()+"','"+dto.getS_date()+"')";
+		try {
+			result = temp.update(query);
+		} catch (Exception e) {
+			System.out.println("SupportSubmit() 메소드 오류" + query);
+		}
+		return result;
 	}
 }
