@@ -159,7 +159,14 @@
     padding: 0;
     border-radius: 0;
 }
-
+.ellipsis {
+			 display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3; /* 최대 줄 수 */
+            overflow: hidden; /* 넘치는 내용 숨김 */
+            height: 4.5em; /* 줄 높이에 따라 조정 */
+            line-height: 1.5em; /* 줄 높이 설정 */
+        }
 
 /* 게임 로고 */
 .game-logo img {

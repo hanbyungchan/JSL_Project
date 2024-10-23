@@ -23,7 +23,7 @@
     	<form name="game">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_r_recommand" >
-	<input type="hidden" name="t_pageNo">
+	<input type="hidden" name="t_pageNo" value="${t_dto.getS_page_no()}">
         <%@ include file = "../header.jsp"%>
 
         <div class="main-image">
@@ -48,7 +48,7 @@
                         <img src="img/bad.png" alt="Negative Review" id="negative" data-value="b" />
                     </div>
                     <button type="button" onclick="goUpdate()">Update Review</button>
-                    <button type="button" onclick="goReview()">go Back</button>
+                    <button type="button" onclick="window.history.back()">go Back</button>
                 </div>
             </div>
         </div>

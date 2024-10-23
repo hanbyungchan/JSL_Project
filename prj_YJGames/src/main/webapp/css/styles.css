@@ -51,7 +51,6 @@ body {
     }
 }
 
-
 /* 헤더 글씨에 호버 시 반짝이 효과 추가 */
 .menu ul li a:hover, .icons a:hover {
     animation: glow 1s infinite alternate; /* 반짝이는 효과 */
@@ -81,10 +80,31 @@ body {
 .menu {
     flex: 3;
     text-align: center;
-    margin-left: 100px;
+}
+
+/* 세션이 없는 경우 마진 적용 */
+body.session-null .menu {
+    margin-right: 10%;
+}
+
+/* 세션이 있을 때 마진 제거 */
+.session-level .menu {
+    flex: 3;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 10%;
+}
+
+/* 세션이 있으면서 세션레벨이 3이 아닌 경우 마진과 플렉스 제거 */
+.session-level-not3 .menu {
+    text-align: center;
+    margin-left: 0;
+    flex: initial; /* flex 속성 제거 */
 }
 
 .menu ul {
+	display: flex;
+	justify-content: center;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -106,7 +126,6 @@ body {
     display: inline-block; /* inline-block으로 동일한 높이 적용 */
 }
 
-
 .menu ul li a:hover {
     color: #b56eff; /* 변경된 분홍색 */
 }
@@ -118,9 +137,77 @@ body {
     clear: both;
 }
 
+/* 공통 햄버거 메뉴 스타일 */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #00e6e6;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+}
+
+/* 작은 화면(1220px 이하)일 때 햄버거 메뉴 보이기 */
+@media (max-width: 1220px) {
+    .menu {
+        position: absolute;
+        top: 62px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        overflow: hidden;
+        max-height: 0; /* 초기 높이를 0으로 설정 */
+        transition: max-height 0.5s ease; /* max-height에 애니메이션 추가 */
+    }
+
+    /* 메뉴가 펼쳐질 때 */
+    .menu.show {
+        max-height: 500px; /* 메뉴가 펼쳐질 때 최대 높이 */
+        transition: max-height 0.5s ease; /* 펼쳐지는 애니메이션 */
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hamburger-menu {
+        display: block; /* 작은 화면일 때만 표시 */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu ul li {
+        margin: 15px 0;
+    }
+
+    .menu ul li a {
+        color: #fff;
+        font-size: 1.5rem;
+    }
+
+    /* 아이콘 스타일 조정 */
+    .icons {
+        margin-right: 15px;
+    }
+}
+
 /*=========================================================================*/
 
-/* COMMUNITY 메뉴 위치 설정 */
+/* 기본 COMMUNITY 메뉴 위치 설정 */
 .community-menu {
     position: relative;
     z-index: 1000;
@@ -136,13 +223,13 @@ body {
     display: inline-flex;
     align-items: center;
     padding-bottom: 2px;
+    padding-top: 1px !important; 
 }
 
 /* ∨ 기호 스타일 */
 .community-menu > a::after {
     content: " ∨";
     font-size: 1.2rem;
-    vertical-align: middle;
 }
 
 /* 반짝이는 효과 애니메이션 */
@@ -157,14 +244,14 @@ body {
 
 .category-dropdown {
     position: absolute;
-    top: 210%;
-    left: 7%;
+    top: 210%; 
+    left: 7%; 
     transform: translateX(0%);
     list-style: none;
     min-width: 100px;
-    max-height: 0;
+    max-height: 0; 
     overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
     z-index: 0;
     opacity: 0;
     visibility: hidden;
@@ -177,7 +264,36 @@ body {
     border: 2px solid #b56eff;
 }
 
-/* 드롭다운 항목 */
+/* 드롭다운 열릴 때 애니메이션 */
+.category-dropdown.show-dropdown {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+/* 드롭다운 닫힐 때 애니메이션 */
+.category-dropdown.hide-dropdown {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+
+
+/* 마우스를 올렸을 때 COMMUNITY 카테고리 메뉴 표시 */
+.community-menu:hover .category-dropdown,
+.category-dropdown:hover {
+    max-height: 500px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out !important;
+}
+
+
+
+/* 드롭다운 항목 사이에 반짝이는 테두리 추가 */
 .category-dropdown li {
     padding: 5px 10px;
     display: flex;
@@ -229,21 +345,56 @@ body {
     color: #b56eff;
 }
 
-/* 마우스를 올렸을 때 COMMUNITY 카테고리 메뉴 표시 */
-.community-menu:hover .category-dropdown,
-.category-dropdown:hover {
-    max-height: 500px;
-    opacity: 1;
-    visibility: visible;
-    z-index: 1000;
-}
+/* 작은 화면(햄버거 메뉴)에서 COMMUNITY 드롭다운 오른쪽으로 나오게 설정 */
+@media (max-width: 1220px) {
+    /* COMMUNITY 메뉴 위치를 오른쪽으로 변경 및 애니메이션 적용 */
+    .community-menu .category-dropdown {
+        left: 100%; /* 오른쪽으로 나오게 설정 */
+        transform: translateX(10%);
+        top: -20%;
+        max-height: 0; /* 초기 높이 0 */
+        overflow: hidden; /* 숨김 */
+        transition: max-height 0.4s ease; /* 펼쳐지고 접히는 애니메이션 */
+    }
 
-/* 마우스 호버 시 반짝임 멈춤 및 색상 고정 */
-.community-menu:hover > a {
-    animation: none;
-    color: #b56eff;
-}
+    /* COMMUNITY 메뉴 호버 시 펼쳐짐 */
+    .community-menu:hover .category-dropdown,
+    .category-dropdown:hover {
+        max-height: 500px; /* 펼쳐질 때 최대 높이 */
+        opacity: 1;
+        visibility: visible; /* 보이게 설정 */
+    }
 
+    /* 햄버거 메뉴 스타일 조정 */
+    .menu.show {
+        display: block;
+        opacity: 1;
+        position: absolute;
+        top: 60px; /* 햄버거 메뉴 아래 */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    /* 메뉴 아이템을 세로로 배치 */
+    .menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu ul li {
+        margin: 15px 0;
+    }
+
+    .menu ul li a {
+        color: #fff;
+        font-size: 1.5rem;
+    }
+}
 
 /*=========================================================================*/
 
@@ -419,4 +570,3 @@ footer.background-gray {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #1c1c2e 100%);
     /* 위쪽은 투명, 아래쪽은 배경색과 동일하게 설정 */
 }
-

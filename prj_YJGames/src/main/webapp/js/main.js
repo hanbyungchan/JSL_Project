@@ -1,3 +1,20 @@
+//=============================================================================햄버거
+
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const menu = document.getElementById('menu');
+
+    hamburgerMenu.addEventListener('click', function () {
+        if (menu.style.maxHeight) {
+            // 메뉴가 열려 있을 때
+            menu.style.maxHeight = null;
+        } else {
+            // 메뉴가 닫혀 있을 때
+            menu.style.maxHeight = menu.scrollHeight + "px";
+        }
+    });
+});
+//=============================================================================
 window.addEventListener('scroll', function() {
     const header = document.getElementById('header');
     if (window.scrollY > 50) {
@@ -140,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewImage2 = document.querySelector('.preview-image2');
     const previewImage3 = document.querySelector('.preview-image3');
     const previewImage4 = document.querySelector('.preview-image4');
-    
+
     gameItems.forEach((item, index) => {
         item.addEventListener('mouseenter', () => {
             const game = games[index];
@@ -148,6 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
             previewImage2.src = game.image2;
             previewImage3.src = game.image3;
             previewImage4.src = game.image4;
+
+            // 마우스를 올렸을 때 이미지를 보이도록 설정
+            previewImage1.classList.add('show');
+            previewImage2.classList.add('show');
+            previewImage3.classList.add('show');
+            previewImage4.classList.add('show');
         });
     });
 });
