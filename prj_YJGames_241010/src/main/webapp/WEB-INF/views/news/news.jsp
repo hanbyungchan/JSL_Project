@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 
 <script type="text/javascript">
@@ -75,9 +76,18 @@
                 <ul style="te">
                     <c:forEach items="${dtos}" var = "dto">
                     <li>
-                        <a href="javascript:goNewsView('dto.getN_no')">
+                        <a href="javascript:goNewsView('${dto.getN_no()}')">
                             <h3>${dto.getN_title()}</h3>
-                            <p>${dto.getN_content()}</p>
+                            <p>
+							    <c:choose>
+							        <c:when test="${fn:length(dto.getN_content()) > 100}">
+							            ${fn:substring(dto.getN_content(), 0, 100)}...
+							        </c:when>
+							        <c:otherwise>
+							            ${dto.getN_content()}
+							        </c:otherwise>
+							    </c:choose>
+							</p>
                         </a>
                     </li>
                     </c:forEach>
