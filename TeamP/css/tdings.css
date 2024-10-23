@@ -1,29 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1c1c2e;
-    color: #333;
-}
-.header {
-    background-color: #171a21;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 h1 {
     color: white;
     text-align: center;
     margin: 20px;
     padding: 35px;
-}
-.logo img {
-    height: 40px;
 }
 
 .nav ul {
