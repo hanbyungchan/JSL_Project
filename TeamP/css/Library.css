@@ -4,23 +4,25 @@
     box-sizing: border-box;
 }
 
+
+
 .container {
-    flex-grow: 1;
+    flex-grow: 1; 
     display: flex;
     flex-direction: row;
 }
 
 .sidebar {
-    float: left;
-    margin-top: 60px;
+	  float: left;
+    margin-top: 60px; 
     width: 300px;
     background-color: #151515;
     padding: 8px;
     overflow-y: auto;
     border-right: 2px solid #333;
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
+    position: relative; 
+    z-index: 1; 
 }
 
 .sidebar h2 {
@@ -49,6 +51,7 @@
 }
 
 .search {
+	  
     position: relative;
     width: 100%;
 }
@@ -56,7 +59,7 @@
 .search input {
     width: 100%;
     padding: 12px;
-    padding-right: 40px;
+    padding-right: 40px;  
     background-color: #333;
     border: none;
     color: white;
@@ -75,32 +78,32 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
-    background-color: transparent;
+    background-color: transparent; 
     border: none;
     cursor: pointer;
     color: #ff9900;
 }
 
 .search-icon:hover {
-    color: #ffc107;
+    color: #ffc107; 
 }
 .recent {
-    background-color: #2b2e34;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 30px;
+    background-color: #2b2e34; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin-top: 30px; 
 }
 
 .recent h2 {
-    color: #66c0f4;
-    font-size: 24px;
-    margin-bottom: 15px;
-    font-family: 'Poppins', sans-serif;
+    color: #66c0f4; 
+    font-size: 24px; 
+    margin-bottom: 15px; 
+    font-family: 'Poppins', sans-serif; 
 }
 
 .recent ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; 
+    padding: 0; 
 }
 .recent a {
     color: inherit; /* 부모 요소의 색상 상속 */
@@ -108,22 +111,22 @@
 }
 
 .recent a:hover {
-    color: #007bff; /* 마우스를 올렸을 때의 색상 */
+    color: #007BFF; /* 마우스를 올렸을 때의 색상 */
 }
 .recent li {
-    background-color: #171a21;
-    color: #c6d4df;
-    padding: 10px 15px;
-    /border-radius: 5px;
-    margin-bottom: 10px;
+    background-color: #171a21; 
+    color: #c6d4df; 
+    padding: 10px 15px; /
+    border-radius: 5px; 
+    margin-bottom: 10px; 
     transition: background-color 0.3s ease;
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+    font-size: 18px; 
 }
 
 .recent li:hover {
-    background-color: #66c0f4;
-    color: white;
+    background-color: #66c0f4; 
+    color: white; 
 }
 
 .main-content {
@@ -131,7 +134,7 @@
     background-color: #1e1e1e;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
 
 .main-content h2 {
@@ -150,6 +153,7 @@
     background: linear-gradient(to right, transparent, #ff4081, transparent);
     margin: 20px 0;
 }
+
 
 .game-thumbnails-slider {
     display: flex;
@@ -174,11 +178,10 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
-    min-width: 20%;
+    min-width: 20%; 
     box-sizing: border-box;
 }
-.prev,
-.next {
+.prev, .next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -206,13 +209,14 @@
     height: auto; /* 비율 유지 */
 }
 
-.game a {
-    text-decoration: none;
+.game a{
+	text-decoration: none;
 }
 .game p {
     margin-top: 10px;
     font-size: 1.1em;
     color: #ff4081;
+    
 }
 
 .game:hover {
@@ -225,7 +229,7 @@
 }
 
 .game::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -241,6 +245,7 @@
     opacity: 1;
 }
 
+
 .game-thumbnails-slider::-webkit-scrollbar {
     height: 10px;
 }
@@ -249,6 +254,7 @@
     background-color: #ff4081;
     border-radius: 5px;
 }
+
 
 @keyframes glow {
     0% {
@@ -265,14 +271,14 @@
 .sidebar {
     width: 300px;
     background-color: #151515;
-    position: fixed;
-    top: 0;
-    left: 40px;
-    height: 100%;
-    overflow-y: auto;
-    padding: 8px;
-    border-right: 2px solid #333;
-    z-index: 1;
+    position: fixed; 
+    top: 0; 
+    left:40px;
+    height: 100%; 
+    overflow-y: auto; 
+    padding: 8px; 
+    border-right: 2px solid #333; 
+    z-index: 1; 
 }
 h2 {
     animation: glow 1.5s infinite;
@@ -280,7 +286,7 @@ h2 {
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #F5F5F5;
     color: #c6d4df;
 }
 
@@ -337,40 +343,30 @@ body {
 
 .game-banner {
     display: flex;
-    overflow: hidden;
+    overflow: hidden; 
     position: relative;
     width: 100%;
-    height: 200px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    background-color: #2d2d2d;
+    height: 200px; 
+    margin-top: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    background-color: #2d2d2d; 
 }
 
 .banner-img {
-    width: 330px;
-    height: auto;
-    opacity: 0;
+    width: 330px; 
+    height: auto; 
+    opacity: 0; 
     transform: translateY(20px);
     animation: fadeInUp 0.6s forwards;
-    margin: 0 10px;
+    margin: 0 10px; 
 }
 
-.banner-img:nth-child(1) {
-    animation-delay: 0s;
-}
-.banner-img:nth-child(2) {
-    animation-delay: 0.2s;
-}
-.banner-img:nth-child(3) {
-    animation-delay: 0.4s;
-}
-.banner-img:nth-child(4) {
-    animation-delay: 0.6s;
-}
-.banner-img:nth-child(5) {
-    animation-delay: 0.8s;
-}
+.banner-img:nth-child(1) { animation-delay: 0s; }
+.banner-img:nth-child(2) { animation-delay: 0.2s; }
+.banner-img:nth-child(3) { animation-delay: 0.4s; }
+.banner-img:nth-child(4) { animation-delay: 0.6s; }
+.banner-img:nth-child(5) { animation-delay: 0.8s; }
 
 @keyframes fadeInUp {
     to {
@@ -378,6 +374,8 @@ body {
         transform: translateY(0); /* Slide up */
     }
 }
+
+
 
 /* 마지막 이미지에만 오른쪽 여백 제거 */
 .banner-img:last-child {
@@ -447,23 +445,23 @@ body {
     color: #c6d4df;
 }
 .trendy-box {
-    background-color: #2d2d2d;
+    background-color: #2d2d2d; 
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
-    margin: 15px 0;
+    padding: 20px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+    margin: 15px 0; 
 }
 
 .trendy-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); 
 }
 
 .achievements h2,
 .reviews h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    font-size: 1.8rem; 
+    margin-bottom: 15px; 
     color: #ffcc00;
     border-bottom: 2px solid #ffcc00;
     padding-bottom: 10px;
@@ -471,16 +469,16 @@ body {
 
 .achievements ul {
     list-style-type: none;
-    padding: 0;
+    padding: 0; 
 }
 
 .achievements li {
     background-color: #3c3c3c;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 5px; 
+    margin-bottom: 10px; 
     padding: 10px;
-    color: #fff;
-    transition: background-color 0.3s;
+    color: #fff; 
+    transition: background-color 0.3s; 
 }
 
 /* 항목 호버 효과 */
@@ -505,10 +503,10 @@ body {
 
 /* 버튼 스타일 */
 .more-button {
-    background-color: #ffcc00;
-    color: #2d2d2d;
-    border: none;
-    border-radius: 5px;
+    background-color: #ffcc00; 
+    color: #2d2d2d; 
+    border: none; 
+    border-radius: 5px; 
     padding: 10px 15px; /* 패딩 */
     cursor: pointer; /* 커서 포인터로 변경 */
     margin-top: 15px; /* 위쪽 여백 */
@@ -536,108 +534,109 @@ body {
     gap: 20px; /* 버튼 간 간격 */
     padding: 20px;
     background-color: #282c34; /* 어두운 배경 */
-    border-radius: 10px;
+    border-radius: 10px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
 /* 네비게이션 버튼 스타일 */
 .nav-button {
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    background-color: #007bff;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #ffffff; 
+    text-decoration: none; 
+    padding: 12px 25px; 
+    border-radius: 25px; 
+    background-color: #007bff; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); 
 }
 
 .nav-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
+    background-color: #0056b3; 
+    transform: scale(1.1); 
     box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
 }
 
 @media (max-width: 768px) {
     .navigation-menu {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: column; 
+        gap: 10px; 
     }
 
     .nav-button {
-        padding: 10px 20px;
-        font-size: 14px;
+        padding: 10px 20px; 
+        font-size: 14px; 
     }
 }
 .news-container {
-    margin-top: 20px;
+    margin-top: 20px; 
     height: 275px;
 }
 
 .news-item {
     display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    background-color: #2d2d2d;
+    align-items: center; 
+    margin-bottom: 15px; 
+    background-color: #2d2d2d; 
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 5px; 
 }
 
 .news-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    margin-right: 10px;
+    width: 60px; 
+    height: 60px; 
+    border-radius: 5px; 
+    margin-right: 10px; 
 }
 
 .news-details {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
+    justify-content: space-between; 
+    height: 100%; 
+     width: 100%;
 }
 
 .news-details h3 {
-    margin: 0;
-    font-size: 1.2em;
+    margin: 0; 
+    font-size: 1.2em; 
 }
 
 .news-details p {
-    margin: 5px 0 0;
-    font-size: 0.9em;
+    margin: 5px 0 0; 
+    font-size: 0.9em; 
 }
 
 .more-news-link {
-    margin-top: auto;
-    cursor: pointer;
-    color: #ff4081;
+    margin-top: auto; 
+    cursor: pointer; 
+    color: #ff4081; 
 }
 .more-news-link span {
-    color: #ff4081;
-    font-weight: bold;
+    color: #ff4081; 
+    font-weight: bold; 
 }
 
 .underline {
-    width: 100%;
+    width: 100%; 
     height: 2px;
-    background-color: #ff4081;
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    transition: width 0.3s;
+    background-color: #ff4081; 
+    position: absolute; 
+    bottom: -5px; 
+    left: 0; 
+    transition: width 0.3s; 
 }
 
 .more-news-link:hover .underline {
-    width: 100%;
+    width: 100%; 
 }
 a.read-more {
-    /*   text-align: right;
+  /*   text-align: right;
     
     float: right; */
-
+   
     display: flex;
     justify-content: flex-end;
-    color: #ff4081;
+    color: #ff4081;  
 }
+ 
