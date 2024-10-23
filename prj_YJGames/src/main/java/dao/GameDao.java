@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +10,9 @@ import org.springframework.jdbc.core.RowMapper;
 import common.CommonTemplate;
 import dto.CartDto;
 import dto.GameRegiDto;
+import dto.GenreDto;
 import dto.HomeDto;
+import dto.LibraryDto;
 import dto.ReviewDto;
 import dto.StoreRegiDto;
 import dto.ViewDto;
@@ -17,31 +20,6 @@ import dto.ViewDto;
 public class GameDao {
 	
 	JdbcTemplate temp = CommonTemplate.getTemplate();
-	//이름 검색페이지
-	public ArrayList<HomeDto> GameList(String search) {
-		String query = "select * from(\r\n" + 
-				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
-				"from kyj_game g, kyj_store_page s\r\n" + 
-				"where g.g_code = s.s_game_code\r\n" + 
-				"and g.g_name  like '%"+search+"%') tbl)";
-		RowMapper<HomeDto> gameDtos = new BeanPropertyRowMapper<>(HomeDto.class);
-		ArrayList<HomeDto> dtos = (ArrayList<HomeDto>) temp.query(query, gameDtos);
-		return dtos;
-	}
-	//테마별 리스트
-	public ArrayList<HomeDto> GenreList(String search) {
-		String query = "select * from(\r\n" + 
-				"select rownum rnum, tbl.*\r\n" + 
-				"from (SELECT s.s_page_no,g_name, g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_price2 ,s.s_sale,s.s_img_main,s.s_img_1,s.s_img_2,s.s_img_3\r\n" + 
-				"from kyj_game g, kyj_store_page s\r\n" + 
-				"where g.g_code = s.s_game_code\r\n" + 
-				"and g.g_genre  like '%"+search+"%'\r\n" +
-				"order by s.s_sale DESC) tbl)";
-		RowMapper<HomeDto> gameDtos = new BeanPropertyRowMapper<>(HomeDto.class);
-		ArrayList<HomeDto> dtos = (ArrayList<HomeDto>) temp.query(query, gameDtos);
-		return dtos;
-	}
 	//최신게임 리스트
 	public ArrayList<HomeDto> NewList() {
 		String query = "select * from(\r\n" + 
@@ -104,7 +82,7 @@ public class GameDao {
 	//게임구매 추가
 		public int AddPurchase(String u_id, String g_code) {
 			int result = 0;
-			String query = "INSERT INTO kyj_purchase_history(u_id,p_code)\r\n" +
+			String query = "INSERT INTO kyj_purchase_history(u_id,g_code)\r\n" +
 					"VALUES ('"+u_id+"', '"+g_code+"')";
 			try {result = temp.update(query);} 
 			catch (Exception e) {System.out.println("AddPurchase() 메소드 오류" + query);}
@@ -240,92 +218,28 @@ public class GameDao {
 			
 			return dto;
 		}
-	//게임 코드 자동 생성
-	public String AutoCode() {
-		String code = "";
-		String query = "select nvl(max(to_number(g_code)),'0') + 1 as no \r\n" + 
-				"from kyj_game";
-		
-		try {
-			code = temp.queryForObject(query, String.class);
-		} catch (Exception e) {System.out.println("getNo() 메소드 오류" + query);}
+		//상점 페이지 번호 자동 생성
+		public String AutoNo() {
+			String no = "";
+			String query = "select nvl(max(to_number(s_page_no)),'0') + 1 as no \r\n" + 
+					"from kyj_store_page";
 			
-		return code;
-	}
-	//게임 등록(게임 테이블 + 장르 테이블)
-	public int RegistGame(GameRegiDto dto) {
-		int result = 0;
-		String query1 = "insert into kyj_game\r\n" + 
-				"(g_code, g_name, g_price, g_file, g_developer, g_grade)\r\n" + 
-				"values\r\n" + 
-				"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"')";
-		
-		String query2 = "insert into kyj_genre_join\r\n" + 
-				"(genre_code, game_code)\r\n" + 
-				"values\r\n" + 
-				"('"+dto.getGenre_code()+"','"+dto.getG_code()+"')";
-		
-		
-		try {
-			result = temp.update(query1);
-			result += temp.update(query2); 
-		} catch (Exception e) {System.out.println("RegistGame() 메소드 오류" + query1);}
-		
-		return result;
-	}
-	//장르 리스트 불러오기
-	public ArrayList<GameRegiDto> genreCheckList() {
-		String query = "SELECT genre_code, genre_name\r\n" + 
-				"FROM kyj_genre\r\n" + 
-				"ORDER BY genre_code + 0 ASC";
-		
-		RowMapper<GameRegiDto> genreDtos = new BeanPropertyRowMapper<>(GameRegiDto.class);
-		ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, genreDtos);
-	return dtos;
-	}
-	//상점 페이지 번호 자동 생성
-	public String AutoNo() {
-		String no = "";
-		String query = "select nvl(max(to_number(s_page_no)),'0') + 1 as no \r\n" + 
-				"from kyj_store_page";
-		
-		try {
-			no = temp.queryForObject(query, String.class);
-		} catch (Exception e) {System.out.println("getNo() 메소드 오류" + query);}
-		
-		return no;
-	}
-	//게임 목록 불러오기
-	public ArrayList<GameRegiDto> GameSelectList(String name) {
-		String query = "select g_code, g_name\r\n" + 
-				"from kyj_game\r\n" + 
-				"where g_developer = '"+name+"' " +
-				"and g_code not in (select s_game_code from kyj_store_page)";
-		RowMapper<GameRegiDto> GameDtos = new BeanPropertyRowMapper<>(GameRegiDto.class);
-		ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, GameDtos);
-		
-		return dtos;
-	}
-	//상점 페이지 등록
-	public int RegistStore(StoreRegiDto dto) {
-		int result = 0;
-		String query = "insert into kyj_store_page\r\n" + 
-				"(s_page_no, s_game_code, s_game_name, s_info_txt, s_date,\r\n" + 
-				"s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5,\r\n" + 
-				"s_img_main, s_img_1, s_img_2, s_img_3, s_icon,\r\n" + 
-				"s_video_1, s_video_2, s_video_3, s_sale)\r\n" + 
-				"values\r\n" + 
-				"('"+dto.getS_page_no()+"', '"+dto.getS_game_code()+"', '"+dto.getS_game_name()+"', '"+dto.getS_info_txt()+"', '"+dto.getS_date()+"',\r\n" + 
-				"'"+dto.getS_spec_1()+"', '"+dto.getS_spec_2()+"', '"+dto.getS_spec_3()+"', '"+dto.getS_spec_4()+"', '"+dto.getS_spec_5()+"',\r\n" + 
-				"'"+dto.getS_img_main()+"','"+dto.getS_img_1()+"','"+dto.getS_img_2()+"','"+dto.getS_img_3()+"','"+dto.getS_icon()+"',\r\n" + 
-				"'"+dto.getS_video_1()+"','"+dto.getS_video_2()+"','"+dto.getS_video_3()+"','"+dto.getS_sale()+"')";
-		
-		try {
-			result = temp.update(query);
-		} catch (Exception e) {System.out.println("RegistStore() 메소드 오류" + query);}
-		
-		return result;
-	}
+			try {
+				no = temp.queryForObject(query, String.class);
+			} catch (Exception e) {System.out.println("getNo() 메소드 오류" + query);}
+			
+			return no;
+		}
+		//게임 구매
+		public int PurchaseGame(String g_code, String u_id) {
+			int result = 0;
+			String query = "INSERT INTO KYJ_PURCHASE_HISTORY(G_CODE, U_ID) \r\n" + 
+					"VALUES ('"+g_code+"', '"+u_id+"')";
+			try {
+				result = temp.update(query);
+			} catch (Exception e) {System.out.println("PurchaseGame() 메소드 오류" + query);}
+				return result;
+		}
 		//게임코드 리스트 불러오기
 		public ArrayList<String> GameCodeList(String u_id) {
 			String query = "select g_code\r\n" +
@@ -335,13 +249,125 @@ public class GameDao {
 	    ArrayList<String> gameCodes = (ArrayList<String>) temp.query(query, gameCodeMapper);
 	    return gameCodes;
 		}
-		//구매여부
-		public String Whether_to_purchase(String u_id, String g_code) {
-			String query = "select COUNT(*) as count\r\n" + 
-					"from kyj_purchase_history\r\n" + 
-					"where u_id = '101'\r\n" + 
-					"and p_code ='1'";
-			String result = temp.queryForObject(query, new Object[]{u_id, g_code}, String.class);
-		    return result;
+		//구매여부 FROM 
+		public int Whether_to_purchase(String u_id, String g_code) {
+			String query = "SELECT COUNT(u_id) FROM kyj_purchase_history WHERE u_id = ? AND g_code = ?";
+		    int count = 0;
+		    try {
+		        count = temp.queryForObject(query, new Object[]{u_id, g_code}, Integer.class);
+		    } catch (Exception e) {
+		        System.out.println("Whether_to_cart() 오류: " + query);
+		        e.printStackTrace(); // 예외의 스택 트레이스를 출력하여 문제를 더 잘 파악할 수 있도록 합니다.
+		    }
+		    return count;
+		}
+		//장바구니여부
+		public int Whether_to_cart(String u_id, String g_code) {
+			String query = "SELECT COUNT(u_id) FROM kyj_cart WHERE u_id = ? AND g_code = ?";
+		    int count = 0;
+		    try {
+		        count = temp.queryForObject(query, new Object[]{u_id, g_code}, Integer.class);
+		    } catch (Exception e) {
+		        System.out.println("Whether_to_cart() 오류: " + query);
+		        e.printStackTrace(); // 예외의 스택 트레이스를 출력하여 문제를 더 잘 파악할 수 있도록 합니다.
+		    }
+		    return count;
+		}
+		//라이브러리 게임목록칸
+		public ArrayList<LibraryDto> Library_game_List(String u_id, String search) {
+			String query = "select s.s_game_name as g_name,s.s_game_code as g_code, s.s_img_main from kyj_purchase_history h, kyj_store_page s\r\n" + 
+					"where h.g_code = s.s_game_code  and h.u_id = '"+u_id+"'  AND LOWER(s.s_game_name) LIKE '%"+search+"%'";
+			RowMapper<LibraryDto> gameDtos = new BeanPropertyRowMapper<>(LibraryDto.class);
+			ArrayList<LibraryDto> dtos = (ArrayList<LibraryDto>) temp.query(query, gameDtos);
+			return dtos;
+		}
+		//상점 페이지 등록
+		public int RegistStore(StoreRegiDto dto) {
+			int result = 0;
+			String query = "insert into kyj_store_page\r\n" + 
+					"(s_page_no, s_game_code, s_game_name, s_info_txt, s_date,\r\n" + 
+					"s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5,\r\n" + 
+					"s_img_main, s_img_1, s_img_2, s_img_3, s_icon,\r\n" + 
+					"s_video_1, s_video_2, s_video_3, s_sale)\r\n" + 
+					"values\r\n" + 
+					"('"+dto.getS_page_no()+"', '"+dto.getS_game_code()+"', '"+dto.getS_game_name()+"', '"+dto.getS_info_txt()+"', '"+dto.getS_date()+"',\r\n" + 
+					"'"+dto.getS_spec_1()+"', '"+dto.getS_spec_2()+"', '"+dto.getS_spec_3()+"', '"+dto.getS_spec_4()+"', '"+dto.getS_spec_5()+"',\r\n" + 
+					"'"+dto.getS_img_main()+"','"+dto.getS_img_1()+"','"+dto.getS_img_2()+"','"+dto.getS_img_3()+"','"+dto.getS_icon()+"',\r\n" + 
+					"'"+dto.getS_video_1()+"','"+dto.getS_video_2()+"','"+dto.getS_video_3()+"','"+dto.getS_sale()+"')";
+			
+			try {
+				result = temp.update(query);
+			} catch (Exception e) {System.out.println("RegistStore() 메소드 오류" + query);}
+			
+			return result;
+		}
+		//게임 목록 불러오기
+		public ArrayList<GameRegiDto> GameSelectList(String name) {
+			String query = "select g_code, g_name\r\n" + 
+					"from kyj_game\r\n" + 
+					"where g_developer = '"+name+"' " +
+					"and g_code not in (select s_game_code from kyj_store_page)";
+			RowMapper<GameRegiDto> GameDtos = new BeanPropertyRowMapper<>(GameRegiDto.class);
+			ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, GameDtos);
+			
+			return dtos;
+		}
+		//게임 등록(게임 테이블 + 장르 테이블)
+		public int RegistGame(GameRegiDto dto) {
+			int result = 0;
+			String query1 = "insert into kyj_game\r\n" + 
+					"(g_code, g_name, g_price, g_file, g_developer, g_grade)\r\n" + 
+					"values\r\n" + 
+					"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"')";
+			
+			try {
+				result = temp.update(query1);
+			} catch (Exception e) {
+				System.out.println("RegistGame() 메소드 오류 첫번째" + query1);
+			}
+			List<String> genreCodes = dto.getGenre_code();
+			for(String genre : genreCodes) {
+				String query2 = "insert into kyj_genre_join\r\n" + 
+						"(genre_code, game_code)\r\n" + 
+						"values\r\n" + 
+						"('"+genre+"','"+dto.getG_code()+"')";
+				
+			
+				try {
+					result += temp.update(query2); 
+				} catch (Exception e) {System.out.println("RegistGame() 메소드 오류 두번째" + query2);}
+			}
+			
+			return result;
+		}
+		//게임 코드 자동 생성
+		public String AutoCode() {
+			String code = "";
+			String query = "select nvl(max(to_number(g_code)),'0') + 1 as no \r\n" + 
+					"from kyj_game";
+			
+			try {
+				code = temp.queryForObject(query, String.class);
+			} catch (Exception e) {System.out.println("getNo() 메소드 오류" + query);}
+				
+			return code;
+		}
+		//장르 리스트 불러오기
+		public ArrayList<GenreDto> genreCheckList() {
+			String query = "SELECT genre_code, genre_name\r\n" + 
+					"FROM kyj_genre\r\n" + 
+					"ORDER BY genre_code + 0 ASC";
+			
+			RowMapper<GenreDto> genreDtos = new BeanPropertyRowMapper<>(GenreDto.class);
+			ArrayList<GenreDto> dtos = (ArrayList<GenreDto>) temp.query(query, genreDtos);
+		return dtos;
+		}
+		//게임 실행
+		public static void EXE(String code) {
+			Runtime rt = Runtime.getRuntime();
+			String file = "C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe\\"+code+".exe";
+			Process pro;
+			try {pro = rt.exec(file); pro.waitFor();}
+			catch(Exception e){e.printStackTrace();}
 		}
 }

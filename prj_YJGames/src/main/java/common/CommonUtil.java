@@ -8,24 +8,28 @@ import java.util.Date;
 public class CommonUtil {
 	//자료실 폴더 경로
 	public static String GameFileDir(String game_code) {
-		String baseDir = "";
-		
-	    // 게임 코드로 새로운 폴더 이름 설정
-	    String sanitizedGameCode = sanitizeFileName(game_code); // 유효한 폴더 이름으로 변환
-	    String newDir = baseDir + "/" + sanitizedGameCode;
+			String baseDir = "C:/Users/JSLHRD/git/repository/prj_YJGames/src/main/webapp/img";
+		    // 게임 코드로 새로운 폴더 이름 설정
+		    String sanitizedGameCode = sanitizeFileName(game_code); // 유효한 폴더 이름으로 변환
+		    String newDir = baseDir + "/" + sanitizedGameCode;
 
-	    // 새로운 폴더 생성
-	    File dir = new File(newDir);
-	    if (!dir.exists()) {
-	        dir.mkdirs(); // 폴더가 존재하지 않으면 생성
-	    }
+		    // 새로운 폴더 생성
+		    File dir = new File(newDir);
+		    if (!dir.exists()) {
+		        dir.mkdirs(); // 폴더가 존재하지 않으면 생성
+		    }
 
-	    return newDir; // 새로운 폴더 경로 반환
+		    return newDir; // 새로운 폴더 경로 반환
 	}
 	// 유효한 파일 이름으로 변환하는 메소드
 	private static String sanitizeFileName(String fileName) {
-	    // 유효하지 않은 문자를 '_'로 대체
-	    return fileName.replaceAll("[<>:\"/\\|?*]", "_");
+		// 유효하지 않은 문자를 '_'로 대체
+		return fileName.replaceAll("[<>:\"/\\|?*]", "_");
+	}
+	//자료실 폴더 경로
+	public static String GameFileDir() {
+		String dir ="C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe";
+		return dir;
 	}
 	//자료실 폴더 경로
 	public static String getPdsDir() {

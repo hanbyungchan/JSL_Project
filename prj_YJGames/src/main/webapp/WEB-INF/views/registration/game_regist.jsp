@@ -31,8 +31,14 @@
 			}
 
 		}
-		if(checkValue(regi.t_genre_code,"Please check genre at least 1")) return;
-		
+		const checkboxes = document.querySelectorAll('input[name="t_genre_code"]');
+        let isChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+        if (!isChecked) {alert('체크박스 중 하나 이상 선택해야 합니다!'); return;}
 		regi.method = "post";
 		regi.action = "Game?t_gubun=gameRegist";
 		regi.submit();
@@ -44,6 +50,7 @@
 		regi.submit();
 	}
 </script>
+<%@ include file = "../scripts.jsp"%>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -63,57 +70,7 @@
             <input type="hidden" name="t_pageNo">
             <input type="hidden" name="t_id">
             </form>
-            <header class="header" id="header">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/logo.png" alt="사이트 로고" href="Game">
-                </div>
-                
-        <nav class="menu" id="menu">
-            <ul>
-                <li class="store-menu">
-                    <a href="Game">STORE</a>
-                    <ul class="category-dropdown">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">RPG</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Adventure</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">COMMUNITY</a></li>
-                <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <c:if test="${sessionId eq null}">
-                    <li><a href="javascript:goSignIn()">SIGN IN</a></li>
-                </c:if>
-                <c:if test="${sessionId ne null}">
-                    <li><a href="javascript:goInfo()">MyInfo</a></li>
-                </c:if>
-                <c:if test="${sessionId ne null}">
-                    <li><a href="javascript:goLogout()">Logout</a></li>
-                </c:if>
-                <c:if test="${sessionId ne null}">
-                    <li><a href="javascript:goLibrary()">Library</a></li>
-                </c:if>
-            </ul>
-        </nav>
-        
-        
-        
-                
-                <nav>
-                <div class="icons">
-                    <div class="search-box" id="search-box">
-                        <input type="text" placeholder="Search...">
-                    </div>
-                    <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
-                    <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-            </nav>
-                
-                
-            </div>
-            </header>
-        
+            <%@ include file = "../header.jsp"%>
             <div class="main-image">
                 <img src="img/main-image.jpg" alt="메인 이미지">
             </div>
@@ -191,31 +148,8 @@ function updateFileName(input) {
         </form>
 
 
-
+<script src="js/main.js"></script>
     </body>
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="img/logo.png" alt="사이트 로고">
-            </div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<%@ include file = "../footer.jsp"%>
     
 </html>

@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     background-color: #1c1c2e;
 }
 
@@ -13,7 +13,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
+    height: 60px;
     background-color: rgba(0, 0, 0, 0.3); /* 기본 투명도 */
     display: flex;
     align-items: center;
@@ -24,17 +24,38 @@ body {
 
 /* 스크롤 시 불투명하게 변경 */
 .header.scrolled {
-    background-color: rgba(0, 0, 0, 1);
-    border-bottom: 2px solid #ff66cc; /* 스크롤 시 분홍색 테두리 */
+    background-color: rgba(0, 0, 0, 0.6) !important; /* 스크롤 시 60% 투명도 */
+    border-bottom: 2px solid #b56eff;
 }
 
-/* 마우스를 올렸을 때 투명도를 없애고 테두리도 분홍색으로 변경 */
+/* 마우스를 올렸을 때 투명도를 없애고 테두리도 변경된 분홍색으로 변경 */
 .header:hover {
-    background-color: rgba(0, 0, 0, 1); /* 마우스를 올렸을 때 불투명 */
-    border-bottom: 2px solid #ff66cc; /* 마우스를 올렸을 때 분홍색 테두리 */
+    background-color: rgba(0, 0, 0, 0.6) !important; /* 마우스를 올렸을 때 60% 투명도 */
+    border-bottom: 2px solid #b56eff;
+}
+
+/* 헤더 하단 테두리 반짝이 효과 */
+.header.scrolled, .header:hover {
+    background-color: rgba(0, 0, 0, 1); /* 불투명하게 변경 */
+    animation: border-glow 1s infinite alternate; /* 테두리에 반짝이 효과 추가 */
+    border-bottom: 2px solid #b56eff; /* 기본 분홍색 테두리 */
+}
+
+/* 반짝이는 테두리 애니메이션 */
+@keyframes border-glow {
+    from {
+        border-color: #b56eff; /* 밝은 분홍색 */
+    }
+    to {
+        border-color: #ff66cc; /* 약간 어두운 분홍색 */
+    }
 }
 
 
+/* 헤더 글씨에 호버 시 반짝이 효과 추가 */
+.menu ul li a:hover, .icons a:hover {
+    animation: glow 1s infinite alternate; /* 반짝이는 효과 */
+}
 
 .header-content {
     display: flex;
@@ -60,7 +81,7 @@ body {
 .menu {
     flex: 3;
     text-align: center;
-    margin-left: 170px;
+    margin-left: 100px;
 }
 
 .menu ul {
@@ -71,17 +92,23 @@ body {
 
 .menu ul li {
     float: left; /* li를 가로로 나열 */
-    margin-right: 20px; /* 각 li 간 간격 */
+    margin-right: 40px; /* 각 li 간 간격 */
 }
 
 .menu ul li a {
     color: #00e6e6;
     text-decoration: none;
     font-size: 1.2rem;
+    line-height: 1.2; /* 다른 글자와 동일한 line-height 적용 */
+    vertical-align: middle; /* 수직 정렬 */
+    padding: 0; /* 혹시 남아있을 수 있는 패딩 제거 */
+    margin: 0; /* 마진도 초기화 */
+    display: inline-block; /* inline-block으로 동일한 높이 적용 */
 }
 
+
 .menu ul li a:hover {
-    color: #ff66cc;
+    color: #b56eff; /* 변경된 분홍색 */
 }
 
 /* clearfix를 사용해 float으로 인해 깨질 수 있는 레이아웃 방지 */
@@ -91,7 +118,6 @@ body {
     clear: both;
 }
 
-
 /*=========================================================================*/
 
 /* COMMUNITY 메뉴 위치 설정 */
@@ -100,21 +126,32 @@ body {
     z-index: 1000;
 }
 
-/* 커뮤니티 메뉴 반짝이는 효과 */
+/* 커뮤니티 메뉴 스타일 */
 .community-menu > a {
     color: #00e6e6;
     text-decoration: none;
     font-size: 1.2rem;
-    animation: glow 1s infinite alternate; /* 반짝이는 효과 */
+    line-height: 1.2;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 2px;
+}
+
+/* ∨ 기호 스타일 */
+.community-menu > a::after {
+    content: " ∨";
+    font-size: 1.2rem;
+    vertical-align: middle;
 }
 
 /* 반짝이는 효과 애니메이션 */
 @keyframes glow {
     from {
-        text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff66cc, 0 0 15px #ff66cc;
+        text-shadow: 0 0 5px #b56eff, 0 0 10px #b56eff, 0 0 15px #b56eff;
     }
     to {
-        text-shadow: 0 0 20px #ff66cc, 0 0 30px #ff66cc, 0 0 40px #ff66cc;
+        text-shadow: 0 0 20px #b56eff, 0 0 30px #b56eff, 0 0 40px #b56eff;
     }
 }
 
@@ -123,7 +160,6 @@ body {
     top: 210%;
     left: 7%;
     transform: translateX(0%);
-    background-color: rgba(0, 0, 0, 1.0);
     list-style: none;
     min-width: 100px;
     max-height: 0;
@@ -135,10 +171,11 @@ body {
     display: flex;
     flex-direction: column;
     padding: 5px 0;
-    border-radius: 10px; /* 모서리 4곳 모두 둥글게 */
-    border: 2px solid #ff66cc; /* 분홍색 테두리 추가 */
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    animation: border-glow 1s infinite alternate;
+    border: 2px solid #b56eff;
 }
-
 
 /* 드롭다운 항목 */
 .category-dropdown li {
@@ -148,19 +185,48 @@ body {
     align-items: center;
     height: 40px;
     margin-right: 0 !important;
+    border-bottom: 2px solid transparent; /* 기본 선 투명 */
+    position: relative; /* 애니메이션을 위한 상대 위치 */
 }
 
+/* 드롭다운 항목 사이에 반짝이는 테두리 추가 */
+@keyframes border-glow {
+    from {
+        border-color: #b56eff; /* 밝은 분홍색 */
+    }
+    to {
+        border-color: #ff66cc; /* 어두운 분홍색 */
+    }
+}
+
+.category-dropdown li::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    animation: border-glow 1s infinite alternate;
+}
+
+/* 마지막 항목 아래쪽 선 없애기 */
+.category-dropdown li:last-child::after {
+    display: none;
+}
+
+/* 드롭다운 항목 텍스트 스타일 */
 .category-dropdown li a {
     color: #fff;
     text-decoration: none;
     font-size: 1rem;
-    background-color: transparent; /* 기본 배경 투명 */
+    background-color: transparent;
     padding: 5px 10px;
 }
 
+/* 호버 시 텍스트 효과 */
 .category-dropdown li a:hover {
-    background-color: transparent; /* 마우스 올렸을 때도 완전 투명 */
-    color: #ff66cc; /* 텍스트 색상은 분홍색으로 변경 */
+    color: #b56eff;
 }
 
 /* 마우스를 올렸을 때 COMMUNITY 카테고리 메뉴 표시 */
@@ -175,8 +241,9 @@ body {
 /* 마우스 호버 시 반짝임 멈춤 및 색상 고정 */
 .community-menu:hover > a {
     animation: none;
-    color: #ff66cc; /* 마우스를 올렸을 때 색상 고정 */
+    color: #b56eff;
 }
+
 
 /*=========================================================================*/
 
@@ -196,7 +263,7 @@ body {
 .search-box input[type="text"] {
     width: 100%;
     padding: 5px;
-    border: 2px solid #ff66cc;
+    border: 2px solid #b56eff; /* 변경된 분홍색 테두리 */
     border-radius: 8px;
     display: none;
     background-color: #f0f0f0;
@@ -226,6 +293,7 @@ body {
     align-items: center;
     gap: 20px;
     position: relative;
+    margin-right: 30px;
 }
 
 .icons a {
@@ -235,11 +303,11 @@ body {
 }
 
 .icons a:hover {
-    color: #ff66cc;
+    color: #b56eff; /* 변경된 분홍색 */
 }
 
-
 /*=========================================================================*/
+
 
 /* 푸터 */
 .footer {
@@ -295,6 +363,11 @@ footer.background-gray {
     color: #00e6e6;
     text-decoration: none;
     font-size: 1rem;
+}
+
+/* 푸터 글씨에 호버 시 반짝이 효과 추가 */
+.footer-links ul li a:hover, .footer-social a:hover {
+    animation: glow 1s infinite alternate; /* 반짝이는 효과 */
 }
 
 .footer-links ul li a:hover {

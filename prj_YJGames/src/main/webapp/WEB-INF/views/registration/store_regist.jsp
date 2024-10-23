@@ -13,14 +13,7 @@
 		if(checkValue(store_regi.t_s_spec_4,"Enter required GPU specifications")) return;
 		if(checkValue(store_regi.t_s_spec_5,"Enter required Storage specifications")) return;
 		
-		var RamValue = store_regi.t_s_spec_3.value;
-		if (RamValue) {
-		       store_regi.t_s_spec_3.value = ramValue + " GB RAM"; // " GB RAM" 추가
-		   }
-		var StorageValue = store_regi.t_s_spec_5;
-		if (StorageValue) {
-		       store_regi.t_s_spec_5.value = StorageValue + " GB available space"; // " GB RAM" 추가
-		   }		
+
 		 var fileElements = [
              store_regi.t_s_img_main,
              store_regi.t_s_img_1,
@@ -42,7 +35,6 @@
          store_regi.action = "Game?t_gubun=storeRegist";
          store_regi.submit();
      }
-
      function validateFile(file, maxFileSizeMB) {
          if (file.files.length > 0) { // 파일이 선택되었는지 확인
              var fileName = file.files[0].name; // 선택된 파일의 이름 가져오기
@@ -77,9 +69,8 @@
 		store_regi.action = "Game";
 		store_regi.submit();
 	}
-	
-	
 </script>
+<%@ include file = "../scripts.jsp"%>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -99,57 +90,7 @@
             <input type="hidden" name="t_s_pageNo">
             <input type="hidden" name="t_id">
             </form>
-            <header class="header" id="header">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/logo.png" alt="사이트 로고" href="">
-                </div>
-                
-        <nav class="menu" id="menu">
-            <ul>
-                <li class="store-menu">
-                    <a href="Game">STORE</a>
-                    <ul class="category-dropdown">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">RPG</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Adventure</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">COMMUNITY</a></li>
-                <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <c:if test="${sessionId eq null}">
-                    <li><a href="javascript:goSignIn()">SIGN IN</a></li>
-                </c:if>
-                <c:if test="${sessionId ne null}">
-                    <li><a href="javascript:goInfo()">MyInfo</a></li>
-                </c:if>
-                <c:if test="${sessionId ne null}">
-                    <li><a href="javascript:goLogout()">Logout</a></li>
-                </c:if>
-                <c:if test="${sessionId ne null}">
-                    <li><a href="javascript:goLibrary()">Library</a></li>
-                </c:if>
-            </ul>
-        </nav>
-        
-        
-        
-                
-                <nav>
-                <div class="icons">
-                    <div class="search-box" id="search-box">
-                        <input type="text" placeholder="Search...">
-                    </div>
-                    <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
-                    <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-            </nav>
-                
-                
-            </div>
-            </header>
-        
+           <%@ include file = "../header.jsp"%>
             <div class="main-image">
                 <img src="img/main-image.jpg" alt="메인 이미지">
             </div>
@@ -233,60 +174,68 @@
                         <input type = "text" name = "t_s_spec_5"> available space
                     </div>
                 </div>
-                <div class="formgroup">
-                    <label for="game_img_main">Game IMG Main</label><br>
-                    <input type = "file" name = "t_s_img_main" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
-    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
-                <div class="formgroup">
-                    <label for="game_img_1">Game IMG 1</label><br>
-                    <input type = "file" name = "t_s_img_1" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
-                    <button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
-                <div class="formgroup">
-                    <label for="game_img_2">Game IMG 2</label><br>
-                    <input type = "file" name = "t_s_img_2" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
-                    <button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
-                <div class="formgroup">
-                    <label for="game_img_3">Game IMG 3</label><br>
-                    <input type = "file" name = "t_s_img_3" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
-    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
-                <div class="formgroup">
-                    <label for="game_icon">Game Icon</label><br>
-                    <input type = "file" name = "t_s_icon" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-					<input type="text" id="file-name" placeholder="No file chosen" readonly>
-    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
-                <div class="formgroup">
-                    <label for="game_video_1">Game Video 1</label><br>
-					<input type = "file" name = "t_s_video_1" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-					<input type="text" id="file-name" placeholder="No file chosen" readonly>
-    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
-                <div class="formgroup">
-                    <label for="game_video_2">Game Video 2</label><br>
-					<input type = "file" name = "t_s_video_2" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-					<input type="text" id="file-name" placeholder="No file chosen" readonly>
-    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
-                <div class="formgroup">
-                    <label for="game_video_3">Game Video 3</label><br>
-                    <input type = "file" name = "t_s_video_3" id="file-upload" style="display: none;" onchange="updateFileName(this)">
-                    <input type="text" id="file-name" placeholder="No file chosen" readonly>
-    				<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
-                </div>
+				<div class="formgroup">
+				    <label for="game_img_main">Game IMG Main</label><br>
+				    <input type="file" name="t_s_img_main" id="file-upload-main" style="display: none;" onchange="updateFileName(this, 'file-name-main')">
+				    <input type="text" id="file-name-main" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-main').click();">Choose File</button>
+				</div>
+				
+				<div class="formgroup">
+				    <label for="game_img_1">Game IMG 1</label><br>
+				    <input type="file" name="t_s_img_1" id="file-upload-1" style="display: none;" onchange="updateFileName(this, 'file-name-1')">
+				    <input type="text" id="file-name-1" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-1').click();">Choose File</button>
+				</div>
+				
+				<div class="formgroup">
+				    <label for="game_img_2">Game IMG 2</label><br>
+				    <input type="file" name="t_s_img_2" id="file-upload-2" style="display: none;" onchange="updateFileName(this, 'file-name-2')">
+				    <input type="text" id="file-name-2" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-2').click();">Choose File</button>
+				</div>
+				
+				<div class="formgroup">
+				    <label for="game_img_3">Game IMG 3</label><br>
+				    <input type="file" name="t_s_img_3" id="file-upload-3" style="display: none;" onchange="updateFileName(this, 'file-name-3')">
+				    <input type="text" id="file-name-3" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-3').click();">Choose File</button>
+				</div>
+				
+				<div class="formgroup">
+				    <label for="game_icon">Game Icon</label><br>
+				    <input type="file" name="t_s_icon" id="file-upload-icon" style="display: none;" onchange="updateFileName(this, 'file-name-icon')">
+				    <input type="text" id="file-name-icon" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-icon').click();">Choose File</button>
+				</div>
+				
+				<div class="formgroup">
+				    <label for="game_video_1">Game Video 1</label><br>
+				    <input type="file" name="t_s_video_1" id="file-upload-video-1" style="display: none;" onchange="updateFileName(this, 'file-name-video-1')">
+				    <input type="text" id="file-name-video-1" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-video-1').click();">Choose File</button>
+				</div>
+				
+				<div class="formgroup">
+				    <label for="game_video_2">Game Video 2</label><br>
+				    <input type="file" name="t_s_video_2" id="file-upload-video-2" style="display: none;" onchange="updateFileName(this, 'file-name-video-2')">
+				    <input type="text" id="file-name-video-2" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-video-2').click();">Choose File</button>
+				</div>
+				
+				<div class="formgroup">
+				    <label for="game_video_3">Game Video 3</label><br>
+				    <input type="file" name="t_s_video_3" id="file-upload-video-3" style="display: none;" onchange="updateFileName(this, 'file-name-video-3')">
+				    <input type="text" id="file-name-video-3" placeholder="No file chosen" readonly>
+				    <button type="button" onclick="document.getElementById('file-upload-video-3').click();">Choose File</button>
+				</div>
+
 <script>
-function updateFileName(input) {
+function updateFileName(input, fileNameId) {
     const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
-    document.getElementById("file-name").value = fileName;
+    document.getElementById(fileNameId).value = fileName;
 }
-</script>                
+</script>
                 <div class="button-container">
                 <input type = "button" onclick="goRegi()" value = "Registration" class="buttons">
                 <input type = "button" onclick="goBack()" value = "Cancel" class="buttons">
@@ -295,31 +244,7 @@ function updateFileName(input) {
         </form>
 
 
-
+<script src="js/main.js"></script>
     </body>
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="img/logo.png" alt="사이트 로고">
-            </div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-    
+<%@ include file = "../footer.jsp"%>
 </html>

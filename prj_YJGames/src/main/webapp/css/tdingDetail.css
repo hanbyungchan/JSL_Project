@@ -1,0 +1,120 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #171a21;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 70px auto;
+    padding: 20px;
+    background-color: #171a21;
+    border-radius: 15px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 1.2px;
+}
+
+/* 날짜 및 작성자 정보 */
+.author-date {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* 이미지 컨테이너 */
+.image-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.image-container img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 이미지에 마우스를 올렸을 때 확대 및 그림자 효과 */
+.image-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 본문 텍스트 스타일 */
+.content {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: white;
+    text-align: justify;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* 강조된 텍스트 스타일 */
+.highlight {
+    font-weight: 600;
+    color: #ff6b6b;
+    font-style: italic;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .content {
+        font-size: 15px;
+    }
+
+    .image-container img {
+        max-width: 100%;
+    }
+}
+
+/* 스크롤 버튼 */
+
+.btns {
+    display: flex;
+    position: fixed;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    z-index: 10;
+}
+
+.btns > div {
+    padding: 0.6rem 1.5rem;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+    color: #fff;
+    margin-right: 0.4rem;
+}
+
+.moveTopBtn:hover {
+    color: #000;
+    background: #febf00;
+}
+
+/* ------ */
