@@ -49,6 +49,21 @@ public class GameController {
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
+	//뉴스 상세보기
+	@RequestMapping("NewsView")
+	public String NewsView(HttpServletRequest req) {
+		CommonExecute news = new command.news.NewsView();
+		news.execute(req);
+		return"news/news_view";
+	}
+	//게임사별 뉴스 목록을 게임 라이브러리 따위에 띄운다면 그쪽에서 호출해줘야됨.
+	//뉴스 게시판
+	@RequestMapping("News")
+	public String News(HttpServletRequest req) {
+		CommonExecute news = new command.news.News();
+		news.execute(req);
+		return"news/news";
+	}
 	@RequestMapping("Search")
 	public String Search(HttpServletRequest req) {
 		CommonExecute game = new command.search.Search();
@@ -276,5 +291,14 @@ public class GameController {
 		if(count == 1) {out.print(count); session.setAttribute("sessionMoney", money);}
 		else out.print("");
 	}
-	
+	//충전
+		@RequestMapping("exe")
+		public void Exe(HttpServletRequest request, HttpServletResponse response) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = null;
+			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+			String code = request.getParameter("t_pageNo");
+			GameDao.EXE(code);
+			out.print("1");
+		}
 }

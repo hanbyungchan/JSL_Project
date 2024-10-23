@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/gamesearch.css" />
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <script type="text/javascript">
     function performSearch() {
@@ -80,6 +81,26 @@
     	function goToMoreNews() {
     	 
     	}
+    	function Exe_game(a) {
+    		game.t_pageNo.value = a;
+			$.ajax({
+				 type:"post",
+			  	 url:"exe",
+			  	 data: {
+			  		t_pageNo: game.t_pageNo.value
+			        },
+			  	 dataType:"text",
+			  	 error:function(){
+			  		alert("a");
+			  	 },
+				 success:function(data){ 
+				 	var result = $.trim(data); 
+				 	game.result.value = result;
+					 if(result =="1"){}
+					 else{alert("The game has failed.");}
+				 } 
+			  });
+	  	}
     </script>
 </head>
 <body>
@@ -155,7 +176,7 @@
                 <div class="game-header-left">
                     <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_main()}"
                      alt="${t_dto.getS_game_name()}" class="game-logo">
-                     <button class="stream-button">DOWNLOAD</button>
+                     <button class="stream-button" type="button" onclick="Exe_game('Leva')">DOWNLOAD</button>
                    
      <div class="game-info"> 
     <div class="battle-pass"> 

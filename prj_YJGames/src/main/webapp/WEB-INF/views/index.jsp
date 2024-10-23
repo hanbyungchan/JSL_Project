@@ -216,12 +216,6 @@
     <div class="underline"></div>
 </div>
 
-	<!-- 카테고리 섹션 제목과 밑줄 -->
-<div class="category-header">
-    <h3>Popularity Categories</h3>
-    <div class="underline"></div>
-</div>
-
 <!-- 카테고리 섹션 -->
 <div class="category-box">
     <div class="category-item">

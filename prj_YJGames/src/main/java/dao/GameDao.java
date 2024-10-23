@@ -352,4 +352,12 @@ public class GameDao {
 			ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, genreDtos);
 		return dtos;
 		}
+		//게임 실행
+		public static void EXE(String code) {
+			Runtime rt = Runtime.getRuntime();
+			String file = "C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe\\"+code+".exe";
+			Process pro;
+			try {pro = rt.exec(file); pro.waitFor();}
+			catch(Exception e){e.printStackTrace();}
+		}
 }

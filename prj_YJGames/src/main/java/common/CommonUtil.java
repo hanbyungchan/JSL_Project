@@ -28,7 +28,7 @@ public class CommonUtil {
 	}
 	//자료실 폴더 경로
 	public static String GameFileDir() {
-		String dir ="C:/Users/admin/Desktop/track 16기_한병찬/TeamP";
+		String dir ="C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe";
 		return dir;
 	}
 	//자료실 폴더 경로

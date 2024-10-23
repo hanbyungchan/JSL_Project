@@ -14,7 +14,7 @@
             <a href="#">COMMUNITY</a>
             <ul class="category-dropdown">
                 <li><a href="Game?t_gubun=myreview">Review</a></li>
-                <li><a href="#">News</a></li>
+                <li><a href="News">News</a></li>
             </ul>
         </li>
         <li><a href="Game?t_gubun=support">SUPPORT</a></li>

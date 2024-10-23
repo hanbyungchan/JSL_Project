@@ -31,8 +31,14 @@
 			}
 
 		}
-		if(checkValue(regi.t_genre_code,"Please check genre at least 1")) return;
-		
+		const checkboxes = document.querySelectorAll('input[name="t_genre_code"]');
+        let isChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+        if (!isChecked) {alert('체크박스 중 하나 이상 선택해야 합니다!'); return;}
 		regi.method = "post";
 		regi.action = "Game?t_gubun=gameRegist";
 		regi.submit();
@@ -64,8 +70,7 @@
             <input type="hidden" name="t_pageNo">
             <input type="hidden" name="t_id">
             </form>
-<%@ include file = "../header.jsp"%>
-        
+            <%@ include file = "../header.jsp"%>
             <div class="main-image">
                 <img src="img/main-image.jpg" alt="메인 이미지">
             </div>
@@ -73,75 +78,78 @@
         <!-- ================================================================== -->	
         
         <form name = "regi" enctype="multipart/form-data">
-        	<input type = "hidden" name = "t_gubun">
-            <div class="g_regist">
+        <input type = "hidden" name = "t_gubun">
+            <section class="g_regist">
                 <h2>Game Registration</h2>
-                <tr>
-                	<th>Game code(Auto)</th>
-                    <td>
+                <div class="formgroup">
+                	<label for="game code">Game code(Auto)</label>
+                	<div class="input-wrapper">
                	    	<input type = "text" name = "t_g_code"  value = "${g_code}"readonly>
-                    </td>
-                 </tr>
-                 <br>
-                 <tr>
-                    <th>Game Title</th>
-                    <td>
-                        <input type = "text" name = "t_g_name">
-                    </td>
-                </tr>
+               	    </div>
+                 </div>
+                 <div class="formgroup">
+                    <label for="game title">Game Title</label>
+                    <div class="input-wrapper">
+                    	<input type = "text" name = "t_g_name">
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="price">Price</label>
+                    <div class="input-wrapper">
+                    	<input type = "text" name = "t_g_price">
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="developer">Developer</label>
+                    <div class="input-wrapper">
+                   		<input type = "text" name = "t_g_developer" value = "${sessionName}" readonly>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="game grade">Game Grade</label>
+                    <div class="input-wrapper">
+	                    <select name = "t_g_grade">
+	                    	<option value = "EVERYONE">EVERYONE</option>
+	                    	<option value = "EVERYONE 10+">EVERYONE 10+</option>
+	                    	<option value = "TEEN">TEEN</option>
+	                    	<option value = "MATURE 17+">MATURE 17+</option>
+	                    	<option value = "ADULTS ONLY 18+">ADULTS ONLY 18+</option>
+	                    </select>
+                    </div>
+                </div>
+                <div class="formgroup">
+                    <label for="game download file">Game Download File</label><br>
+                        <input id="file-upload" type="file" name="t_g_file" style="display: none;" onchange="updateFileName(this)">
+    					<input type="text" id="file-name" placeholder="No file chosen" readonly>
+    					<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
+<script>
+function updateFileName(input) {
+    const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
+    document.getElementById("file-name").value = fileName;
+}
+</script>
+                </div>
+                <div class="formgroup">
+                    <label for="game genre">Game Genre</label>
+                    <div class="genre-options">
+	                    <c:forEach items="${dtos}" var = "dto">
+	                    	<label>
+	                    		${dto.genre_name}<input type = "checkbox" name = "t_genre_code" value = "${dto.genre_code}">
+	                    	</label>
+	                    </c:forEach>
+                    </div>
+                </div>
                 <br>
-                <tr>
-                    <th>Price</th>
-                    <td>
-                        <input type = "text" name = "t_g_price">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Developer</th>
-                    <td>
-                        <input type = "text" name = "t_g_developer" value = "${sessionName}" readonly>
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game Grade</th>
-                    <td>
-                    	<select name = "t_g_grade">
-                    		<option value = "EVERYONE">EVERYONE</option>
-                    		<option value = "EVERYONE 10+">EVERYONE 10+</option>
-                    		<option value = "TEEN">TEEN</option>
-                    		<option value = "MATURE 17+">MATURE 17+</option>
-                    		<option value = "ADULTS ONLY 18+">ADULTS ONLY 18+</option>
-                    	</select>
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game Download File</th>
-                    <td>
-                        <input type = "file" name = "t_g_file">
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <th>Game Genre</th>
-                    	<td>
-                    <c:forEach items="${dtos}" var = "dto">
-                    	<label>
-                    		${dto.genre_name}<input type = "checkbox" name = "t_genre_code" value = "${dto.genre_code}">
-                    	</label>
-                    </c:forEach>
-                    	</td>
-                </tr>
-                <br>
-                <input type = "button" onclick="goRegi()" value = "Registration">
-                <input type = "button" onclick="goBack()" value = "Cancel">
-            </div>
+                <div class="button-container">
+	                <input type = "button" onclick="goRegi()" value = "Registration" class="buttons">
+	                <input type = "button" onclick="goBack()" value = "Cancel" class="buttons">
+                </div>
+            </section>
         </form>
 
 
-
+<script src="js/main.js"></script>
     </body>
-</html>
 <%@ include file = "../footer.jsp"%>
+    
+</html>
