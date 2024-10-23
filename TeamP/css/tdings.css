@@ -70,8 +70,10 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: stretch; /* 두 div의 높이를 맞추기 위해 추가 */
+    margin: 0 auto;
     margin-bottom: 50px;
-    height: 500px; /* 원하는 높이로 설정 */
+    height: 600px; /* 원하는 높이로 설정 */
+    max-width: 1700px;
 }
 
 .large-image {
@@ -82,8 +84,8 @@ h1 {
 
 .large-image a img {
     width: 100%;
-    height: 400px;
-    max-height: 400px; /* 원하는 최대 높이 설정 */
+    min-height: 500px;
+    max-height: 500px; /* 원하는 최대 높이 설정 */
     object-fit: cover; /* 이미지가 영역을 벗어나지 않도록 조정 */
 }
 
@@ -103,6 +105,7 @@ h1 {
 }
 
 .small-image {
+    position: relative;
     flex: 32%;
     text-align: center;
     overflow: hidden; /* 추가 */
@@ -111,8 +114,8 @@ h1 {
 
 .small-image a img {
     width: 100%;
-    height: 200px;
-    max-height: 200px;
+    min-height: 250px;
+    max-height: 250px;
     object-fit: cover;
     cursor: pointer;
 }
@@ -124,6 +127,13 @@ h1 {
     object-fit: cover; /* 이미지가 영역을 벗어나지 않도록 조정 */
 }
 
+.button-text {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    padding: 20px;
+    max-width: 80%;
+}
 .small-image p {
     font-size: 18px;
     color: #333;
