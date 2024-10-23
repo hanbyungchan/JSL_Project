@@ -570,6 +570,7 @@ body {
 }
 .news-container {
     margin-top: 20px; 
+    height: 275px;
 }
 
 .news-item {
