@@ -181,11 +181,12 @@
             <div class="news-details">
                 <h3>News Title 3</h3>
                 <p>a brief explanation 3</p>
-                 <div class="more-news-link" onclick="goToMoreNews()">
-       			 <a href="#" class="read-more">Read more news</a>
-    		</div>
+                
             </div>
         </div>
+         <div class="more-news-link" onclick="goToMoreNews()">
+       			 <a href="#" class="read-more">Read more news</a>
+    		</div>
          
      
     </div>
