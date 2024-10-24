@@ -120,14 +120,18 @@
 			</div>
 			</form>
             <div class="recent">
-                <c:if test="${t_search eq ''}"><h2>All Game</h2></c:if>
+            	<div class="lib_result">
+                <c:if test="${t_search eq ''}"><h2>My Game</h2> </c:if>
                 <c:if test="${t_search ne ''}"><h2>games found</h2></c:if>
+                <a href="Game?t_gubun=library" class="move-right"><i class="fa-solid fa-rotate-left"></i></a>
+                </div>
+                
                     <ul>
                     <c:forEach items="${t_dtos}" var="dto">
                     <li><a href="javascript:goDetail('${dto.getG_code()}')">${dto.getG_name()}</a></li>
                    	</c:forEach>
                     </ul>
-                    <a href="Game?t_gubun=library" class="move-right"><i class="fa-solid fa-rotate-left"></i></a>
+                    
                 </div>
         </div>
 			 <div class="main-content">

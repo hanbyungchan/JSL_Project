@@ -51,7 +51,7 @@
                 </div>
                 	</form>
                 <div class="recent">
-                <c:if test="${t_search eq ''}"><h2>All Game</h2></c:if>
+                <c:if test="${t_search eq ''}"><h2>My Game</h2></c:if>
                 <c:if test="${t_search ne ''}"><h2>games found</h2></c:if>
                     <ul>
                     <c:forEach items="${t_dtos}" var="dto">

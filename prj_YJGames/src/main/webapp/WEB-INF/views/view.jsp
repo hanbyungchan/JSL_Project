@@ -78,18 +78,19 @@
 
         <!-- 메인 미디어 영역 -->
         <div class="main-media" id="main-media">
-            <video id="main-video" src="video/intro.mp4" width="100%" height="100%" controls autoplay muted></video>
+            <video id="main-video" src="video/${dto.getS_page_no()}/${dto.getS_video_1()}" width="100%" height="100%" controls autoplay muted></video>
         </div>
 		
         <!-- 썸네일 갤러리 -->
         <div class="media-gallery-wrapper">
             <button class="gallery-nav prev" id="prev-btn">&lt;</button>
             <div class="media-gallery" id="media-gallery">
-                <img src="img/intro.gif" alt="video 1 썸네일" data-video-src="video/intro.mp4">
-                <img src="img/intro.gif" alt="video 2 썸네일" data-video-src="video/intro.mp4">
+            	 <img src="img/${dto.getS_page_no()}/${dto.getS_img_main()}" alt="video 1 썸네일" data-video-src="video/${dto.getS_page_no()}/${dto.getS_video_1()}">
+                <img src="img/${dto.getS_page_no()}/${dto.getS_img_main()}" alt="video 2 썸네일" data-video-src="video/${dto.getS_page_no()}/${dto.getS_video_2()}">
                 <img src="img/${dto.getS_page_no()}/${dto.getS_img_1()}" alt="img 1">
                 <img src="img/${dto.getS_page_no()}/${dto.getS_img_2()}" alt="img 2">
                 <img src="img/${dto.getS_page_no()}/${dto.getS_img_3()}" alt="img 3">
+               
             </div>
             <button class="gallery-nav next" id="next-btn">&gt;</button>
         </div>

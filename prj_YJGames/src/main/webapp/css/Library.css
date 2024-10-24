@@ -111,11 +111,17 @@
     border-radius: 10px; 
     margin-top: 30px; 
 }
+
+.lib_result {
+	display: flex;
+}
+
 .move-right {
     margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 오른쪽으로 이동 */
     display: block; /* 링크를 블록 요소로 변경하여 마진 적용 가능 */
     text-align: right; /* 내용 오른쪽 정렬 */
-    margin-top: 10px; /* 필요 시 위쪽 여백 추가 */
+    margin-right: 7px;
+    margin-top: 27px;
 }
 .recent h2 {
     color: #66c0f4; 
