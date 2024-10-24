@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게임 라이브러리</title>
-    <link rel="stylesheet" href="../css/Library.css">
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/gamesearch.css" />
+    <link rel="stylesheet" href="css/Library.css">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/gamesearch.css" />
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -161,7 +162,7 @@
     <div class="battle-pass"> 
         <h2>News</h2> 
     </div>
-    <div class="news-container">
+    <div class="achievements trendy-box">
         <div class="news-item">
             <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 1" class="news-image">
             <div class="news-details">
@@ -184,12 +185,13 @@
                 
             </div>
         </div>
-         <div class="more-news-link" onclick="goToMoreNews()">
-       			 <a href="#" class="read-more">Read more news</a>
-    		</div>
+        
          
      
     </div>
+     <div class="more-news-link" onclick="goToMoreNews()">
+       			 <a href="#" class="read-more">Read more news</a>
+    		</div>
 </div> 
 </div>          
 </div>	

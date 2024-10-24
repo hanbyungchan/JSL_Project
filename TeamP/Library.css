@@ -131,7 +131,8 @@
 }
 
 .main-content {
-	padding-right: 50px;
+	padding-left: 35px;
+    padding-right: 35px;
     flex-grow: 1;
     background-color: #1e1e1e;
     display: flex;
@@ -448,9 +449,8 @@ body {
     color: #c6d4df;
 }
 .trendy-box {
-    background-color: #2d2d2d; 
+    
     border-radius: 10px;
-    padding: 20px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
     transition: transform 0.3s, box-shadow 0.3s; 
     margin: 15px 0; 
@@ -594,21 +594,23 @@ body {
 
 .news-details {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    height: 100%; 
-     width: 100%;
+    flex-direction: column; /* 세로 방향으로 배치 */
+    justify-content: center; /* 세로 가운데 정렬 */
+    height: 100%;
+    width: 100%;
+    margin-left: 10px; /* 이미지와 간격을 주기 위한 여백 */
 }
 
 .news-details h3 {
-    margin: 0; 
-    font-size: 1.2em; 
+    margin: 0; /* 기본 마진 제거 */
+    font-size: 1.2em; /* 제목 크기 조정 */
 }
 
 .news-details p {
-    margin: 5px 0 0; 
-    font-size: 0.9em; 
+    margin: 5px 0 0; /* 설명의 마진 조정 */
+    font-size: 0.9em; /* 설명 크기 조정 */
 }
+
 
 .more-news-link {
     margin-top: auto; 
@@ -642,4 +644,5 @@ a.read-more {
     justify-content: flex-end;
     color: #ff4081;  
 }
+
  
