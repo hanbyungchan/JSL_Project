@@ -190,8 +190,10 @@
         </div>
     </div>
 </div>
-
-    <!-- JS 연동 -->
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
     <script src="js/main.js"></script> 
     <script src="js/view.js"></script>
 

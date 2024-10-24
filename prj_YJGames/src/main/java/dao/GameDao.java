@@ -1,5 +1,8 @@
 package dao;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import common.CommonTemplate;
 import dto.CartDto;
 import dto.GameRegiDto;
+import dto.GenreDto;
 import dto.HomeDto;
 import dto.LibraryDto;
 import dto.ReviewDto;
@@ -196,7 +200,7 @@ public class GameDao {
 				"s.s_spec_1, s.s_spec_2, s.s_spec_3, s.s_spec_4, s.s_spec_5,\r\n" + 
 				"s.s_img_main, s.s_img_1, s.s_img_2, s.s_img_3, s.s_icon,\r\n" + 
 				"s.s_video_1, s.s_video_2, s.s_video_3,\r\n" + 
-				"g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_sale_price\r\n" + 
+				"g.g_price, round((g.g_price *((100-s.s_sale)/100)),2) as g_sale_price,g.g_file\r\n" + 
 				"from KYJ_STORE_PAGE s, KYJ_GAME g\r\n" + 
 				"where s.s_game_code = g.g_code and s.s_page_no = '"+s_page_no+"'";
 		ViewDto dto = null;
@@ -339,22 +343,37 @@ public class GameDao {
 			return code;
 		}
 		//장르 리스트 불러오기
-		public ArrayList<GameRegiDto> genreCheckList() {
+		public ArrayList<GenreDto> genreCheckList() {
 			String query = "SELECT genre_code, genre_name\r\n" + 
 					"FROM kyj_genre\r\n" + 
 					"ORDER BY genre_code + 0 ASC";
-			RowMapper<GameRegiDto> genreDtos = new BeanPropertyRowMapper<>(GameRegiDto.class);
-			ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, genreDtos);
+			RowMapper<GenreDto> genreDtos = new BeanPropertyRowMapper<>(GenreDto.class);
+			ArrayList<GenreDto> dtos = (ArrayList<GenreDto>) temp.query(query, genreDtos);
 		return dtos;
 		}
 		//게임 실행
 		public static void EXE(String code) {
-			Runtime rt = Runtime.getRuntime();
-			String file = "C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe\\"+code+".exe";
-			Process pro;
-			try {pro = rt.exec(file); pro.waitFor();}
-			catch(Exception e){e.printStackTrace();}
-		}
+			 // 현재 사용자의 홈 경로 가져오기
+	        String userHome = System.getProperty("user.home");
+	        // 다운로드 폴더 경로 설정
+	        String downloadDir = userHome + File.separator + "Downloads";
+	        // 실행할 파일 이름 설정
+	        String fileName = code; // 게임 이름으로 실행할 파일 이름
+	        // 파일 객체 생성
+	        File file = new File(downloadDir, fileName);
+	        // 파일 실행
+	        if (file.exists()) {
+	            try {
+	                Desktop.getDesktop().open(file);
+	                System.out.println("File executed: " + file.getAbsolutePath());
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	                System.out.println("Failed to execute the file.");
+	            }
+	        } else {
+	            System.out.println("File does not exist: " + file.getAbsolutePath());
+	        }
+	    }
 	//게임 장르 리스트
 	public ArrayList<ViewDto> GameGenreList(String s_page_no){
 		String query = "select g.genre_name from kyj_store_page s, kyj_genre_join j, kyj_genre g\r\n" + 

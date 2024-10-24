@@ -13,7 +13,6 @@
         <!-- CSS 연동 -->
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/gamesearch.css" />
-
         <!-- Font Awesome 아이콘 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script type="text/javascript">
@@ -47,8 +46,6 @@
             <img src="img/main-image.jpg" alt="메인 이미지" />
         </div>
 
-        <script src="js/main.js"></script>
-
         <div class="search_content">
             <div class="search_result slider-header">
                 <h3>Result</h3>
@@ -78,7 +75,7 @@
                         <p class="result-title">${dto.getG_name()}</p>
                         <c:if test="${dto.getS_sale() ne '0'}">
                         	<p class="search-price-box">
-                            	<span class="search-discount-rate">-${dto.getS_sale()}%%</span>
+                            	<span class="search-discount-rate">-${dto.getS_sale()}%</span>
                             	<span class="search-discounted-price">$${dto.getG_sale_price()}</span>
                             	<span class="search-original-price">$${dto.getG_price()}</span>
                         	</p>
@@ -197,6 +194,11 @@
                 </script>
             </div>
         </div>
+        <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
+<script src="js/main.js"></script>
     </body>
 </html>
 <%@ include file = "../footer.jsp"%>

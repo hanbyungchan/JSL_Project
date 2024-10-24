@@ -287,11 +287,14 @@
         </div>
     </div>
 </div>
-
-
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
+<%@ include file = "footer.jsp"%>
 <!-- ============================================================================= -->	
 <script src="js/main.js"></script>
-	
+<script src="js/slide.js"></script>	
 </body>
 </html>
-<%@ include file = "footer.jsp"%>
+

@@ -88,30 +88,6 @@ h1 {
         max-width: 100%;
     }
 }
-
-/* 스크롤 버튼 */
-
-.btns {
-    display: flex;
-    position: fixed;
-    right: 0.4rem;
-    bottom: 0.4rem;
-    z-index: 10;
-}
-
-.btns > div {
-    padding: 0.6rem 1.5rem;
-    background: #111;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.2s;
-    color: #fff;
-    margin-right: 0.4rem;
-}
-
 .moveTopBtn:hover {
     color: #000;
     background: #febf00;

@@ -1,6 +1,11 @@
 package com.team.pjt;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -36,9 +41,11 @@ import command.user.UserUpdate;
 import command.view.ViewPage;
 import common.CommonExecute;
 import common.CommonTemplate;
+import common.CommonUtil;
 import dao.GameDao;
 import dao.UserDao;
 import dto.GameRegiDto;
+import dto.GenreDto;
 
 @Controller
 public class GameController {
@@ -157,7 +164,7 @@ public class GameController {
 			else if(gubun.equals("gameRegistForm")) {
 				GameDao dao = new GameDao();
 				String g_code = dao.AutoCode();
-				ArrayList<GameRegiDto> dtos = dao.genreCheckList();
+				ArrayList<GenreDto> dtos = dao.genreCheckList();
 				req.setAttribute("g_code", g_code);
 				req.setAttribute("dtos", dtos);
 				CommonExecute game = new IndexList();
@@ -291,14 +298,73 @@ public class GameController {
 		if(count == 1) {out.print(count); session.setAttribute("sessionMoney", money);}
 		else out.print("");
 	}
-	//충전
+	//실행
 		@RequestMapping("exe")
 		public void Exe(HttpServletRequest request, HttpServletResponse response) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = null;
 			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
-			String code = request.getParameter("t_pageNo");
+			String code = request.getParameter("t_fileName");
 			GameDao.EXE(code);
 			out.print("1");
 		}
+		//다운로드
+		@RequestMapping("Download")
+		public void Download(HttpServletRequest request, HttpServletResponse response) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = null;
+			String savePath = "C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe";// 첨부파일경로
+		 	String fileName = request.getParameter("t_fileName");   // 다운로드 받을 첨부파일명
+		    String orgfilename = fileName ;
+		    InputStream in = null;
+		    OutputStream os = null; 
+		    File file = null;
+		    boolean skip = false;
+		    String client = "";
+		    try{
+		        try{
+		            file = new File(savePath, fileName);
+		            in = new FileInputStream(file);
+		        }catch(FileNotFoundException fe){
+		            skip = true;
+		        }
+		        client = request.getHeader("User-Agent");
+		        response.reset() ;
+		        response.setContentType("application/octet-stream");
+		        response.setHeader("Content-Description", "JSP Generated Data");
+		        if(!skip){
+		            // IE
+		            if(client.indexOf("MSIE") != -1){
+		                response.setHeader ("Content-Disposition", "attachment; filename="+orgfilename);
+		 
+		            }else{
+		                // 한글 파일명 처리
+		                orgfilename = new String(orgfilename.getBytes("utf-8"),"iso-8859-1");
+
+		                response.setHeader("Content-Disposition", "attachment; filename=\"" + orgfilename + "\"");
+		                response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+		            } 
+		            response.setHeader ("Content-Length", ""+file.length() );
+		            os = response.getOutputStream();
+		            byte b[] = new byte[(int)file.length()];
+		            int leng = 0;
+		             
+		            while( (leng = in.read(b)) > 0 ){
+		                os.write(b,0,leng);
+		            }
+		        }else{
+		            response.setContentType("text/html;charset=UTF-8");
+		            out = response.getWriter();
+		            out.println("<script language='javascript'>alert('file not found');history.back();</script>");
+		        }
+		        in.close();
+		        os.close();
+		    }catch(Exception e){
+		    	System.out.println(savePath+"첨부 파일 다운 오류~ 파일명:"+fileName);
+		    }
+		    System.out.println("Request: " + request);
+		    System.out.println("Response: " + response);
+
+		out.print("1");
+	}
 }

@@ -10,7 +10,7 @@
     
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>에픽게임즈 레이아웃</title>
+        <title>JSL Games</title>
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/tdings.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -37,25 +37,21 @@
             <img src="img/main-image.jpg" alt="메인 이미지" />
         </div>
         <div class="container">
-            <h1>EX game news</h1>
+            <h1>JSL Games news</h1>
             <section class="first-section">
+             <c:forEach items="${dtos}" var = "dto" varStatus="status">
+             <c:if test="${status.index < 1}">
                 <div class="large-image">
-                    <a href="" target="_blank">
-                        <img src="img/category1.jpg" alt="Final Fantasy XVI" />
-                    </a>
+                        <img src="img/${dto.getN_no()}/${dto.getN_attach()}" alt="" />
+                        <a href="javascript:goNewsView('${dto.getN_no()}')">
                     <div class="image-text">
-                        <h2>Final Fantasy XVI</h2>
-                        <p>Final Fantasy XVI Continues The Series' Long History on PC</p>
-                        <p>Final Fantasy 16th piece brings action and Eikon to PC</p>
+                        <h2>${dto.getN_title()}</h2>
+                        <p class="clamped">${dto.getN_content()}</p>
                     </div>
-                </div>
-
-                <div class="small-image">
-                    <a href="" target="_blank">
-                        <img src="img/category1.jpg" alt="" />
-                        <img src="img/category1.jpg" alt="" />
                     </a>
                 </div>
+                </c:if>
+             </c:forEach>
             </section>
 
             <section class="second-section">
@@ -77,11 +73,14 @@
                         </a>
                     </li>
                     </c:forEach>
-                    
-                 
                 </ul>
             </section>
         </div>
+        <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
+        <script src="js/main.js"></script>
     </body>
     <%@ include file = "../footer.jsp"%>
 </html>

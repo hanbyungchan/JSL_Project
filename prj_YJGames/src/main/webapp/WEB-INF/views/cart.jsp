@@ -40,6 +40,7 @@
     	  	} 
     	function goPay(a) {
     		game.t_money.value=a;
+    		if(game.t_money.value == "0"){alert("There are no games to buy!");return;}
     		game.method="post";
     		game.action="Game?t_gubun=payment";
     		game.submit();
@@ -106,8 +107,11 @@
             </div>
         </div>
     </div>
+    <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
 <script src="js/main.js"></script>
-   
 </body>
 </html>
 <%@ include file = "footer.jsp"%>

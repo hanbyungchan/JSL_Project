@@ -83,6 +83,8 @@
         <link rel="stylesheet" href="css/game_regist.css">
         <script src="js/common.js"></script>
   	 	<script src="js/jquery-3.3.1.min.js"></script>
+  	 	<!-- Font Awesome 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <body>
         <form name="game">
@@ -243,7 +245,10 @@ function updateFileName(input, fileNameId) {
             </section>
         </form>
 
-
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
 <script src="js/main.js"></script>
     </body>
 <%@ include file = "../footer.jsp"%>

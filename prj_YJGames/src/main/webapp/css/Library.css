@@ -5,13 +5,30 @@
 }
 
 
-
+.clamped {
+        display: -webkit-box; /* Flexbox 사용 */
+        -webkit-box-orient: vertical; /* 수직 방향 */
+        -webkit-line-clamp: 2; /* 줄 수 제한 */
+        overflow: hidden; /* 넘치는 부분 숨기기 */
+        text-overflow: ellipsis; /* 생략 부호 추가 */
+        width: 1000px; /* 너비 설정 */
+        line-height: 1.5; /* 줄 높이 조정 */
+        max-height: 3em; /* 두 줄 높이 설정 (1.5em * 2) */
+    }
 .container {
     flex-grow: 1; 
     display: flex;
     flex-direction: row;
 }
+.custom-link {
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
 
+/* 호버 상태에서 스타일 변경 (선택 사항) */
+.custom-link:hover {
+    color: #c7d5e0; /* 호버 시 색상 변경 (원하는 색상으로 조정) */
+}
 .sidebar {
 	flex: 0 0 300px;
 	float: left;
@@ -136,12 +153,13 @@
 }
 
 .main-content {
-	padding-right: 50px;
+    padding-left: 35px;
+    padding-right: 35px;
     flex-grow: 1;
     background-color: #1e1e1e;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .main-content h2 {
@@ -470,12 +488,10 @@ body {
     color: #c6d4df;
 }
 .trendy-box {
-    background-color: #2d2d2d; 
     border-radius: 10px;
-    padding: 20px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
-    transition: transform 0.3s, box-shadow 0.3s; 
-    margin: 15px 0; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 15px 0;
 }
 
 .trendy-box:hover {
@@ -534,9 +550,10 @@ body {
     border-radius: 5px; 
     padding: 10px 15px; /* 패딩 */
     cursor: pointer; /* 커서 포인터로 변경 */
-    margin-top: 15px; /* 위쪽 여백 */
+    margin: 15px; /* 위쪽 여백 */
     font-size: 1rem; /* 글자 크기 */
     transition: background-color 0.3s; /* 버튼 호버 효과 */
+    float: right;
 }
 
 /* 더보기 버튼 호버 효과 */

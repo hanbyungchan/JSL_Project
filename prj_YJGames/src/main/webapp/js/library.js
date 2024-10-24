@@ -13,3 +13,13 @@ function hideAchievements() {
         }
     });
 }
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    // 비동기 작업 수행
+    doAsyncOperation().then(response => {
+        sendResponse(response); // 응답 보내기
+    });
+    return true; // 비동기 응답을 나타냄
+});
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    // 메시지 처리 로직
+});

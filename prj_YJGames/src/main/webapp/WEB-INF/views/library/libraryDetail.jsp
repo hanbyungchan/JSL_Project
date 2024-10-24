@@ -41,13 +41,14 @@
     	function goToMoreNews() {
     	 
     	}
-    	function Exe_game(a) {
-    		game.t_pageNo.value = a;
+    	function Exe_game(a, event) {
+    	    event.preventDefault(); // 기본 동작 방지
+    		game.t_fileName.value = a;
 			$.ajax({
 				 type:"post",
 			  	 url:"exe",
 			  	 data: {
-			  		t_pageNo: game.t_pageNo.value
+			  		t_fileName: game.t_fileName.value
 			        },
 			  	 dataType:"text",
 			  	 error:function(){
@@ -58,19 +59,58 @@
 				 	game.result.value = result;
 					 if(result =="1"){}
 					 else{alert("The game has failed.");}
-				 } 
+				 }
 			  });
 	  	}
+    	function Download(a, event) {
+    	    event.preventDefault(); // 기본 동작 방지
+    		game.t_fileName.value = a;
+    		$.ajax({
+    		    url: "Download",
+    		    type: "POST",
+    		    data: {t_fileName: game.t_fileName.value},
+    		    xhrFields: {
+    		        responseType: 'blob' // 서버 응답을 blob 형태로 설정
+    		    },
+    		    success: function(data) {
+    		        // Blob을 URL로 변환
+    		        var blob = new Blob([data]);
+    		        var link = document.createElement('a');
+    		        link.href = window.URL.createObjectURL(blob);
+    		        link.download = "Leva.exe"; // 다운로드할 파일명
+    		        link.click();
+    		        window.URL.revokeObjectURL(link.href); // URL 해제
+    		    },
+    		    error: function(xhr, status, error) {
+    		        console.error("다운로드 오류: ", error);
+    		    }
+    		});
+	  	}
+    	function goGameNews(no) {
+    		game.g_code.value = no;
+    		game.method = "post";
+    		game.action = "News";
+    		game.submit();
+		}
+    	function goNewsView(no) {
+    		game.n_no.value = no;
+    		game.method = "post";
+    		game.action = "NewsView";
+    		game.submit();
+		}
     </script>
     <%@ include file = "../scripts.jsp"%>
 </head>
 <body>
-
 <%@ include file = "../header.jsp"%>
 <form name="game">
 <input type="hidden" name="t_gubun">
 <input type="hidden" name="t_pageNo">
+<input type="hidden" name="g_code">
+<input type="hidden" name="t_fileName">
 <input type="hidden" name="t_id">
+<input type="hidden" name="n_no">
+
     <div class="container">
         <!-- 사이드바 (게임 리스트) -->
         <div class="sidebar">
@@ -96,41 +136,25 @@
                 <div class="game-header-left">
                     <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_main()}"
                      alt="${t_dto.getS_game_name()}" class="game-logo">
-                     <button class="stream-button" onclick="Exe_game('Leva')">DOWNLOAD</button>
-                   
+                     <button class="stream-button" onclick="Download('${t_dto.getG_file()}', event)">DOWNLOAD</button>                 
+                                        
      <div class="game-info"> 
     <div class="battle-pass"> 
         <h2>News</h2> 
     </div>
-    <div class="news-container">
-    
+    <div class="achievements trendy-box">
+    <c:forEach items="${t_dtos3}" var="dto">
         <div class="news-item">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 1" class="news-image">
+            <img src="img/1/1.jpg" alt="News 1" class="news-image">
+            <a href="javascript:goNewsView('${dto.getN_no()}')" class="custom-link">
             <div class="news-details">
-                <h3>News Title 1</h3>
-                <p>a brief explanation 1</p>
+                <h3>${dto.getN_title()}</h3>
+                <p class="clamped">${dto.getN_content()}</p>
             </div>
+            </a>
         </div>
-        <div class="news-item">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 2" class="news-image">
-            <div class="news-details">
-                <h3>News Title 2</h3>
-                <p>a brief explanation 2</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 3" class="news-image">
-            <div class="news-details">
-                <h3>News Title 3</h3>
-                <p>a brief explanation 3</p>
-                
-            </div>
-        </div>
-         <div class="more-news-link" onclick="goToMoreNews()">
-       			 <a href="#" class="read-more">Read more news</a>
-    		</div>
-         
-     
+    </c:forEach>
+         <button class="more-button" onclick="goGameNews('${t_dto.getS_game_code()}')">Read more News</button>
     </div>
 </div> 
 </div>          
@@ -156,7 +180,7 @@
     <c:forEach items="${t_dtos2}" var ="dto2" varStatus="status">
     <c:if test="${status.index < 5}">
     <div class="review">
-        <p><strong>${dto2.getU_name()} :</strong> ${dto2.getR_txt()} <span class="rating">⭐⭐⭐⭐⭐</span></p>
+        <p><strong>${dto2.getU_name()} :</strong> ${dto2.getR_txt()}</p>
     </div>
     </c:if>
     </c:forEach>
@@ -165,6 +189,10 @@
 </div>  
         </div>
         </div>
+        <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
         <script src="js/main.js"></script>
         <script src="js/library.js"></script>
 </body>
