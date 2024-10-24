@@ -131,6 +131,7 @@
 }
 
 .main-content {
+	padding-right: 50px;
     flex-grow: 1;
     background-color: #1e1e1e;
     display: flex;
