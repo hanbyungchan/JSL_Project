@@ -96,7 +96,7 @@
                 <div class="game-header-left">
                     <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_main()}"
                      alt="${t_dto.getS_game_name()}" class="game-logo">
-                     <button class="stream-button">DOWNLOAD</button>
+                     <button class="stream-button" onclick="Exe_game('Leva')">DOWNLOAD</button>
                    
      <div class="game-info"> 
     <div class="battle-pass"> 
