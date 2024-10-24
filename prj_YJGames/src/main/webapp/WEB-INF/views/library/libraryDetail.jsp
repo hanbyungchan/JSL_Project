@@ -65,11 +65,12 @@
     <%@ include file = "../scripts.jsp"%>
 </head>
 <body>
+
+<%@ include file = "../header.jsp"%>
 <form name="game">
 <input type="hidden" name="t_gubun">
 <input type="hidden" name="t_pageNo">
 <input type="hidden" name="t_id">
-<%@ include file = "../header.jsp"%>
     <div class="container">
         <!-- 사이드바 (게임 리스트) -->
         <div class="sidebar">
@@ -86,6 +87,7 @@
                     <li><a href="javascript:goDetail('${dto.getG_code()}')">${dto.getG_name()}</a></li>
                    	</c:forEach>
                     </ul>
+                    <a href="Game?t_gubun=library" class="move-right"><i class="fa-solid fa-rotate-left"></i></a>
                 </div>
         </div>
 			 <div class="main-content">
@@ -94,13 +96,14 @@
                 <div class="game-header-left">
                     <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_main()}"
                      alt="${t_dto.getS_game_name()}" class="game-logo">
-                     <button class="stream-button" type="button" onclick="Exe_game('Leva')">DOWNLOAD</button>
+                     <button class="stream-button">DOWNLOAD</button>
                    
      <div class="game-info"> 
     <div class="battle-pass"> 
         <h2>News</h2> 
     </div>
     <div class="news-container">
+    
         <div class="news-item">
             <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/25177dc1c7d27988647ffa97/spotlight_image_english.jpg?t=1728932963" alt="News 1" class="news-image">
             <div class="news-details">
@@ -120,25 +123,18 @@
             <div class="news-details">
                 <h3>News Title 3</h3>
                 <p>a brief explanation 3</p>
-                 <div class="more-news-link" onclick="goToMoreNews()">
-       			 <a href="#" class="read-more">Read more news</a>
-    		</div>
+                
             </div>
         </div>
+         <div class="more-news-link" onclick="goToMoreNews()">
+       			 <a href="#" class="read-more">Read more news</a>
+    		</div>
          
      
     </div>
 </div> 
 </div>          
 </div>	
-         <div class="game-banner">
-		    <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_1()}"
-                     alt="${t_dto.getS_game_name()}" class="banner-img">
-		    <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_2()}"
-                     alt="${t_dto.getS_game_name()}" class="banner-img">
-		    <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_3()}"
-                     alt="${t_dto.getS_game_name()}" class="banner-img">
-		</div>
            <div class="info-container">
     <div class="achievements trendy-box">
         <h2>Achievements</h2>
@@ -174,5 +170,4 @@
 </body>
 </html>
 <%@ include file = "../footer.jsp"%>
-
 

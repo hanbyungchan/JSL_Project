@@ -66,12 +66,10 @@
             <div class="main-content">
                 <hr class="divider" />
                 <div class="game-thumbnails-slider">
-                    <div class="game">
-                        <img
-                            src="https://cdn.akamai.steamstatic.com/store/home/store_home_share.jpg"
-                            alt="Mass Effect"
-                        />
-                    </div>
+                <div class="game2">
+                        <img class="big" src="https://cdn.akamai.steamstatic.com/store/home/store_home_share.jpg" alt="Mass Effect"/>
+                </div>
+                <br>    
                     <c:forEach items="${t_dtos}" var="dto">
                     <div class="game">
                     <a href="javascript:goDetail('${dto.getG_code()}')">
@@ -82,8 +80,6 @@
                         </a>
                     </div>
                     </c:forEach>
-                    
-                   
                 </div>
 
             </div>

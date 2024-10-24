@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -307,17 +308,22 @@ public class GameDao {
 					"(g_code, g_name, g_price, g_file, g_developer, g_grade)\r\n" + 
 					"values\r\n" + 
 					"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"')";
-			
-			String query2 = "insert into kyj_genre_join\r\n" + 
-					"(genre_code, game_code)\r\n" + 
-					"values\r\n" + 
-					"('"+dto.getGenre_code()+"','"+dto.getG_code()+"')";
-			
 			try {
 				result = temp.update(query1);
-				result += temp.update(query2); 
-			} catch (Exception e) {System.out.println("RegistGame() 메소드 오류" + query1);}
-			
+			} catch (Exception e) {
+				System.out.println("RegistGame() 메소드 오류 첫번째" + query1);
+			}
+			List<String> genreCodes = dto.getGenre_code();
+			for(String genre : genreCodes) {
+				String query2 = "insert into kyj_genre_join\r\n" + 
+						"(genre_code, game_code)\r\n" + 
+						"values\r\n" + 
+						"('"+genre+"','"+dto.getG_code()+"')";
+			try {
+					result += temp.update(query2); 
+				} catch (Exception e) {System.out.println("RegistGame() 메소드 오류 두번째" + query2);}
+			}
+					
 			return result;
 		}
 		//게임 코드 자동 생성
