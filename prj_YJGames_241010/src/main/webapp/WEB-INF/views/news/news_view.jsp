@@ -39,22 +39,20 @@
             <img src="img/main-image.jpg" alt="메인 이미지" />
         </div>
         <div class="container">
-            <h1>Sonic x Shadow Generations, which celebrates iconic antiheroes in the coolest way</h1>
-            <div class="author-date">2024. 10. 14 | 작성자: Paul Cecchini</div>
+            <h1>${dto.getN_title()}</h1>
+            <div class="author-date">${dto.getN_upload_date()} | 작성자: ${dto.getN_uploader()}</div>
 
             <div class="image-container">
                 <img
-                    src="https://cdn2.unrealengine.com/sonic-x-shadow-generations-header-3840x2160-8744f72c87c5.jpeg"
+                    src="img/${dto.getG_code()}/${dto.getN_attach()}"
                     alt="섀도우 이미지 1"
                 />
             </div>
 
             <p class="content">
-                During the conceptual stage of the late 90s, Shadow was named Terios, a black hedgehog with sharp scars
-                on his eyes and a nice scarf. With the name provisionally intended to play Sonic's dark counterpart,
-                Therios was inspired by American heroes like Spawn.
+                ${dto.getN_content()}
             </p>
-
+<!-- 
             <div class="image-container">
                 <img
                     src="https://cdn2.unrealengine.com/sonic-x-shadow-generations-7-1920x1080-fe6861be1ef6.jpg"
@@ -99,9 +97,7 @@
                 granddaughter Maria's sacrificial move has led Shadow to embark on a journey as a hero and anti-hero,
                 and this complex narrative is still receiving great attention from many fans.
             </p>
-           	<!-- 뭐 어디 dto 변수명 잘못 건드렸나 오류남 -->
-            ${dto.getN_title()}
-            
+            -->
         </div>
         <div class="btns">
             <div class="moveTopBtn">맨 위로</div>
