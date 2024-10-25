@@ -50,24 +50,24 @@ import dto.GenreDto;
 @Controller
 public class GameController {
 
-	@Autowired
+	@Autowired 
 	JdbcTemplate template;
 	@Autowired
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
 	//뉴스 상세보기
-	@RequestMapping("NewsView")
+	@RequestMapping("NewsView")  
 	public String NewsView(HttpServletRequest req) {
 		CommonExecute news = new command.news.NewsView();
 		news.execute(req);
 		return"news/news_view";
 	}
 	//게임사별 뉴스 목록을 게임 라이브러리 따위에 띄운다면 그쪽에서 호출해줘야됨.
-	//뉴스 게시판
+	//뉴스 게시판 
 	@RequestMapping("News")
 	public String News(HttpServletRequest req) {
-		CommonExecute news = new command.news.News();
+		CommonExecute news = new command.news.News();		
 		news.execute(req);
 		return"news/news";
 	}

@@ -93,7 +93,7 @@
 
         <div class="container">
             <div class="back">
-                <a href="#">←</a>
+                <a href="javascript:history.back()">←</a>
             </div>
             <h1>결제 페이지</h1>
             <label for="paymentMethod">결제수단 선택:</label>
