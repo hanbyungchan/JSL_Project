@@ -279,13 +279,13 @@
                         ? '장바구니로 돌아가기'
                         : '라이브러리로 돌아가기';
                     document.getElementById('resultButton').onclick = function () {
-                        window.location.href = isRecharge ? 'javascript:goCart()' : 'javascript:goLibrary()';
+                        window.location.href = isRecharge ? 'Game?t_gubun=cart' : 'Game?t_gubun=library';
                     };
                 } else {
                     document.getElementById('resultMessage').innerText = '결제 실패!';
                     document.getElementById('resultButton').innerText = '장바구니로 돌아가기';
                     document.getElementById('resultButton').onclick = function () {
-                        window.location.href = 'javascript:goCart()';
+                        window.location.href = 'Game?t_gubun=cart';
                     };
                 }
             }

@@ -273,8 +273,9 @@ public class GameController {
 			String u_id = request.getParameter("t_id");
 			String u_money = request.getParameter("t_u_money");
 			HttpSession session = request.getSession();
-			String m_money = (String)session.getAttribute("sessionMoney");
-			Double money = Double.parseDouble(m_money) - Double.parseDouble(u_money);
+			Double m_money = (Double)session.getAttribute("sessionMoney");
+			System.out.println(m_money);
+			Double money = m_money - Double.parseDouble(u_money);
 			ArrayList<String> lists = dao.GameCodeList(u_id);
 			for(String codes : lists) {
 				count = dao.AddPurchase(u_id, codes);
