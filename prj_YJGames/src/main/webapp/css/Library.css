@@ -372,10 +372,10 @@ body {
 .stream-button {
     background-color: #5c7e10;
     color: white;
-    padding: 20px 45px; /* 패딩 조정 */
+    padding: 10px 23px;
     border: none;
     cursor: pointer;
-    font-size: 18px; 
+    font-size: 40px;
     font-weight: bold;
 }
 
