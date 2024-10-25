@@ -372,9 +372,11 @@ body {
 .stream-button {
     background-color: #5c7e10;
     color: white;
-    padding: 20px 80px;
+    padding: 20px 45px; /* 패딩 조정 */
     border: none;
     cursor: pointer;
+    font-size: 18px; 
+    font-weight: bold;
 }
 
 .stream-button:hover {
