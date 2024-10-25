@@ -61,15 +61,22 @@ select {
     box-sizing: border-box; /* Ensure padding doesn't affect total width */
 }
 
+.file-button {
+   width:130px;
+   height:35px;
+   font-size:19px;
+}
+
 .button-container {
     display: flex; /* Use flexbox */
     justify-content: center; /* Center items horizontally */
     margin-top: 20px; /* Add some space above */
 }
 
-
 .buttons {
-	width: 120px;
+   width: 190px;
+   height: 40px;
+   font-size: 30px;
     text-align: center; /* Center align the text (buttons) */
     margin-top: 20px; /* Add some space above */
     margin-left: 15px;

@@ -14,7 +14,7 @@ body {
     left: 0;
     width: 100%;
     height: 60px;
-    background-color: rgba(0, 0, 0, 0.3); /* 기본 투명도 */
+    background-color: rgba(0, 0, 0, 0.8); /* 기본 투명도 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,13 +44,13 @@ body {
 }
 /* 스크롤 시 불투명하게 변경 */
 .header.scrolled {
-    background-color: rgba(0, 0, 0, 0.6) !important; /* 스크롤 시 60% 투명도 */
+    background-color: rgba(0, 0, 0, 0.9) !important; /* 스크롤 시 60% 투명도 */
     border-bottom: 2px solid #b56eff;
 }
 
 /* 마우스를 올렸을 때 투명도를 없애고 테두리도 변경된 분홍색으로 변경 */
 .header:hover {
-    background-color: rgba(0, 0, 0, 0.6) !important; /* 마우스를 올렸을 때 60% 투명도 */
+    background-color: rgba(0, 0, 0, 0.9) !important; /* 마우스를 올렸을 때 60% 투명도 */
     border-bottom: 2px solid #b56eff;
 }
 
@@ -86,7 +86,6 @@ body {
 
 /* 로고 스타일 */
 .logo {
-    flex: 1;
     display: flex;
     justify-content: flex-start;
 }
@@ -94,12 +93,14 @@ body {
 .logo img {
     width: 70px;
     height: auto;
+    padding-top: 5px;
 }
 
 /* 메뉴 스타일 */
 .menu {
     flex: 3;
     text-align: center;
+    margin-left: 30px;
 }
 
 /* 세션이 없는 경우 마진 적용 */
@@ -111,20 +112,15 @@ body.session-null .menu {
 .session-level .menu {
     flex: 3;
     text-align: center;
-    margin-left: 0;
     margin-right: 10%;
 }
 
 /* 세션이 있으면서 세션레벨이 3이 아닌 경우 마진과 플렉스 제거 */
 .session-level-not3 .menu {
     text-align: center;
-    margin-left: 0;
-    flex: initial; /* flex 속성 제거 */
 }
 
 .menu ul {
-	display: flex;
-	justify-content: center;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -136,7 +132,7 @@ body.session-null .menu {
 }
 
 .menu ul li a {
-    color: #FFFFFF;
+    color: white;
     text-decoration: none;
     font-size: 1.2rem;
     line-height: 1.2; /* 다른 글자와 동일한 line-height 적용 */
@@ -144,6 +140,12 @@ body.session-null .menu {
     padding: 0; /* 혹시 남아있을 수 있는 패딩 제거 */
     margin: 0; /* 마진도 초기화 */
     display: inline-block; /* inline-block으로 동일한 높이 적용 */
+}
+
+
+.menu ul .admin-reg a {
+	color: red;
+	
 }
 
 .menu ul li a:hover {
@@ -162,7 +164,7 @@ body.session-null .menu {
     display: none;
     cursor: pointer;
     font-size: 2rem;
-    color: #00e6e6;
+    color: white;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -172,11 +174,11 @@ body.session-null .menu {
 /* 작은 화면(1220px 이하)일 때 햄버거 메뉴 보이기 */
 @media (max-width: 1220px) {
     .menu {
+   		display: block;
         position: absolute;
         top: 62px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
+        width: 100%; /* 중앙에 배치될 수 있도록 적절한 너비 설정 */
+        margin: 0;
         background-color: rgba(0, 0, 0, 0.9);
         z-index: 1000;
         overflow: hidden;
@@ -235,7 +237,7 @@ body.session-null .menu {
 
 /* 커뮤니티 메뉴 스타일 */
 .community-menu > a {
-    color: #00e6e6;
+    color: white;
     text-decoration: none;
     font-size: 1.2rem;
     line-height: 1.2;
@@ -279,7 +281,7 @@ body.session-null .menu {
     flex-direction: column;
     padding: 5px 0;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.9);
     animation: border-glow 1s infinite alternate;
     border: 2px solid #b56eff;
 }
@@ -367,11 +369,15 @@ body.session-null .menu {
 
 /* 작은 화면(햄버거 메뉴)에서 COMMUNITY 드롭다운 오른쪽으로 나오게 설정 */
 @media (max-width: 1220px) {
+	/* COMMUNITY 메뉴 위치를 오른쪽으로 변경 및 애니메이션 적용 */
+    .community-menu {
+        position: relative; /* 부모 요소에 상대 위치 설정 */
+    }
     /* COMMUNITY 메뉴 위치를 오른쪽으로 변경 및 애니메이션 적용 */
     .community-menu .category-dropdown {
         left: 100%; /* 오른쪽으로 나오게 설정 */
         transform: translateX(10%);
-        top: -20%;
+        top: -230%;
         max-height: 0; /* 초기 높이 0 */
         overflow: hidden; /* 숨김 */
         transition: max-height 0.4s ease; /* 펼쳐지고 접히는 애니메이션 */
@@ -468,7 +474,7 @@ body.session-null .menu {
 }
 
 .icons a {
-    color: #00e6e6;
+    color: white;
     font-size: 1.5rem;
     transition: color 0.3s;
 }
@@ -531,7 +537,7 @@ footer.background-gray {
 }
 
 .footer-links ul li a {
-    color: #00e6e6;
+    color: white;
     text-decoration: none;
     font-size: 1rem;
 }
@@ -546,7 +552,7 @@ footer.background-gray {
 }
 
 .footer-social a {
-    color: #00e6e6;
+    color: white;
     margin: 0 10px;
     font-size: 1.5rem;
     text-decoration: none;

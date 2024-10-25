@@ -19,12 +19,14 @@
     	<script type="text/javascript">
     	function goRecharge(a) {
     		game.t_recharge.value = a;
+    		game.t_my_money.value = "${t_dto.getU_money()}";
     		$.ajax({
   				 type:"post",
   			  	 url:"Payment",
   			  	 data: {
   			  			t_id: ${sessionId},
-  			  			t_u_money: game.t_recharge.value
+  			  			t_u_money: game.t_recharge.value,
+  			  			t_my_money: game.t_my_money.value
   			        },
   			  	 dataType:"text",
   			  	 error:function(){
@@ -40,12 +42,14 @@
 		}
     	function Game_money_purchase(a) {
     		game.t_recharge.value = a;
+    		game.t_my_money.value = "${t_dto.getU_money()}";
     		$.ajax({
   				 type:"post",
   			  	 url:"Game_money_purchase",
   			  	 data: {
   			  			t_id: ${sessionId},
-  			  			t_u_money: game.t_recharge.value
+  			  			t_u_money: game.t_recharge.value,
+  			  			t_my_money: game.t_my_money.value
   			        },
   			  	 dataType:"text",
   			  	 error:function(){
@@ -84,6 +88,7 @@
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_id">
 	<input type="hidden" name="t_recharge">
+	<input type="hidden" name="t_my_money">
 	<input type="hidden" name="result">
 	</form>
 	<%@ include file = "header.jsp"%>
@@ -107,7 +112,7 @@
             <!-- 결제 정보창 (동적 변경) -->
             <div id="walletSection" class="hidden">
                 <h2>사이트 지갑 결제</h2>
-                <p>현재 지갑 잔액: <span id="walletBalance">$${sessionMoney}</span></p>
+                <p>현재 지갑 잔액: <span id="walletBalance">$${t_dto.getU_money()}</span></p>
                 <label for="paymentAmount">결제 금액:</label>
                 <input type="number" id="paymentAmount" readonly="readonly" placeholder="결제 금액" value="${t_money}"/>
                 <button class="button" onclick="processWalletPayment()">계속</button>
@@ -167,7 +172,7 @@
         </div>
 
         <script>
-            let walletBalance = ${sessionMoney}; // 지갑잔액
+            let walletBalance = ${t_dto.getU_money()}; // 지갑잔액
             let totalPaymentAmount = 0; //게임 가격
             let remainingAmount = 0; //부족한 게임값
             let rechargeMode = false; // 충전 모드 확인

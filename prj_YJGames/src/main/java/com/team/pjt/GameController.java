@@ -258,7 +258,7 @@ public class GameController {
 		for(String codes : lists) {
 			count = dao.AddPurchase(u_id, codes);
 		}
-		if(count != 0) {out.print(count);dao.RemoveCartAll(u_id);}
+		if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);}
 		else out.print("");
 	}
 	//게임머니로 결제
@@ -272,15 +272,13 @@ public class GameController {
 			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 			String u_id = request.getParameter("t_id");
 			String u_money = request.getParameter("t_u_money");
-			HttpSession session = request.getSession();
-			Double m_money = (Double)session.getAttribute("sessionMoney");
-			System.out.println(m_money);
-			Double money = m_money - Double.parseDouble(u_money);
+			String m_money = request.getParameter("t_my_money");
+			Double money = Double.parseDouble(m_money) - Double.parseDouble(u_money);
 			ArrayList<String> lists = dao.GameCodeList(u_id);
 			for(String codes : lists) {
 				count = dao.AddPurchase(u_id, codes);
 			}
-			if(count != 0) {out.print(count);dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);session.setAttribute("sessionMoney", money); }
+			if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);}
 			else out.print("");
 		}
 	//충전
@@ -291,12 +289,11 @@ public class GameController {
 		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 		String u_id = request.getParameter("t_id");
 		String u_money = request.getParameter("t_u_money");
-		HttpSession session = request.getSession();
-		String m_money = (String)session.getAttribute("sessionMoney");
+		String m_money = request.getParameter("t_my_money");
 		Double money = Double.parseDouble(u_money)+Double.parseDouble(m_money);
 		UserDao dao = new UserDao();
 		int count = dao.Payment(u_id, money);
-		if(count == 1) {out.print(count); session.setAttribute("sessionMoney", money);}
+		if(count == 1) {out.print(String.valueOf(count));}
 		else out.print("");
 	}
 	//실행

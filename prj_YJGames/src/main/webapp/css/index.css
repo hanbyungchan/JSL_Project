@@ -416,6 +416,12 @@ a{
     object-fit: cover;
 }
 
+/* 인기 카테고리 항목 마우스 오버 시 줌인 효과 */
+.category-item:hover .img-container img {
+    transform: scale(1.1); /* 1.1배 확대 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+}
+
 /* 그라데이션 효과 */
 .category-gradient {
     position: absolute;
@@ -509,7 +515,7 @@ a{
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 27px;
 }
 
 .game-item {
@@ -620,4 +626,3 @@ a{
         flex-direction: column;
     }
 }
-

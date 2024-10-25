@@ -23,26 +23,27 @@
                     </ul>
                 </li>
                 <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-
-                <c:if test="${sessionId eq null}">
-                    <li><a href="Game?t_gubun=goSignin">SIGN IN</a></li>
-                </c:if>
-
+                
                 <c:if test="${sessionId ne null}">
-                    <li><a href="javascript:goInfo()">MyInfo</a></li>
-                    <li><a href="javascript:goLogout()">Logout</a></li>
-                    <li><a href="javascript:goLibrary()">Library</a></li>
-
                     <c:if test="${sessionLevel ne '3'}">
-                        <li><a href="javascript:goGameRegi()">Game Regist</a></li>
-                        <li><a href="javascript:goStoreRegi()">Store Regist</a></li>
+                        <li class="admin-reg"><a href="javascript:goGameRegi()">GAME REGIST</a></li>
+                        <li class="admin-reg"><a href="javascript:goStoreRegi()">STORE REGIST</a></li>
                     </c:if>
                 </c:if>
+                
             </ul>
         </nav>
 
         <nav>
             <div class="icons">
+            	<c:if test="${sessionId eq null}">
+                    <a href="Game?t_gubun=goSignin"><i class="fa-solid fa-right-to-bracket"></i></a>
+                </c:if>
+	            <c:if test="${sessionId ne null}">
+	            	<a href="javascript:goInfo()"><i class="fa-solid fa-user-astronaut"></i></a>
+	            	<a href="javascript:goLogout()"><i class="fa-solid fa-right-from-bracket"></i></a>
+	            	<a href="javascript:goLibrary()"><i class="fa-solid fa-book"></i></a>
+	            </c:if>
                 <div class="search-box" id="search-box">
                     <input type="text" placeholder="Search...">
                 </div>
