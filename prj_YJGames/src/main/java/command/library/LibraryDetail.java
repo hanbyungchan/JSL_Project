@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 
 import common.CommonExecute;
 import dao.GameDao;
+import dao.NewsDao;
 import dto.LibraryDto;
+import dto.NewsDto;
 import dto.ReviewDto;
 import dto.ViewDto;
 
@@ -21,11 +23,14 @@ public class LibraryDetail implements CommonExecute {
 		String g_code = request.getParameter("t_pageNo");
 		if(search == null) search = "";
 		GameDao dao = new GameDao();
+		NewsDao dao1 = new NewsDao();
 		ArrayList<LibraryDto> dtos = dao.Library_game_List(u_id,search);
 		ArrayList<ReviewDto> dtos2 = dao.ReviewList("order by r.r_date DESC", g_code);
+		ArrayList<NewsDto> dtos3 = dao1.getParticularNewsList(g_code);
 		ViewDto dto = dao.StorePageView(Integer.parseInt(g_code));
 		request.setAttribute("t_dtos", dtos);
 		request.setAttribute("t_dtos2", dtos2);
+		request.setAttribute("t_dtos3", dtos3);
 		request.setAttribute("t_dto", dto);
 		request.setAttribute("t_search", search);
 

@@ -12,10 +12,20 @@ public class News implements CommonExecute {
 
 	@Override
 	public void execute(HttpServletRequest request) {
-		//뉴스게시판
 		NewsDao dao = new NewsDao();
+		ArrayList<NewsDto> dtos = new ArrayList<NewsDto>();
+		String g_code = request.getParameter("g_code");
 		
-		ArrayList<NewsDto> dtos = dao.getAllNewsList();
+		if(g_code==null) {
+			dtos = dao.getAllNewsList();
+		}
+		else {
+			dtos = dao.getParticularNewsList(g_code);
+		}
+		
+		
+		
+		
 		
 		request.setAttribute("dtos", dtos);
 		

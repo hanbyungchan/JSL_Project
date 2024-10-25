@@ -83,6 +83,8 @@
         <link rel="stylesheet" href="css/game_regist.css">
         <script src="js/common.js"></script>
   	 	<script src="js/jquery-3.3.1.min.js"></script>
+  	 	<!-- Font Awesome 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <body>
         <form name="game">
@@ -178,56 +180,56 @@
 				    <label for="game_img_main">Game IMG Main</label><br>
 				    <input type="file" name="t_s_img_main" id="file-upload-main" style="display: none;" onchange="updateFileName(this, 'file-name-main')">
 				    <input type="text" id="file-name-main" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-main').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-main').click();" class="file-button">Choose File</button>
 				</div>
 				
 				<div class="formgroup">
 				    <label for="game_img_1">Game IMG 1</label><br>
 				    <input type="file" name="t_s_img_1" id="file-upload-1" style="display: none;" onchange="updateFileName(this, 'file-name-1')">
 				    <input type="text" id="file-name-1" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-1').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-1').click();" class="file-button">Choose File</button>
 				</div>
 				
 				<div class="formgroup">
 				    <label for="game_img_2">Game IMG 2</label><br>
 				    <input type="file" name="t_s_img_2" id="file-upload-2" style="display: none;" onchange="updateFileName(this, 'file-name-2')">
 				    <input type="text" id="file-name-2" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-2').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-2').click();" class="file-button">Choose File</button>
 				</div>
 				
 				<div class="formgroup">
 				    <label for="game_img_3">Game IMG 3</label><br>
 				    <input type="file" name="t_s_img_3" id="file-upload-3" style="display: none;" onchange="updateFileName(this, 'file-name-3')">
 				    <input type="text" id="file-name-3" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-3').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-3').click();" class="file-button">Choose File</button>
 				</div>
 				
 				<div class="formgroup">
 				    <label for="game_icon">Game Icon</label><br>
 				    <input type="file" name="t_s_icon" id="file-upload-icon" style="display: none;" onchange="updateFileName(this, 'file-name-icon')">
 				    <input type="text" id="file-name-icon" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-icon').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-icon').click();" class="file-button">Choose File</button>
 				</div>
 				
 				<div class="formgroup">
 				    <label for="game_video_1">Game Video 1</label><br>
 				    <input type="file" name="t_s_video_1" id="file-upload-video-1" style="display: none;" onchange="updateFileName(this, 'file-name-video-1')">
 				    <input type="text" id="file-name-video-1" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-video-1').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-video-1').click();" class="file-button">Choose File</button>
 				</div>
 				
 				<div class="formgroup">
 				    <label for="game_video_2">Game Video 2</label><br>
 				    <input type="file" name="t_s_video_2" id="file-upload-video-2" style="display: none;" onchange="updateFileName(this, 'file-name-video-2')">
 				    <input type="text" id="file-name-video-2" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-video-2').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-video-2').click();" class="file-button">Choose File</button>
 				</div>
 				
 				<div class="formgroup">
 				    <label for="game_video_3">Game Video 3</label><br>
 				    <input type="file" name="t_s_video_3" id="file-upload-video-3" style="display: none;" onchange="updateFileName(this, 'file-name-video-3')">
 				    <input type="text" id="file-name-video-3" placeholder="No file chosen" readonly>
-				    <button type="button" onclick="document.getElementById('file-upload-video-3').click();">Choose File</button>
+				    <button type="button" onclick="document.getElementById('file-upload-video-3').click();" class="file-button">Choose File</button>
 				</div>
 
 <script>
@@ -243,7 +245,10 @@ function updateFileName(input, fileNameId) {
             </section>
         </form>
 
-
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
 <script src="js/main.js"></script>
     </body>
 <%@ include file = "../footer.jsp"%>

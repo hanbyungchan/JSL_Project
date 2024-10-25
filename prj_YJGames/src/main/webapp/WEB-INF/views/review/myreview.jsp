@@ -42,7 +42,7 @@
             <img src="img/main-image.jpg" alt="메인 이미지" />
         </div>
 
-        <script src="js/main.js"></script>
+
 
         <div class="review_content">
             <div class="review_result slider-header">
@@ -82,6 +82,11 @@
                 </c:if>
             </div>
         </div>
+        <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
+        <script src="js/main.js"></script>
     </body>
 </html>
 

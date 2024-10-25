@@ -271,7 +271,7 @@
             <div class="game-item" data-game="1" id ="test">
                 <div class="game-info">
                     <h4>${dto1.getG_name()}</h4>
-                    <p>a, b, c</p>
+                    <br>
                     <span class="price"><c:if test="${dto1.getG_price() eq '0'}">Free</c:if><c:if test="${dto1.getG_price() ne '0'}">$${dto1.getG_price2()}</c:if></span>
                     <span class="discount"><c:if test="${dto1.getS_sale() ne '0'}">-${dto1.getS_sale()}%</c:if></span>
                 </div>
@@ -287,11 +287,14 @@
         </div>
     </div>
 </div>
-
-
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
+<%@ include file = "footer.jsp"%>
 <!-- ============================================================================= -->	
 <script src="js/main.js"></script>
-	
+<script src="js/slide.js"></script>	
 </body>
 </html>
-<%@ include file = "footer.jsp"%>
+

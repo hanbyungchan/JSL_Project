@@ -1,5 +1,4 @@
 //=========================================================================================================
-
 document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let autoSlideTimer; // 자동 슬라이드 타이머를 저장할 변수
@@ -111,38 +110,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 최초 로드 시 첫 번째 미디어를 자동으로 재생
     changeMedia('video', mediaItems[0].getAttribute('data-video-src'));
 });
-
-
-
-
 //=========================================================================================================
+//너무 길어지면 자르기
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('toggle-btn');
+    const textElement = document.getElementById('text');
+    const maxLength = 240; // 자를 최대 길이
+    const originalText = textElement.innerHTML;
 
-
-
-// 펼치기/접기 버튼으로 추가 콘텐츠 표시/숨기기 기능
-function toggleContent() {
-    const content = document.querySelector('.extra-content');
-    const btn = document.getElementById('toggle-btn');
-
-    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-        // 콘텐츠가 펼쳐져 있는 경우 (접기)
-        content.style.maxHeight = '0px';
-        btn.textContent = '펼치기'; // 버튼 텍스트를 "펼치기"로 변경
-    } else {
-        // 콘텐츠가 숨겨져 있는 경우 (펼치기)
-        content.style.maxHeight = content.scrollHeight + 'px';
-        btn.textContent = '접기'; // 버튼 텍스트를 "접기"로 변경
+    // 긴 내용을 자르고 "..." 추가
+    let shortText = originalText;
+    if (originalText.length > maxLength) {
+        shortText = originalText.slice(0, maxLength) + '...';
+        textElement.innerHTML = shortText;
     }
-}
-
-// 페이지 로드 시 추가 콘텐츠는 숨김 상태로 설정
-window.onload = function() {
-    const content = document.querySelector('.extra-content');
-    content.style.maxHeight = '0px'; // 페이지 로드 시 콘텐츠 숨기기
-};
-
-
-
-
-
-
+    function toggleContent() {
+        if (textElement.innerHTML === shortText) {
+            textElement.innerHTML = originalText; // 전체 내용으로 변경
+            toggleButton.textContent = 'Read Less';
+        } else {
+            textElement.innerHTML = shortText; // 자른 내용으로 변경
+            toggleButton.textContent = 'Read More';
+        }
+    }
+//이벤트 리스너 추가
+    toggleButton.addEventListener('click', toggleContent);
+});

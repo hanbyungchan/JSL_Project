@@ -53,8 +53,6 @@ public class StoreRegist implements CommonExecute {
 			String s_video_2 = mpr.getFilesystemName("t_s_video_2");
 			String s_video_3 = mpr.getFilesystemName("t_s_video_3");
 			
-			System.out.println(s_info_txt);
-			
 			
 			StoreRegiDto dto = new StoreRegiDto(s_page_no, s_game_code, s_game_name, s_info_txt, s_date, s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5, s_img_main, s_img_1, s_img_2, s_img_3, s_icon, s_video_1, s_video_2, s_video_3, Integer.parseInt(s_sale));
 			

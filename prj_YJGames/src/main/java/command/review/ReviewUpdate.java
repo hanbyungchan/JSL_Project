@@ -17,6 +17,8 @@ public class ReviewUpdate implements CommonExecute {
 		String id = (String)session.getAttribute("sessionId");
 		String g_code = request.getParameter("t_pageNo");
 		String r_txt = request.getParameter("t_r_txt");
+		r_txt = r_txt.replace("'","''");
+		r_txt = r_txt.replace("\"", "..");
 		String r_recommand = request.getParameter("t_r_recommand");
 		String r_date = CommonUtil.getToday();
 		ReviewDto dto = new ReviewDto(id, g_code, r_txt, r_date, r_recommand);

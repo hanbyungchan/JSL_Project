@@ -4,15 +4,14 @@ public class ViewDto {
 	private String s_page_no,s_game_code, g_grade,
 	s_game_name, s_info_txt, s_date, s_sale,
 	s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5,
-	s_img_main,
-	s_img_1,s_img_2,s_img_3,s_icon,
-	s_video_1, s_video_2, s_video_3, g_price;
+	s_img_main, s_img_1,s_img_2,s_img_3,s_icon,
+	s_video_1, s_video_2, s_video_3, g_price, genre_name,g_file;
 	private double g_sale_price;
 	
+
 	public ViewDto() {
 		super();
 	}
-	
 	public String getG_grade() {
 		return g_grade;
 	}
@@ -145,9 +144,16 @@ public class ViewDto {
 	public void setG_sale_price(double g_sale_price) {
 		this.g_sale_price = g_sale_price;
 	}
-	
-	
-	
-	
-	
+	public String getGenre_name() {
+		return genre_name;
+	}
+	public void setGenre_name(String genre_name) {
+		this.genre_name = genre_name;
+	}
+	public String getG_file() {
+		return g_file;
+	}
+	public void setG_file(String g_file) {
+		this.g_file = g_file;
+	}
 }

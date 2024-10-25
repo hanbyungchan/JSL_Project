@@ -28,6 +28,9 @@
     	   user.action = "Game?t_gubun=userjoin_com";
     	   user.submit();
        }
+       function goNext() {
+			if(event.keyCode ==13){document.getElementById("t_password").focus();}
+		}
        function goEnter() {
 			if(event.keyCode ==13){goLogin();}
 		}
@@ -48,8 +51,7 @@
     	<form name="loginform">
     	<input type = "hidden" name = "t_gubun">
         <label for="t_id">ID</label>
-        <input type="text" name="t_u_id" id="t_id" placeholder="Enter ID" required>
-
+        <input type="text" name="t_u_id" id="t_id" onkeypress="goNext()" placeholder="Enter ID" required>
         <label for="t_password">PASSWORD</label>
         <input type="password" name="t_u_password" id="t_password" onkeypress="goEnter()" placeholder="Enter Password" required>
 

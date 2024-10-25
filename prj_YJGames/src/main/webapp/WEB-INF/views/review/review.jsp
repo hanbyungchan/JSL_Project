@@ -108,6 +108,10 @@
             </div>
         </div>
                 </form>
+                <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
     </body>
 </html>
 <%@ include file = "../footer.jsp"%>

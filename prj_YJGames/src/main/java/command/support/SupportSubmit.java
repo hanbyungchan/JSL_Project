@@ -15,8 +15,12 @@ public class SupportSubmit implements CommonExecute {
 		UserDao dao = new UserDao();
 		String s_code = dao.AutoCode_sup();
 		String s_txt = request.getParameter("t_txt");
+		s_txt = s_txt.replace("'",".");
+		s_txt = s_txt.replace("\"", "..");
 		String s_type = request.getParameter("t_type");
 		String s_title = request.getParameter("t_title");
+		s_title = s_title.replace("'",".");
+		s_title = s_title.replace("\"", "..");
 		String s_date = CommonUtil.getToday();
 		HttpSession session = request.getSession();
 		String u_id = (String)session.getAttribute("sessionId");

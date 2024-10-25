@@ -98,9 +98,9 @@
         <div class="details-section">
             <h3>About This Game</h3>
             <div class="details-content" id="details-content">
-                <p>${dto.getS_info_txt()}</p>
+                <p id="text">${dto.getS_info_txt()}</p>
             </div>
-            <button class="toggle-btn" id="toggle-btn" onclick="toggleContent()">Read More</button>
+            <button class="toggle-btn" id="toggle-btn">Read More</button>
         </div>
         
         <!-- 리뷰 섹션 -->
@@ -109,13 +109,13 @@
 		    <div class="review-container">
 		        <!-- 좋은 리뷰 -->
 		        <div class="good-review">
-		            <p>"This game is fantastic! The graphics and gameplay are top-notch."</p>
-		            <p>- User123</p>
+		            <p class="ellipsis">"${dto1.getR_txt()}"</p>
+		            <p>- ${dto1.getU_name()}</p>
 		        </div>
 		        <!-- 나쁜 리뷰 -->
 		        <div class="bad-review">
-		            <p>"I found the game too difficult and frustrating at times."</p>
-		            <p>- GamerXYZ</p>
+		            <p class="ellipsis">"${dto2.getR_txt()}"</p>
+		            <p>- ${dto2.getU_name()}</p>
 		        </div>
 		    </div>
 		    <button class="toggle-btn" id="toggle-btn" onclick="goReview_de()">Review More</button>
@@ -182,12 +182,18 @@
             <div class="release-date">
                 <h4>Release Date</h4>
                 <p>${dto.getS_date()}</p>
+                <h4>Genres</h4>
+                <c:forEach items="${dtos}" var="dto">
+                <p>${dto.getGenre_name()}</p>
+                </c:forEach>
             </div>
         </div>
     </div>
 </div>
-
-    <!-- JS 연동 -->
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
     <script src="js/main.js"></script> 
     <script src="js/view.js"></script>
 

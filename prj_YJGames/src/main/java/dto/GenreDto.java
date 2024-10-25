@@ -6,6 +6,7 @@ public class GenreDto {
 	
 	public GenreDto() {}
 	public GenreDto(String genre_code, String genre_name) {
+		super();
 		this.genre_code = genre_code;
 		this.genre_name = genre_name;
 	}
