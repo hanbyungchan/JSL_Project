@@ -56,18 +56,17 @@ public class NewsDao {
 		
 		return dtos;
 	}
-	
 	//특정 게임 뉴스 dtos
-	public ArrayList<NewsDto> getParticularNewsList(String g_code) {
-		String query="select n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code\r\n" + 
-				"from kyj_news\r\n" + 
-				"where g_code = '"+g_code+"'";
-		
-		RowMapper<NewsDto> newsDtos = new BeanPropertyRowMapper<>(NewsDto.class);
-		ArrayList<NewsDto> dtos = (ArrayList<NewsDto>) temp.query(query, newsDtos);
-		
-		
-		return dtos;
-	}
-	
+		public ArrayList<NewsDto> getParticularNewsList(String g_code) {
+			String query="select n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code\r\n" + 
+					"from kyj_news\r\n" + 
+					"where g_code = '"+g_code+"'";
+			
+			RowMapper<NewsDto> newsDtos = new BeanPropertyRowMapper<>(NewsDto.class);
+			ArrayList<NewsDto> dtos = (ArrayList<NewsDto>) temp.query(query, newsDtos);
+			
+			
+			return dtos;
+		}
+
 }

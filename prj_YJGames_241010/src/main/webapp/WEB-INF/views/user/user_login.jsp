@@ -9,7 +9,7 @@
   	 <script src="js/common.js"></script>
   	
 	
-    <title>LoginPage</title>
+    <title>JSL Games</title>
      <script>
         function goLogin(){ 
          	 if(checkValue(loginform.t_u_id,"Please enter ID!")) return;

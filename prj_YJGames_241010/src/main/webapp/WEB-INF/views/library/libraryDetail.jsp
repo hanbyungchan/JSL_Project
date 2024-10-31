@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/gamesearch.css" />
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <script type="text/javascript">
     function performSearch() {
@@ -25,46 +26,6 @@
     		game.action="Game?t_gubun=library_detail";
     		game.submit();
 		}
-        function goSignIn() {
-    		game.t_gubun.value ="goSignin";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goInfo() {
-    		game.t_gubun.value ="userinfo";
-    		game.t_id.value="${sessionId}";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goLogout() {
-    		game.t_gubun.value ="userlogout";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goLibrary() {
-    		game.t_gubun.value ="library";
-    		game.method="post";
-    		game.action="Game";
-    		game.submit();
-		}
-    	function goView(s_no) {
-    		game.method="post";
-    		game.action="Game?t_gubun=view&t_pageNo="+s_no;
-    		game.submit();
-		}
-    	function goReview() {
-    		game.method="post";
-    		game.action="Game?t_gubun=myreview";
-    		game.submit();
-		}
-    	function goGameRegi() {
-    		game.method = "post";
-    		game.action = "Game?t_gubun=gameRegistForm";
-    		game.submit();
-    	}
     	function checkEnter(event) {
     	    if (event.key === 'Enter') {
     	        event.preventDefault(); // 기본 폼 제출 방지
@@ -77,56 +38,78 @@
     		game.action = "Game?t_gubun=review";
     		game.submit();
 		}
+    	function goToMoreNews() {
+    	 
+    	}
+    	function Exe_game(a, event) {
+    	    event.preventDefault(); // 기본 동작 방지
+    		game.t_fileName.value = a;
+			$.ajax({
+				 type:"post",
+			  	 url:"exe",
+			  	 data: {
+			  		t_fileName: game.t_fileName.value
+			        },
+			  	 dataType:"text",
+			  	 error:function(){
+			  		alert("a");
+			  	 },
+				 success:function(data){ 
+				 	var result = $.trim(data); 
+				 	game.result.value = result;
+					 if(result =="1"){}
+					 else{alert("The game has failed.");}
+				 }
+			  });
+	  	}
+    	function Download(a, event) {
+    	    event.preventDefault(); // 기본 동작 방지
+    		game.t_fileName.value = a;
+    		$.ajax({
+    		    url: "Download",
+    		    type: "POST",
+    		    data: {t_fileName: game.t_fileName.value},
+    		    xhrFields: {
+    		        responseType: 'blob' // 서버 응답을 blob 형태로 설정
+    		    },
+    		    success: function(data) {
+    		        // Blob을 URL로 변환
+    		        var blob = new Blob([data]);
+    		        var link = document.createElement('a');
+    		        link.href = window.URL.createObjectURL(blob);
+    		        link.download = "Leva.exe"; // 다운로드할 파일명
+    		        link.click();
+    		        window.URL.revokeObjectURL(link.href); // URL 해제
+    		    },
+    		    error: function(xhr, status, error) {
+    		        console.error("다운로드 오류: ", error);
+    		    }
+    		});
+	  	}
+    	function goGameNews(no) {
+    		game.g_code.value = no;
+    		game.method = "post";
+    		game.action = "News";
+    		game.submit();
+		}
+    	function goNewsView(no) {
+    		game.n_no.value = no;
+    		game.method = "post";
+    		game.action = "NewsView";
+    		game.submit();
+		}
     </script>
+    <%@ include file = "../scripts.jsp"%>
 </head>
 <body>
+<%@ include file = "../header.jsp"%>
 <form name="game">
 <input type="hidden" name="t_gubun">
 <input type="hidden" name="t_pageNo">
+<input type="hidden" name="g_code">
+<input type="hidden" name="t_fileName">
 <input type="hidden" name="t_id">
-<header class="header" id="header">
-<div class="header-content">
-<div class="logo">
-    <img src="img/logo.png" alt="사이트 로고" href="">
-</div>
-
-<nav class="menu" id="menu">
-<ul>
-<li><a href="Game">STORE</a></li>
-<li class="community-menu">
-    <a href="#">COMMUNITY</a>
-    <ul class="category-dropdown">
-        <li><a href="javascript:goReview()">Review</a></li>
-        <li><a href="#">News</a></li>
-    </ul>
-</li>
-<li><a href="Game?t_gubun=support">SUPPORT</a></li>
-<c:if test="${sessionId eq null}">
-    <li><a href="javascript:goSignIn()">SIGN IN</a></li>
-</c:if>
-<c:if test="${sessionId ne null}">
-    <li><a href="javascript:goInfo()">MyInfo</a></li>
-</c:if>
-<c:if test="${sessionId ne null}">
-    <li><a href="javascript:goLogout()">Logout</a></li>
-</c:if>
-<c:if test="${sessionId ne null}">
-    <li><a href="javascript:goLibrary()">Library</a></li>
-</c:if>
-<c:if test="${sessionId ne null}"><li><a href="javascript:goGameRegi()">Game Regist</a></li></c:if>
-</ul>
-</nav>
-<nav>
-        <div class="icons">
-            <div class="search-box" id="search-box">
-                <input type="text" placeholder="Search...">
-            </div>
-            <a href="Search"><i class="fas fa-search"></i></a>
-            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </nav>
-</div>
-</header>
+<input type="hidden" name="n_no">
 
     <div class="container">
         <!-- 사이드바 (게임 리스트) -->
@@ -137,13 +120,18 @@
 			</div>
 			</form>
             <div class="recent">
-                <c:if test="${t_search eq ''}"><h2>All Game</h2></c:if>
+            	<div class="lib_result">
+                <c:if test="${t_search eq ''}"><h2>My Game</h2> </c:if>
                 <c:if test="${t_search ne ''}"><h2>games found</h2></c:if>
+                <a href="Game?t_gubun=library" class="move-right"><i class="fa-solid fa-rotate-left"></i></a>
+                </div>
+                
                     <ul>
                     <c:forEach items="${t_dtos}" var="dto">
                     <li><a href="javascript:goDetail('${dto.getG_code()}')">${dto.getG_name()}</a></li>
                    	</c:forEach>
                     </ul>
+                    
                 </div>
         </div>
 			 <div class="main-content">
@@ -152,24 +140,29 @@
                 <div class="game-header-left">
                     <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_main()}"
                      alt="${t_dto.getS_game_name()}" class="game-logo">
-                     <button class="stream-button">DOWNLOAD</button>
-                   
-     <div class="game-info">
-    <div class="battle-pass">
-        <h2>News</h2>
-        <p>News들어갈거임</p>
+                     <button class="stream-button" onclick="Download('${t_dto.getG_file()}', event)">DOWNLOAD</button>                 
+                                        
+     <div class="game-info"> 
+    <div class="battle-pass"> 
+        <h2>News</h2> 
     </div>
-</div>  
+    <div class="achievements trendy-box">
+    <c:forEach items="${t_dtos3}" var="dto">
+        <div class="news-item">
+            <img src="img/1/1.jpg" alt="News 1" class="news-image">
+            <a href="javascript:goNewsView('${dto.getN_no()}')" class="custom-link">
+            <div class="news-details">
+                <h3>${dto.getN_title()}</h3>
+                <p class="clamped">${dto.getN_content()}</p>
+            </div>
+            </a>
+        </div>
+    </c:forEach>
+         <button class="more-button" onclick="goGameNews('${t_dto.getS_game_code()}')">Read more News</button>
+    </div>
+</div> 
 </div>          
 </div>	
-         <div class="game-banner">
-		    <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_1()}"
-                     alt="${t_dto.getS_game_name()}" class="banner-img">
-		    <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_2()}"
-                     alt="${t_dto.getS_game_name()}" class="banner-img">
-		    <img src="img/${t_dto.getS_page_no()}/${t_dto.getS_img_3()}"
-                     alt="${t_dto.getS_game_name()}" class="banner-img">
-		</div>
            <div class="info-container">
     <div class="achievements trendy-box">
         <h2>Achievements</h2>
@@ -188,59 +181,25 @@
 
 <div class="reviews trendy-box">
     <h2>Reviews</h2>
-    <c:forEach items="${t_dtos2}" var ="dto2">
+    <c:forEach items="${t_dtos2}" var ="dto2" varStatus="status">
+    <c:if test="${status.index < 5}">
     <div class="review">
-        <p><strong>${dto2.getU_name()} :</strong> ${dto2.getR_txt()} <span class="rating">⭐⭐⭐⭐⭐</span></p>
+        <p><strong>${dto2.getU_name()} :</strong> ${dto2.getR_txt()}</p>
     </div>
+    </c:if>
     </c:forEach>
     <button class="more-button" onclick="toggleReviews('${t_dto.getS_game_code()}')">See More</button>
 </div>
 </div>  
         </div>
         </div>
+        <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
         <script src="js/main.js"></script>
+        <script src="js/library.js"></script>
 </body>
-<script>
-    function showAllAchievements() {
-        const achievements = document.querySelectorAll('#achievement-list li');
-        achievements.forEach(achievement => {
-            achievement.style.display = 'list-item'; // 모두 보이게 함
-        });
-    }
-
-    function hideAchievements() {
-        const achievements = document.querySelectorAll('#achievement-list li');
-        achievements.forEach((achievement, index) => {
-            if (index >= 5) {
-                achievement.style.display = 'none'; // 다시 숨김
-            }
-        });
-    }
-</script>
 </html>
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="img/logo.png" alt="사이트 로고" />
-        </div>
-        <div class="footer-links">
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-            </ul>
-        </div>
-        <div class="footer-social">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
+<%@ include file = "../footer.jsp"%>
 

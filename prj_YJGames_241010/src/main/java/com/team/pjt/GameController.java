@@ -1,6 +1,11 @@
 package com.team.pjt;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -17,6 +22,7 @@ import command.cart.CartList;
 import command.cart.Payment;
 import command.game.GameRegist;
 import command.game.IndexList;
+import command.game.StoreRegist;
 import command.library.LibraryDetail;
 import command.library.LibraryList;
 import command.review.MyReviewList;
@@ -25,6 +31,7 @@ import command.review.ReviewList;
 import command.review.ReviewSave;
 import command.review.ReviewUpdate;
 import command.review.ReviewUpdateForm;
+import command.support.SupportSubmit;
 import command.user.UserDelete;
 import command.user.UserInfo;
 import command.user.UserJoin;
@@ -34,42 +41,42 @@ import command.user.UserUpdate;
 import command.view.ViewPage;
 import common.CommonExecute;
 import common.CommonTemplate;
+import common.CommonUtil;
 import dao.GameDao;
 import dao.UserDao;
+import dto.GameRegiDto;
+import dto.GenreDto;
 
 @Controller
 public class GameController {
 
-	@Autowired
+	@Autowired 
 	JdbcTemplate template;
 	@Autowired
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
-	
 	//뉴스 상세보기
-	@RequestMapping("NewsView")
+	@RequestMapping("NewsView")  
 	public String NewsView(HttpServletRequest req) {
 		CommonExecute news = new command.news.NewsView();
 		news.execute(req);
 		return"news/news_view";
 	}
 	//게임사별 뉴스 목록을 게임 라이브러리 따위에 띄운다면 그쪽에서 호출해줘야됨.
-	//뉴스 게시판
+	//뉴스 게시판 
 	@RequestMapping("News")
 	public String News(HttpServletRequest req) {
-		CommonExecute news = new command.news.News();
+		CommonExecute news = new command.news.News();		
 		news.execute(req);
 		return"news/news";
 	}
-	
 	@RequestMapping("Search")
 	public String Search(HttpServletRequest req) {
 		CommonExecute game = new command.search.Search();
 		game.execute(req);
 		return"search/search";
 	}
-	
 	@RequestMapping("Game")
 	public String Game(HttpServletRequest req) {
 			String gubun = req.getParameter("t_gubun");
@@ -83,6 +90,8 @@ public class GameController {
 			else if(gubun.equals("view")){CommonExecute game = new ViewPage();game.execute(req);viewPage = "view";}
 			//support
 			else if(gubun.equals("support")){viewPage = "support/support";}
+			//support
+			else if(gubun.equals("sup_submit")){CommonExecute game = new SupportSubmit();game.execute(req);viewPage = "common_alert";}
 			//library
 			else if(gubun.equals("library")){CommonExecute game = new LibraryList();game.execute(req);viewPage = "library/library";}
 			//library 상세
@@ -152,10 +161,38 @@ public class GameController {
 			//구매
 			else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
 			//게임 등록폼
-			else if(gubun.equals("gameRegistForm")) {GameDao dao = new GameDao();String g_code = dao.AutoNo();req.setAttribute("g_code", g_code);viewPage = "registration/game_regist";}
+			else if(gubun.equals("gameRegistForm")) {
+				GameDao dao = new GameDao();
+				String g_code = dao.AutoCode();
+				ArrayList<GenreDto> dtos = dao.genreCheckList();
+				req.setAttribute("g_code", g_code);
+				req.setAttribute("dtos", dtos);
+				CommonExecute game = new IndexList();
+				game.execute(req);
+				viewPage = "registration/game_regist";
 			//게임 등록
-			 else if(gubun.equals("gameRegist")) {CommonExecute game = new GameRegist();game.execute(req);viewPage = "common_alert";}
-			
+			} else if(gubun.equals("gameRegist")) {
+				CommonExecute game = new GameRegist();
+				game.execute(req);
+				viewPage = "common_alert";
+			//상점 페이지 등록폼
+			} else if(gubun.equals("storeRegistForm")) {
+				GameDao dao = new GameDao();
+				HttpSession session = req.getSession();
+		        String sessionName = (String) session.getAttribute("sessionName");
+				String s_page_no = dao.AutoNo();
+				ArrayList<GameRegiDto> dtos = dao.GameSelectList(sessionName);
+				req.setAttribute("s_page_no", s_page_no);
+				req.setAttribute("dtos", dtos);
+				CommonExecute game = new IndexList();
+				game.execute(req);
+				viewPage = "registration/store_regist";
+			//상점 페이지 등록
+			} else if(gubun.equals("storeRegist")) {
+				CommonExecute game = new StoreRegist();
+				game.execute(req);
+				viewPage = "common_alert";
+			}
 			return viewPage;
 	}
 	//id중복체크
@@ -221,7 +258,7 @@ public class GameController {
 		for(String codes : lists) {
 			count = dao.AddPurchase(u_id, codes);
 		}
-		if(count != 0) {out.print(count);dao.RemoveCartAll(u_id);}
+		if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);}
 		else out.print("");
 	}
 	//게임머니로 결제
@@ -235,14 +272,13 @@ public class GameController {
 			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 			String u_id = request.getParameter("t_id");
 			String u_money = request.getParameter("t_u_money");
-			HttpSession session = request.getSession();
-			String m_money = (String)session.getAttribute("sessionMoney");
+			String m_money = request.getParameter("t_my_money");
 			Double money = Double.parseDouble(m_money) - Double.parseDouble(u_money);
 			ArrayList<String> lists = dao.GameCodeList(u_id);
 			for(String codes : lists) {
 				count = dao.AddPurchase(u_id, codes);
 			}
-			if(count != 0) {out.print(count);dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);session.setAttribute("sessionMoney", money); }
+			if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);}
 			else out.print("");
 		}
 	//충전
@@ -253,13 +289,80 @@ public class GameController {
 		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 		String u_id = request.getParameter("t_id");
 		String u_money = request.getParameter("t_u_money");
-		HttpSession session = request.getSession();
-		String m_money = (String)session.getAttribute("sessionMoney");
+		String m_money = request.getParameter("t_my_money");
 		Double money = Double.parseDouble(u_money)+Double.parseDouble(m_money);
 		UserDao dao = new UserDao();
 		int count = dao.Payment(u_id, money);
-		if(count == 1) {out.print(count); session.setAttribute("sessionMoney", money);}
+		if(count == 1) {out.print(String.valueOf(count));}
 		else out.print("");
 	}
-	
+	//실행
+		@RequestMapping("exe") 
+		public void Exe(HttpServletRequest request, HttpServletResponse response) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = null;
+			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+			String code = request.getParameter("t_fileName");
+			GameDao.EXE(code);
+			out.print("1");
+		}
+		//다운로드
+		@RequestMapping("Download")
+		public void Download(HttpServletRequest request, HttpServletResponse response) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = null;
+			String savePath = "C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe";// 첨부파일경로
+		 	String fileName = request.getParameter("t_fileName");   // 다운로드 받을 첨부파일명
+		    String orgfilename = fileName ;
+		    InputStream in = null;
+		    OutputStream os = null; 
+		    File file = null;
+		    boolean skip = false;
+		    String client = "";
+		    try{
+		        try{
+		            file = new File(savePath, fileName);
+		            in = new FileInputStream(file);
+		        }catch(FileNotFoundException fe){
+		            skip = true;
+		        }
+		        client = request.getHeader("User-Agent");
+		        response.reset() ;
+		        response.setContentType("application/octet-stream");
+		        response.setHeader("Content-Description", "JSP Generated Data");
+		        if(!skip){
+		            // IE
+		            if(client.indexOf("MSIE") != -1){
+		                response.setHeader ("Content-Disposition", "attachment; filename="+orgfilename);
+		 
+		            }else{
+		                // 한글 파일명 처리
+		                orgfilename = new String(orgfilename.getBytes("utf-8"),"iso-8859-1");
+
+		                response.setHeader("Content-Disposition", "attachment; filename=\"" + orgfilename + "\"");
+		                response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+		            } 
+		            response.setHeader ("Content-Length", ""+file.length() );
+		            os = response.getOutputStream();
+		            byte b[] = new byte[(int)file.length()];
+		            int leng = 0;
+		             
+		            while( (leng = in.read(b)) > 0 ){
+		                os.write(b,0,leng);
+		            }
+		        }else{
+		            response.setContentType("text/html;charset=UTF-8");
+		            out = response.getWriter();
+		            out.println("<script language='javascript'>alert('file not found');history.back();</script>");
+		        }
+		        in.close();
+		        os.close();
+		    }catch(Exception e){
+		    	System.out.println(savePath+"첨부 파일 다운 오류~ 파일명:"+fileName);
+		    }
+		    System.out.println("Request: " + request);
+		    System.out.println("Response: " + response);
+
+		out.print("1");
+	}
 }

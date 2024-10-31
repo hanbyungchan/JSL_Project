@@ -416,6 +416,12 @@ a{
     object-fit: cover;
 }
 
+/* 인기 카테고리 항목 마우스 오버 시 줌인 효과 */
+.category-item:hover .img-container img {
+    transform: scale(1.1); /* 1.1배 확대 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+}
+
 /* 그라데이션 효과 */
 .category-gradient {
     position: absolute;
@@ -501,6 +507,7 @@ a{
     display: flex;
     gap: 20px;
     width: 100%;
+    align-items: stretch; /* 왼쪽과 오른쪽을 동일한 높이로 맞추기 */
 }
 
 /* 게임 목록 왼쪽 */
@@ -508,7 +515,7 @@ a{
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 27px;
 }
 
 .game-item {
@@ -560,13 +567,24 @@ a{
     padding: 20px;
 }
 
+/* 기본적으로 이미지를 숨김 */
 .game-preview img {
+    display: none; /* 처음에는 이미지가 보이지 않도록 */
     width: 100%;
-    max-width: 300px;
+    max-width: 325px;
+    aspect-ratio: 16 / 9;
     height: auto;
+    object-fit: contain;
     border-radius: 10px;
     margin-bottom: 10px;
+    background-color: #1c1c2e;
 }
+
+/* 마우스를 올렸을 때 이미지가 보이도록 */
+.game-preview img.show {
+    display: block; /* 마우스를 올렸을 때 이미지가 나타나도록 */
+}
+
 
 .game-description {
     margin-top: 20px;
@@ -608,5 +626,3 @@ a{
         flex-direction: column;
     }
 }
-
-

@@ -9,57 +9,24 @@
     <title>JSL Games</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="icon" type="image/png" href="img/logo.png">
-	
     <!-- CSS 연동 -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
-
     <!-- Font Awesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <%@ include file = "scripts.jsp"%>
     <script type="text/javascript">
     	function goGenreSearch(no){
 			game.t_genre.value=no;
-    		game.method="post";
-    		game.action="Search";
-    		game.submit();	
-    	}
-    	function goSignIn() {
-    		game.method="post";
-    		game.action="Game?t_gubun=goSignin";
-    		game.submit();	
-		}
-    	function goInfo() {
-    		game.t_id.value="${sessionId}";
-    		game.method="post";
-    		game.action="Game?t_gubun=userinfo";
-    		game.submit();
-		}
-    	function goLogout() {
-    		game.method="post";
-    		game.action="Game?t_gubun=userlogout";
-    		game.submit();
-		}
-    	function goLibrary() {
-    		game.t_gubun.value ="library";
-    		game.method="post";
-    		game.action="Game?t_gubun=library";
-    		game.submit();
+			game.method="post";
+			game.action="Search";
+			game.submit();	
 		}
     	function goView(s_no) {
     		game.method="post";
     		game.action="Game?t_gubun=view&t_pageNo="+s_no;
     		game.submit();
 		}
-    	function goReview() {
-    		game.method="post";
-    		game.action="Game?t_gubun=myreview";
-    		game.submit();
-		}
-    	function goGameRegi() {
-    		game.method = "post";
-    		game.action = "Game?t_gubun=gameRegistForm";
-    		game.submit();
-    	}
     	function Contain_game(a,b) {
     		game.t_id.value = b;
 			game.t_pageNo.value = a;
@@ -85,7 +52,7 @@
 			  });
 	  	}
     	function goAlert() {
-			alert("로그인좀");
+			alert("please Login!");
 			game.method="post";
     		game.action="Game?t_gubun=goSignin";
     		game.submit();	
@@ -94,55 +61,14 @@
 </head>
 <body>
 	<form name="game">
-	<input type="hidden" name="t_genre">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
 	<input type="hidden" name="t_id">
 	<input type="hidden" name="result">
+	<input type="hidden" name="t_genre">
 	</form>
-	<header class="header" id="header">
-    <div class="header-content">
-        <div class="logo">
-            <img src="img/logo.png" alt="사이트 로고" >
-        </div>
-        
-<nav class="menu" id="menu">
-    <ul>
-        <li><a href="Game">STORE</a></li>
-		<li class="community-menu">
-            <a href="#">COMMUNITY</a>
-            <ul class="category-dropdown">
-                <li><a href="Game?t_gubun=myreview">Review</a></li>
-                <li><a href="#">News</a></li>
-            </ul>
-        </li>
-        <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-        <c:if test="${sessionId eq null}">
-            <li><a href="Game?t_gubun=goSignin">SIGN IN</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}">
-            <li><a href="javascript:goInfo()">MyInfo</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}">
-            <li><a href="javascript:goLogout()">Logout</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}">
-            <li><a href="javascript:goLibrary()">Library</a></li>
-        </c:if>
-        <c:if test="${sessionId ne null}"><li><a href="javascript:goGameRegi()">Game Regist</a></li></c:if>
-    </ul>
-	</nav>
-	<nav>
-        <div class="icons">
-            <div class="search-box" id="search-box">
-                <input type="text" placeholder="Search...">
-            </div>
-            <a href="Search"><i class="fas fa-search"></i></a>
-            <a href="Game?t_gubun=cart"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </nav>
-    </div>
-	</header>
+
+	<%@ include file = "header.jsp"%>
 
     <div class="main-image">
         <img src="img/main-image.jpg" alt="메인 이미지">
@@ -168,7 +94,7 @@
 <div class="slide-content">
     <h2>${dto1.getG_name()}</h2>
     <p>Now available</p>
-
+	
     <div class="price-container">
         <div class="price-wrapper">
             <c:if test="${dto1.getG_price() ne '0'}">
@@ -345,55 +271,30 @@
             <div class="game-item" data-game="1" id ="test">
                 <div class="game-info">
                     <h4>${dto1.getG_name()}</h4>
-                    <p>a, b, c</p>
+                    <br>
                     <span class="price"><c:if test="${dto1.getG_price() eq '0'}">Free</c:if><c:if test="${dto1.getG_price() ne '0'}">$${dto1.getG_price2()}</c:if></span>
                     <span class="discount"><c:if test="${dto1.getS_sale() ne '0'}">-${dto1.getS_sale()}%</c:if></span>
                 </div>
             </div>
         </a>
         </c:forEach>
-            
-            <!-- ... 동일한 형식으로 5개의 추가 게임 목록 -->
         </div>
-        <!-- 오른쪽 이미지 및 설명 -->
         <div class="game-preview">
             <img class="preview-image1" src="">
 		    <img class="preview-image2" src="">
 		    <img class="preview-image3" src="">
 		    <img class="preview-image4" src="">
         </div>
-        
     </div>
 </div>
-
-
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
+<%@ include file = "footer.jsp"%>
 <!-- ============================================================================= -->	
 <script src="js/main.js"></script>
-	
+<script src="js/slide.js"></script>	
 </body>
 </html>
-<div class="footer-border"></div>
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="img/logo.png" alt="사이트 로고">
-        </div>
-        <div class="footer-links">
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-            </ul>
-        </div>
-        <div class="footer-social">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2024 Futuristic Gaming Platform. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
+
