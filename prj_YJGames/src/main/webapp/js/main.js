@@ -90,40 +90,40 @@ const games = [
         image4: "img/4/4.jpg"
     },
     {
-        image1: "img/1/1.jpg",
-        image2: "img/1/2.jpg",
-        image3: "img/1/3.jpg",
-        image4: "img/1/4.jpg"
+        image1: "img/10/1.jpg",
+        image2: "img/10/2.jpg",
+        image3: "img/10/3.jpg",
+        image4: "img/10/4.jpg"
     },
 	{
-		image1: "img/8/1.jpg",
-        image2: "img/8/2.jpg",
-        image3: "img/8/3.jpg",
-        image4: "img/8/4.jpg"
+		image1: "img/12/1.jpg",
+        image2: "img/12/2.jpg",
+        image3: "img/12/3.jpg",
+        image4: "img/12/4.jpg"
     },
 	{
-		image1: "img/6/1.jpg",
-        image2: "img/6/2.jpg",
-        image3: "img/6/3.jpg",
-        image4: "img/6/4.jpg"
+		image1: "img/11/1.jpg",
+        image2: "img/11/2.jpg",
+        image3: "img/11/3.jpg",
+        image4: "img/11/4.jpg"
     },
 	{
-		image1: "img/5/1.jpg",
-        image2: "img/5/2.jpg",
-        image3: "img/5/3.jpg",
-        image4: "img/5/4.jpg"
+		image1: "img/9/1.jpg",
+        image2: "img/9/2.jpg",
+        image3: "img/9/3.jpg",
+        image4: "img/9/4.jpg"
     },
 	{
-		image1: "img/7/1.jpg",
-        image2: "img/7/2.jpg",
-        image3: "img/7/3.jpg",
-        image4: "img/7/4.jpg"
+		image1: "img/16/1.jpg",
+        image2: "img/16/2.jpg",
+        image3: "img/16/3.jpg",
+        image4: "img/16/4.jpg"
     },
 	{
-		image1: "img/3/1.jpg",
-        image2: "img/3/2.jpg",
-        image3: "img/3/3.jpg",
-        image4: "img/3/4.jpg"
+		image1: "img/15/1.jpg",
+        image2: "img/15/2.jpg",
+        image3: "img/15/3.jpg",
+        image4: "img/15/4.jpg"
     },
     // 필요한 추가 게임 데이터들
 ];

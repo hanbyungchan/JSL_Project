@@ -17,9 +17,9 @@ public class Payment implements CommonExecute {
 		String money = request.getParameter("t_money");
 		UserDao dao = new UserDao();
 		UserDto dto = dao.UserInfo(id);
+		request.setAttribute("t_dto", dto);
 		request.setAttribute("t_money", money);
 		request.setAttribute("t_id", id);
-		request.setAttribute("t_dto", dto);
 	}
 
 }

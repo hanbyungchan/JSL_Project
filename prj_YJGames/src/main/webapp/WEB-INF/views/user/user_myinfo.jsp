@@ -109,6 +109,10 @@
 		   <button class="save-button2" onclick="goDelete()" >Request to delete account</button>
         </section>
     </div>
+    <div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
     <script src="js/main.js"></script>
 </body>
 </html>

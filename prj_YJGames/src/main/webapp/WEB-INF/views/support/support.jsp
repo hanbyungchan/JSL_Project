@@ -87,7 +87,10 @@
 </div>
     </div>
 </div>
-
+<div class="btns">
+            <div class="moveTopBtn">Top</div>
+            <div class="moveBottomBtn">Bottom</div>
+</div>
     <script src="js/main.js"></script>
     <script>
     document.getElementById('gameButton').addEventListener('click', function() {

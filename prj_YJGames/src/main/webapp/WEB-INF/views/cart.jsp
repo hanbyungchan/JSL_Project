@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="java.util.ArrayList" %>
 <c:set var="total" value="0"/>
 <!DOCTYPE html>
@@ -77,6 +78,7 @@
                     	<c:if test="${dto.getS_sale() eq '0'}"><p class="price">$${dto.getG_price()}</p></c:if>
                         </c:if>
                         <c:set var="total" value="${total + dto.getG_price2()}" />
+                        <fmt:formatNumber value="${total}" maxFractionDigits="2" var="formattedTotal" />
                     	<c:if test="${dto.getG_price() eq '0'}"><p class="price">Free!</p></c:if>
                         <div class="options">
                             <button class="remove-btn" onclick="RemoveCart('${dto.getU_id()}','${dto.getG_code()}')">Remove</button>	
@@ -91,7 +93,7 @@
                 <div class="details">
                     <div class="detail-item">
                         <span>Price</span>
-                        <span>$${total}</span>
+                        <span>$${formattedTotal}</span>
                     </div>
                     <div class="detail-item">
                         <span>Tax</span>
@@ -100,10 +102,10 @@
                     <hr class="divider">
                     <div class="detail-total">
                         <span>Sum</span>
-                        <span>$${total}</span>
+                        <span>$${formattedTotal}</span>
                     </div>
                 </div>
-                <button class="checkout-btn" onclick="goPay('${total}')">Buying</button>
+                <button class="checkout-btn" onclick="goPay('${formattedTotal}')">Buying</button>
             </div>
         </div>
     </div>
