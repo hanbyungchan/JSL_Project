@@ -297,7 +297,7 @@ public class GameController {
 		else out.print("");
 	}
 	//실행
-		@RequestMapping("exe")
+		@RequestMapping("exe") 
 		public void Exe(HttpServletRequest request, HttpServletResponse response) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = null;
