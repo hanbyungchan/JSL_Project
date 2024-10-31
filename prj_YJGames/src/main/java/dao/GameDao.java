@@ -309,9 +309,9 @@ public class GameDao {
 		public int RegistGame(GameRegiDto dto) {
 			int result = 0;
 			String query1 = "insert into kyj_game\r\n" + 
-					"(g_code, g_name, g_price, g_file, g_developer, g_grade)\r\n" + 
+					"(g_code, g_name, g_price, g_file, g_developer, g_grade, g_confirm)\r\n" + 
 					"values\r\n" + 
-					"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"')";
+					"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"', '0')";
 			try {
 				result = temp.update(query1);
 			} catch (Exception e) {
@@ -330,6 +330,28 @@ public class GameDao {
 					
 			return result;
 		}
+		//통계 테이블 코드 등록
+		public int UpdateStats(String g_code) {
+			int result = 0;
+			String query = "insert into kyj_game_stats\r\n" + 
+					"(g_code, hit)\r\n" + 
+					"values\r\n" + 
+					"('"+g_code+"', 0)";
+			try {
+				result = temp.update(query);
+			} catch (Exception e) {System.out.println("UpdateStats() 메소드 오류" + query);}
+			return result;
+		}
+		//게임 컨펌
+		public ArrayList<GameRegiDto> GameRegiView(String g_code) {
+			String query = "select g_code, g_name, g_price, g_file, g_developer, g_grade\r\n" + 
+					"from kyj_game\r\n" + 
+					"where g_code = '"+g_code+"'";
+			RowMapper<GameRegiDto> GameDto = new BeanPropertyRowMapper<>(GameRegiDto.class);
+			ArrayList<GameRegiDto> dto = (ArrayList<GameRegiDto>) temp.query(query, GameDto);
+			return dto;
+		}
+		
 		//게임 코드 자동 생성
 		public String AutoCode() {
 			String code = "";

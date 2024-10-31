@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import command.cart.CartList;
 import command.cart.Payment;
+import command.game.GameConfirm;
 import command.game.GameRegist;
 import command.game.IndexList;
 import command.game.StoreRegist;
@@ -173,6 +174,11 @@ public class GameController {
 			//게임 등록
 			} else if(gubun.equals("gameRegist")) {
 				CommonExecute game = new GameRegist();
+				game.execute(req);
+				viewPage = "common_alert";
+				//게임 등록
+			} else if(gubun.equals("gameConfirm")) {
+				CommonExecute game = new GameConfirm();
 				game.execute(req);
 				viewPage = "common_alert";
 			//상점 페이지 등록폼

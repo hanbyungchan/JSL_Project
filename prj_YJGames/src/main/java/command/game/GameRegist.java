@@ -38,12 +38,20 @@ public class GameRegist implements CommonExecute {
             // t_genre_code를 List<String>으로 변환
             String[] t_genre_code_array = mpr.getParameterValues("t_genre_code");
             List<String> t_genre_code = (t_genre_code_array != null) ? Arrays.asList(t_genre_code_array) : null;
+            String g_confirm = mpr.getParameter("t_g_confirm");
 
             // DTO 생성
-            GameRegiDto dto = new GameRegiDto(g_code, g_name, g_file, g_developer, g_grade, t_genre_code, Double.parseDouble(g_price));  // 수정된 부분
+            GameRegiDto dto = new GameRegiDto(g_code, g_name, g_file, g_developer, g_grade, t_genre_code, g_confirm, Double.parseDouble(g_price));  // 수정된 부분
             
             int result = dao.RegistGame(dto);
             if (result != 0) msg = "Game registration completed";
+            // g_code를 사용하여 UpdateStats 호출
+            int statsResult = dao.UpdateStats(g_code);  // GameDao에 UpdateStats 메서드 추가 필요
+            if (statsResult > 0) {
+            	msg += " and stats updated successfully.";
+            } else {
+            	msg += " but stats update failed.";
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
