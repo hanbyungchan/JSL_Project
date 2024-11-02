@@ -26,6 +26,7 @@
 
                 <c:if test="${sessionId eq null}">
                     <li><a href="Game?t_gubun=goSignin">SIGN IN</a></li>
+                    
                 </c:if>
 
                 <c:if test="${sessionId ne null}">
@@ -36,6 +37,7 @@
                     <c:if test="${sessionLevel ne '3'}">
                         <li><a href="javascript:goGameRegi()">Game Regist</a></li>
                         <li><a href="javascript:goStoreRegi()">Store Regist</a></li>
+                        <li><a href="Game?t_gubun=GameConfirmList">Game Confirm</a></li>
                     </c:if>
                 </c:if>
             </ul>

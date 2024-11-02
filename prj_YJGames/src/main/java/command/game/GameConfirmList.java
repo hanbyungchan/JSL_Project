@@ -13,9 +13,9 @@ public class GameConfirmList implements CommonExecute {
 	@Override
 	public void execute(HttpServletRequest request) {
 		GameDao dao = new GameDao();
-		String g_code = request.getParameter("t_g_code");
-		ArrayList<GameRegiDto> dto = dao.GameRegiView(g_code);
-		request.setAttribute("dto", dto);
+		
+		ArrayList<GameRegiDto> dtos = dao.GameRegiList();
+		request.setAttribute("dtos", dtos);
 	}
 
 }

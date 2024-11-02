@@ -3,16 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <script type="text/javascript">
-	function goRegi() {
-		regi.method = "post";
-		regi.action = "Game?t_gubun=gameConfirm";
-		regi.submit();
+	function goConfirm() {
+		gameConfirm.method = "post";
+		gameConfirm.action = "Game?t_gubun=gameConfirm";
+		gameConfirm.submit();
 	}
 	function goBack() {
-		regi.t_gubun.value = "list";
-		regi.method = "post";
-		regi.action = "Game";
-		regi.submit();
+		gameConfirm.t_gubun.value = "list";
+		gameConfirm.method = "post";
+		gameConfirm.action = "Game";
+		gameConfirm.submit();
 	}
 </script>
 <%@ include file = "../scripts.jsp"%>
@@ -20,7 +20,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Game_registration</title>
+        <title>Game_registration_confirm</title>
 
         <!-- CSS 연동 -->
         <link rel="stylesheet" href="css/styles.css">
@@ -44,71 +44,54 @@
         
         <!-- ================================================================== -->	
         
-        <form name = "regi" enctype="multipart/form-data">
+        <form name = "gameConfirm">
         <input type = "hidden" name = "t_gubun">
             <section class="g_regist">
-                <h2>Game Registration</h2>
+                <h2>Game Confirm</h2>
                 <div class="formgroup">
                 	<label for="game code">Game code(Auto)</label>
                 	<div class="input-wrapper">
-               	    	<input type = "text" name = "t_g_code"  value = "${g_code}"readonly>
+               	    	<input type = "text" name = "t_g_code" value = "${dto.getG_code()}"readonly>
                	    </div>
                  </div>
                  <div class="formgroup">
                     <label for="game title">Game Title</label>
                     <div class="input-wrapper">
-                    	<input type = "text" name = "t_g_name">
+                    	<input type = "text" name = "t_g_name" value = "${dto.getG_name()}">
                     </div>
                 </div>
                 <div class="formgroup">
                     <label for="price">Price</label>
                     <div class="input-wrapper">
-                    	<input type = "text" name = "t_g_price">
+                    	<input type = "text" name = "t_g_price" value = "${dto.getG_price()}">
                     </div>
                 </div>
                 <div class="formgroup">
                     <label for="developer">Developer</label>
                     <div class="input-wrapper">
-                   		<input type = "text" name = "t_g_developer" value = "${sessionName}" readonly>
+                   		<input type = "text" name = "t_g_developer" value = "${dto.getG_developer()}" readonly>
                     </div>
                 </div>
                 <div class="formgroup">
                     <label for="game grade">Game Grade</label>
                     <div class="input-wrapper">
-	                    <select name = "t_g_grade">
-	                    	<option value = "EVERYONE">EVERYONE</option>
-	                    	<option value = "EVERYONE 10+">EVERYONE 10+</option>
-	                    	<option value = "TEEN">TEEN</option>
-	                    	<option value = "MATURE 17+">MATURE 17+</option>
-	                    	<option value = "ADULTS ONLY 18+">ADULTS ONLY 18+</option>
-	                    </select>
+						<select name="t_g_grade">
+						    <option value="EVERYONE" <c:if test="${dto.getG_grade() eq 'EVERYONE'}">selected</c:if>>EVERYONE</option>
+						    <option value="EVERYONE 10+" <c:if test="${dto.getG_grade() eq 'EVERYONE 10+'}">selected</c:if>>EVERYONE 10+</option>
+						    <option value="TEEN" <c:if test="${dto.getG_grade() eq 'TEEN'}">selected</c:if>>TEEN</option>
+						    <option value="MATURE 17+" <c:if test="${dto.getG_grade() eq 'MATURE 17+'}">selected</c:if>>MATURE 17+</option>
+						    <option value="ADULTS ONLY 18+" <c:if test="${dto.getG_grade() eq 'ADULTS ONLY 18+'}">selected</c:if>>ADULTS ONLY 18+</option>
+						</select>
                     </div>
                 </div>
                 <div class="formgroup">
                     <label for="game download file">Game Download File</label><br>
                         <input id="file-upload" type="file" name="t_g_file" style="display: none;" onchange="updateFileName(this)">
-    					<input type="text" id="file-name" placeholder="No file chosen" readonly>
-    					<button type="button" onclick="document.getElementById('file-upload').click();" class="file-button">Choose File</button>
-<script>
-function updateFileName(input) {
-    const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
-    document.getElementById("file-name").value = fileName;
-}
-</script>
-                </div>
-                <div class="formgroup">
-                    <label for="game genre">Game Genre</label>
-                    <div class="genre-options">
-	                    <c:forEach items="${dtos}" var = "dto">
-	                    	<label>
-	                    		${dto.genre_name}<input type = "checkbox" name = "t_genre_code" value = "${dto.genre_code}">
-	                    	</label>
-	                    </c:forEach>
-                    </div>
+    					<input type="text" id="file-name" value = "${dto.getG_file()}" readonly>
                 </div>
                 <br>
                 <div class="button-container">
-	                <input type = "button" onclick="goRegi()" value = "Registration" class="buttons">
+	                <input type = "button" onclick="goConfirm()" value = "Confirm" class="buttons">
 	                <input type = "button" onclick="goBack()" value = "Cancel" class="buttons">
                 </div>
             </section>

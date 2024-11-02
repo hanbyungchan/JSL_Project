@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import command.cart.CartList;
 import command.cart.Payment;
 import command.game.GameConfirm;
+import command.game.GameConfirmList;
+import command.game.GameConfirmView;
 import command.game.GameRegist;
 import command.game.IndexList;
 import command.game.StoreRegist;
@@ -176,7 +178,17 @@ public class GameController {
 				CommonExecute game = new GameRegist();
 				game.execute(req);
 				viewPage = "common_alert";
-				//게임 등록
+			//게임 컨펌 리스트
+			} else if(gubun.equals("GameConfirmList")) {
+				CommonExecute game = new GameConfirmList();
+				game.execute(req);
+				viewPage = "admin/confirm_list";
+			//게임 컨펌 상세
+			} else if(gubun.equals("GameConfirmView")) {
+				CommonExecute game = new GameConfirmView();
+				game.execute(req);
+				viewPage = "registration/game_regist_confirm";
+			//게임 컨펌
 			} else if(gubun.equals("gameConfirm")) {
 				CommonExecute game = new GameConfirm();
 				game.execute(req);

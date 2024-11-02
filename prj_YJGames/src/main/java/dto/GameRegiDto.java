@@ -27,7 +27,7 @@ public class GameRegiDto {
         this.g_price = g_price;
     }
 
-    // Getter 및 Setter 메소드
+	// Getter 및 Setter 메소드
     public String getG_code() {
         return g_code;
     }
