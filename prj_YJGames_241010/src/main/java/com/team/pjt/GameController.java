@@ -41,8 +41,8 @@ import command.user.UserUpdate;
 import command.view.ViewPage;
 import common.CommonExecute;
 import common.CommonTemplate;
-import common.CommonUtil;
 import dao.GameDao;
+import dao.RankDao;
 import dao.UserDao;
 import dto.GameRegiDto;
 import dto.GenreDto;
@@ -56,6 +56,22 @@ public class GameController {
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
+	
+	//관리자 페이지 진입, 헤더에 버튼 만들 것.
+	@RequestMapping("Admin")
+	public String Admin(HttpServletRequest req) {
+		CommonExecute admin = new command.admin.Admin();
+		admin.execute(req);
+		return"admin/admin";
+	}
+	//통계 리스트
+	@RequestMapping("Rank")
+	public String Rank(HttpServletRequest req) {
+		CommonExecute rank = new command.rank.Rank();
+		rank.execute(req);
+		return"admin/rank/rank";
+	}
+	
 	//뉴스 상세보기
 	@RequestMapping("NewsView")  
 	public String NewsView(HttpServletRequest req) {
@@ -251,12 +267,14 @@ public class GameController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = null;
 		GameDao dao = new GameDao();
+		RankDao dao3 = new RankDao();
 		int count = 0;
 		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 		String u_id = request.getParameter("t_id");
 		ArrayList<String> lists = dao.GameCodeList(u_id);
 		for(String codes : lists) {
 			count = dao.AddPurchase(u_id, codes);
+			if(count!=0)dao3.rankHit(codes);
 		}
 		if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);}
 		else out.print("");
@@ -268,6 +286,7 @@ public class GameController {
 			PrintWriter out = null;
 			GameDao dao = new GameDao();
 			UserDao dao2 = new UserDao();
+			RankDao dao3 = new RankDao();
 			int count = 0;
 			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 			String u_id = request.getParameter("t_id");
@@ -277,6 +296,7 @@ public class GameController {
 			ArrayList<String> lists = dao.GameCodeList(u_id);
 			for(String codes : lists) {
 				count = dao.AddPurchase(u_id, codes);
+				if(count!=0)dao3.rankHit(codes);
 			}
 			if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);}
 			else out.print("");

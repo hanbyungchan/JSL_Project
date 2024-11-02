@@ -290,7 +290,16 @@ public class GameDao {
 			
 			try {
 				result = temp.update(query);
-			} catch (Exception e) {System.out.println("RegistStore() 메소드 오류" + query);}
+			} catch (Exception e) {System.out.println("RegistStore() 오류" + query);}
+			
+			query ="insert into kyj_ranking\r\n" + 
+					"(g_code, g_name, g_img, g_downloaded)\r\n" + 
+					"VALUES\r\n" + 
+					"('"+dto.getS_game_code()+"', '"+dto.getS_game_name()+"', '"+dto.getS_icon()+"', '0')";
+			//동시에 랭킹생성
+			try {
+				result = temp.update(query);
+			} catch (Exception e) {System.out.println("RegistStore() 랭킹등록 메소드 오류" + query);}
 			
 			return result;
 		}
