@@ -15,6 +15,7 @@
 	</properties>
 	<dependencies>
 		<!-- Spring -->
+		
 		<dependency>
     		<groupId>org.json</groupId>
     		<artifactId>json</artifactId>
@@ -113,6 +114,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

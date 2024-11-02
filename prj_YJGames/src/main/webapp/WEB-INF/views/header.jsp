@@ -30,7 +30,7 @@
                         <li class="admin-reg"><a href="javascript:goStoreRegi()">STORE REGIST</a></li>
                     </c:if>
                 </c:if>
-                
+                <li class="admin-reg"><a href="Game?t_gubun=news_write">News REGIST</a></li>
             </ul>
         </nav>
 

@@ -7,7 +7,7 @@ import common.CommonExecute;
 import dao.NewsDao;
 import dto.NewsDto;
 
-public class NewsView implements CommonExecute {
+public class NewsUpdateForm implements CommonExecute {
 
 	@Override
 	public void execute(HttpServletRequest request) {
@@ -15,7 +15,6 @@ public class NewsView implements CommonExecute {
 		NewsDao dao = new NewsDao();
 		String n_no = request.getParameter("n_no");
 		NewsDto dto = dao.getNewsView(n_no);
-		
 		request.setAttribute("dto", dto);
 		
 	}

@@ -68,5 +68,45 @@ public class NewsDao {
 			
 			return dtos;
 		}
-
+	//news넘버 생성
+	public String AutoCode() {
+		String code = "";
+		String query = "select nvl(max(to_number(n_no)),'0') + 1 as n_no\r\n" + 
+			"from kyj_news";
+		try {
+			code = temp.queryForObject(query, String.class);
+		} catch (Exception e) {System.out.println("AutoCode() 메소드 오류" + query);}
+		return code;
+	}
+	//news생성
+		public int NewsSave(NewsDto dto) {
+			int result = 0;
+			String query = "INSERT INTO KYJ_NEWS (N_NO, N_TITLE, N_CONTENT, N_ATTACH, N_UPLOADER, N_UPLOAD_DATE, G_CODE)\r\n" + 
+					"VALUES ('"+dto.getN_no()+"', '"+dto.getN_title()+"', '"+dto.getN_content()+"', '"+dto.getN_uploader()+"', '"+dto.getN_upload_date()+"','"+dto.getG_code()+"')";
+			try {result = temp.update(query);} 
+			catch (Exception e) {System.out.println("NewsSave() 메소드 오류" + query);}
+			return result;
+		}
+	//news업데이트
+	public int NewsUpdate(NewsDto dto) {
+		int result = 0;
+		String query = "UPDATE KYJ_NEWS\n" + 
+				"SET N_TITLE = '"+dto.getN_title()+"',\n" + 
+				"N_CONTENT = '"+dto.getN_content()+"', \n" + 
+				"N_ATTACH = '"+dto.getN_attach()+"', \n" + 
+				"N_UPDATE_DATE = TO_DATE('"+dto.getN_update_date()+"')\n" + 
+				"where n_no = '"+dto.getN_no()+"'";
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("NewsUpdate() 메소드 오류" + query);}
+		return result;
+	}
+	//news삭제
+	public int NewsDelete(String no) {
+		int result = 0;
+		String query = "DELETE from kyj_news\r\n" + 
+				"where n_no ='"+no+"'";
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("NewsDelete() 메소드 오류" + query);}
+		return result;
+	}	
 }

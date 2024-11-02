@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+//import com.oreilly.servlet.MultipartRequest;
+//import com.oreilly.servlet.DefaultFileRenamePolicy;
 
 import command.cart.CartList;
 import command.cart.Payment;
@@ -25,6 +28,10 @@ import command.game.IndexList;
 import command.game.StoreRegist;
 import command.library.LibraryDetail;
 import command.library.LibraryList;
+import command.news.NewsDelete;
+import command.news.NewsUpdate;
+import command.news.NewsUpdateForm;
+import command.news.NewsWrite;
 import command.review.MyReviewList;
 import command.review.ReviewDelete;
 import command.review.ReviewList;
@@ -160,6 +167,17 @@ public class GameController {
 			else if(gubun.equals("userdelete")) {CommonExecute game = new UserDelete();game.execute(req);viewPage = "common_alert";}
 			//구매
 			else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
+			//뉴스등록폼
+			else if(gubun.equals("news_write")) {viewPage = "news/news_write";}
+			//뉴스등록
+			else if(gubun.equals("news_save")) {CommonExecute game = new NewsWrite();game.execute(req);viewPage = "common_alert";}
+			//뉴스수정폼
+			else if(gubun.equals("news_updateForm")) {CommonExecute game = new NewsUpdateForm();game.execute(req);viewPage = "news/news_update";}
+			//뉴스수정
+			else if(gubun.equals("news_update")) {CommonExecute game = new NewsUpdate();game.execute(req);viewPage = "common_alert";}
+			//뉴스삭제
+			else if(gubun.equals("news_delete")) {CommonExecute game = new NewsDelete();game.execute(req);viewPage = "common_alert";}
+			
 			//게임 등록폼
 			else if(gubun.equals("gameRegistForm")) {
 				GameDao dao = new GameDao();
@@ -365,4 +383,40 @@ public class GameController {
 
 		out.print("1");
 	}
+	/*
+		//summernote
+		public void SummerNote(HttpServletRequest request, HttpServletResponse response) {
+		    String noteGubun = request.getParameter("t_noteGubun");
+		    String summerDir = "";
+		    int sizeLimit = 10 * 1024 * 1024;
+
+		    if (noteGubun == null || noteGubun.equals("")) {
+		        summerDir = request.getSession().getServletContext().getRealPath("/") + "/img/summernote_free/";
+		    } else {
+		        // 다른 경우의 summerDir 설정 (필요 시)
+		    }
+
+		    try {
+		        MultipartRequest multi = new MultipartRequest(request, summerDir, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+		        String str_filename = "";
+		        Enumeration<String> files = multi.getFileNames();
+		        if (files.hasMoreElements()) {
+		            String fname = files.nextElement();
+		            str_filename = multi.getFilesystemName(fname);
+		        }
+
+		        response.setContentType("text/html;charset=utf-8");
+		        PrintWriter out = response.getWriter();
+		        if (str_filename != null) {
+		            out.println(str_filename); 
+		        } else {
+		            out.println("File upload failed.");
+		        }
+		        out.close();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        // 오류 응답 처리 (예: HTTP 500 응답)
+		    }
+		}
+		*/
 }
