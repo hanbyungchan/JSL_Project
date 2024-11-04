@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>소식 상세페이지</title>
+        <title>JSL Games</title>
         <link rel="stylesheet" href="css/tdingDetail.css" />
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -55,8 +55,8 @@
             <p class="content">
                 ${dto.getN_content()}
             </p>
-            <input type="button" value="update" onclick="goUpdate()">
-            <input type="button" value="delete" onclick="goDelete()">
+            <input type="button" class="styled-button" value="update" onclick="goUpdate()">
+            <input type="button" class="styled-button" value="delete" onclick="goDelete()">
         </div>
         <div class="btns">
             <div class="moveTopBtn">Top</div>

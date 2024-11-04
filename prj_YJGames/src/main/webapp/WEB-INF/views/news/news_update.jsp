@@ -127,7 +127,9 @@ function goSave() {
             <div class="formgroup">
                     <label for="game download file">News attach File</label><br>
                         <input id="file-upload" type="file" name="t_g_file" style="display: none;" onchange="updateFileName(this)">
-    					<input type="text" id="file-name" placeholder="No file chosen" readonly>
+                        
+    					<input type="text" id="file-name" placeholder="<c:if test="${dto.getN_attach() eq null}">No file chosen</c:if>
+    					 <c:if test="${dto.getN_attach() ne null}">${dto.getN_attach()}</c:if>" readonly>
     					<button type="button" onclick="document.getElementById('file-upload').click();">Choose File</button>
 		<script>
 		function updateFileName(input) {

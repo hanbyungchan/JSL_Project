@@ -289,7 +289,6 @@
         	},
         	</c:forEach>
     		];
-    // JavaScript 이벤트 처리 코드는 여기에 추가
 </script>
         </div>
         <div class="game-preview">
@@ -311,4 +310,3 @@
 <script src="js/slide.js"></script>	
 </body>
 </html>
-
