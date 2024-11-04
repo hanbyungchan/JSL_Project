@@ -15,7 +15,7 @@ public class NewsDao {
 	
 	//뉴스 상세보기
 	public NewsDto getNewsView(String n_no){
-		String query="select n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code\r\n" + 
+		String query="select n_no, n_title, n_content, n_attach, n_uploader, TO_CHAR(n_upload_date, 'MM-DD-YYYY') AS n_upload_date, TO_CHAR(n_update_date, 'MM-DD-YYYY') AS n_update_date, g_code\r\n" + 
 				"from kyj_news\r\n" + 
 				"where n_no = '"+n_no+"'";
 		NewsDto dto = new NewsDto();

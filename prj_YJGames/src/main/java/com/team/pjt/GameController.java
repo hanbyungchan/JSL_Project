@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Enumeration;
+//import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,11 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+//import com.oreilly.servlet.MultipartRequest;
+//import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.cart.CartList;
 import command.cart.Payment;
+import command.game.GameConfirm;
+import command.game.GameConfirmList;
+import command.game.GameConfirmView;
 import command.game.GameRegist;
 import command.game.IndexList;
 import command.game.StoreRegist;
@@ -48,7 +51,6 @@ import command.user.UserUpdate;
 import command.view.ViewPage;
 import common.CommonExecute;
 import common.CommonTemplate;
-import common.CommonUtil;
 import dao.GameDao;
 import dao.UserDao;
 import dto.GameRegiDto;
@@ -63,6 +65,16 @@ public class GameController {
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
+	//관리자 페이지
+	@RequestMapping("AdminPage")
+	public String AdminPage(HttpServletRequest req) {
+		return"adminPage/adminPage";
+	}
+	//랭킹 페이지
+	@RequestMapping("Ranking")
+	public String Ranking(HttpServletRequest req) {
+		return"ranking/ranking";
+	}
 	//뉴스 상세보기
 	@RequestMapping("NewsView")  
 	public String NewsView(HttpServletRequest req) {
@@ -70,7 +82,6 @@ public class GameController {
 		news.execute(req);
 		return"news/news_view";
 	}
-	//게임사별 뉴스 목록을 게임 라이브러리 따위에 띄운다면 그쪽에서 호출해줘야됨.
 	//뉴스 게시판 
 	@RequestMapping("News")
 	public String News(HttpServletRequest req) {
@@ -86,8 +97,8 @@ public class GameController {
 	}
 	@RequestMapping("Game")
 	public String Game(HttpServletRequest req) {
-			String gubun = req.getParameter("t_gubun");
-			String viewPage = "";
+		String gubun = req.getParameter("t_gubun");
+		String viewPage = "";
 			if(gubun == null) gubun = "list";
 			//홈페이지
 			if(gubun.equals("list")) {CommonExecute game = new IndexList();game.execute(req);viewPage = "index";}
@@ -211,6 +222,21 @@ public class GameController {
 				game.execute(req);
 				viewPage = "common_alert";
 			}
+			//게임 컨펌 리스트
+			else if(gubun.equals("GameConfirmList")) {
+				CommonExecute game = new GameConfirmList();
+				game.execute(req);
+				viewPage = "adminPage/confirm_list";
+			//게임 컨펌 상세
+			} else if(gubun.equals("GameConfirmView")) {
+				CommonExecute game = new GameConfirmView();
+				game.execute(req);
+				viewPage = "registration/game_regist_confirm";
+			//게임 컨펌
+			} else if(gubun.equals("gameConfirm")) {
+				CommonExecute game = new GameConfirm();
+				game.execute(req);
+				viewPage = "common_alert";}
 			return viewPage;
 	}
 	//id중복체크
@@ -280,25 +306,25 @@ public class GameController {
 		else out.print("");
 	}
 	//게임머니로 결제
-		@RequestMapping("Game_money_purchase")
-		public void Game_money_purchase(HttpServletRequest request, HttpServletResponse response) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = null;
-			GameDao dao = new GameDao();
-			UserDao dao2 = new UserDao();
-			int count = 0;
-			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
-			String u_id = request.getParameter("t_id");
-			String u_money = request.getParameter("t_u_money");
-			String m_money = request.getParameter("t_my_money");
-			Double money = Double.parseDouble(m_money) - Double.parseDouble(u_money);
-			ArrayList<String> lists = dao.GameCodeList(u_id);
-			for(String codes : lists) {
-				count = dao.AddPurchase(u_id, codes);
-			}
-			if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);}
-			else out.print("");
+	@RequestMapping("Game_money_purchase")
+	public void Game_money_purchase(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		GameDao dao = new GameDao();
+		UserDao dao2 = new UserDao();
+		int count = 0;
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_id");
+		String u_money = request.getParameter("t_u_money");
+		String m_money = request.getParameter("t_my_money");
+		Double money = Double.parseDouble(m_money) - Double.parseDouble(u_money);
+		ArrayList<String> lists = dao.GameCodeList(u_id);
+		for(String codes : lists) {
+			count = dao.AddPurchase(u_id, codes);
 		}
+		if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);}
+		else out.print("");
+	}
 	//충전
 	@RequestMapping("Payment")
 	public void Payment(HttpServletRequest request, HttpServletResponse response) {
@@ -315,72 +341,68 @@ public class GameController {
 		else out.print("");
 	}
 	//실행
-		@RequestMapping("exe") 
-		public void Exe(HttpServletRequest request, HttpServletResponse response) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = null;
-			try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
-			String code = request.getParameter("t_fileName");
-			GameDao.EXE(code);
-			out.print("1");
-		}
-		//다운로드
-		@RequestMapping("Download")
-		public void Download(HttpServletRequest request, HttpServletResponse response) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = null;
-			String savePath = "C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe";// 첨부파일경로
-		 	String fileName = request.getParameter("t_fileName");   // 다운로드 받을 첨부파일명
-		    String orgfilename = fileName ;
-		    InputStream in = null;
-		    OutputStream os = null; 
-		    File file = null;
-		    boolean skip = false;
-		    String client = "";
+	@RequestMapping("exe") 
+	public void Exe(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String code = request.getParameter("t_fileName");
+		GameDao.EXE(code);
+		out.print("1");
+	}
+	//다운로드
+	@RequestMapping("Download")
+	public void Download(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		String savePath = "C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe";// 첨부파일경로
+		String fileName = request.getParameter("t_fileName");   // 다운로드 받을 첨부파일명
+		String orgfilename = fileName ;
+		InputStream in = null;
+		OutputStream os = null; 
+		File file = null;
+		boolean skip = false;
+		String client = "";
+		try{
 		    try{
-		        try{
-		            file = new File(savePath, fileName);
-		            in = new FileInputStream(file);
-		        }catch(FileNotFoundException fe){
-		            skip = true;
-		        }
-		        client = request.getHeader("User-Agent");
-		        response.reset() ;
-		        response.setContentType("application/octet-stream");
-		        response.setHeader("Content-Description", "JSP Generated Data");
-		        if(!skip){
-		            // IE
-		            if(client.indexOf("MSIE") != -1){
-		                response.setHeader ("Content-Disposition", "attachment; filename="+orgfilename);
-		 
-		            }else{
-		                // 한글 파일명 처리
-		                orgfilename = new String(orgfilename.getBytes("utf-8"),"iso-8859-1");
-
-		                response.setHeader("Content-Disposition", "attachment; filename=\"" + orgfilename + "\"");
-		                response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
-		            } 
-		            response.setHeader ("Content-Length", ""+file.length() );
-		            os = response.getOutputStream();
-		            byte b[] = new byte[(int)file.length()];
-		            int leng = 0;
-		             
-		            while( (leng = in.read(b)) > 0 ){
-		                os.write(b,0,leng);
-		            }
-		        }else{
-		            response.setContentType("text/html;charset=UTF-8");
-		            out = response.getWriter();
-		            out.println("<script language='javascript'>alert('file not found');history.back();</script>");
-		        }
-		        in.close();
-		        os.close();
-		    }catch(Exception e){
-		    	System.out.println(savePath+"첨부 파일 다운 오류~ 파일명:"+fileName);
+		        file = new File(savePath, fileName);
+		        in = new FileInputStream(file);
+		    }catch(FileNotFoundException fe){
+		        skip = true;
 		    }
-		    System.out.println("Request: " + request);
-		    System.out.println("Response: " + response);
-
+		    client = request.getHeader("User-Agent");
+		    response.reset() ;
+		    response.setContentType("application/octet-stream");
+		    response.setHeader("Content-Description", "JSP Generated Data");
+		    if(!skip){
+		        // IE
+		        if(client.indexOf("MSIE") != -1){
+		           response.setHeader ("Content-Disposition", "attachment; filename="+orgfilename);
+		        }else{
+		           // 한글 파일명 처리
+		            orgfilename = new String(orgfilename.getBytes("utf-8"),"iso-8859-1");
+		            response.setHeader("Content-Disposition", "attachment; filename=\"" + orgfilename + "\"");
+		            response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+		        } 
+		        response.setHeader ("Content-Length", ""+file.length() );
+		        os = response.getOutputStream();
+		        byte b[] = new byte[(int)file.length()];
+		        int leng = 0;
+		        while( (leng = in.read(b)) > 0 ){
+		            os.write(b,0,leng);
+		        }
+		    }else{
+		        response.setContentType("text/html;charset=UTF-8");
+		        out = response.getWriter();
+		        out.println("<script language='javascript'>alert('file not found');history.back();</script>");
+		    }
+		    in.close();
+		    os.close();
+		}catch(Exception e){
+			System.out.println(savePath+"첨부 파일 다운 오류~ 파일명:"+fileName);
+		}
+		System.out.println("Request: " + request);
+		System.out.println("Response: " + response);
 		out.print("1");
 	}
 /*	

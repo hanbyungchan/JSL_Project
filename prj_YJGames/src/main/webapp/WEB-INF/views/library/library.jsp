@@ -66,7 +66,7 @@
                 <hr class="divider" />
                 <div class="game-thumbnails-slider">
                 <div class="game2">
-                        <img class="big" src="https://cdn.akamai.steamstatic.com/store/home/store_home_share.jpg" alt="Mass Effect"/>
+                        <img class="big" src="img/title.jpg" alt="Mass Effect"/>
                 </div>
                 <br>    
                     <c:forEach items="${t_dtos}" var="dto">

@@ -407,4 +407,50 @@ public class GameDao {
 		catch(Exception e){System.out.println("ViewRe2() 오류: "+query);}
 		return dto;
 	}
+	//통계 테이블 코드 등록
+			public int UpdateStats(String g_code) {
+				int result = 0;
+				String query = "insert into kyj_game_stats\r\n" + 
+						"(g_code, hit)\r\n" + 
+						"values\r\n" + 
+						"('"+g_code+"', 0)";
+				try {
+					result = temp.update(query);
+				} catch (Exception e) {System.out.println("UpdateStats() 메소드 오류" + query);}
+				return result;
+			}
+			//게임 컨펌 리스트
+			public ArrayList<GameRegiDto> GameRegiList() {
+				String query = "select g_code, g_name, g_developer\r\n" + 
+						"from kyj_game\r\n" + 
+						"where g_confirm = '0'";
+				RowMapper<GameRegiDto> GameDtos = new BeanPropertyRowMapper<>(GameRegiDto.class);
+				ArrayList<GameRegiDto> dtos = (ArrayList<GameRegiDto>) temp.query(query, GameDtos);
+				return dtos;
+			}
+			//게임 컨펌 상세
+			public GameRegiDto GameRegiView(String g_code) {
+				GameRegiDto dto = null;
+				String query = "select g_code, g_name, g_price, g_file, g_developer, g_grade\r\n" + 
+						"from kyj_game\r\n" + 
+						"where g_code = '"+g_code+"'";
+				RowMapper<GameRegiDto> GameDto = new BeanPropertyRowMapper<>(GameRegiDto.class);
+				try {
+					dto = (GameRegiDto)temp.queryForObject(query, GameDto);
+				} catch (Exception e) {
+					System.out.println("GameRegiView() 메소드 오류"+query);
+					e.printStackTrace();
+				}
+				return dto;
+			}
+			//게임 컨펌
+			public int GameConfirm(String g_code) {
+				int result = 0;
+				String query = "update kyj_game\r\n" + 
+						"set g_confirm = '1'\r\n" + 
+						"where g_code = '"+g_code+"'";
+				try {result = temp.update(query);} 
+				catch (Exception e) {System.out.println("GameConfirm() 메소드 오류" + query);}
+				return result;
+			}
 }

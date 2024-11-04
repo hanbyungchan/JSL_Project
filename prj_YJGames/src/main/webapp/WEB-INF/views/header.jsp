@@ -23,23 +23,20 @@
                     </ul>
                 </li>
                 <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                
-                <c:if test="${sessionId ne null}">
-                    <c:if test="${sessionLevel ne '3'}">
-                        <li class="admin-reg"><a href="javascript:goGameRegi()">GAME REGIST</a></li>
-                        <li class="admin-reg"><a href="javascript:goStoreRegi()">STORE REGIST</a></li>
-                    </c:if>
-                </c:if>
-                <li class="admin-reg"><a href="Game?t_gubun=news_write">News REGIST</a></li>
+                <li><a href="Ranking">RANKING</a></li>
             </ul>
         </nav>
 
         <nav>
             <div class="icons">
+            	
             	<c:if test="${sessionId eq null}">
                     <a href="Game?t_gubun=goSignin"><i class="fa-solid fa-right-to-bracket"></i></a>
                 </c:if>
 	            <c:if test="${sessionId ne null}">
+	            <c:if test="${sessionLevel ne '3'}">
+            		<a href="AdminPage" style="color: red;"><i class="fa-solid fa-screwdriver-wrench"></i></a>
+            	</c:if>
 	            	<a href="javascript:goInfo()"><i class="fa-solid fa-user-astronaut"></i></a>
 	            	<a href="javascript:goLogout()"><i class="fa-solid fa-right-from-bracket"></i></a>
 	            	<a href="javascript:goLibrary()"><i class="fa-solid fa-book"></i></a>

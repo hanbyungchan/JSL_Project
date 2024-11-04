@@ -10,22 +10,24 @@ public class GameRegiDto {
     String g_grade;
     List<String> genre_code;  // 변경: List<String>로 선언
     String genre_name;
+    String g_confirm;
     double g_price;
 
     public GameRegiDto() {}
 
     public GameRegiDto(String g_code, String g_name, String g_file, String g_developer, String g_grade,
-                       List<String> genre_code, double g_price) {  // 변경: List<String> 인자
+                       List<String> genre_code, String g_confirm, double g_price) {  // 변경: List<String> 인자
         this.g_code = g_code;
         this.g_name = g_name;
         this.g_file = g_file;
         this.g_developer = g_developer;
         this.g_grade = g_grade;
         this.genre_code = genre_code;  // 변경: List<String> 할당
+        this.g_confirm = g_confirm;
         this.g_price = g_price;
     }
 
-    // Getter 및 Setter 메소드
+	// Getter 및 Setter 메소드
     public String getG_code() {
         return g_code;
     }
@@ -82,7 +84,15 @@ public class GameRegiDto {
         this.genre_name = genre_name;
     }
 
-    public double getG_price() {
+    public String getG_confirm() {
+		return g_confirm;
+	}
+
+	public void setG_confirm(String g_confirm) {
+		this.g_confirm = g_confirm;
+	}
+
+	public double getG_price() {
         return g_price;
     }
 

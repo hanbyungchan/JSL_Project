@@ -10,10 +10,7 @@
         <link rel="stylesheet" href="css/tdingDetail.css" />
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
         <%@ include file = "../scripts.jsp"%>
         <script type="text/javascript">
         	function goUpdate() {
@@ -22,7 +19,7 @@
         		game.submit();
 			}
         	function goDelete() {
-        		if(confirm("삭제?")){
+        		if(confirm("Are you sure you want to delete it?")){
         			game.method="post";
             		game.action="Game?t_gubun=news_delete";
             		game.submit();
@@ -43,8 +40,12 @@
         </div>
         <div class="container">
             <h1>${dto.getN_title()}</h1>
-            <div class="author-date">${dto.getN_upload_date()} | 작성자: ${dto.getN_uploader()}</div>
-
+            <c:if test="${dto.getN_update_date() eq null }">
+            <div class="author-date">${dto.getN_upload_date()} | Uploader: ${dto.getN_uploader()}</div>
+            </c:if>
+            <c:if test="${dto.getN_update_date() ne null }">
+            <div class="author-date">${dto.getN_update_date()} | Uploader: ${dto.getN_uploader()}</div>
+            </c:if>
             <div class="image-container">
                 <img
                     src="img/summernote/${dto.getN_attach()}"
@@ -55,8 +56,10 @@
             <p class="content">
                 ${dto.getN_content()}
             </p>
+            <c:if test="${sessionLevel eq '1' || sessionName eq dto.getN_uploader() }">
             <input type="button" class="styled-button" value="update" onclick="goUpdate()">
             <input type="button" class="styled-button" value="delete" onclick="goDelete()">
+            </c:if>
         </div>
         <div class="btns">
             <div class="moveTopBtn">Top</div>
