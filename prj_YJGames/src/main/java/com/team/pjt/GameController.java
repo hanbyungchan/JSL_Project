@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import com.oreilly.servlet.MultipartRequest;
-//import com.oreilly.servlet.DefaultFileRenamePolicy;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.cart.CartList;
 import command.cart.Payment;
@@ -168,6 +168,7 @@ public class GameController {
 			//구매
 			else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
 			//뉴스등록폼
+			//여기서 g_code값 받아와야함
 			else if(gubun.equals("news_write")) {viewPage = "news/news_write";}
 			//뉴스등록
 			else if(gubun.equals("news_save")) {CommonExecute game = new NewsWrite();game.execute(req);viewPage = "common_alert";}
@@ -177,7 +178,6 @@ public class GameController {
 			else if(gubun.equals("news_update")) {CommonExecute game = new NewsUpdate();game.execute(req);viewPage = "common_alert";}
 			//뉴스삭제
 			else if(gubun.equals("news_delete")) {CommonExecute game = new NewsDelete();game.execute(req);viewPage = "common_alert";}
-			
 			//게임 등록폼
 			else if(gubun.equals("gameRegistForm")) {
 				GameDao dao = new GameDao();
@@ -383,40 +383,41 @@ public class GameController {
 
 		out.print("1");
 	}
-	/*
+/*	
 		//summernote
+		@RequestMapping("SummerNote")
 		public void SummerNote(HttpServletRequest request, HttpServletResponse response) {
-		    String noteGubun = request.getParameter("t_noteGubun");
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = null;
 		    String summerDir = "";
 		    int sizeLimit = 10 * 1024 * 1024;
+		    summerDir = request.getSession().getServletContext().getRealPath("/") + "/img/summernote/";
+		        System.out.println(summerDir);
+		        try {
+					MultipartRequest multi = null;	
+					String str_filename="";  
+		        try {
+					multi = new MultipartRequest(request, summerDir, sizeLimit,"UTF-8", new DefaultFileRenamePolicy());
+					// 첨부하 파일명 알아오기
+					Enumeration files = multi.getFileNames();
+					String fname = (String)files.nextElement();
+					str_filename = multi.getFilesystemName(fname);  
 
-		    if (noteGubun == null || noteGubun.equals("")) {
-		        summerDir = request.getSession().getServletContext().getRealPath("/") + "/img/summernote_free/";
-		    } else {
-		        // 다른 경우의 summerDir 설정 (필요 시)
-		    }
-
-		    try {
-		        MultipartRequest multi = new MultipartRequest(request, summerDir, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
-		        String str_filename = "";
-		        Enumeration<String> files = multi.getFileNames();
-		        if (files.hasMoreElements()) {
-		            String fname = files.nextElement();
-		            str_filename = multi.getFilesystemName(fname);
-		        }
-
-		        response.setContentType("text/html;charset=utf-8");
-		        PrintWriter out = response.getWriter();
-		        if (str_filename != null) {
-		            out.println(str_filename); 
-		        } else {
-		            out.println("File upload failed.");
-		        }
-		        out.close();
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		        // 오류 응답 처리 (예: HTTP 500 응답)
-		    }
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					out = response.getWriter();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				out.println(str_filename); 
+				out.close();	 
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		*/
 }

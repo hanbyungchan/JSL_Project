@@ -4,7 +4,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class CommonUtil {
 	//자료실 폴더 경로
 	public static String GameFileDir(String game_code) {
@@ -31,6 +30,11 @@ public class CommonUtil {
 		String dir ="C:\\Users\\JSLHRD\\git\\repository\\prj_YJGames\\src\\main\\webapp\\exe";
 		return dir;
 	}
+	//뉴스 폴더 경로
+		public static String NewsFileDir() {
+			String dir ="C:/Users/JSLHRD/git/repository/prj_YJGames/src/main/webapp/img/summernote";
+			return dir;
+		}
 	//자료실 폴더 경로
 	public static String getPdsDir() {
 		String dir ="E:/Track16기_김여준/java_project/homepage_one/WebContent/attach/pds";

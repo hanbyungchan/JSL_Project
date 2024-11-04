@@ -16,7 +16,7 @@ public class NewsDelete implements CommonExecute {
 		if(result == 0) {
 			msg = "Deletion failed..";
 		}
-		request.setAttribute("t_gubun", "index");
+		request.setAttribute("t_gubun", "list");
 		request.setAttribute("t_msg", msg);
 		request.setAttribute("t_url", "Game");
 	}

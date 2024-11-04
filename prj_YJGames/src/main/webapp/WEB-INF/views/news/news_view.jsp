@@ -15,11 +15,27 @@
             rel="stylesheet"
         />
         <%@ include file = "../scripts.jsp"%>
+        <script type="text/javascript">
+        	function goUpdate() {
+        		game.method="post";
+        		game.action="Game?t_gubun=news_updateForm";
+        		game.submit();
+			}
+        	function goDelete() {
+        		if(confirm("삭제?")){
+        			game.method="post";
+            		game.action="Game?t_gubun=news_delete";
+            		game.submit();
+        		}
+        		
+			}
+        </script>
     </head>
     <body>
     <form name="game">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_pageNo">
+	<input type="hidden" name="n_no" value="${dto.getN_no()}">
 	</form>
         <%@ include file = "../header.jsp"%>
         <div class="main-image">
@@ -31,7 +47,7 @@
 
             <div class="image-container">
                 <img
-                    src="img/${dto.getG_code()}/${dto.getN_attach()}"
+                    src="img/summernote/${dto.getN_attach()}"
                     alt="섀도우 이미지 1"
                 />
             </div>
@@ -39,6 +55,8 @@
             <p class="content">
                 ${dto.getN_content()}
             </p>
+            <input type="button" value="update" onclick="goUpdate()">
+            <input type="button" value="delete" onclick="goDelete()">
         </div>
         <div class="btns">
             <div class="moveTopBtn">Top</div>

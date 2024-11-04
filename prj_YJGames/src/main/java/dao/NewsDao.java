@@ -64,8 +64,6 @@ public class NewsDao {
 			
 			RowMapper<NewsDto> newsDtos = new BeanPropertyRowMapper<>(NewsDto.class);
 			ArrayList<NewsDto> dtos = (ArrayList<NewsDto>) temp.query(query, newsDtos);
-			
-			
 			return dtos;
 		}
 	//news넘버 생성
@@ -82,7 +80,8 @@ public class NewsDao {
 		public int NewsSave(NewsDto dto) {
 			int result = 0;
 			String query = "INSERT INTO KYJ_NEWS (N_NO, N_TITLE, N_CONTENT, N_ATTACH, N_UPLOADER, N_UPLOAD_DATE, G_CODE)\r\n" + 
-					"VALUES ('"+dto.getN_no()+"', '"+dto.getN_title()+"', '"+dto.getN_content()+"', '"+dto.getN_uploader()+"', '"+dto.getN_upload_date()+"','"+dto.getG_code()+"')";
+					"VALUES ('"+dto.getN_no()+"', '"+dto.getN_title()+"', '"+dto.getN_content()+"', '"+dto.getN_attach()+"','"+dto.getN_uploader()+"', '"+dto.getN_upload_date()+"','"+dto.getG_code()+"')";
+			
 			try {result = temp.update(query);} 
 			catch (Exception e) {System.out.println("NewsSave() 메소드 오류" + query);}
 			return result;

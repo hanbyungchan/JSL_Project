@@ -30,7 +30,7 @@ function goSave() {
 
 	}
 	game.method="post";
-	game.action="Game?t_gubun=news_save";
+	game.action="Game?t_gubun=news_update";
 	game.submit();
 }
 function goBack() {
@@ -112,15 +112,17 @@ function goSave() {
         <input type="hidden" name="t_gubun">
 		<input type="hidden" name="t_pageNo">
 		<input type="hidden" name="t_id">
-        <input type="hidden" name="g_code" value="1">
+        <input type="hidden" name="g_code" value="${dto.getG_code()}">
+        <input type="hidden" name="n_no" value="${dto.getN_no()}">
+        <input type="hidden" name="ori_attach" value="${dto.getN_attach()}">
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="t_title" required placeholder="Please enter the news title">
+                <input type="text" id="title" name="t_title" value="${dto.getN_title()}" required placeholder="Please enter the news title">
             </div>
             <div class="form-group">
             
                 <label for="content">Content:</label>
-                <textarea id="content" name="n_content" rows="10" required placeholder="Please enter the news content"></textarea>
+                <textarea id="content" name="n_content" rows="10" required placeholder="Please enter the news content">${dto.getN_content()}</textarea>
             </div>
             <div class="formgroup">
                     <label for="game download file">News attach File</label><br>
