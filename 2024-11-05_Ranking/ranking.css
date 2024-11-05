@@ -1,0 +1,55 @@
+/* Center the ranking table */
+.ranking-container {
+	margin-top: 80px !important;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Table styling */
+.ranking-container table {
+    width: 50%;
+    border-collapse: collapse;
+    background-color: #2a2a3e;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Header row styling */
+.ranking-container table th {
+    background-color: #3b3b5b;
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 2px solid #b56eff;
+}
+
+
+/* Data row styling */
+.ranking-container table tr {
+    border-bottom: 1px solid #444;
+}
+
+.ranking-container table tr:hover {
+    background-color: #3a3a4a;
+}
+
+/* Data cell styling */
+.ranking-container table td {
+    padding: 10px;
+}
+
+/* Image column styling */
+.ranking-container table td img {
+    width: 100px; /* Adjust the size as needed */
+    height: auto;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* Alternate row color */
+.ranking-container table tr:nth-child(even) {
+    background-color: #2e2e3f;
+}
