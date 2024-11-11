@@ -1,8 +1,13 @@
 package dao;
 
+import java.util.ArrayList;
+
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import common.CommonTemplate;
+import dto.RankDto;
 
 public class RankDao {
 	JdbcTemplate temp = CommonTemplate.getTemplate();
@@ -24,6 +29,18 @@ public class RankDao {
 		
 		
 		
+	}
+
+	//랭킹 Dtos
+	public ArrayList<RankDto> getRankList() {
+		String query="select g_code, g_name, g_img, g_downloaded\r\n" + 
+				"from kyj_ranking\r\n" +
+				"order by g_downloaded desc, g_name asc";
+		
+		RowMapper<RankDto> rankDtos = new BeanPropertyRowMapper<>(RankDto.class);
+		ArrayList<RankDto> dtos = (ArrayList<RankDto>) temp.query(query, rankDtos);
+		
+		return dtos;
 	}
 	
 	//랭킹 테이블의 데이터들 올라가는 hit 함수 만들기.(함

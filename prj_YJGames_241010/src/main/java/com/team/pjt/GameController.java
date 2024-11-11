@@ -69,7 +69,7 @@ public class GameController {
 	public String Rank(HttpServletRequest req) {
 		CommonExecute rank = new command.rank.Rank();
 		rank.execute(req);
-		return"admin/rank/rank";
+		return"rank/rank";
 	}
 	
 	//뉴스 상세보기
