@@ -14,29 +14,26 @@
     <script src="js/common.js"></script>
     <script type="text/javascript">
     function goUpdate(){
-     if(checkValueLength(user.t_u_name,2,20, "Please enter Name",'Name is more than 2 less than 20')) return;
-     if(checkValueLength(user.t_u_password,3,20, "Please enter password", 'Password is more than 3 less than 20')) return;
-   	 if(checkValue(user.t_u_password_check, 'Please enter password confirm')) return;
-   	 if(checkValueLength(user.t_u_birth, 8, 'Please enter your Birth','Birth is 8')) return;//4 최소 15최대
-   	 if(checkValue(user.t_u_gender,'select Gender')) return;
-   	 if(checkValueLength(user.t_u_email_1 ,1,20, "Please enter Email", 'Email is more than 1 less than 20')) return;
-   		user.method = "post";
-   		user.action = "Game?t_gubun=userupdate";
-   		user.submit();
+     	if(checkValueLength(user.t_u_name,2,20, "Please enter Name",'Name is more than 2 less than 20')) return;
+   	 	if(checkValueLength(user.t_u_email_1 ,1,20, "Please enter Email", 'Email is more than 1 less than 20')) return;
+   	 	user.method = "post";
+		user.action = "Game?t_gubun=userupdate2";
+		user.submit();
      }
     function goDelete(){
     	if(confirm("Are you sure you want to delete it?")){
-    		 if(checkValue(user.t_u_password_check, 'Please enter your current password')) return;
        		user.method = "post";
-       		user.action = "Game?t_gubun=userdelete";
+       		user.action = "Game?t_gubun=userdelete2";
        		user.submit();
     	}
     }
-    function goBack() {
-		user.method = "post";
-		user.action = "Game?t_gubun=list";
-		user.submit();
-	}
+    function goActivate(){
+    	if(confirm("Are you sure you want to activate it?")){
+       		user.method = "post";
+       		user.action = "Game?t_gubun=activate";
+       		user.submit();
+    	}
+    }
     </script>
     <%@ include file = "../scripts.jsp"%>
 </head>
@@ -51,9 +48,8 @@
             <h1>Account Settings</h1>
             <p>Manage account details.</p>
         </div>
-        <form name="user">
+    <form name="user">
     <input type="hidden" name="t_gubun">
-    <input type="hidden" name="t_u_level" value="${t_dto.getU_level()}">
         <section class="account-info">
             <h2 style="text-align: center; padding: 20px;">Account Information</h2>
             <div class="info-group">
@@ -75,45 +71,34 @@
                     <option value="other" ${t_dto.getU_email_2() == 'other' ? 'selected' : ''}>Other</option>
                 </select>
             </div>
+            <c:if test="${t_dto.getU_level() eq '3'}">
             <div class="info-group">
                 <label for="postal-code">BIRTH</label>
                 <input type="text" name="t_u_birth" value="${t_dto.getU_birth()}">
             </div>
             <div class="info-group">
                 <label for="region">GENDER</label>
-                <input type="text" name="t_u_gender" value="${t_dto.getU_gender()}">
+                <label for="man">Man</label>
+                <input type="radio" name="t_u_gender" value="M" id="man" ${t_dto.getU_gender() == 'M' ? 'checked' : ''}>
+                
+                <label for="woman">Woman</label>
+                <input type="radio" name="t_u_gender" value="F" id="woman" ${t_dto.getU_gender() == 'F' ? 'checked' : ''}>
             </div>
             <div class="info-group">
                 <label for="user-mileage">MONEY</label>
-                <input type="text" name="t_u_money" value="${t_dto.getU_money()}" readonly="readonly">
+                <input type="text" name="t_u_money" value="${t_dto.getU_money()}">
             </div>
-			<div class="info-group">
-                <label for="region">CHANGE PASSWORD</label>
-                <input type="password" name="t_u_password">
-            </div>
-            <div class="info-group">
-                <label for="region">PASSWORD CONFIRM</label>
-                <input type="password" name="t_u_password_check">
-            </div>
+             </c:if>
         </section>
 		</form>
-
         <div class="button-container" style="text-align: center;">
             <button class="save-button" onclick="goUpdate()">Save Changes</button>
-            <button class="save-button" onclick="goBack()">Home</button>
+            <button class="save-button" onclick="goDelete()" >Delete account</button>
+            <c:if test="${t_dto.getU_exit_date() ne null}">
+            <button class="save-button" onclick="goActivate()" >Activate account</button>
+            </c:if>
+            <button class="save-button" onclick="window.history.back();">Back</button>
         </div>
-         <section class="personal-info">
-            <h2 style="text-align: center; padding: 40px;">Delete Account</h2>
-           <div class="info-group">
-           <p>
-           	Click Request to delete your account to begin the process of permanently deleting Epic Games accounts, including all personal information, purchase details, game progress, in-game content, Unreal Project, and Epic Games wallet accounts. Once your Epic Games account is deleted, your wallet balance will also be permanently deleted.
-
-			If you request to delete your account, it will be deleted after 14 days. During this period, you can log in to your account and reactivate it, which will cancel your request for deletion. After 14 days, you will not be able to recover your deleted account.
-			</p>
-    		
-		   </div>
-		   <button class="save-button2" onclick="goDelete()" >Request to delete account</button>
-        </section>
     </div>
     <div class="btns">
             <div class="moveTopBtn">Top</div>

@@ -56,6 +56,29 @@ public class NewsDao {
 		
 		return dtos;
 	}
+	// 관리자 뉴스 전체dtos 
+		public ArrayList<NewsDto> getAllNewsList2(){
+			String query="select n_no, n_title, n_content, n_attach, n_uploader, to_char(n.n_upload_date, 'yyyy-MM-dd') as n_upload_date, n_update_date, n.g_code,g.g_developer\r\n" + 
+					"from kyj_news n, kyj_game g\r\n" +
+					"where n.g_code = g.g_code";
+			
+			RowMapper<NewsDto> newsDtos = new BeanPropertyRowMapper<>(NewsDto.class);
+			ArrayList<NewsDto> dtos = (ArrayList<NewsDto>) temp.query(query, newsDtos);
+			
+			return dtos;
+		}
+	// 기업 뉴스dtos 
+	public ArrayList<NewsDto> getDeveloperNewsList(String developer){
+		String query="select n_no, n_title, n_content, n_attach, n_uploader, to_char(n.n_upload_date, 'yyyy-MM-dd') as n_upload_date, n_update_date, n.g_code,g.g_developer\r\n" + 
+				"from kyj_news n, kyj_game g\r\n" +
+				"where n.g_code = g.g_code\r\n" +
+				"and g.g_developer = '"+developer+"'";
+		
+		RowMapper<NewsDto> newsDtos = new BeanPropertyRowMapper<>(NewsDto.class);
+		ArrayList<NewsDto> dtos = (ArrayList<NewsDto>) temp.query(query, newsDtos);
+		
+		return dtos;
+	}
 	//특정 게임 뉴스 dtos
 		public ArrayList<NewsDto> getParticularNewsList(String g_code) {
 			String query="select n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code\r\n" + 

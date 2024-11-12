@@ -11,7 +11,21 @@ function goConfirm() {
 	game.action="Game?t_gubun=GameConfirmList";
 	game.submit();
 }
-
+function goUsers() {
+	game.method="post";
+	game.action="Game?t_gubun=user_list";
+	game.submit();
+}
+function goGamesList() {
+	game.method="post";
+	game.action="Game?t_gubun=games_list";
+	game.submit();
+}
+function goNewsList() {
+	game.method="post";
+	game.action="Game?t_gubun=news_list";
+	game.submit();
+}
 </script>
 <head>
     <meta charset="UTF-8">
@@ -41,11 +55,14 @@ function goConfirm() {
 		<c:if test="${sessionId ne null}">
 	   		<c:if test="${sessionLevel ne '3'}">
 	        	<div class="button-container">
+	        	<c:if test="${sessionLevel eq '2'}">
 	            	<button class="action-btn" onclick="goGameRegi()">GAME REGIST</button>
 	            	<button class="action-btn" onclick="goStoreRegi()">STORE REGIST</button>
-	            	<button class="action-btn" onclick="">게임관리</button>
+	            	</c:if>
+	            	<button class="action-btn" onclick="goGamesList()">Game Management</button>
+	            	<button class="action-btn" onclick="goNewsList()">News Management</button>
 	            	<c:if test="${sessionLevel eq '1'}">
-	            	<button class="action-btn" onclick="">유저관리</button>
+	            	<button class="action-btn" onclick="goUsers()">User</button>
 	            	<button class="action-btn" onclick="goConfirm()">GameConfirm</button>
 	            	</c:if>
 	        	</div>

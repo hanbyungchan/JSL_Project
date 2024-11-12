@@ -1,7 +1,7 @@
 package dto;
 
 public class HomeDto {
-	String s_page_no,g_name,s_sale,s_img_main,s_img_1,s_img_2,s_img_3;
+	String s_page_no,g_name,s_sale,s_img_main,s_img_1,s_img_2,s_img_3,s_icon,g_developer,s_date;
 	double g_price, g_price2;
 	public double getG_price2() {
 		return g_price2;
@@ -53,11 +53,29 @@ public class HomeDto {
 	public void setS_img_3(String s_img_3) {
 		this.s_img_3 = s_img_3;
 	}
+	public String getS_icon() {
+		return s_icon;
+	}
+	public void setS_icon(String s_icon) {
+		this.s_icon = s_icon;
+	}
 	public double getG_price() {
 		return g_price;
 	}
 	public void setG_price(double g_price) {
 		this.g_price = g_price;
+	}
+	public String getG_developer() {
+		return g_developer;
+	}
+	public void setG_developer(String g_developer) {
+		this.g_developer = g_developer;
+	}
+	public String getS_date() {
+		return s_date;
+	}
+	public void setS_date(String s_date) {
+		this.s_date = s_date;
 	}
 	
 }

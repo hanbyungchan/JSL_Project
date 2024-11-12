@@ -23,7 +23,7 @@
                     </ul>
                 </li>
                 <li><a href="Game?t_gubun=support">SUPPORT</a></li>
-                <li><a href="Ranking">RANKING</a></li>
+                <li><a href="Rank">RANKING</a></li>
             </ul>
         </nav>
 

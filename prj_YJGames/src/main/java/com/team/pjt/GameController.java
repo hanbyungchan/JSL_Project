@@ -21,6 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import com.oreilly.servlet.MultipartRequest;
 //import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import command.admin.GamesList;
+import command.admin.NewsList;
+import command.admin.UserActivate;
+import command.admin.UserDelete2;
+import command.admin.UserInfo2;
+import command.admin.UserList;
+import command.admin.UserUpdate2;
 import command.cart.CartList;
 import command.cart.Payment;
 import command.game.GameConfirm;
@@ -52,6 +59,7 @@ import command.view.ViewPage;
 import common.CommonExecute;
 import common.CommonTemplate;
 import dao.GameDao;
+import dao.RankDao;
 import dao.UserDao;
 import dto.GameRegiDto;
 import dto.GenreDto;
@@ -70,11 +78,13 @@ public class GameController {
 	public String AdminPage(HttpServletRequest req) {
 		return"adminPage/adminPage";
 	}
-	//랭킹 페이지
-	@RequestMapping("Ranking")
-	public String Ranking(HttpServletRequest req) {
-		return"ranking/ranking";
-	}
+	//통계 리스트
+		@RequestMapping("Rank")
+		public String Rank(HttpServletRequest req) {
+			CommonExecute rank = new command.rank.Rank();
+			rank.execute(req);
+			return"rank/rank";
+		}
 	//뉴스 상세보기
 	@RequestMapping("NewsView")  
 	public String NewsView(HttpServletRequest req) {
@@ -176,6 +186,16 @@ public class GameController {
 			else if(gubun.equals("userupdate")) {CommonExecute game = new UserUpdate();game.execute(req);viewPage = "common_alert";}
 			//유저삭제
 			else if(gubun.equals("userdelete")) {CommonExecute game = new UserDelete();game.execute(req);viewPage = "common_alert";}
+			//유저리스트
+			else if(gubun.equals("user_list")) {CommonExecute game = new UserList();game.execute(req);viewPage = "adminPage/user_list";}
+			//유저정보수정페이지
+			else if(gubun.equals("userinfo2")) {CommonExecute game = new UserInfo2();game.execute(req);viewPage = "adminPage/users_info";}
+			//관리자 유저 수정
+			else if(gubun.equals("userupdate2")) {CommonExecute game = new UserUpdate2();game.execute(req);viewPage = "common_alert";}
+			//관리자 유저 계정 활성화
+			else if(gubun.equals("activate")) {CommonExecute game = new UserActivate();game.execute(req);viewPage = "common_alert";}
+			//관리자 유저 삭제
+			else if(gubun.equals("userdelete2")) {CommonExecute game = new UserDelete2();game.execute(req);viewPage = "common_alert";}
 			//구매
 			else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
 			//뉴스등록폼
@@ -237,6 +257,10 @@ public class GameController {
 				CommonExecute game = new GameConfirm();
 				game.execute(req);
 				viewPage = "common_alert";}
+			//관리자,게임사 게임 리스트
+			else if(gubun.equals("games_list")) {CommonExecute game = new GamesList();game.execute(req);viewPage = "adminPage/games_list";}
+			//관리자,게임사 뉴스 리스트
+			else if(gubun.equals("news_list")) {CommonExecute game = new NewsList();game.execute(req);viewPage = "adminPage/news_list";}
 			return viewPage;
 	}
 	//id중복체크
@@ -295,12 +319,14 @@ public class GameController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = null;
 		GameDao dao = new GameDao();
+		RankDao dao3 = new RankDao();
 		int count = 0;
 		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 		String u_id = request.getParameter("t_id");
 		ArrayList<String> lists = dao.GameCodeList(u_id);
 		for(String codes : lists) {
 			count = dao.AddPurchase(u_id, codes);
+			if(count!=0)dao3.rankHit(codes);
 		}
 		if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);}
 		else out.print("");
@@ -312,6 +338,7 @@ public class GameController {
 		PrintWriter out = null;
 		GameDao dao = new GameDao();
 		UserDao dao2 = new UserDao();
+		RankDao dao3 = new RankDao();
 		int count = 0;
 		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
 		String u_id = request.getParameter("t_id");
@@ -321,6 +348,7 @@ public class GameController {
 		ArrayList<String> lists = dao.GameCodeList(u_id);
 		for(String codes : lists) {
 			count = dao.AddPurchase(u_id, codes);
+			if(count!=0)dao3.rankHit(codes);
 		}
 		if(count != 0) {out.print(String.valueOf(count));dao.RemoveCartAll(u_id);dao2.Payment(u_id, money);}
 		else out.print("");

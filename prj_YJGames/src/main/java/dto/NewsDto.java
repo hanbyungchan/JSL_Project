@@ -1,7 +1,7 @@
 package dto;
 
 public class NewsDto {
-	private String n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code;
+	private String n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code,g_developer;
 	
 	public NewsDto() {}
 	
@@ -101,6 +101,14 @@ public class NewsDto {
 
 	public void setN_update_date(String n_update_date) {
 		this.n_update_date = n_update_date;
+	}
+
+	public String getG_developer() {
+		return g_developer;
+	}
+
+	public void setG_developer(String g_developer) {
+		this.g_developer = g_developer;
 	}
 	
 	
