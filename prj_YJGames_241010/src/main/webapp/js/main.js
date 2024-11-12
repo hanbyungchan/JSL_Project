@@ -73,61 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 300); // 0.3초 후에 사라짐
     });
 });
-
 //=============================================================================
-
-
-
-// ======================
-// 최신 게임 섹션 이미지 변경 기능
-// ======================
-
-const games = [
-    {
-        image1: "img/4/1.jpg",
-        image2: "img/4/2.jpg",
-        image3: "img/4/3.jpg",
-        image4: "img/4/4.jpg"
-    },
-    {
-        image1: "img/10/1.jpg",
-        image2: "img/10/2.jpg",
-        image3: "img/10/3.jpg",
-        image4: "img/10/4.jpg"
-    },
-	{
-		image1: "img/12/1.jpg",
-        image2: "img/12/2.jpg",
-        image3: "img/12/3.jpg",
-        image4: "img/12/4.jpg"
-    },
-	{
-		image1: "img/11/1.jpg",
-        image2: "img/11/2.jpg",
-        image3: "img/11/3.jpg",
-        image4: "img/11/4.jpg"
-    },
-	{
-		image1: "img/9/1.jpg",
-        image2: "img/9/2.jpg",
-        image3: "img/9/3.jpg",
-        image4: "img/9/4.jpg"
-    },
-	{
-		image1: "img/16/1.jpg",
-        image2: "img/16/2.jpg",
-        image3: "img/16/3.jpg",
-        image4: "img/16/4.jpg"
-    },
-	{
-		image1: "img/15/1.jpg",
-        image2: "img/15/2.jpg",
-        image3: "img/15/3.jpg",
-        image4: "img/15/4.jpg"
-    },
-    // 필요한 추가 게임 데이터들
-];
-
 // 각 게임 항목에 마우스 이벤트 추가
 document.addEventListener('DOMContentLoaded', () => {
     const gameItems = document.querySelectorAll('.game-item');

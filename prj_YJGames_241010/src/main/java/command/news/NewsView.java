@@ -1,6 +1,5 @@
 package command.news;
 
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,9 +14,6 @@ public class NewsView implements CommonExecute {
 		//상세보기
 		NewsDao dao = new NewsDao();
 		String n_no = request.getParameter("n_no");
-		
-		
-		
 		NewsDto dto = dao.getNewsView(n_no);
 		
 		request.setAttribute("dto", dto);

@@ -20,12 +20,19 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+    <script type="text/javascript">
+    function goView(s_no) {
+		game.method="post";
+		game.action="Game?t_gubun=view&t_pageNo="+s_no;
+		game.submit();
+	}
+    </script>
     <%@ include file = "../scripts.jsp"%>
 </head>
 <body>
 	<form name="game">
 	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_pageNo">
 	</form>
     <%@ include file = "../header.jsp"%>
     
@@ -38,20 +45,29 @@
         </colgroup>
         <thead>
             <tr>
-                <th>이미지</th>
-                <th>제목</th>
-                <th>히트수</th>
+                <th>ICON</th>
+                <th>TITLE</th>
+                <th>DOWNLOAD</th>
             </tr>
         </thead>
         <tbody>
         	<c:forEach items="${dtos}" var = "dto">
+        	
         		<tr>
+        		
                     <td><img src="img/${dto.getG_code()}/${dto.getG_img()}" alt="게임 로고"></td>
-                    <td>${dto.getG_name()}</td>
+                    <td><a href="javascript:goView('${dto.getG_code()}')" class="no-link" >${dto.getG_name()}</a></td>
                     <td>${dto.getG_downloaded()}</td>
+                    
                 </tr>
-        	</c:forEach>
                 
+        	</c:forEach>
+             <style>
+  .no-link {
+    text-decoration: none;
+    color: white;  /* 원하는 색상으로 변경 가능 */
+  }
+</style>
                 <!-- 
                 <tr>
                     <td><img src="img/2/1.jpg" alt="게임 로고"></td>

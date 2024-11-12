@@ -1,6 +1,5 @@
 package command.user;
 
-import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,20 +14,14 @@ public class UserDelete implements CommonExecute {
 	public void execute(HttpServletRequest request) {
 		UserDao dao = new UserDao();
 		String u_id = request.getParameter("t_u_id");
-		String u_password = request.getParameter("t_u_password_check");
-		try {
-			u_password = dao.encryptSHA256(u_password);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
 		String u_exit_date =CommonUtil.getToday();
-		int result = dao.UserDelete(u_id, u_password, u_exit_date);
+		int result = dao.UserDelete(u_id, u_exit_date);
 		if(result == 1) {
-			request.setAttribute("t_msg", "Registration successful");
+			request.setAttribute("t_msg", "Delete successful");
 			HttpSession session = request.getSession();
 			session.invalidate();
 		} 
-		else {request.setAttribute("t_msg", "Registration failed... Please try again");}
+		else {request.setAttribute("t_msg", "Delete failed... Please try again");}
 		request.setAttribute("t_url", "Game");
 	}
 

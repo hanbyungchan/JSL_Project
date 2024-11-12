@@ -35,7 +35,7 @@
                 </c:if>
 	            <c:if test="${sessionId ne null}">
 	            <c:if test="${sessionLevel ne '3'}">
-            		<a href="Admin" style="color: red;"><i class="fa-solid fa-screwdriver-wrench"></i></a>
+            		<a href="AdminPage" style="color: red;"><i class="fa-solid fa-screwdriver-wrench"></i></a>
             	</c:if>
 	            	<a href="javascript:goInfo()"><i class="fa-solid fa-user-astronaut"></i></a>
 	            	<a href="javascript:goLogout()"><i class="fa-solid fa-right-from-bracket"></i></a>

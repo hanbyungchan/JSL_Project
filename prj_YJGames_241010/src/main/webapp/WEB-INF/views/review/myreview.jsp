@@ -78,7 +78,7 @@
                 </c:forEach>
                 
                 <c:if test="${empty t_dtos}">
-                <div class="nothing"><span>nothing</span></div>
+                <div class="empty-message"><span>nothing</span></div>
                 </c:if>
             </div>
         </div>

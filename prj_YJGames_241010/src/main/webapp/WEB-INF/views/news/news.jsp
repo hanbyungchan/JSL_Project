@@ -42,7 +42,7 @@
              <c:forEach items="${dtos}" var = "dto" varStatus="status">
              <c:if test="${status.index < 1}">
                 <div class="large-image">
-                        <img src="img/${dto.getN_no()}/${dto.getN_attach()}" alt="" />
+                        <img src="img/summernote/${dto.getN_attach()}" alt="" />
                         <a href="javascript:goNewsView('${dto.getN_no()}')">
                     <div class="image-text">
                         <h2>${dto.getN_title()}</h2>
@@ -76,10 +76,11 @@
                 </ul>
             </section>
         </div>
+        
         <div class="btns">
             <div class="moveTopBtn">Top</div>
             <div class="moveBottomBtn">Bottom</div>
-</div>
+	</div>
         <script src="js/main.js"></script>
     </body>
     <%@ include file = "../footer.jsp"%>

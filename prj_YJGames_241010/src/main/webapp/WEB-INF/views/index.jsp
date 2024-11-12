@@ -94,7 +94,7 @@
 <div class="slide-content">
     <h2>${dto1.getG_name()}</h2>
     <p>Now available</p>
-	
+
     <div class="price-container">
         <div class="price-wrapper">
             <c:if test="${dto1.getG_price() ne '0'}">
@@ -278,6 +278,18 @@
             </div>
         </a>
         </c:forEach>
+        <script>
+    		const games = [
+    			<c:forEach items="${t_dtos1}" var = "dto1">
+        	{
+            	image1: "img/${dto1.getS_page_no()}/1.jpg",
+            	image2: "img/${dto1.getS_page_no()}/2.jpg",
+            	image3: "img/${dto1.getS_page_no()}/3.jpg",
+            	image4: "img/${dto1.getS_page_no()}/4.jpg"
+        	},
+        	</c:forEach>
+    		];
+</script>
         </div>
         <div class="game-preview">
             <img class="preview-image1" src="">
@@ -293,8 +305,8 @@
 </div>
 <%@ include file = "footer.jsp"%>
 <!-- ============================================================================= -->	
+
 <script src="js/main.js"></script>
 <script src="js/slide.js"></script>	
 </body>
 </html>
-

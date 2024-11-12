@@ -19,8 +19,7 @@
    	 if(checkValue(user.t_u_password_check, 'Please enter password confirm')) return;
    	 if(checkValueLength(user.t_u_birth, 8, 'Please enter your Birth','Birth is 8')) return;//4 최소 15최대
    	 if(checkValue(user.t_u_gender,'select Gender')) return;
-   	 if(checkValueLength(user.t_u_email_1 ,1,20, "Please enter Email", 'Email is more than 1 less than 20'))
-   	 if(checkValue(user.t_u_email_2,  'Please select Email')) return;
+   	 if(checkValueLength(user.t_u_email_1 ,1,20, "Please enter Email", 'Email is more than 1 less than 20')) return;
    		user.method = "post";
    		user.action = "Game?t_gubun=userupdate";
    		user.submit();
@@ -67,7 +66,14 @@
             </div>
             <div class="info-group">
                 <label for="email">E-MAIL</label>
-                <input type="email" name="t_u_email_1" value="${t_dto.getU_email_1()}">@<input type="email" name="t_u_email_2" value="${t_dto.getU_email_2()}" >
+                <input type="email" name="t_u_email_1" value="${t_dto.getU_email_1()}">@
+                <select name="t_u_email_2">
+                    <option value="naver.com" ${t_dto.getU_email_2() == 'naver.com' ? 'selected' : ''}>naver.com</option>
+                    <option value="gmail.com" ${t_dto.getU_email_2() == 'gmail.com' ? 'selected' : ''}>gmail.com</option>
+                    <option value="daum.net" ${t_dto.getU_email_2() == 'daum.net' ? 'selected' : ''}>daum.net</option>
+                    <option value="yahoo.com" ${t_dto.getU_email_2() == 'yahoo.com' ? 'selected' : ''}>yahoo.com</option>
+                    <option value="other" ${t_dto.getU_email_2() == 'other' ? 'selected' : ''}>Other</option>
+                </select>
             </div>
             <div class="info-group">
                 <label for="postal-code">BIRTH</label>

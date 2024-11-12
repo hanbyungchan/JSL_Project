@@ -1,7 +1,7 @@
 package dto;
 
 public class NewsDto {
-	private String n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code;
+	private String n_no, n_title, n_content, n_attach, n_uploader, n_upload_date, n_update_date, g_code,g_developer;
 	
 	public NewsDto() {}
 	
@@ -17,9 +17,28 @@ public class NewsDto {
 		this.n_update_date = n_update_date;
 		this.g_code = g_code;
 	}
-	
-	
-	
+	//등록
+	public NewsDto(String n_no, String n_title, String n_content, String n_attach, String n_uploader,
+			String n_upload_date, String g_code) {
+		super();
+		this.n_no = n_no;
+		this.n_title = n_title;
+		this.n_content = n_content;
+		this.n_attach = n_attach;
+		this.n_uploader = n_uploader;
+		this.n_upload_date = n_upload_date;
+		this.g_code = g_code;
+	}
+	//수정
+	public NewsDto(String n_no, String n_title, String n_content, String n_attach, String n_update_date) {
+		super();
+		this.n_no = n_no;
+		this.n_title = n_title;
+		this.n_content = n_content;
+		this.n_attach = n_attach;
+		this.n_update_date = n_update_date;
+	}
+
 	public String getG_code() {
 		return g_code;
 	}
@@ -82,6 +101,14 @@ public class NewsDto {
 
 	public void setN_update_date(String n_update_date) {
 		this.n_update_date = n_update_date;
+	}
+
+	public String getG_developer() {
+		return g_developer;
+	}
+
+	public void setG_developer(String g_developer) {
+		this.g_developer = g_developer;
 	}
 	
 	

@@ -149,7 +149,7 @@
     <div class="achievements trendy-box">
     <c:forEach items="${t_dtos3}" var="dto">
         <div class="news-item">
-            <img src="img/1/1.jpg" alt="News 1" class="news-image">
+            <img src="img/summernote/${dto.getN_attach()}" alt="News 1" class="news-image">
             <a href="javascript:goNewsView('${dto.getN_no()}')" class="custom-link">
             <div class="news-details">
                 <h3>${dto.getN_title()}</h3>

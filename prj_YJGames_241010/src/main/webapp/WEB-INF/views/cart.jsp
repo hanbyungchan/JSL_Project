@@ -86,7 +86,7 @@
                     </div>
                 </div>
 			</c:forEach>
-			<c:if test="${empty t_dtos}"><span>nothing</span></c:if>
+			<c:if test="${empty t_dtos}"><span class="empty-message">nothing</span></c:if>
             </div>
             <div class="summary">
                 <h2 class="summary-title">Games and apps total</h2>

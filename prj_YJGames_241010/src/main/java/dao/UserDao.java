@@ -2,6 +2,7 @@ package dao;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -69,7 +70,7 @@ public class UserDao {
 	//내 정보
 	public UserDto UserInfo(String id){
 		UserDto dto = null;
-		String query = "select u_id,u_name,u_password,TO_CHAR(u_birth, 'YYYYMMDD') AS u_birth,u_gender,u_email_1,u_email_2,u_money,u_level\r\n" + 
+		String query = "select u_id,u_name,u_password,TO_CHAR(u_birth, 'YYYYMMDD') AS u_birth,u_gender,u_email_1,u_email_2,u_money,u_level,u_exit_date\r\n" + 
 				"from kyj_user\r\n" + 
 				"where u_id = '"+id+"'";
 		RowMapper<UserDto> uDto = new BeanPropertyRowMapper<UserDto>(UserDto.class);
@@ -98,13 +99,27 @@ public class UserDao {
 		catch (Exception e) {System.out.println("UserUpdate() 메소드 오류" + query);}
 		return result;
 	}
+	//수정2
+		public int UserUpdate2(UserDto dto) {
+			int result = 0;
+			String query = "UPDATE kyj_user\r\n" + 
+					"set u_name = '"+dto.getU_name()+"',\r\n" + 
+					"u_birth = '"+dto.getU_birth()+"',\r\n" + 
+					"u_email_1 = '"+dto.getU_email_1()+"',\r\n" + 
+					"u_email_2 = '"+dto.getU_email_2()+"',\r\n" + 
+					"u_gender = '"+dto.getU_gender()+"',\r\n" + 
+					"u_money  = '"+dto.getU_money()+"'\r\n" + 
+					"where u_id = '"+dto.getU_id()+"'";	
+			try {result = temp.update(query);} 
+			catch (Exception e) {System.out.println("UserUpdate() 메소드 오류" + query);}
+			return result;
+		}
 	//탈퇴
-	public int UserDelete(String id, String pw, String u_exit_date) {
+	public int UserDelete(String id, String u_exit_date) {
 		int result = 0;
 		String query = "UPDATE kyj_user\r\n" + 
 				"set u_exit_date = '"+u_exit_date+"'\r\n" + 
-				"where u_id = '"+id+"'\r\n" + 
-				"and u_password = '"+pw+"'";		
+				"where u_id = '"+id+"'";	
 		try {result = temp.update(query);} 
 		catch (Exception e) {System.out.println("UserDelete() 메소드 오류" + query);}
 		return result;
@@ -155,6 +170,25 @@ public class UserDao {
 		} catch (Exception e) {
 			System.out.println("SupportSubmit() 메소드 오류" + query);
 		}
+		return result;
+	}
+	//유저리스트
+		public ArrayList<UserDto> UserList() {
+			String query = "select u_id,u_name,u_email_1,u_email_2,u_level,u_exit_date\r\n" + 
+					"from kyj_user\r\n" + 
+					"order by u_id";
+			RowMapper<UserDto> Dtos = new BeanPropertyRowMapper<>(UserDto.class);
+			ArrayList<UserDto> dtos = (ArrayList<UserDto>) temp.query(query, Dtos);
+			return dtos;
+		}
+	//계정활성화
+	public int UserActivate(String u_id) {
+		int result = 0;
+		String query = "UPDATE kyj_user\r\n" + 
+				"set u_exit_date = ''\r\n" + 
+				"where u_id = '"+u_id+"'";	
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("UserActivate() 메소드 오류" + query);}
 		return result;
 	}
 }
