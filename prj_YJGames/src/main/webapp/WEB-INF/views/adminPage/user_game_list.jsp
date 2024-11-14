@@ -21,23 +21,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-    function goEdit(id) {
-		game.method="post";
-		game.action="Game?t_gubun=userinfo2&u_id="+id;
-		game.submit();
-	}
-    function goGameList(id) {
-		game.method="post";
-		game.action="Game?t_gubun=usergamelist&u_id="+id;
-		game.submit();
-	}
     </script>
     <%@ include file = "../scripts.jsp"%>
 </head>
 <body>
 	<form name="game">
 	<input type="hidden" name="t_gubun">
-	<input type="hidden" name="u_id">
+	<input type="hidden" name="t_pageNo">
 	</form>
     <%@ include file = "../header.jsp"%>
     
@@ -46,41 +36,25 @@
     	 <colgroup>
             <col style="width: 20%;">
             <col style="width: 20%;">
-            <col style="width: 20%;">
-            <col style="width: 10%;">
-            <col style="width: 10%;">
-            <col style="width: 10%;">
-            <col style="width: 10%;">
+            <col style="width: 60%;">
         </colgroup>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>EMAIL</th>
-                <th>CATEGORY</th>
-                <th>DEACTIVATE</th>
-                <th>EDIT</th>
-                <th>Operations</th>
+            	<th>IMG</th>
+                <th>CODE</th>
+                <th>TITLE</th>
             </tr>
         </thead>
         <tbody>
-        	<c:forEach items="${dtos}" var = "dto">
-        	
+        	<c:forEach items="${t_dtos}" var = "dto">
         		<tr>
-        		
-                    <td>${dto.getU_id()}</td>
-                    <td>${dto.getU_name()}</td>
-                    <td>${dto.getU_email_1()}@${dto.getU_email_2()}</td>
-                    <c:if test="${dto.getU_level() eq '3'}"><td>User</td></c:if>
-                    <c:if test="${dto.getU_level() eq '2'}"><td>Company</td></c:if>
-                    <c:if test="${dto.getU_level() eq '1'}"><td>Admin</td></c:if>
-                    <td><c:if test="${dto.getU_exit_date() ne null}">V</c:if></td>
-                    <td><input type="button" value ="Edit" onclick="goEdit('${dto.getU_id()}')"></td>
-                    <td><input type="button" value ="Ops" onclick="goGameList('${dto.getU_id()}')"></td>
+                    <td><img src="img/${dto.getG_code()}/icon.png" alt="icon"></td>
+                    <td>${dto.getG_code()}</td>
+                    <td>${dto.getG_name()}</td>
                 </tr>
-                
         	</c:forEach>
-             <style>
+		<c:if test="${t_dtos.size() eq 0}"><tr><td colspan="3">No games owned!</td></tr></c:if>        	
+<style>
   .no-link {
     text-decoration: none;
     color: white;  /* 원하는 색상으로 변경 가능 */

@@ -1,24 +1,22 @@
-package command.library;
+package command.admin;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import common.CommonExecute;
 import dao.GameDao;
 import dto.LibraryDto;
 
-public class LibraryList implements CommonExecute {
+public class UserGameList implements CommonExecute {
 
 	@Override
 	public void execute(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String u_id = (String)session.getAttribute("sessionId");
+		String id = request.getParameter("u_id");
 		String search = request.getParameter("t_search");
 		if(search == null) search = "";
 		GameDao dao = new GameDao();
-		ArrayList<LibraryDto> dtos = dao.Library_game_List(u_id,search);
+		ArrayList<LibraryDto> dtos = dao.Library_game_List(id,search);
 		request.setAttribute("t_dtos", dtos);
 		request.setAttribute("t_search", search);
 	}

@@ -93,7 +93,9 @@
 		</form>
         <div class="button-container" style="text-align: center;">
             <button class="save-button" onclick="goUpdate()">Save Changes</button>
+            <c:if test="${t_dto.getU_exit_date() eq null}">
             <button class="save-button" onclick="goDelete()" >Delete account</button>
+            </c:if>
             <c:if test="${t_dto.getU_exit_date() ne null}">
             <button class="save-button" onclick="goActivate()" >Activate account</button>
             </c:if>

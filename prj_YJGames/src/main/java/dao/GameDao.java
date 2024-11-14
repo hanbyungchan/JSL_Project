@@ -269,7 +269,7 @@ public class GameDao {
 		//라이브러리 게임목록칸
 		public ArrayList<LibraryDto> Library_game_List(String u_id, String search) {
 			String query = "select s.s_game_name as g_name,s.s_game_code as g_code, s.s_img_main from kyj_purchase_history h, kyj_store_page s\r\n" + 
-					"where h.g_code = s.s_game_code  and h.u_id = '"+u_id+"'  AND LOWER(s.s_game_name) LIKE '%"+search+"%'";
+					"where h.g_code = s.s_game_code  and h.u_id = '"+u_id+"' AND LOWER(s.s_game_name) LIKE '%"+search+"%' order by s.s_game_name ASC";
 			RowMapper<LibraryDto> gameDtos = new BeanPropertyRowMapper<>(LibraryDto.class);
 			ArrayList<LibraryDto> dtos = (ArrayList<LibraryDto>) temp.query(query, gameDtos);
 			return dtos;

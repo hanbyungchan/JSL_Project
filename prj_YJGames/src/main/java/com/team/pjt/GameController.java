@@ -25,6 +25,7 @@ import command.admin.GamesList;
 import command.admin.NewsList;
 import command.admin.UserActivate;
 import command.admin.UserDelete2;
+import command.admin.UserGameList;
 import command.admin.UserInfo2;
 import command.admin.UserList;
 import command.admin.UserUpdate2;
@@ -271,6 +272,8 @@ public class GameController {
 		else if(gubun.equals("games_list")) {CommonExecute game = new GamesList();game.execute(req);viewPage = "adminPage/games_list";}
 		//관리자,게임사 뉴스 리스트
 		else if(gubun.equals("news_list")) {CommonExecute game = new NewsList();game.execute(req);viewPage = "adminPage/news_list";}
+		//관리자.유저게임리스트
+		else if(gubun.equals("usergamelist")) {CommonExecute game = new UserGameList();game.execute(req);viewPage = "adminPage/user_game_list";}
 		return viewPage;
 	}
 	//id중복체크
