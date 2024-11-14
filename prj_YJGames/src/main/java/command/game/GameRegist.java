@@ -34,14 +34,13 @@ public class GameRegist implements CommonExecute {
             if (g_file == null) {
                 g_file = "";
             }
-
             // t_genre_code를 List<String>으로 변환
             String[] t_genre_code_array = mpr.getParameterValues("t_genre_code");
             List<String> t_genre_code = (t_genre_code_array != null) ? Arrays.asList(t_genre_code_array) : null;
-            String g_confirm = mpr.getParameter("t_g_confirm");
+            
 
             // DTO 생성
-            GameRegiDto dto = new GameRegiDto(g_code, g_name, g_file, g_developer, g_grade, t_genre_code, g_confirm, Double.parseDouble(g_price));  // 수정된 부분
+            GameRegiDto dto = new GameRegiDto(g_code, g_name, g_file, g_developer, g_grade, t_genre_code, "0", Double.parseDouble(g_price));  // 수정된 부분
             
             int result = dao.RegistGame(dto);
             if (result != 0) msg = "Game registration completed";

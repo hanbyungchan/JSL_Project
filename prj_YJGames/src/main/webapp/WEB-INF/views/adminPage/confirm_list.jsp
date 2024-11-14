@@ -80,7 +80,7 @@
     	}
     	function goConfirm() {
     		listconfirm.method = "post";
-    		listconfirm.action = "";
+    		listconfirm.action = "ConfirmSelected";
     		listconfirm.submit();
     	}
     	
@@ -117,7 +117,7 @@
 	                <tr>
 	                    <td class="publisher">${dto.getG_developer()}</td>
 	                    <td><a href="javascript:goConfirmForm('${dto.getG_code()}')">${dto.getG_name()}</a></td>
-	                    <td><input type="checkbox" class="check" value="${dto.getG_code()}"></td>
+	                    <td><input type="checkbox" name="confirmList" class="check" value="${dto.getG_code()}"></td>
 	                </tr>
                 </c:forEach>
             </table>

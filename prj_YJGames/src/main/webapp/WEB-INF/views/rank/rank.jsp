@@ -47,7 +47,7 @@
             <tr>
                 <th>ICON</th>
                 <th>TITLE</th>
-                <th>DOWNLOAD</th>
+                <th>PURCHASE</th>
             </tr>
         </thead>
         <tbody>

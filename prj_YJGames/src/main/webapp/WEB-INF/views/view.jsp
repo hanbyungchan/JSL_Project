@@ -30,8 +30,9 @@
     	function nowbuy(a) {
     		game.t_id.value = a;
     		if(game.t_id.value ==""){alert("Please Login!");game.method = "post";game.action = "Game?t_gubun=goSignin";game.submit(); return;}
+    		if(game.msg.value != ""){alert(game.msg.value);return;}
     		game.method = "post";
-    		game.action = "Game?t_gubun=payment";
+    		game.action = "Game?t_gubun=payment_now";
     		game.submit();
 		}
     	function Contain(a) {
@@ -68,6 +69,7 @@
 	<input type="hidden" name="t_pageNo" value="${dto.getS_page_no()}">
 	<input type="hidden" name="t_id">
 	<input type="hidden" name="result">
+	<input type="hidden" name="msg" value="${msg}">
 	</form>
     <%@ include file = "header.jsp"%>
     <!-- 메인 컨테이너 -->
@@ -167,7 +169,6 @@
 			        </c:if>
 			    </c:if>
 			</div>
-
             <button class="btn buy-btn" onclick="nowbuy('${sessionId}')">Now Buy</button>
             <button class="btn cart-btn" onclick="Contain('${sessionId}')">Add to Cart</button>
             <div class="system-requirements">

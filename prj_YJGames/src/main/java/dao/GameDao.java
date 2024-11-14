@@ -311,9 +311,9 @@ public class GameDao {
 		public int RegistGame(GameRegiDto dto) {
 			int result = 0;
 			String query1 = "insert into kyj_game\r\n" + 
-					"(g_code, g_name, g_price, g_file, g_developer, g_grade)\r\n" + 
+					"(g_code, g_name, g_price, g_file, g_developer, g_grade,g_confirm)\r\n" + 
 					"values\r\n" + 
-					"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"')";
+					"('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_price()+"', '"+dto.getG_file()+"', '"+dto.getG_developer()+"', '"+dto.getG_grade()+"','"+dto.getG_confirm()+"')";
 			try {
 				result = temp.update(query1);
 			} catch (Exception e) {
@@ -453,6 +453,25 @@ public class GameDao {
 				"where g_code = '"+g_code+"'";
 		try {result = temp.update(query);} 
 		catch (Exception e) {System.out.println("GameConfirm() 메소드 오류" + query);}
+		return result;
+	}
+	//게임 컨펌2
+	public int GameConfirm2(String[] confirmList) {
+		int result = 0;
+		String wherePart ="";
+		for(int i=0; i<confirmList.length; i++) {
+			if(i==0) {
+				wherePart+="'"+confirmList[i]+"'";
+			}
+			else {
+				wherePart+=", '"+confirmList[i]+"'";
+			}	
+		}
+		String query = "update kyj_game\r\n" + 
+				"set g_confirm = '1'\r\n" + 
+				"where g_code in ("+wherePart+")";
+		try {result = temp.update(query);} 
+		catch (Exception e) {System.out.println("GameConfirm2() 메소드 오류" + query);}
 		return result;
 	}
 	//전체게임 리스트

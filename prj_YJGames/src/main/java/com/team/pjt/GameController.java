@@ -30,6 +30,7 @@ import command.admin.UserList;
 import command.admin.UserUpdate2;
 import command.cart.CartList;
 import command.cart.Payment;
+import command.cart.Payment_now;
 import command.game.GameConfirm;
 import command.game.GameConfirmList;
 import command.game.GameConfirmView;
@@ -73,6 +74,13 @@ public class GameController {
 	public void aaa() {
 		CommonTemplate.setTemplate(template);
 	}
+	//게임 일괄 컨펌
+	@RequestMapping("ConfirmSelected")
+	public String ConfirmSelected(HttpServletRequest req) {
+		CommonExecute confirm = new command.game.GameConfirm2();
+		confirm.execute(req);
+		return "common_alert";
+	}
 	//관리자 페이지
 	@RequestMapping("AdminPage")
 	public String AdminPage(HttpServletRequest req) {
@@ -109,159 +117,161 @@ public class GameController {
 	public String Game(HttpServletRequest req) {
 		String gubun = req.getParameter("t_gubun");
 		String viewPage = "";
-			if(gubun == null) gubun = "list";
-			//홈페이지
-			if(gubun.equals("list")) {CommonExecute game = new IndexList();game.execute(req);viewPage = "index";}
-			//홈페이지2
-			else if(gubun.equals("goStore")){CommonExecute game = new IndexList();game.execute(req);viewPage = "index";}
-			//홈페이지2
-			else if(gubun.equals("view")){CommonExecute game = new ViewPage();game.execute(req);viewPage = "view";}
-			//support
-			else if(gubun.equals("support")){viewPage = "support/support";}
-			//support
-			else if(gubun.equals("sup_submit")){CommonExecute game = new SupportSubmit();game.execute(req);viewPage = "common_alert";}
-			//library
-			else if(gubun.equals("library")){CommonExecute game = new LibraryList();game.execute(req);viewPage = "library/library";}
-			//library 상세
-			else if(gubun.equals("library_detail")){CommonExecute game = new LibraryDetail();game.execute(req);viewPage = "library/libraryDetail";}
-			//리뷰
-			else if(gubun.equals("review")){CommonExecute game = new ReviewList();game.execute(req);viewPage = "review/review";}
-			//내리뷰
-			else if(gubun.equals("myreview")){
-				HttpSession session = req.getSession();
-				if(session.getAttribute("sessionName") == null) {
-					req.setAttribute("t_gubun", "goSignin");
-					req.setAttribute("t_msg", "Please log in!");
-					req.setAttribute("t_url", "Game");
-					viewPage = "common_alert";
-				}
-				else{CommonExecute game = new MyReviewList();game.execute(req);viewPage = "review/myreview";}}
-			//리뷰적기
-			else if(gubun.equals("review_write")){
-				HttpSession session = req.getSession();
-				if(session.getAttribute("sessionName") == null) {
-					req.setAttribute("t_gubun", "goSignin");
-					req.setAttribute("t_msg", "Please log in!");
-					req.setAttribute("t_url", "Game");
-					viewPage = "common_alert";
-				}
-				else {
-				CommonExecute game = new ReviewList();
-				game.execute(req);
-				viewPage = "review/review_write";}}
-			//리뷰저장
-			else if(gubun.equals("review_save")) {CommonExecute game = new ReviewSave();game.execute(req);viewPage = "common_alert";}
-			//리뷰수정페이지
-			else if(gubun.equals("review_updateform")) {CommonExecute game = new ReviewUpdateForm();game.execute(req);viewPage = "review/review_update";}
-			//리뷰수정
-			else if(gubun.equals("review_update")) {CommonExecute game = new ReviewUpdate();game.execute(req);viewPage = "common_alert";}
-			//리뷰삭제
-			else if(gubun.equals("review_delete")) {CommonExecute game = new ReviewDelete();game.execute(req);viewPage = "common_alert";}
-			//로그인창
-			else if(gubun.equals("goSignin")){viewPage = "user/user_login";} 
-			//회원가입창(개인)
-			else if(gubun.equals("userjoin_cus")) {viewPage = "user/user_join_customer";}
-			//회원가입창(기업)
-			else if(gubun.equals("userjoin_com")) {viewPage = "user/user_join_company";}
-			//내정보
-			else if(gubun.equals("userinfo")) {CommonExecute game = new UserInfo();game.execute(req);viewPage = "user/user_myinfo";}
-			//장바구니
-			else if(gubun.equals("cart")) {
-				HttpSession session = req.getSession();
-				if(session.getAttribute("sessionName") == null) {
-					req.setAttribute("t_gubun", "goSignin");
-					req.setAttribute("t_msg", "Please log in!");
-					req.setAttribute("t_url", "Game");
-					viewPage = "common_alert";
-				}
-			else {
-				CommonExecute game = new CartList();game.execute(req);viewPage = "cart";}}
-			//회원가입
-			else if(gubun.equals("usersave")) {CommonExecute game = new UserJoin();game.execute(req);viewPage = "common_alert";}
-			//로그인
-			else if(gubun.equals("userlogin")) {CommonExecute game = new UserLogin();game.execute(req);viewPage = "common_alert";}
-			//로그아웃
-			else if(gubun.equals("userlogout")) {CommonExecute game = new UserLogout();game.execute(req);viewPage = "common_alert";}
-			//유저수정
-			else if(gubun.equals("userupdate")) {CommonExecute game = new UserUpdate();game.execute(req);viewPage = "common_alert";}
-			//유저삭제
-			else if(gubun.equals("userdelete")) {CommonExecute game = new UserDelete();game.execute(req);viewPage = "common_alert";}
-			//유저리스트
-			else if(gubun.equals("user_list")) {CommonExecute game = new UserList();game.execute(req);viewPage = "adminPage/user_list";}
-			//유저정보수정페이지
-			else if(gubun.equals("userinfo2")) {CommonExecute game = new UserInfo2();game.execute(req);viewPage = "adminPage/users_info";}
-			//관리자 유저 수정
-			else if(gubun.equals("userupdate2")) {CommonExecute game = new UserUpdate2();game.execute(req);viewPage = "common_alert";}
-			//관리자 유저 계정 활성화
-			else if(gubun.equals("activate")) {CommonExecute game = new UserActivate();game.execute(req);viewPage = "common_alert";}
-			//관리자 유저 삭제
-			else if(gubun.equals("userdelete2")) {CommonExecute game = new UserDelete2();game.execute(req);viewPage = "common_alert";}
-			//구매
-			else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
-			//뉴스등록폼
-			//여기서 g_code값 받아와야함
-			else if(gubun.equals("news_write")) {viewPage = "news/news_write";}
-			//뉴스등록
-			else if(gubun.equals("news_save")) {CommonExecute game = new NewsWrite();game.execute(req);viewPage = "common_alert";}
-			//뉴스수정폼
-			else if(gubun.equals("news_updateForm")) {CommonExecute game = new NewsUpdateForm();game.execute(req);viewPage = "news/news_update";}
-			//뉴스수정
-			else if(gubun.equals("news_update")) {CommonExecute game = new NewsUpdate();game.execute(req);viewPage = "common_alert";}
-			//뉴스삭제
-			else if(gubun.equals("news_delete")) {CommonExecute game = new NewsDelete();game.execute(req);viewPage = "common_alert";}
-			//게임 등록폼
-			else if(gubun.equals("gameRegistForm")) {
-				GameDao dao = new GameDao();
-				String g_code = dao.AutoCode();
-				ArrayList<GenreDto> dtos = dao.genreCheckList();
-				req.setAttribute("g_code", g_code);
-				req.setAttribute("dtos", dtos);
-				CommonExecute game = new IndexList();
-				game.execute(req);
-				viewPage = "registration/game_regist";
-			//게임 등록
-			} else if(gubun.equals("gameRegist")) {
-				CommonExecute game = new GameRegist();
-				game.execute(req);
-				viewPage = "common_alert";
-			//상점 페이지 등록폼
-			} else if(gubun.equals("storeRegistForm")) {
-				GameDao dao = new GameDao();
-				HttpSession session = req.getSession();
-		        String sessionName = (String) session.getAttribute("sessionName");
-				String s_page_no = dao.AutoNo();
-				ArrayList<GameRegiDto> dtos = dao.GameSelectList(sessionName);
-				req.setAttribute("s_page_no", s_page_no);
-				req.setAttribute("dtos", dtos);
-				CommonExecute game = new IndexList();
-				game.execute(req);
-				viewPage = "registration/store_regist";
-			//상점 페이지 등록
-			} else if(gubun.equals("storeRegist")) {
-				CommonExecute game = new StoreRegist();
-				game.execute(req);
+		if(gubun == null) gubun = "list";
+		//홈페이지
+		if(gubun.equals("list")) {CommonExecute game = new IndexList();game.execute(req);viewPage = "index";}
+		//홈페이지2
+		else if(gubun.equals("goStore")){CommonExecute game = new IndexList();game.execute(req);viewPage = "index";}
+		//홈페이지2
+		else if(gubun.equals("view")){CommonExecute game = new ViewPage();game.execute(req);viewPage = "view";}
+		//support
+		else if(gubun.equals("support")){viewPage = "support/support";}
+		//support
+		else if(gubun.equals("sup_submit")){CommonExecute game = new SupportSubmit();game.execute(req);viewPage = "common_alert";}
+		//library
+		else if(gubun.equals("library")){CommonExecute game = new LibraryList();game.execute(req);viewPage = "library/library";}
+		//library 상세
+		else if(gubun.equals("library_detail")){CommonExecute game = new LibraryDetail();game.execute(req);viewPage = "library/libraryDetail";}
+		//리뷰
+		else if(gubun.equals("review")){CommonExecute game = new ReviewList();game.execute(req);viewPage = "review/review";}
+		//내리뷰
+		else if(gubun.equals("myreview")){
+			HttpSession session = req.getSession();
+			if(session.getAttribute("sessionName") == null) {
+				req.setAttribute("t_gubun", "goSignin");
+				req.setAttribute("t_msg", "Please log in!");
+				req.setAttribute("t_url", "Game");
 				viewPage = "common_alert";
 			}
-			//게임 컨펌 리스트
-			else if(gubun.equals("GameConfirmList")) {
-				CommonExecute game = new GameConfirmList();
-				game.execute(req);
-				viewPage = "adminPage/confirm_list";
-			//게임 컨펌 상세
-			} else if(gubun.equals("GameConfirmView")) {
-				CommonExecute game = new GameConfirmView();
-				game.execute(req);
-				viewPage = "registration/game_regist_confirm";
-			//게임 컨펌
-			} else if(gubun.equals("gameConfirm")) {
-				CommonExecute game = new GameConfirm();
-				game.execute(req);
-				viewPage = "common_alert";}
-			//관리자,게임사 게임 리스트
-			else if(gubun.equals("games_list")) {CommonExecute game = new GamesList();game.execute(req);viewPage = "adminPage/games_list";}
-			//관리자,게임사 뉴스 리스트
-			else if(gubun.equals("news_list")) {CommonExecute game = new NewsList();game.execute(req);viewPage = "adminPage/news_list";}
-			return viewPage;
+			else{CommonExecute game = new MyReviewList();game.execute(req);viewPage = "review/myreview";}}
+		//리뷰적기
+		else if(gubun.equals("review_write")){
+			HttpSession session = req.getSession();
+			if(session.getAttribute("sessionName") == null) {
+				req.setAttribute("t_gubun", "goSignin");
+				req.setAttribute("t_msg", "Please log in!");
+				req.setAttribute("t_url", "Game");
+				viewPage = "common_alert";
+			}
+			else {
+			CommonExecute game = new ReviewList();
+			game.execute(req);
+			viewPage = "review/review_write";}}
+		//리뷰저장
+		else if(gubun.equals("review_save")) {CommonExecute game = new ReviewSave();game.execute(req);viewPage = "common_alert";}
+		//리뷰수정페이지
+		else if(gubun.equals("review_updateform")) {CommonExecute game = new ReviewUpdateForm();game.execute(req);viewPage = "review/review_update";}
+		//리뷰수정
+		else if(gubun.equals("review_update")) {CommonExecute game = new ReviewUpdate();game.execute(req);viewPage = "common_alert";}
+		//리뷰삭제
+		else if(gubun.equals("review_delete")) {CommonExecute game = new ReviewDelete();game.execute(req);viewPage = "common_alert";}
+		//로그인창
+		else if(gubun.equals("goSignin")){viewPage = "user/user_login";} 
+		//회원가입창(개인)
+		else if(gubun.equals("userjoin_cus")) {viewPage = "user/user_join_customer";}
+		//회원가입창(기업)
+		else if(gubun.equals("userjoin_com")) {viewPage = "user/user_join_company";}
+		//내정보
+		else if(gubun.equals("userinfo")) {CommonExecute game = new UserInfo();game.execute(req);viewPage = "user/user_myinfo";}
+		//장바구니
+		else if(gubun.equals("cart")) {
+			HttpSession session = req.getSession();
+			if(session.getAttribute("sessionName") == null) {
+				req.setAttribute("t_gubun", "goSignin");
+				req.setAttribute("t_msg", "Please log in!");
+				req.setAttribute("t_url", "Game");
+				viewPage = "common_alert";
+			}
+		else {
+			CommonExecute game = new CartList();game.execute(req);viewPage = "cart";}}
+		//회원가입
+		else if(gubun.equals("usersave")) {CommonExecute game = new UserJoin();game.execute(req);viewPage = "common_alert";}
+		//로그인
+		else if(gubun.equals("userlogin")) {CommonExecute game = new UserLogin();game.execute(req);viewPage = "common_alert";}
+		//로그아웃
+		else if(gubun.equals("userlogout")) {CommonExecute game = new UserLogout();game.execute(req);viewPage = "common_alert";}
+		//유저수정
+		else if(gubun.equals("userupdate")) {CommonExecute game = new UserUpdate();game.execute(req);viewPage = "common_alert";}
+		//유저삭제
+		else if(gubun.equals("userdelete")) {CommonExecute game = new UserDelete();game.execute(req);viewPage = "common_alert";}
+		//유저리스트
+		else if(gubun.equals("user_list")) {CommonExecute game = new UserList();game.execute(req);viewPage = "adminPage/user_list";}
+		//유저정보수정페이지
+		else if(gubun.equals("userinfo2")) {CommonExecute game = new UserInfo2();game.execute(req);viewPage = "adminPage/users_info";}
+		//관리자 유저 수정
+		else if(gubun.equals("userupdate2")) {CommonExecute game = new UserUpdate2();game.execute(req);viewPage = "common_alert";}
+		//관리자 유저 계정 활성화
+		else if(gubun.equals("activate")) {CommonExecute game = new UserActivate();game.execute(req);viewPage = "common_alert";}
+		//관리자 유저 삭제
+		else if(gubun.equals("userdelete2")) {CommonExecute game = new UserDelete2();game.execute(req);viewPage = "common_alert";}
+		//구매
+		else if(gubun.equals("payment")) {CommonExecute game = new Payment();game.execute(req);viewPage = "payment";}
+		//바로구매
+		else if(gubun.equals("payment_now")) {CommonExecute game = new Payment_now();game.execute(req);viewPage = "payment_now";}
+		//뉴스등록폼
+		//여기서 g_code값 받아와야함
+		else if(gubun.equals("news_write")) {viewPage = "news/news_write";}
+		//뉴스등록
+		else if(gubun.equals("news_save")) {CommonExecute game = new NewsWrite();game.execute(req);viewPage = "common_alert";}
+		//뉴스수정폼
+		else if(gubun.equals("news_updateForm")) {CommonExecute game = new NewsUpdateForm();game.execute(req);viewPage = "news/news_update";}
+		//뉴스수정
+		else if(gubun.equals("news_update")) {CommonExecute game = new NewsUpdate();game.execute(req);viewPage = "common_alert";}
+		//뉴스삭제
+		else if(gubun.equals("news_delete")) {CommonExecute game = new NewsDelete();game.execute(req);viewPage = "common_alert";}
+		//게임 등록폼
+		else if(gubun.equals("gameRegistForm")) {
+			GameDao dao = new GameDao();
+			String g_code = dao.AutoCode();
+			ArrayList<GenreDto> dtos = dao.genreCheckList();
+			req.setAttribute("g_code", g_code);
+			req.setAttribute("dtos", dtos);
+			CommonExecute game = new IndexList();
+			game.execute(req);
+			viewPage = "registration/game_regist";
+		//게임 등록
+		} else if(gubun.equals("gameRegist")) {
+			CommonExecute game = new GameRegist();
+			game.execute(req);
+			viewPage = "common_alert";
+		//상점 페이지 등록폼
+		} else if(gubun.equals("storeRegistForm")) {
+			GameDao dao = new GameDao();
+			HttpSession session = req.getSession();
+	        String sessionName = (String) session.getAttribute("sessionName");
+			String s_page_no = dao.AutoNo();
+			ArrayList<GameRegiDto> dtos = dao.GameSelectList(sessionName);
+			req.setAttribute("s_page_no", s_page_no);
+			req.setAttribute("dtos", dtos);
+			CommonExecute game = new IndexList();
+			game.execute(req);
+			viewPage = "registration/store_regist";
+		//상점 페이지 등록
+		} else if(gubun.equals("storeRegist")) {
+			CommonExecute game = new StoreRegist();
+			game.execute(req);
+			viewPage = "common_alert";
+		}
+		//게임 컨펌 리스트
+		else if(gubun.equals("GameConfirmList")) {
+			CommonExecute game = new GameConfirmList();
+			game.execute(req);
+			viewPage = "adminPage/confirm_list";
+		//게임 컨펌 상세
+		} else if(gubun.equals("GameConfirmView")) {
+			CommonExecute game = new GameConfirmView();
+			game.execute(req);
+			viewPage = "registration/game_regist_confirm";
+		//게임 컨펌
+		} else if(gubun.equals("gameConfirm")) {
+			CommonExecute game = new GameConfirm();
+			game.execute(req);
+			viewPage = "common_alert";}
+		//관리자,게임사 게임 리스트
+		else if(gubun.equals("games_list")) {CommonExecute game = new GamesList();game.execute(req);viewPage = "adminPage/games_list";}
+		//관리자,게임사 뉴스 리스트
+		else if(gubun.equals("news_list")) {CommonExecute game = new NewsList();game.execute(req);viewPage = "adminPage/news_list";}
+		return viewPage;
 	}
 	//id중복체크
 	@RequestMapping("checkId")
@@ -311,7 +321,6 @@ public class GameController {
 				else out.print("");
 			}else out.print("3");
 		}else out.print("4");
-		
 	}
 	//지갑으로 결제
 	@RequestMapping("Card_recharge")
@@ -432,6 +441,38 @@ public class GameController {
 		System.out.println("Request: " + request);
 		System.out.println("Response: " + response);
 		out.print("1");
+	}
+	//지갑으로 바로결제
+	@RequestMapping("Card_recharge_now")
+	public void Card_recharge_now(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		GameDao dao = new GameDao();
+		RankDao dao2 = new RankDao();
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_id");
+		String code = request.getParameter("t_pageNo");
+		int count = dao.AddPurchase(u_id, code);
+		if(count != 0) {out.print(String.valueOf(count));dao2.rankHit(code);}
+		else out.print("");
+	}
+	//게임머니로 바로결제
+	@RequestMapping("Game_money_purchase_now")
+	public void Game_money_purchase_now(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		GameDao dao = new GameDao();
+		UserDao dao2 = new UserDao();
+		RankDao dao3 = new RankDao();
+		try {out = response.getWriter();} catch (IOException e) {e.printStackTrace();}
+		String u_id = request.getParameter("t_id");
+		String u_money = request.getParameter("t_u_money");
+		String m_money = request.getParameter("t_my_money");
+		String code = request.getParameter("t_pageNo");
+		Double money = Double.parseDouble(m_money) - Double.parseDouble(u_money);
+		int count = dao.AddPurchase(u_id, code);
+		if(count != 0) {out.print(String.valueOf(count));dao3.rankHit(code);dao2.Payment(u_id, money);}
+		else out.print("");
 	}
 /*	
 		//summernote
