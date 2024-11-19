@@ -143,7 +143,7 @@
 
 <!-- 뉴스 섹션 제목과 밑줄 -->
 <div class="news-header">
-    <h3>Latest News</h3>
+    <h3>On Sale</h3>
     <div class="underline"></div>
 </div>
    <div class="news-box">

@@ -46,7 +46,6 @@
         <div class="main-image">
             <img src="img/main-image.jpg" alt="메인 이미지" />
         </div>
-        <script src="js/main.js"></script>
         <!-- ================================================================== -->
         <div class="slider-container">
             <!-- 슬라이더 제목과 밑줄 -->
@@ -112,6 +111,7 @@
             <div class="moveTopBtn">Top</div>
             <div class="moveBottomBtn">Bottom</div>
 </div>
+<script src="js/main.js"></script>
     </body>
 </html>
 <%@ include file = "../footer.jsp"%>
