@@ -26,23 +26,29 @@ public class RankDao {
 		catch(Exception e) {
 			System.out.println("rankHit() 오류: "+query);
 		}
-		
-		
-		
 	}
-
 	//랭킹 Dtos
 	public ArrayList<RankDto> getRankList() {
 		String query="select g_code, g_name, g_img, g_downloaded\r\n" + 
 				"from kyj_ranking\r\n" +
 				"order by g_downloaded desc, g_name asc";
-		
 		RowMapper<RankDto> rankDtos = new BeanPropertyRowMapper<>(RankDto.class);
 		ArrayList<RankDto> dtos = (ArrayList<RankDto>) temp.query(query, rankDtos);
 		
 		return dtos;
 	}
-	
+	//랭킹 등록
+	public void RegistRank(RankDto dto) {
+		String query="INSERT INTO KYJ_RANKING (G_CODE, G_NAME, G_IMG, G_DOWNLOADED)\r\n" + 
+				"VALUES ('"+dto.getG_code()+"', '"+dto.getG_name()+"', '"+dto.getG_img()+"', '0')";
+		int result=0;
+		try {
+			result = temp.update(query);
+		}
+		catch(Exception e) {
+			System.out.println("RegistRank() 오류: "+query);
+		}
+	}
 	//랭킹 테이블의 데이터들 올라가는 hit 함수 만들기.(함
 	//게임 등록시 랭킹 테이블에도 자동적으로 등록(함
 	//페이지 자체는 DB대로 랭킹 테이블 나열만 하면 됨.(진행중. html와야됨, 관리자 페이지도 와야됨. --241102-- rank페이지 아직 안옴.

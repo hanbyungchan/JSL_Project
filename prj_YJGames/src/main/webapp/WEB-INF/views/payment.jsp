@@ -19,12 +19,13 @@
         <script type="text/javascript">
         function goRecharge(a) {
             game.t_recharge.value = a;
+            game.t_id.value = "${sessionId}";
             game.t_my_money.value = "${t_dto.getU_money()}";
             $.ajax({
                 type:"post",
                 url:"Payment",
                 data: {
-                    t_id: ${sessionId},
+                    t_id: game.t_id.value,
                     t_u_money: game.t_recharge.value,
                     t_my_money: game.t_my_money.value
                 },
@@ -43,11 +44,12 @@
         function Game_money_purchase(a) {
             game.t_recharge.value = a;
             game.t_my_money.value = "${t_dto.getU_money()}";
+            game.t_id.value = "${sessionId}";
             $.ajax({
                 type:"post",
                 url:"Game_money_purchase",
                 data: {
-                    t_id: ${sessionId},
+                    t_id: game.t_id.value,
                     t_u_money: game.t_recharge.value,
                     t_my_money: game.t_my_money.value
                 },
@@ -64,10 +66,11 @@
             });
         }
         function game_pay() {
+        	game.t_id.value = "${sessionId}";
             $.ajax({
                 type:"post",
                 url:"Card_recharge",
-                data: {t_id: ${sessionId}},
+                data: {t_id: game.t_id.value},
                 dataType:"text",
                 error:function(){
                     alert("Error occurred.");

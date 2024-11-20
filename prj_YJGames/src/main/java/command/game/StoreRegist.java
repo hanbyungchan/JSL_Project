@@ -10,7 +10,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import common.CommonExecute;
 import common.CommonUtil;
 import dao.GameDao;
+import dao.RankDao;
 import dto.GameRegiDto;
+import dto.RankDto;
 import dto.StoreRegiDto;
 
 public class StoreRegist implements CommonExecute {
@@ -59,7 +61,12 @@ public class StoreRegist implements CommonExecute {
 			StoreRegiDto dto = new StoreRegiDto(s_page_no, s_game_code, s_game_name, s_info_txt, s_date, s_spec_1, s_spec_2, s_spec_3, s_spec_4, s_spec_5, s_img_main, s_img_1, s_img_2, s_img_3, s_icon, s_video_1, s_video_2, s_video_3, Integer.parseInt(s_sale));
 			
 			int result = dao.RegistStore(dto);
-			if(result != 0) msg = "Store registration completed";
+			if(result != 0) {msg = "Store registration completed";
+			RankDto dto2 = new RankDto(s_game_code, s_game_name, s_img_main, 0);
+			RankDao dao2 = new RankDao();
+			dao2.RegistRank(dto2);
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

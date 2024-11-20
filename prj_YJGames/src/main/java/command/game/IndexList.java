@@ -16,6 +16,7 @@ public class IndexList implements CommonExecute {
 		ArrayList<HomeDto> dtos1 = dao.NewList();
 		ArrayList<HomeDto> dtos2 = dao.SaleList1();
 		ArrayList<HomeDto> dtos3 = dao.SaleList2();
+		
 		request.setAttribute("t_dtos1", dtos1);
 		request.setAttribute("t_dtos2", dtos2);
 		request.setAttribute("t_dtos3", dtos3);
